@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string>Американа</string>
+  <string>Антифолк</string>
+  <string>Блюз</string>
+  <string>Джаз</string>
+  <string>Диско</string>
+  <string>Дрим-поп</string>
+  <string>Дэнсхолл</string>
+  <string>Рок</string>
+  <string>Кантри</string>
+  <string>Панк</string>
+  <string>Пауэр-поп</string>
+  <string>Поп</string>
+  <string>Прогрессивная</string>
+  <string>Реггетон</string>
+  <string>Рок-н-ролл</string>
+  <string>Фанк</string>
+  <string>Фолк</string>
+  <string>Хип-хоп</string>
+  <string>Шансон</string>
+  <string>Электронная</string>
+</ArrayOfString>

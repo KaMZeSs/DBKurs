@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Randomise\" />
+    <Compile Remove="Randomise\**" />
+    <EmbeddedResource Remove="Randomise\**" />
+    <None Remove="Randomise\**" />
   </ItemGroup>
 
   <ItemGroup>
