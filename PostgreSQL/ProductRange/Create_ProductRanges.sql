@@ -9,3 +9,4 @@ CREATE TABLE ProductRanges(
     FOREIGN KEY (shop_id) REFERENCES Shops(shop_id) ON DELETE CASCADE,
     FOREIGN KEY (album_id) REFERENCES Albums(album_id) ON DELETE CASCADE
 );
+

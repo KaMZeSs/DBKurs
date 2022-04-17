@@ -12,5 +12,7 @@ CREATE TABLE Shops(
     yearOpened INT NOT NULL,
     FOREIGN KEY (district_id) REFERENCES Districts(district_id) ON DELETE CASCADE,
     FOREIGN KEY (propertyType_id) REFERENCES PropertyTypes(propertyType_id) ON DELETE CASCADE,
-    FOREIGN KEY (owner_id) REFERENCES Owners(owner_id) ON DELETE CASCADE
+    FOREIGN KEY (owner_id) REFERENCES Owners(owner_id) ON DELETE CASCADE,
+    CHECK (extract(YEAR FROM expiryDate) >= yearOpened)
 );
+

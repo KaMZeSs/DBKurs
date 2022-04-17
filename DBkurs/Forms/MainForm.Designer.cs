@@ -39,23 +39,15 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.CityTable_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CityTable_Country_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CityTable_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
-            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.ProductRange_Id_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductRange_Shop_column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductRange_Album_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductRange_Date_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductRange_Count_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage6.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,19 +82,19 @@
             // добавитьToolStripMenuItem
             // 
             this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.добавитьToolStripMenuItem.Text = "Добавить";
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
             // изменитьToolStripMenuItem
             // 
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.изменитьToolStripMenuItem.Text = "Изменить";
             // 
             // запросыToolStripMenuItem
@@ -116,16 +108,6 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage9);
-            this.tabControl1.Controls.Add(this.tabPage10);
-            this.tabControl1.Controls.Add(this.tabPage11);
-            this.tabControl1.Controls.Add(this.tabPage12);
-            this.tabControl1.Controls.Add(this.tabPage13);
-            this.tabControl1.Controls.Add(this.tabPage14);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
@@ -153,6 +135,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.dataGridView1);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(792, 398);
@@ -160,34 +143,16 @@
             this.tabPage4.Text = "Ассортимент";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 24);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(792, 398);
-            this.tabPage5.TabIndex = 3;
-            this.tabPage5.Text = "Страна";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.dataGridView1);
-            this.tabPage6.Location = new System.Drawing.Point(4, 24);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(792, 398);
-            this.tabPage6.TabIndex = 4;
-            this.tabPage6.Text = "Город";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CityTable_Id,
-            this.CityTable_Country_Id,
-            this.CityTable_Name});
+            this.ProductRange_Id_Column,
+            this.ProductRange_Shop_column,
+            this.ProductRange_Album_Column,
+            this.ProductRange_Date_Column,
+            this.ProductRange_Count_Column});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -195,92 +160,30 @@
             this.dataGridView1.Size = new System.Drawing.Size(792, 398);
             this.dataGridView1.TabIndex = 0;
             // 
-            // CityTable_Id
+            // ProductRange_Id_Column
             // 
-            this.CityTable_Id.HeaderText = "Код города";
-            this.CityTable_Id.Name = "CityTable_Id";
+            this.ProductRange_Id_Column.HeaderText = "Id";
+            this.ProductRange_Id_Column.Name = "ProductRange_Id_Column";
             // 
-            // CityTable_Country_Id
+            // ProductRange_Shop_column
             // 
-            this.CityTable_Country_Id.HeaderText = "Код страны";
-            this.CityTable_Country_Id.Name = "CityTable_Country_Id";
+            this.ProductRange_Shop_column.HeaderText = "Магазин";
+            this.ProductRange_Shop_column.Name = "ProductRange_Shop_column";
             // 
-            // CityTable_Name
+            // ProductRange_Album_Column
             // 
-            this.CityTable_Name.HeaderText = "Город";
-            this.CityTable_Name.Name = "CityTable_Name";
+            this.ProductRange_Album_Column.HeaderText = "Альбом";
+            this.ProductRange_Album_Column.Name = "ProductRange_Album_Column";
             // 
-            // tabPage7
+            // ProductRange_Date_Column
             // 
-            this.tabPage7.Location = new System.Drawing.Point(4, 24);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(792, 398);
-            this.tabPage7.TabIndex = 5;
-            this.tabPage7.Text = "Фирма звукозаписи";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this.ProductRange_Date_Column.HeaderText = "Дата поступления";
+            this.ProductRange_Date_Column.Name = "ProductRange_Date_Column";
             // 
-            // tabPage8
+            // ProductRange_Count_Column
             // 
-            this.tabPage8.Location = new System.Drawing.Point(4, 24);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(792, 398);
-            this.tabPage8.TabIndex = 6;
-            this.tabPage8.Text = "Жанр";
-            this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // tabPage9
-            // 
-            this.tabPage9.Location = new System.Drawing.Point(4, 24);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(792, 398);
-            this.tabPage9.TabIndex = 7;
-            this.tabPage9.Text = "Исполнитель";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // tabPage10
-            // 
-            this.tabPage10.Location = new System.Drawing.Point(4, 24);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(792, 398);
-            this.tabPage10.TabIndex = 8;
-            this.tabPage10.Text = "Язык исполнения";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.Location = new System.Drawing.Point(4, 24);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(792, 398);
-            this.tabPage11.TabIndex = 9;
-            this.tabPage11.Text = "Тип записи";
-            this.tabPage11.UseVisualStyleBackColor = true;
-            // 
-            // tabPage12
-            // 
-            this.tabPage12.Location = new System.Drawing.Point(4, 24);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(792, 398);
-            this.tabPage12.TabIndex = 10;
-            this.tabPage12.Text = "Владелец";
-            this.tabPage12.UseVisualStyleBackColor = true;
-            // 
-            // tabPage13
-            // 
-            this.tabPage13.Location = new System.Drawing.Point(4, 24);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(792, 398);
-            this.tabPage13.TabIndex = 11;
-            this.tabPage13.Text = "Тип собственности";
-            this.tabPage13.UseVisualStyleBackColor = true;
-            // 
-            // tabPage14
-            // 
-            this.tabPage14.Location = new System.Drawing.Point(4, 24);
-            this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(792, 398);
-            this.tabPage14.TabIndex = 12;
-            this.tabPage14.Text = "Район города";
-            this.tabPage14.UseVisualStyleBackColor = true;
+            this.ProductRange_Count_Column.HeaderText = "Количество единиц";
+            this.ProductRange_Count_Column.Name = "ProductRange_Count_Column";
             // 
             // MainForm
             // 
@@ -295,7 +198,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -315,19 +218,11 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.TabPage tabPage11;
-        private System.Windows.Forms.TabPage tabPage12;
-        private System.Windows.Forms.TabPage tabPage13;
-        private System.Windows.Forms.TabPage tabPage14;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CityTable_Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CityTable_Country_Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CityTable_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductRange_Id_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductRange_Shop_column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductRange_Album_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductRange_Date_Column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductRange_Count_Column;
     }
 }
