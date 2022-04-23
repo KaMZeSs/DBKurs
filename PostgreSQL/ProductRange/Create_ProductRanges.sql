@@ -7,6 +7,35 @@ CREATE TABLE ProductRanges(
     dateOfReceipt DATE NOT NULL,
     amount INT NOT NULL,
     FOREIGN KEY (shop_id) REFERENCES Shops(shop_id) ON DELETE CASCADE,
-    FOREIGN KEY (album_id) REFERENCES Albums(album_id) ON DELETE CASCADE
+    FOREIGN KEY (album_id) REFERENCES Albums(album_id) ON DELETE CASCADE,
+    CHECK (GetAlbumReleaseDate(album_id) <= dateOfReceipt),
+    CHECK (amount > 0 AND amount <= GetAlbumAmount(album_id)),
+    CHECK (GetAlbumAmountInShops(album_id) <= GetAlbumAmount(album_id))
 );
 
+CREATE OR REPLACE FUNCTION GetAlbumReleaseDate(_id INT) RETURNS DATE AS $$
+DECLARE
+    d DATE;
+BEGIN
+    SELECT releaseDate INTO d FROM Albums WHERE Albums.album_id = _id;
+    RETURN d;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GetAlbumAmount(_id INT) RETURNS INT AS $$
+DECLARE
+    d INT;
+BEGIN
+    SELECT albumCount INTO d FROM Albums WHERE Albums.album_id = _id;
+    RETURN d;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION GetAlbumAmountInShops(_id INT) RETURNS INT AS $$
+DECLARE
+    d INT;
+BEGIN
+    SELECT SUM(amount) INTO d FROM ProductRanges WHERE ProductRanges.album_id = _id;
+    RETURN d;
+END
+$$ LANGUAGE plpgsql;

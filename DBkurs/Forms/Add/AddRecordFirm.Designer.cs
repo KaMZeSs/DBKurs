@@ -76,7 +76,6 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(12, 108);
             this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "Введите название фирмы звукозаписи";
             this.textBox1.Size = new System.Drawing.Size(246, 23);
             this.textBox1.TabIndex = 7;
             // 

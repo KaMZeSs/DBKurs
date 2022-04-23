@@ -1,0 +1,17 @@
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.csproj.AssemblyReference.cache
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.csproj.SuggestedBindingRedirects.cache
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddCity.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddCountry.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddProductRange.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddRecordFirm.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.MainForm.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.csproj.GenerateResource.cache
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.GeneratedMSBuildEditorConfig.editorconfig
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.AssemblyInfoInputs.cache
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.AssemblyInfo.cs
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.csproj.CoreCompileInputs.cache
+E:\Repos\DBKurs\DBkurs\bin\Debug\net472\DBKurs.exe.config
+E:\Repos\DBKurs\DBkurs\bin\Debug\net472\DBKurs.exe
+E:\Repos\DBKurs\DBkurs\bin\Debug\net472\DBKurs.pdb
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.exe
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.pdb

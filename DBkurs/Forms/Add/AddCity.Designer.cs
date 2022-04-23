@@ -38,47 +38,44 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(143, 151);
+            this.button2.Location = new System.Drawing.Point(123, 131);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 23);
+            this.button2.Size = new System.Drawing.Size(99, 20);
             this.button2.TabIndex = 4;
             this.button2.Text = "Отмена";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 151);
+            this.button1.Location = new System.Drawing.Point(10, 131);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 23);
+            this.button1.Size = new System.Drawing.Size(99, 20);
             this.button1.TabIndex = 3;
             this.button1.Text = "Подтвердить";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 111);
+            this.textBox1.Location = new System.Drawing.Point(10, 96);
             this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "Введите название города";
-            this.textBox1.Size = new System.Drawing.Size(246, 23);
+            this.textBox1.Size = new System.Drawing.Size(211, 20);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Москва";
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
             this.listBox1.Items.AddRange(new object[] {
             "Россия"});
-            this.listBox1.Location = new System.Drawing.Point(12, 33);
+            this.listBox1.Location = new System.Drawing.Point(10, 29);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(246, 19);
+            this.listBox1.Size = new System.Drawing.Size(211, 17);
             this.listBox1.TabIndex = 5;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 71);
+            this.button3.Location = new System.Drawing.Point(10, 62);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(246, 23);
+            this.button3.Size = new System.Drawing.Size(211, 20);
             this.button3.TabIndex = 6;
             this.button3.Text = "Добавить новую страну";
             this.button3.UseVisualStyleBackColor = true;
@@ -86,17 +83,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(10, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 15);
+            this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Выберите страну";
             // 
             // AddCity
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 184);
+            this.ClientSize = new System.Drawing.Size(231, 159);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.listBox1);

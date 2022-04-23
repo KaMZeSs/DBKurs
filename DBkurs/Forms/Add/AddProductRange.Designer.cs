@@ -115,7 +115,6 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(12, 255);
             this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "Введите число";
             this.textBox1.Size = new System.Drawing.Size(230, 23);
             this.textBox1.TabIndex = 18;
             // 

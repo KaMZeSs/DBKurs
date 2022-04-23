@@ -14,9 +14,15 @@ CREATE TABLE Albums(
     isCollection BOOLEAN NOT NULL,
     albumInfo TEXT,
     Photo BYTEA NOT NULL,
+    albumTime INT NOT NULL,
     FOREIGN KEY (recordFirm_id) REFERENCES RecordFirms(recordFirm_id) ON DELETE CASCADE,
     FOREIGN KEY (genre_id) REFERENCES Genres(genre_id) ON DELETE CASCADE,
     FOREIGN KEY (executor_id) REFERENCES Executors(executor_id) ON DELETE CASCADE,
     FOREIGN KEY (language_id) REFERENCES Languages(language_id) ON DELETE CASCADE,
-    FOREIGN KEY (recordType_id) REFERENCES RecordTypes(recordType_id) ON DELETE CASCADE
+    FOREIGN KEY (recordType_id) REFERENCES RecordTypes(recordType_id) ON DELETE CASCADE,
+    CHECK (char_length(album_name) > 0),
+    CHECK (releaseDate > to_date('1860-04-09', 'YYYY-MM-DD')),
+    CHECK (albumCount > 0),
+    CHECK (songsCount > 0),
+    CHECK (albumTime > 0)
 );
