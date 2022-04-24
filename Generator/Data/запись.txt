@@ -1,5 +1,0 @@
-CD
-DVD
-MP3
-OGG
-WAV

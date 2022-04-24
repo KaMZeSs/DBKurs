@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace DBKurs.Forms
 {
@@ -16,10 +17,17 @@ namespace DBKurs.Forms
     {
         UpdateTable updator;
 
+        private readonly static String connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs";
+        private NpgsqlConnection conn;
+        private String sql;
+        private NpgsqlCommand cmd;
+        private DataTable dt;
+
         public MainForm()
         {
             InitializeComponent();
             updator = Update_Albums;
+            conn = new NpgsqlConnection(connectString);
         }
 
         #region Updaters
@@ -73,63 +81,317 @@ namespace DBKurs.Forms
                     MessageBox.Show($"Забыл/перепутал {name}");
                     break;
             }
+
+            updator.Invoke();
         }
 
-        private void Update_Cities()
+        private async void Update_Cities()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from Cities";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_Countries()
+        private async void Update_Countries()
         {
+            try
+            {
+                conn.Open();
+                sql = "select * from Get_All_Countries()";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_Executors()
+        private async void Update_Executors()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from Executors";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_Genres()
+        private async void Update_Genres()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from Genres";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_Languages()
+        private async void Update_Languages()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from Languages";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_RecordFirms()
+        private async void Update_RecordFirms()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from RecordFirms";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_RecordTypes()
+        private async void Update_RecordTypes()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from RecordTypes";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
-        private void Update_Districts()
+        private async void Update_Districts()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from Districts";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_Owners()
+        private async void Update_Owners()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from Owners";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_ProperyTypes()
+        private async void Update_ProperyTypes()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from ProperyTypes";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
-        private void Update_Albums()
+        private async void Update_Albums()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from Albums";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_ProductRanges()
+        private async void Update_ProductRanges()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from ProductRanges";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
-        private void Update_Shops()
+        private async void Update_Shops()
         {
+            try
+            {
+                conn.Open();
+                sql = @"select * from Shops";
+                cmd = new NpgsqlCommand(sql, conn);
 
+                dt = new DataTable();
+
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null; //очистка таблицы
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         #endregion
+
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            updator.Invoke();
+        }
     }
 }

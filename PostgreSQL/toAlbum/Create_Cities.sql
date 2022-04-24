@@ -8,14 +8,17 @@ CREATE TABLE Cities(
     CHECK (char_length(city_name) > 0)
 );
 
-CREATE OR REPLACE FUNCTION citi_Check() RETURNS TRIGGER AS $$
-DECLARE
-    
+CREATE OR REPLACE FUNCTION Get_All_Cities() RETURNS TABLE 
+( 
+	"id" INT,
+    "Страна" TEXT, 
+	"Город" TEXT
+) AS $$
 BEGIN
-    
-    RETURN NEW;
-END
-$$ LANGUAGE plpgsql;
+    RETURN QUERY 
+		SELECT Cities.city_id, Countries.country_name, 
+        Cities.city_name FROM Cities INNER JOIN Countries 
+        ON Cities.country_id = Countries.country_id;
 
-CREATE TRIGGER citi_Check BEFORE INSERT OR UPDATE ON Cities
-    FOR EACH ROW EXECUTE PROCEDURE citi_Check();
+
+END; $$ LANGUAGE 'plpgsql';

@@ -1,0 +1,91 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Generate
+{
+    public class PartOfName
+    {
+        public String text;
+        public String gender;
+
+        override
+        public String ToString()
+        {
+            return text;
+        }
+
+        public static String GenerateFIO(PartOfName[] firstNames, 
+            PartOfName[] midNames, PartOfName[] lastNames)
+        {
+            PartOfName firstName, midName, lastName = new PartOfName();
+            
+            do
+            {
+                firstName = firstNames[new Random().Next(0, firstNames.Length - 1)];
+            } while (firstName.gender == null);
+
+            //Get midname according to gender of firstname
+            if (firstName.gender == "u")
+            {
+                do
+                {
+                    midName = midNames[new Random().Next(0, midNames.Length - 1)];
+                } while (midName.gender == null);
+            }
+            else
+            {
+                if (firstName.gender == "m")
+                {
+                    PartOfName[] temp = Array.FindAll(midNames, x => x.gender == "m" | x.gender == "u");
+                    do
+                    {
+                        midName = temp[new Random().Next(0, temp.Length - 1)];
+                    } while (midName.gender == null);
+                }
+                else
+                {
+                    PartOfName[] temp = Array.FindAll(midNames, x => x.gender == "f" | x.gender == "u");
+                    do
+                    {
+                        midName = temp[new Random().Next(0, temp.Length - 1)];
+                    } while (midName.gender == null);
+                }
+            }
+
+            //Get lastname according to gender of firstname and midname
+            if (firstName.gender == "u" & midName.gender == "u")
+            {
+                do
+                {
+                    lastName = lastNames[new Random().Next(0, lastNames.Length - 1)];
+                } while (lastName.gender == null);
+            }
+            else if ((firstName.gender == "m" & midName.gender == "u") | 
+                (firstName.gender == "u" & midName.gender == "m") | 
+                (firstName.gender == "m" & midName.gender == "m"))
+            {
+                PartOfName[] temp = Array.FindAll(lastNames, x => x.gender == "m" | x.gender == "u");
+
+                do
+                {
+                    lastName = temp[new Random().Next(0, temp.Length - 1)];
+                } while (lastName.gender == null);
+            }
+            else if ((firstName.gender == "f" & midName.gender == "u") |
+                (firstName.gender == "u" & midName.gender == "f") |
+                (firstName.gender == "f" & midName.gender == "f"))
+            {
+                PartOfName[] temp = Array.FindAll(lastNames, x => x.gender == "f" | x.gender == "u");
+                do
+                {
+                    lastName = temp[new Random().Next(0, temp.Length - 1)];
+                } while (lastName.gender == null);
+            }
+
+            return $"{lastName} {firstName} {midName}";
+        }
+    }
+}

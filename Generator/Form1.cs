@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace Generator
+namespace Genersator
 {
     public partial class Form1 : Form
     {
