@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -186,6 +187,13 @@ namespace Randomize
             // return $"{districts[new Random().Next(0, districts.Length)].Split(' ')[0]}, д. {new Random().Next(0, 300)} {(new Random().Next(0, 2) == 0 ? new Random().Next(0, 300) : )}";
         }
 
+        private DateTime RandomDay(DateTime start)
+        {
+            int range = (DateTime.Today - start).Days;
+            return start.AddDays(new Random().Next(range));
+        }
+
+
         Random rnd = new Random();
 
         public void Generation(int len = 10000)
@@ -263,7 +271,18 @@ namespace Randomize
                         shop_name = companies[rnd.Next(0, companies.Length)];
                         counter++;
                     }
-                    while (db.shops.Where(x => x.name == shop_name).Count() != 0); //Пока в базе есть магазины с данным
+                    while (db.shops.Where(x => x.name == shop_name).Count() != 0); //Пока в базе есть магазины с данным именем
+
+                    String adress = $"{streets[rnd.Next(0, streets.Length)]}, {rnd.Next(0, 300)}";
+
+                    String license = string.Empty;
+                    Char[] licPart_arr = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z', 'A', 'E', 'U', 'Y', 'a', 'e', 'i', 'o', 'u', 'y' };
+                    int license_length = rnd.Next(0, 15);
+                    while (license.Length <= license_length)
+                        license += licPart_arr[rnd.Next(licPart_arr.Length)];
+
+                    DateTime licenseExpiration = RandomDay(new DateTime(1950, 1, 1));
+                    //licenseExpiration = d.ToString("dd-MM-yyyy");
 
                     Добавить магазин туть
                 }

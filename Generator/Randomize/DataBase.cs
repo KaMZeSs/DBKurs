@@ -71,7 +71,7 @@ namespace Randomize
         public String adress;
         public int propertyType_id;
         public String license;
-        public String licenseExpirationDate;
+        public DateTime licenseExpirationDate;
         public int owner_id;
         public int yearOpened;
 
