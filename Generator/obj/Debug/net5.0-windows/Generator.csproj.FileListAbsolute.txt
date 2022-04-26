@@ -5,7 +5,6 @@ E:\Repos\DBKurs\Generator\bin\Debug\net5.0-windows\Generator.runtimeconfig.dev.j
 E:\Repos\DBKurs\Generator\bin\Debug\net5.0-windows\Generator.dll
 E:\Repos\DBKurs\Generator\bin\Debug\net5.0-windows\Generator.pdb
 E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Generator.csproj.AssemblyReference.cache
-E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Generator.Form1.resources
 E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Generator.csproj.GenerateResource.cache
 E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Generator.GeneratedMSBuildEditorConfig.editorconfig
 E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Generator.AssemblyInfoInputs.cache
@@ -16,4 +15,7 @@ E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\refint\Generator.dll
 E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Generator.pdb
 E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Generator.genruntimeconfig.cache
 E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\ref\Generator.dll
-E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Genersator.Form1.resources
+E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Randomize.Form1.resources
+E:\Repos\DBKurs\Generator\bin\Debug\net5.0-windows\Npgsql.dll
+E:\Repos\DBKurs\Generator\bin\Debug\net5.0-windows\System.Runtime.CompilerServices.Unsafe.dll
+E:\Repos\DBKurs\Generator\obj\Debug\net5.0-windows\Generator.csproj.CopyComplete

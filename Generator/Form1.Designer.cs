@@ -1,4 +1,4 @@
-﻿namespace Generator
+﻿namespace Randomize
 {
     partial class Form1
     {

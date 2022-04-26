@@ -43,6 +43,72 @@ namespace Randomize
             languages = new List<Language>();
             recordTypes = new List<RecordType>();
         }
+
+        public String[] GenerateComands()
+        {
+            var commands = new List<string>();
+
+            //To albums
+            for (int i = 0; i < countries.Count; i++)
+            {
+                commands.Add(countries[i].ToString());
+            }
+            for (int i = 0; i < cities.Count; i++)
+            {
+                commands.Add(cities[i].ToString());
+            }
+            for (int i = 0; i < recordFirms.Count; i++)
+            {
+                commands.Add(recordFirms[i].ToString());
+            }
+            for (int i = 0; i < genres.Count; i++)
+            {
+                commands.Add(genres[i].ToString());
+            }
+            for (int i = 0; i < executors.Count; i++)
+            {
+                commands.Add(executors[i].ToString());
+            }
+            for (int i = 0; i < languages.Count; i++)
+            {
+                commands.Add(languages[i].ToString());
+            }
+            for (int i = 0; i < recordTypes.Count; i++)
+            {
+                commands.Add(recordTypes[i].ToString());
+            }
+            
+            //To shops
+            for (int i = 0; i < districts.Count; i++)
+            {
+                commands.Add(districts[i].ToString());
+            }
+            for (int i = 0; i < propertyTypes.Count; i++)
+            {
+                commands.Add(propertyTypes[i].ToString());
+            }
+            for (int i = 0; i < owners.Count; i++)
+            {
+                commands.Add(owners[i].ToString());
+            }
+
+            //To productRanges
+            for (int i = 0; i < shops.Count; i++)
+            {
+                commands.Add(shops[i].ToString());
+            }
+            for (int i = 0; i < albums.Count; i++)
+            {
+                commands.Add(albums[i].ToString());
+            }
+
+            for (int i = 0; i < productRanges.Count; i++)
+            {
+                commands.Add(productRanges[i].ToString());
+            }
+
+            return commands.ToArray();
+        }
     }
 
     class ProductRange
@@ -50,16 +116,23 @@ namespace Randomize
         public int id;
         public int shop_id;
         public int album_id;
-        public String receiptDate;
+        public DateTime receiptDate;
         public int amount;
 
-        public ProductRange(int id, int shop_id, int album_id, string receiptDate, int amount)
+        public ProductRange(int id, int shop_id, int album_id, DateTime receiptDate, int amount)
         {
             this.id = id;
             this.shop_id = shop_id;
             this.album_id = album_id;
             this.receiptDate = receiptDate;
             this.amount = amount;
+        }
+
+        override public String ToString()
+        {
+            String receipt = receiptDate.ToString("dd-MM-yyyy");
+            return "INSERT INTO ProductRanges (productRange_id, shop_id, album_id, dateOfReceipt, amount) " + 
+                $"VALUES ({id}, {shop_id}, {album_id}, {receipt}, {amount})";
         }
     }
 
@@ -75,7 +148,7 @@ namespace Randomize
         public int owner_id;
         public int yearOpened;
 
-        public Shop(int id, string name, int district_id, string adress, int propertyType_id, string license, DateTime licenseExpirationDate, int owner_id, int yearOpened)
+        public Shop(int id, String name, int district_id, String adress, int propertyType_id, String license, DateTime licenseExpirationDate, int owner_id, int yearOpened)
         {
             this.id = id;
             this.name = name;
@@ -86,6 +159,13 @@ namespace Randomize
             this.licenseExpirationDate = licenseExpirationDate;
             this.owner_id = owner_id;
             this.yearOpened = yearOpened;
+        }
+
+        public override string ToString()
+        {
+            String expiry = licenseExpirationDate.ToString("dd-MM-yyyy");
+            return "INSERT INTO Shops (shop_id, district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) " + 
+                $"VALUES ({id}, {district_id}, {propertyType_id}, {owner_id}, {name}, {adress}, {license}, {expiry}, {yearOpened})";
         }
     }
     class District
@@ -98,6 +178,11 @@ namespace Randomize
             this.id = id;
             this.name = name;
         }
+
+        public override string ToString()
+        {
+            return $"INSERT INTO Districts (district_id, district_name) VALUES ({id}, {name})";
+        }
     }
     class PropertyType
     {
@@ -109,6 +194,11 @@ namespace Randomize
             this.id = id;
             this.type = type;
         }
+
+        public override string ToString()
+        {
+            return $"INSERT INTO PropertyTypes (propertyType_id, propertyType_name) VALUES ({id}, {type})";
+        }
     }
     class Owner
     {
@@ -119,6 +209,11 @@ namespace Randomize
         {
             this.id = id;
             FIO = fIO;
+        }
+
+        public override string ToString()
+        {
+            return $"INSERT INTO Owners (owner_id, owner_name) VALUES ({id}, {FIO})";
         }
     }
 
@@ -156,6 +251,15 @@ namespace Randomize
             this.photo = photo;
             this.time = time;
         }
+
+        public override string ToString()
+        {
+            String release = releaseDate.ToString("dd-MM-yyyy");
+            String isCol = isCompilation ? "true" : "false";
+            String img = Convert.ToBase64String(photo);
+            return "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " + 
+                $"VALUES ({id}, {recordFirm_id}, {genre_id}, {executor_id}, {language_id}, {recordType_id}, {name}, {release}, {amount}, {songsCount}, {isCol}, {info}, {img}, {time})";
+        }
     }
     class Country
     {
@@ -166,6 +270,11 @@ namespace Randomize
         {
             this.id = id;
             this.name = name;
+        }
+
+        public override string ToString()
+        {
+            return $"INSERT INTO Countries (country_id, country_name) VALUES ({id}, {name})";
         }
     }
     class City
@@ -180,6 +289,11 @@ namespace Randomize
             this.country_id = country_id;
             this.name = name;
         }
+
+        public override string ToString()
+        {
+            return $"INSERT INTO Cities (city_id, country_id, city_name) VALUES ({id}, {country_id}, {name})";
+        }
     }
     class RecordFirm
     {
@@ -193,6 +307,11 @@ namespace Randomize
             this.city_id = city_id;
             this.name = name;
         }
+
+        public override string ToString()
+        {
+            return $"INSERT INTO RecordFirms (recordFirm_id, city_id, recordFirm_name) VALUES ({id}, {city_id}, {name})";
+        }
     }
     class Genre
     {
@@ -203,6 +322,11 @@ namespace Randomize
         {
             this.id = id;
             this.name = name;
+        }
+
+        public override string ToString()
+        {
+            return $"INSERT INTO Genres (genre_id, genre_name) VALUES ({id}, {name})";
         }
     }
     class Executor
@@ -215,6 +339,11 @@ namespace Randomize
             this.id = id;
             this.name = name;
         }
+
+        public override string ToString()
+        {
+            return $"INSERT INTO Executors (executor_id, executor_name) VALUES ({id}, {name})";
+        }
     }
     class Language
     {
@@ -226,6 +355,11 @@ namespace Randomize
             this.id = id;
             this.name = name;
         }
+
+        public override string ToString()
+        {
+            return $"INSERT INTO Languages (language_id, language_name) VALUES ({id}, {name})";
+        }
     }
     class RecordType
     {
@@ -236,6 +370,10 @@ namespace Randomize
         {
             this.id = id;
             this.name = name;
+        }
+        public override string ToString()
+        {
+            return $"INSERT INTO RecordTypes (recordType_id, recordType_name) VALUES ({id}, {name})";
         }
     }
 }

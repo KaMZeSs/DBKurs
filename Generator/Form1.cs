@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Generator
+namespace Randomize
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
+            new Generate().Generation();
         }
     }
 }
