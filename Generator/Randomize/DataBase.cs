@@ -75,7 +75,7 @@ namespace Randomize
         public int owner_id;
         public int yearOpened;
 
-        public Shop(int id, string name, int district_id, string adress, int propertyType_id, string license, string licenseExpirationDate, int owner_id, int yearOpened)
+        public Shop(int id, string name, int district_id, string adress, int propertyType_id, string license, DateTime licenseExpirationDate, int owner_id, int yearOpened)
         {
             this.id = id;
             this.name = name;
@@ -127,7 +127,7 @@ namespace Randomize
         public int id; 
         public String name;
         public int recordFirm_id;
-        public String releaseDate;
+        public DateTime releaseDate;
         public int amount;
         public int songsCount;
         public int recordType_id;
@@ -136,10 +136,10 @@ namespace Randomize
         public int genre_id;
         public int language_id;
         public String info;
-        public String photo;
+        public Byte[] photo;
         public int time;
 
-        public Album(int id, string name, int recordFirm_id, string releaseDate, int amount, int songsCount, int recordType_id, bool isCompilation, int executor_id, int genre_id, int language_id, string info, string photo, int time)
+        public Album(int id, string name, int recordFirm_id, DateTime releaseDate, int amount, int songsCount, int recordType_id, bool isCompilation, int executor_id, int genre_id, int language_id, string info, Byte[] photo, int time)
         {
             this.id = id;
             this.name = name;
