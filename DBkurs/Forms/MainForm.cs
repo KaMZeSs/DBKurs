@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -328,8 +329,36 @@ namespace DBKurs.Forms
                 dt = new DataTable();
 
                 dt.Load(await cmd.ExecuteReaderAsync());
+
+                DataTable dtCloned = dt.Clone();
+                dtCloned.BeginLoadData();
+                dtCloned.Columns[dtCloned.Columns.Count - 2].DataType = typeof(Image);
+
+                foreach (DataRow dataRow in dt.Rows)
+                {
+                    DataRow row = dtCloned.NewRow();
+                    for (int i = 0; i < row.ItemArray.Length - 2; i++)
+                    {
+                        row[i] = dataRow[i];
+                    }
+
+                    var base64String = Encoding.Default.GetString((byte[])dataRow[12]);
+                    byte[] byteArray = Convert.FromBase64String(base64String);
+
+                    using (var ms = new MemoryStream(byteArray))
+                    {
+                        Image img = Image.FromStream(ms);
+                        row[12] = img;
+                    }
+                    row[row.ItemArray.Length - 1] = dataRow[row.ItemArray.Length - 1];
+
+                    dtCloned.Rows.Add(row);
+                }
+
                 dataGridView1.DataSource = null; //очистка таблицы
-                dataGridView1.DataSource = dt;
+                
+                dataGridView1.DataSource = dtCloned;
+                dataGridView1.Columns[11].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
             catch (Exception ex)
             {

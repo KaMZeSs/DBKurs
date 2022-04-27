@@ -77,7 +77,7 @@ namespace Randomize
             {
                 commands.Add(recordTypes[i].ToString());
             }
-            
+
             //To shops
             for (int i = 0; i < districts.Count; i++)
             {
@@ -132,7 +132,7 @@ namespace Randomize
         {
             String receipt = receiptDate.ToString("dd-MM-yyyy");
             return "INSERT INTO ProductRanges (productRange_id, shop_id, album_id, dateOfReceipt, amount) " + 
-                $"VALUES ({id}, {shop_id}, {album_id}, {receipt}, {amount})";
+                $"VALUES ({id}, {shop_id}, {album_id}, \'{receipt}\', {amount})";
         }
     }
 
@@ -151,9 +151,9 @@ namespace Randomize
         public Shop(int id, String name, int district_id, String adress, int propertyType_id, String license, DateTime licenseExpirationDate, int owner_id, int yearOpened)
         {
             this.id = id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
             this.district_id = district_id;
-            this.adress = adress;
+            this.adress = adress.Replace("\'", "\'\'");
             this.propertyType_id = propertyType_id;
             this.license = license;
             this.licenseExpirationDate = licenseExpirationDate;
@@ -165,7 +165,7 @@ namespace Randomize
         {
             String expiry = licenseExpirationDate.ToString("dd-MM-yyyy");
             return "INSERT INTO Shops (shop_id, district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) " + 
-                $"VALUES ({id}, {district_id}, {propertyType_id}, {owner_id}, {name}, {adress}, {license}, {expiry}, {yearOpened})";
+                $"VALUES ({id}, {district_id}, {propertyType_id}, {owner_id}, \'{name}\', \'{adress}\', \'{license}\', \'{expiry}\', {yearOpened})";
         }
     }
     class District
@@ -176,12 +176,12 @@ namespace Randomize
         public District(int id, string name)
         {
             this.id = id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
         }
 
         public override string ToString()
         {
-            return $"INSERT INTO Districts (district_id, district_name) VALUES ({id}, {name})";
+            return $"INSERT INTO Districts (district_id, district_name) VALUES ({id}, \'{name}\')";
         }
     }
     class PropertyType
@@ -197,7 +197,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO PropertyTypes (propertyType_id, propertyType_name) VALUES ({id}, {type})";
+            return $"INSERT INTO PropertyTypes (propertyType_id, propertyType_name) VALUES ({id}, \'{type}\')";
         }
     }
     class Owner
@@ -213,7 +213,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Owners (owner_id, owner_name) VALUES ({id}, {FIO})";
+            return $"INSERT INTO Owners (owner_id, owner_name) VALUES ({id}, \'{FIO}\')";
         }
     }
 
@@ -237,7 +237,7 @@ namespace Randomize
         public Album(int id, string name, int recordFirm_id, DateTime releaseDate, int amount, int songsCount, int recordType_id, bool isCompilation, int executor_id, int genre_id, int language_id, string info, Byte[] photo, int time)
         {
             this.id = id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
             this.recordFirm_id = recordFirm_id;
             this.releaseDate = releaseDate;
             this.amount = amount;
@@ -258,7 +258,7 @@ namespace Randomize
             String isCol = isCompilation ? "true" : "false";
             String img = Convert.ToBase64String(photo);
             return "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " + 
-                $"VALUES ({id}, {recordFirm_id}, {genre_id}, {executor_id}, {language_id}, {recordType_id}, {name}, {release}, {amount}, {songsCount}, {isCol}, {info}, {img}, {time})";
+                $"VALUES ({id}, {recordFirm_id}, {genre_id}, {executor_id}, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{img}\', {time})";
         }
     }
     class Country
@@ -269,12 +269,12 @@ namespace Randomize
         public Country(int id, string name)
         {
             this.id = id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
         }
 
         public override string ToString()
         {
-            return $"INSERT INTO Countries (country_id, country_name) VALUES ({id}, {name})";
+            return $"INSERT INTO Countries (country_id, country_name) VALUES ({id}, \'{name}\')";
         }
     }
     class City
@@ -287,12 +287,12 @@ namespace Randomize
         {
             this.id = id;
             this.country_id = country_id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
         }
 
         public override string ToString()
         {
-            return $"INSERT INTO Cities (city_id, country_id, city_name) VALUES ({id}, {country_id}, {name})";
+            return $"INSERT INTO Cities (city_id, country_id, city_name) VALUES ({id}, {country_id}, \'{name}\')";
         }
     }
     class RecordFirm
@@ -305,12 +305,12 @@ namespace Randomize
         {
             this.id = id;
             this.city_id = city_id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
         }
 
         public override string ToString()
         {
-            return $"INSERT INTO RecordFirms (recordFirm_id, city_id, recordFirm_name) VALUES ({id}, {city_id}, {name})";
+            return $"INSERT INTO RecordFirms (recordFirm_id, city_id, recordFirm_name) VALUES ({id}, {city_id}, \'{name}\')";
         }
     }
     class Genre
@@ -321,12 +321,12 @@ namespace Randomize
         public Genre(int id, string name)
         {
             this.id = id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
         }
 
         public override string ToString()
         {
-            return $"INSERT INTO Genres (genre_id, genre_name) VALUES ({id}, {name})";
+            return $"INSERT INTO Genres (genre_id, genre_name) VALUES ({id}, \'{name}\')";
         }
     }
     class Executor
@@ -337,12 +337,12 @@ namespace Randomize
         public Executor(int id, string name)
         {
             this.id = id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
         }
 
         public override string ToString()
         {
-            return $"INSERT INTO Executors (executor_id, executor_name) VALUES ({id}, {name})";
+            return $"INSERT INTO Executors (executor_id, executor_name) VALUES ({id}, \'{name}\')";
         }
     }
     class Language
@@ -353,12 +353,12 @@ namespace Randomize
         public Language(int id, string name)
         {
             this.id = id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
         }
 
         public override string ToString()
         {
-            return $"INSERT INTO Languages (language_id, language_name) VALUES ({id}, {name})";
+            return $"INSERT INTO Languages (language_id, language_name) VALUES ({id}, \'{name}\')";
         }
     }
     class RecordType
@@ -369,11 +369,11 @@ namespace Randomize
         public RecordType(int id, string name)
         {
             this.id = id;
-            this.name = name;
+            this.name = name.Replace("\'", "\'\'");
         }
         public override string ToString()
         {
-            return $"INSERT INTO RecordTypes (recordType_id, recordType_name) VALUES ({id}, {name})";
+            return $"INSERT INTO RecordTypes (recordType_id, recordType_name) VALUES ({id}, \'{name}\')";
         }
     }
 }

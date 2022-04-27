@@ -15,7 +15,7 @@ namespace Randomize
         public Form1()
         {
             InitializeComponent();
-            new Generate().Generation();
+            new Generate().Generation().Send();
         }
     }
 }

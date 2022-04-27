@@ -454,17 +454,19 @@ namespace Randomize
                         temp = propertyTypes[rnd.Next(0, propertyTypes.Length)];
                         if (db.propertyTypes.Where(x => x.type == temp).Count() == 0)
                         {
-                            propertyType_id = propertyTypes.Length;
+                            propertyType_id = db.propertyTypes.Count;
                             db.propertyTypes.Add(new PropertyType(db.propertyTypes.Count, temp));
                         }
                         else
                         {
-                            propertyType_id = rnd.Next(0, propertyTypes.Length);
+                            propertyType_id = rnd.Next(0, db.propertyTypes.Count);
                         }
+                        if (propertyType_id == 4)
+                            MessageBox.Show("");
                     }
                     else //Существующее
                     {
-                        propertyType_id = rnd.Next(0, propertyTypes.Length);
+                        propertyType_id = rnd.Next(0, db.propertyTypes.Count);
                     }
 
                     int owner_id;
@@ -473,7 +475,7 @@ namespace Randomize
                     {
                         temp = PartOfName.GenerateFIO(firstNames, midNames, lastNames);
                         owner_id = db.owners.Count;
-                        db.owners.Add(new Owner(db.Count, temp));
+                        db.owners.Add(new Owner(owner_id, temp));
                     }
                     else //Существующее
                     {
@@ -494,7 +496,7 @@ namespace Randomize
                     String adress = $"{streets[rnd.Next(0, streets.Length)]}, {rnd.Next(0, 300)}";
 
                     String license = string.Empty;
-                    Char[] licPart_arr = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z', 'A', 'E', 'U', 'Y', 'a', 'e', 'i', 'o', 'u', 'y' };
+                    Char[] licPart_arr = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'A', 'E', 'U', 'Y' };
                     int license_length = rnd.Next(5, 15);
                     while (license.Length <= license_length)
                         license += licPart_arr[rnd.Next(licPart_arr.Length)];
@@ -502,10 +504,7 @@ namespace Randomize
 
                     int yearOpened = rnd.Next(1900, db.albums[album_id].releaseDate.Year - 1);
 
-                    DateTime licenseExpiration = RandomDay(db.albums[album_id].releaseDate);
-                    //licenseExpiration = d.ToString("dd-MM-yyyy");
-
-                    
+                    DateTime licenseExpiration = RandomDay(db.albums[album_id].releaseDate, DateTime.Now.AddYears(10));                    
 
                     shop_id = db.shops.Count;
                     db.shops.Add(new Shop(
@@ -518,7 +517,42 @@ namespace Randomize
                 {
                     DateTime album_release = db.albums[album_id].releaseDate;
                     Shop[] shops = db.shops.Where(x => x.yearOpened < album_release.Year & x.licenseExpirationDate > album_release).ToArray();
-                    shop_id = shops[rnd.Next(0, shops.Length)].id;
+                    if (shops.Length == 0)
+                    {
+                        int district_id = rnd.Next(0, db.districts.Count);
+                        int propertyType_id = rnd.Next(0, db.propertyTypes.Count);
+                        int owner_id = rnd.Next(0, db.owners.Count);
+                        String shop_name;
+                        int counter = 0;
+                        do
+                        {
+                            shop_name = companies[rnd.Next(0, companies.Length)];
+                            if (counter > 1000)
+                                break;
+                            counter++;
+                        }
+                        while (db.shops.Where(x => x.name == shop_name).Count() != 0);
+                        String adress = $"{streets[rnd.Next(0, streets.Length)]}, {rnd.Next(0, 300)}";
+                        String license = string.Empty;
+                        Char[] licPart_arr = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'A', 'E', 'U', 'Y' };
+                        int license_length = rnd.Next(5, 15);
+                        while (license.Length <= license_length)
+                            license += licPart_arr[rnd.Next(licPart_arr.Length)];
+                        int yearOpened = rnd.Next(1900, db.albums[album_id].releaseDate.Year - 1);
+
+                        DateTime licenseExpiration = RandomDay(db.albums[album_id].releaseDate, DateTime.Now.AddYears(10));
+
+                        shop_id = db.shops.Count;
+                        db.shops.Add(new Shop(
+                            id: shop_id, name: shop_name, district_id: district_id, adress: adress,
+                            propertyType_id: propertyType_id, license: license,
+                            licenseExpirationDate: licenseExpiration,
+                            owner_id: owner_id, yearOpened: yearOpened));
+                    }
+                    else
+                    {
+                        shop_id = shops[rnd.Next(0, shops.Length)].id;
+                    }
                 }
 
                 //ProductRange
@@ -540,6 +574,7 @@ namespace Randomize
                 db.productRanges.Add(new ProductRange(id: db.productRanges.Count, shop_id: shop_id,
                     album_id: album_id, receiptDate: gotAlbum, amount: amount));
             }
+
             return this;
         }
 
@@ -548,6 +583,38 @@ namespace Randomize
             NpgsqlConnection conn = new NpgsqlConnection(connectString); ;
             String sql;
             NpgsqlCommand cmd;
+            int broken = 0;
+            try
+            {
+                conn.Open();
+                String[] commands = db.GenerateComands();
+                List<int> res = new List<int>();
+                
+
+                for (int i = 0; i < commands.Length; i++)
+                {
+                    sql = commands[i];
+
+                    cmd = new NpgsqlCommand(sql, conn);
+
+                    try
+                    {
+                        res.Add(cmd.ExecuteNonQuery());
+                    }
+                    catch (Exception exc)
+                    {
+                        broken++;
+                    }
+                }
+            }
+            catch (Exception except)
+            {
+                MessageBox.Show(except.Message);
+            }
+            finally
+            {
+                MessageBox.Show($"Сломалось {broken}");
+            }
 
             
         }
