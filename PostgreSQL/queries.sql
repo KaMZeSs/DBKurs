@@ -27,4 +27,18 @@ INSERT INTO ProductRanges (productRange_id, shop_id, album_id, dateOfReceipt, am
 
 Select GetAlbumReleaseDate(254);
 
-SELECT * FROM albums WHERE album_id = 254
+SELECT * FROM albums WHERE album_id = 0;
+
+SELECT cities.city_name, country_name FROM cities 
+JOIN countries ON countries.country_id = cities.country_id 
+ORDER BY countries.country_name;
+
+SELECT Owners.owner_name FROM owners WHERE Owners.owner_name LIKE '%Туп%';
+
+SELECT "district_name" as "Район", 
+"owner_name" as "Владелец" FROM districts
+JOIN shops ON shops.district_id = districts.district_id
+JOIN owners ON owners.owner_id = shops.owner_id
+ORDER BY owner_name; 
+
+SELECT * FROM Get_All_Cities();

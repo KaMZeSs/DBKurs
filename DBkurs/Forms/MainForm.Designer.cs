@@ -51,8 +51,8 @@
             this.владелецToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.типСобственностиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.районГородаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView1 = new DBKurs.DoubleBufferedDataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -90,19 +90,19 @@
             // добавитьToolStripMenuItem
             // 
             this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.добавитьToolStripMenuItem.Text = "Добавить";
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
             // изменитьToolStripMenuItem
             // 
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.изменитьToolStripMenuItem.Text = "Изменить";
             // 
             // запросыToolStripMenuItem
@@ -128,7 +128,7 @@
             this.альбомToolStripMenuItem,
             this.магазинToolStripMenuItem});
             this.основныеToolStripMenuItem.Name = "основныеToolStripMenuItem";
-            this.основныеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.основныеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.основныеToolStripMenuItem.Text = "Основные";
             // 
             // ассортиментToolStripMenuItem
@@ -166,7 +166,7 @@
             this.типСобственностиToolStripMenuItem,
             this.районГородаToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
-            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.справочникиToolStripMenuItem.Text = "Справочники";
             // 
             // странаToolStripMenuItem
@@ -239,6 +239,13 @@
             this.районГородаToolStripMenuItem.Text = "Район города";
             this.районГородаToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
+            // обновитьToolStripMenuItem
+            // 
+            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.обновитьToolStripMenuItem.Text = "Обновить";
+            this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -248,13 +255,6 @@
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(686, 366);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // обновитьToolStripMenuItem
-            // 
-            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.обновитьToolStripMenuItem.Text = "Обновить";
-            this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -266,6 +266,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -299,7 +300,7 @@
         private System.Windows.Forms.ToolStripMenuItem владелецToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem типСобственностиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem районГородаToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private DBKurs.DoubleBufferedDataGridView dataGridView1;
         private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
     }
 }

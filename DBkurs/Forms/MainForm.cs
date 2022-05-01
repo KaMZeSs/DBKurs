@@ -27,8 +27,14 @@ namespace DBKurs.Forms
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
             updator = Update_Albums;
             conn = new NpgsqlConnection(connectString);
+            
+            //this.DoubleBuffered = true;
         }
 
         #region Updaters
@@ -91,7 +97,8 @@ namespace DBKurs.Forms
             try
             {
                 conn.Open();
-                sql = @"select * from Cities";
+                //sql = @"select * from Cities";
+                sql = "SELECT * FROM Get_All_Cities()";
                 cmd = new NpgsqlCommand(sql, conn);
 
                 dt = new DataTable();
@@ -422,5 +429,7 @@ namespace DBKurs.Forms
         {
             updator.Invoke();
         }
+
+        
     }
 }
