@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using DBKurs.Styles;
 using Npgsql;
 
 namespace DBKurs.Forms
@@ -36,6 +37,8 @@ namespace DBKurs.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            menuStrip1.Renderer = new ToolStripProfessionalRenderer(new TestColorTable());
+
             conn = new NpgsqlConnection(connectString);
 
             updator_continue = () =>
@@ -502,20 +505,68 @@ namespace DBKurs.Forms
             }
         }
 
+        Color mouseOver = Color.FromArgb(230, 230, 230);
+        Color mouseOverSelected = Color.FromArgb(102, 145, 178);
+        Color mouseLeftSelected = Color.FromArgb(153, 181, 204);
+
+        int mouseOverCell_index = 0;
+
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
-                return;
+            {
+                if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
+                    return;
+                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor = 
+                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = mouseOver;
+            }
             else
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(230, 230, 230);
+            {
+                mouseOverCell_index = e.RowIndex;
+                if (dataGridView1.Rows[e.RowIndex].Selected)
+                {
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                }
+                else
+                {
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = mouseOver;
+                }
+            }
         }
 
         private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
-                return;
+            {
+                if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
+                    return;
+                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor =
+                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = Color.White;
+            }
             else
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 255);
+            {
+                if (dataGridView1.Rows[e.RowIndex].Selected)
+                {
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseLeftSelected;
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                }
+                else
+                {
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                }
+            }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount == 0)
+                return;
+            if (dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor == mouseOver)
+            {
+                dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
+                dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor = Color.White;
+            }
         }
 
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
@@ -530,14 +581,6 @@ namespace DBKurs.Forms
             //column.Resizable = DataGridViewTriState.False;
             column.CellTemplate = new DataGridViewTextBoxCell();
             dataGridView1.Columns.Add(column);
-        }
-
-        private void dataGridView1_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            if (e.Column.DisplayIndex == dataGridView1.ColumnCount - 1)
-            {
-                
-            }
         }
     }
 }
