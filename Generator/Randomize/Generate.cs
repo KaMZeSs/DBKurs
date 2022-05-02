@@ -601,7 +601,7 @@ namespace Randomize
                     {
                         res.Add(cmd.ExecuteNonQuery());
                     }
-                    catch (Exception exc)
+                    catch (Exception)
                     {
                         broken++;
                     }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DBKurs
+namespace DBKurs.Forms
 {
     class DoubleBufferedDataGridView : DataGridView
     {

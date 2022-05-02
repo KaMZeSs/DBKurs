@@ -26,3 +26,47 @@ CREATE TABLE Albums(
     CHECK (songsCount > 0),
     CHECK (albumTime > 0)
 );
+
+CREATE OR REPLACE FUNCTION Get_All_Albums() RETURNS 
+TABLE (
+    "id" INT, 
+    "Название альбома" TEXT, 
+    "Фирма звукозаписи" TEXT, 
+    "Дата выпуска альбома" DATE, 
+    "Тираж албома" INT, 
+    "Количество песен" INT, 
+    "Тип записи" TEXT, 
+    "Альбом сборник" BOOLEAN, 
+    "Исполнитель" TEXT,
+    "Жанр" TEXT,
+    "Язык исполнения" TEXT,
+    "Информация" TEXT,
+    "Титул альбома" BYTEA,
+    "Время звучания, мин." INT
+) AS $$
+BEGIN
+    RETURN QUERY
+		SELECT
+        Albums.album_id,
+        Albums.album_name,
+        RecordFirms.recordFirm_name,
+        Albums.releaseDate,
+        Albums.albumCount,
+        Albums.songsCount,
+        RecordTypes.recordType_name,
+        Albums.isCollection,
+        Executors.executor_name,
+        Genres.genre_name,
+        Languages.language_name,
+        Albums.albumInfo,
+        Albums.Photo,
+        Albums.albumTime
+        FROM Albums
+        JOIN Executors ON Executors.executor_id = Albums.executor_id
+        JOIN Genres ON Genres.genre_id = Albums.genre_id
+        JOIN Languages ON Languages.language_id = Albums.language_id
+        JOIN RecordFirms ON RecordFirms.recordFirm_id = Albums.recordFirm_id
+        JOIN RecordTypes ON RecordTypes.recordType_id = Albums.recordType_id;
+
+
+END; $$ LANGUAGE 'plpgsql';

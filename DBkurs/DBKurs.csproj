@@ -18,6 +18,33 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Forms\Add\AddShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Add\AddOwner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Add\AddAlbum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Add\AddPropertyType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Add\AddDistrict.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Add\AddRecordType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Add\AddLanguage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Add\AddExecutor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Add\AddGenre.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

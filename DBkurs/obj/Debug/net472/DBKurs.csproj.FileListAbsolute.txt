@@ -31,3 +31,12 @@ E:\Repos\DBKurs\DBkurs\bin\Debug\net472\System.Threading.Tasks.Extensions.dll
 E:\Repos\DBKurs\DBkurs\bin\Debug\net472\System.ValueTuple.dll
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.exe.config
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.csproj.CopyComplete
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddDistrict.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddExecutor.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddGenre.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddLanguage.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddOwner.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddPropertyType.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddRecordType.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddAlbum.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddShop.resources

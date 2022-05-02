@@ -16,3 +16,34 @@ CREATE TABLE Shops(
     CHECK (extract(YEAR FROM expiryDate) >= yearOpened)
 );
 
+CREATE OR REPLACE FUNCTION Get_All_Shops() 
+RETURNS TABLE ( 
+    "id" INT, 
+    "Название магазина" TEXT, 
+    "Район города" TEXT, 
+    "Адрес" TEXT, 
+    "Тип собственности" TEXT,
+    "Лицензия" TEXT,
+    "Дата окончания лицензии" DATE,
+    "Владелец" TEXT,
+    "Год открытия" INT
+) AS $$
+BEGIN
+    RETURN QUERY
+		SELECT 
+        Shops.shop_id,
+        Shops.shop_name, 
+        Districts.district_name,
+        Shops.addres,
+        PropertyTypes.propertyType_name,
+        Shops.license,
+        Shops.expiryDate,
+        Owners.owner_name,
+        Shops.yearOpened
+        FROM Shops
+        JOIN Districts ON Districts.district_id = Shops.district_id
+        JOIN Owners ON Owners.owner_id = Shops.owner_id
+        JOIN PropertyTypes ON PropertyTypes.propertyType_id = Shops.propertyType_id;
+
+
+END; $$ LANGUAGE 'plpgsql';

@@ -39,3 +39,25 @@ BEGIN
     RETURN d;
 END
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION Get_All_ProductRanges() 
+RETURNS TABLE (
+    "id" INT, 
+    "Магазин" TEXT, 
+    "Альбом" TEXT,
+    "Дата поступления" DATE,
+    "Количество единиц" INT
+) AS $$
+BEGIN
+    RETURN QUERY
+		SELECT ProductRanges.productRange_id,
+        Shops.shop_name, albums.album_name, 
+        ProductRanges.dateOfReceipt, 
+        ProductRanges.amount
+        FROM ProductRanges 
+        JOIN Shops ON ProductRanges.shop_id = Shops.shop_id
+        JOIN Albums ON ProductRanges.album_id = Albums.album_id;
+
+
+END; $$ LANGUAGE 'plpgsql';
+

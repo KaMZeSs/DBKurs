@@ -41,4 +41,6 @@ JOIN shops ON shops.district_id = districts.district_id
 JOIN owners ON owners.owner_id = shops.owner_id
 ORDER BY owner_name; 
 
-SELECT * FROM Get_All_Cities();
+SELECT * FROM Get_All_Countries();
+
+INSERT INTO countries (country_name) VALUES ('wqewq');
