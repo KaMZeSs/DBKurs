@@ -10,5 +10,5 @@ CREATE OR REPLACE FUNCTION Get_All_Executors()
 RETURNS TABLE ("id" INT, "Исполнитель" TEXT) AS $$
 BEGIN
     RETURN QUERY
-		SELECT * FROM Executors;
+		SELECT * FROM Executors ORDER BY executor_id;
 END; $$ LANGUAGE 'plpgsql';

@@ -132,7 +132,7 @@ namespace Randomize
         {
             String receipt = receiptDate.ToString("dd-MM-yyyy");
             return "INSERT INTO ProductRanges (productRange_id, shop_id, album_id, dateOfReceipt, amount) " + 
-                $"VALUES ({id}, {shop_id}, {album_id}, \'{receipt}\', {amount})";
+                $"VALUES ({id + 1}, {shop_id + 1}, {album_id + 1}, \'{receipt}\', {amount})";
         }
     }
 
@@ -165,7 +165,7 @@ namespace Randomize
         {
             String expiry = licenseExpirationDate.ToString("dd-MM-yyyy");
             return "INSERT INTO Shops (shop_id, district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) " + 
-                $"VALUES ({id}, {district_id}, {propertyType_id}, {owner_id}, \'{name}\', \'{adress}\', \'{license}\', \'{expiry}\', {yearOpened})";
+                $"VALUES ({id + 1}, {district_id + 1}, {propertyType_id + 1}, {owner_id + 1}, \'{name}\', \'{adress}\', \'{license}\', \'{expiry}\', {yearOpened})";
         }
     }
     class District
@@ -181,7 +181,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Districts (district_id, district_name) VALUES ({id}, \'{name}\')";
+            return $"INSERT INTO Districts (district_id, district_name) VALUES ({id + 1}, \'{name}\')";
         }
     }
     class PropertyType
@@ -197,12 +197,12 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO PropertyTypes (propertyType_id, propertyType_name) VALUES ({id}, \'{type}\')";
+            return $"INSERT INTO PropertyTypes (propertyType_id, propertyType_name) VALUES ({id + 1}, \'{type}\')";
         }
     }
     class Owner
     {
-        public int id;
+        public int id;  
         public String FIO;
 
         public Owner(int id, string fIO)
@@ -213,7 +213,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Owners (owner_id, owner_name) VALUES ({id}, \'{FIO}\')";
+            return $"INSERT INTO Owners (owner_id, owner_name) VALUES ({id + 1}, \'{FIO}\')";
         }
     }
 
@@ -258,7 +258,7 @@ namespace Randomize
             String isCol = isCompilation ? "true" : "false";
             String img = Convert.ToBase64String(photo);
             return "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " + 
-                $"VALUES ({id}, {recordFirm_id}, {genre_id}, {executor_id}, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{img}\', {time})";
+                $"VALUES ({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, {executor_id + 1}, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{img}\', {time})";
         }
     }
     class Country
@@ -274,7 +274,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Countries (country_id, country_name) VALUES ({id}, \'{name}\')";
+            return $"INSERT INTO Countries (country_id, country_name) VALUES ({id + 1}, \'{name}\')";
         }
     }
     class City
@@ -292,7 +292,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Cities (city_id, country_id, city_name) VALUES ({id}, {country_id}, \'{name}\')";
+            return $"INSERT INTO Cities (city_id, country_id, city_name) VALUES ({id + 1}, {country_id + 1}, \'{name}\')";
         }
     }
     class RecordFirm
@@ -310,7 +310,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO RecordFirms (recordFirm_id, city_id, recordFirm_name) VALUES ({id}, {city_id}, \'{name}\')";
+            return $"INSERT INTO RecordFirms (recordFirm_id, city_id, recordFirm_name) VALUES ({id + 1}, {city_id + 1}, \'{name}\')";
         }
     }
     class Genre
@@ -326,7 +326,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Genres (genre_id, genre_name) VALUES ({id}, \'{name}\')";
+            return $"INSERT INTO Genres (genre_id, genre_name) VALUES ({id + 1}, \'{name}\')";
         }
     }
     class Executor
@@ -342,7 +342,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Executors (executor_id, executor_name) VALUES ({id}, \'{name}\')";
+            return $"INSERT INTO Executors (executor_id, executor_name) VALUES ({id + 1}, \'{name}\')";
         }
     }
     class Language
@@ -358,7 +358,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Languages (language_id, language_name) VALUES ({id}, \'{name}\')";
+            return $"INSERT INTO Languages (language_id, language_name) VALUES ({id + 1}, \'{name}\')";
         }
     }
     class RecordType
@@ -373,7 +373,7 @@ namespace Randomize
         }
         public override string ToString()
         {
-            return $"INSERT INTO RecordTypes (recordType_id, recordType_name) VALUES ({id}, \'{name}\')";
+            return $"INSERT INTO RecordTypes (recordType_id, recordType_name) VALUES ({id + 1}, \'{name}\')";
         }
     }
 }

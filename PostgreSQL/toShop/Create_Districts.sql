@@ -10,5 +10,5 @@ CREATE OR REPLACE FUNCTION Get_All_Districts()
 RETURNS TABLE ("id" INT, "Район" TEXT) AS $$
 BEGIN
     RETURN QUERY
-		SELECT * FROM Districts;
+		SELECT * FROM Districts ORDER BY district_id;
 END; $$ LANGUAGE 'plpgsql';

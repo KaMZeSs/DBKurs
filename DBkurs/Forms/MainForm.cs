@@ -38,6 +38,7 @@ namespace DBKurs.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             menuStrip1.Renderer = new ToolStripProfessionalRenderer(new TestColorTable());
+            
 
             conn = new NpgsqlConnection(connectString);
 
@@ -59,13 +60,12 @@ namespace DBKurs.Forms
 
         #region Updaters
 
-
-
         private async void ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String name = ((ToolStripMenuItem)sender).Text;
+            dataGridView1.RowTemplate.Height = 33;
 
-            updator = () => dataGridView1.Columns.Clear();
+            updator = () => { mouseOverCell_index = -2; dataGridView1.Columns.Clear(); };
 
             switch (name)
             {
@@ -133,11 +133,13 @@ namespace DBKurs.Forms
 
                                 dtCloned.Rows.Add(row);
                             }
+                            dataGridView1.RowTemplate.Height = 50;
 
                             dataGridView1.DataSource = null; //очистка таблицы
 
                             dataGridView1.DataSource = dtCloned;
                             dataGridView1.Columns[11].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                            
                             updator_continue.Invoke();
                         }
                         catch (Exception ex)
@@ -459,51 +461,64 @@ namespace DBKurs.Forms
 
         #endregion
 
+        #region Add/Delete/Update
+
         private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            switch (currentTable)
-            {
-                case Tables.ProductRanges:
-                    new Add.AddProductRange().ShowDialog(this);
-                    break;
-                case Tables.Albums:
-                    new Add.AddAlbum().ShowDialog(this);
-                    break;
-                case Tables.Shops:
-                    new Add.AddShop().ShowDialog(this);
-                    break;
-                case Tables.Cities:
-                    new Add.AddCity().ShowDialog(this);
-                    break;
-                case Tables.Countries:
-                    new Add.AddCountry().ShowDialog(this);
-                    break;
-                case Tables.Executors:
-                    new Add.AddExecutor().ShowDialog(this);
-                    break;
-                case Tables.Genres:
-                    new Add.AddGenre().ShowDialog(this);
-                    break;
-                case Tables.Languages:
-                    new Add.AddLanguage().ShowDialog(this);
-                    break;
-                case Tables.RecordFirms:
-                    new Add.AddRecordFirm().ShowDialog(this);
-                    break;
-                case Tables.RecordTypes:
-                    new Add.AddRecordType().ShowDialog(this);
-                    break;
-                case Tables.Districts:
-                    new Add.AddDistrict().ShowDialog(this);
-                    break;
-                case Tables.Owners:
-                    new Add.AddOwner().ShowDialog(this);
-                    break;
-                case Tables.PropertyTypes:
-                    new Add.AddPropertyType().ShowDialog(this);
-                    break;
-            }
+            //DialogResult dialogResult;
+
+            //switch (currentTable)
+            //{
+            //    case Tables.ProductRanges:
+            //        dialogResult = new Add.AddProductRange().ShowDialog(this);
+            //        break;
+            //    case Tables.Albums:
+            //        dialogResult = new Add.AddAlbum().ShowDialog(this);
+            //        break;
+            //    case Tables.Shops:
+            //        dialogResult = new Add.AddShop().ShowDialog(this);
+            //        break;
+            //    case Tables.Cities:
+            //        dialogResult = new Add.AddCity().ShowDialog(this);
+            //        break;
+            //    case Tables.Countries:
+            //        dialogResult = new Add.AddCountry().ShowDialog(this);
+            //        break;
+            //    case Tables.Executors:
+            //        dialogResult = new Add.AddExecutor().ShowDialog(this);
+            //        break;
+            //    case Tables.Genres:
+            //        dialogResult = new Add.AddGenre().ShowDialog(this);
+            //        break;
+            //    case Tables.Languages:
+            //        dialogResult = new Add.AddLanguage().ShowDialog(this);
+            //        break;
+            //    case Tables.RecordFirms:
+            //        dialogResult = new Add.AddRecordFirm().ShowDialog(this);
+            //        break;
+            //    case Tables.RecordTypes:
+            //        dialogResult = new Add.AddRecordType().ShowDialog(this);
+            //        break;
+            //    case Tables.Districts:
+            //        dialogResult = new Add.AddDistrict().ShowDialog(this);
+            //        break;
+            //    case Tables.Owners:
+            //        dialogResult = new Add.AddOwner().ShowDialog(this);
+            //        break;
+            //    case Tables.PropertyTypes:
+            //        dialogResult = new Add.AddPropertyType().ShowDialog(this);
+            //        break;
+            //    default:
+            //        return;
+            //}
+
+            //if (dialogResult == DialogResult.OK)
+            //    updator.Invoke();
         }
+
+        #endregion
+
+        #region Styles
 
         Color mouseOver = Color.FromArgb(230, 230, 230);
         Color mouseOverSelected = Color.FromArgb(102, 145, 178);
@@ -560,10 +575,11 @@ namespace DBKurs.Forms
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount == 0)
+            if (dataGridView1.RowCount == 0 | mouseOverCell_index == -2)
                 return;
             if (dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor == mouseOver)
             {
+                dataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor =
                 dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
                 dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor = Color.White;
             }
@@ -578,9 +594,10 @@ namespace DBKurs.Forms
             column.HeaderCell.Style.BackColor = column.HeaderCell.Style.SelectionBackColor = dataGridView1.ColumnHeadersDefaultCellStyle.BackColor;
             column.ReadOnly = true;
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //column.Resizable = DataGridViewTriState.False;
             column.CellTemplate = new DataGridViewTextBoxCell();
             dataGridView1.Columns.Add(column);
         }
+
+        #endregion
     }
 }

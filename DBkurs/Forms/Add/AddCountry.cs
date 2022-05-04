@@ -13,30 +13,53 @@ namespace DBKurs.Forms.Add
 {
     public partial class AddCountry : Form
     {
-        public readonly static String connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs";
-        public NpgsqlConnection conn;
-        public String sql;
-        public NpgsqlCommand cmd;
-        public DataTable dt;
+        private readonly String connectString;
+        private NpgsqlConnection conn;
+        private String sql;
+        private NpgsqlCommand cmd;
 
-        public bool isChanged { get; set; }
-
-        public AddCountry()
+        public AddCountry(String connString)
         {
             InitializeComponent();
+            connectString = connString;
         }
 
         private void AddCountry_Load(object sender, EventArgs e)
         {
             conn = new NpgsqlConnection(connectString);
-            isChanged = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            
+            if (textBox1.Text.Length == 0)
+            {
+                MessageBox.Show("Длина названия страны должна быть больше 0");
+                return;
+            }
+
+            try
+            {
+                conn.Open();
+
+                cmd = new NpgsqlCommand($"INSERT INTO Countries (country_name) VALUES ('{textBox1.Text}');", conn);
+                await cmd.ExecuteNonQueryAsync();
+                this.DialogResult = DialogResult.OK;
+                MessageBox.Show("Страна успешно добавлена");
+                this.Close();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
     }
 }

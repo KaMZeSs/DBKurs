@@ -10,5 +10,5 @@ CREATE OR REPLACE FUNCTION Get_All_Languages()
 RETURNS TABLE ("id" INT, "Язык" TEXT) AS $$
 BEGIN
     RETURN QUERY
-		SELECT * FROM Languages;
+		SELECT * FROM Languages ORDER BY language_id;
 END; $$ LANGUAGE 'plpgsql';

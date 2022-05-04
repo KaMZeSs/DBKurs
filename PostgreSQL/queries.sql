@@ -43,4 +43,4 @@ ORDER BY owner_name;
 
 SELECT * FROM Get_All_Countries();
 
-INSERT INTO countries (country_name) VALUES ('wqewq');
+SELECT country_name FROM Countries;

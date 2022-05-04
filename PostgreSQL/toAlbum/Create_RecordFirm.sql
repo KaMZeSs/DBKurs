@@ -18,6 +18,7 @@ BEGIN
     RETURN QUERY
 		SELECT RecordFirms.recordFirm_id, 
         Cities.city_name, RecordFirms.recordFirm_name
-        FROM RecordFirms JOIN Cities ON Cities.city_id = RecordFirms.city_id;
+        FROM RecordFirms JOIN Cities ON Cities.city_id = RecordFirms.city_id
+        ORDER BY RecordFirms.recordFirm_id;
 
 END; $$ LANGUAGE 'plpgsql';

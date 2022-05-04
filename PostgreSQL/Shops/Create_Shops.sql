@@ -43,7 +43,8 @@ BEGIN
         FROM Shops
         JOIN Districts ON Districts.district_id = Shops.district_id
         JOIN Owners ON Owners.owner_id = Shops.owner_id
-        JOIN PropertyTypes ON PropertyTypes.propertyType_id = Shops.propertyType_id;
+        JOIN PropertyTypes ON PropertyTypes.propertyType_id = Shops.propertyType_id 
+        ORDER BY Shops.shop_id;
 
 
 END; $$ LANGUAGE 'plpgsql';

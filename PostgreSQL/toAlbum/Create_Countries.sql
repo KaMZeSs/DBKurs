@@ -15,7 +15,7 @@ CREATE OR REPLACE FUNCTION Get_All_Countries() RETURNS TABLE
 ) AS $$
 BEGIN
     RETURN QUERY 
-		SELECT * FROM COUNTRIES;
+		SELECT * FROM COUNTRIES ORDER BY country_id;
 END; $$ LANGUAGE 'plpgsql';
 
 CREATE OR REPLACE FUNCTION Before_insert_trigger_Countries() RETURNS TRIGGER AS $$
@@ -24,15 +24,7 @@ DECLARE
 	max INT;
 	curr RECORD;
 BEGIN
-	SELECT country_id INTO i FROM Countries WHERE country_id = 0;
 	
-	IF NOT EXISTS(SELECT country_id FROM Countries WHERE country_id = 0) THEN
-		RAISE NOTICE 'i <> 0';
-		NEW.country_id = 0;
-		RETURN NEW;
-	ELSE
-		RAISE NOTICE 'i = 0';
-	END IF;
 
 	max := 0;
 

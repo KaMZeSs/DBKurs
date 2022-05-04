@@ -10,5 +10,5 @@ CREATE OR REPLACE FUNCTION Get_All_Genres()
 RETURNS TABLE ("id" INT, "Жанр" TEXT) AS $$
 BEGIN
     RETURN QUERY
-		SELECT * FROM Genres;
+		SELECT * FROM Genres ORDER BY genre_id;
 END; $$ LANGUAGE 'plpgsql';

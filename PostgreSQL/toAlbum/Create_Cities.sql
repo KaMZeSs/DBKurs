@@ -17,7 +17,8 @@ CREATE OR REPLACE FUNCTION Get_All_Cities() RETURNS TABLE
 BEGIN
     RETURN QUERY 
 		SELECT Cities.city_id, Countries.country_name, Cities.city_name 
-        FROM Cities JOIN Countries ON Cities.country_id = Countries.country_id;
+        FROM Cities JOIN Countries ON Cities.country_id = Countries.country_id
+        ORDER BY Cities.city_id;
 
 END; $$ LANGUAGE 'plpgsql';
 

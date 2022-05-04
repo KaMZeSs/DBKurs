@@ -10,5 +10,5 @@ CREATE OR REPLACE FUNCTION Get_All_Owners()
 RETURNS TABLE ("id" INT, "Владелец" TEXT) AS $$
 BEGIN
     RETURN QUERY
-		SELECT * FROM Owners;
+		SELECT * FROM Owners ORDER BY owner_id;
 END; $$ LANGUAGE 'plpgsql';

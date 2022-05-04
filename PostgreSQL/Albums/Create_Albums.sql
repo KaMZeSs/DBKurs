@@ -27,6 +27,8 @@ CREATE TABLE Albums(
     CHECK (albumTime > 0)
 );
 
+DROP FUNCTION Get_All_Albums;
+
 CREATE OR REPLACE FUNCTION Get_All_Albums() RETURNS 
 TABLE (
     "id" INT, 
@@ -42,7 +44,7 @@ TABLE (
     "Язык исполнения" TEXT,
     "Информация" TEXT,
     "Титул альбома" BYTEA,
-    "Время звучания, мин." INT
+    "Время звучания" INT
 ) AS $$
 BEGIN
     RETURN QUERY
@@ -66,7 +68,8 @@ BEGIN
         JOIN Genres ON Genres.genre_id = Albums.genre_id
         JOIN Languages ON Languages.language_id = Albums.language_id
         JOIN RecordFirms ON RecordFirms.recordFirm_id = Albums.recordFirm_id
-        JOIN RecordTypes ON RecordTypes.recordType_id = Albums.recordType_id;
+        JOIN RecordTypes ON RecordTypes.recordType_id = Albums.recordType_id
+        ORDER BY Albums.album_id;
 
 
 END; $$ LANGUAGE 'plpgsql';

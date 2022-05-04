@@ -10,5 +10,5 @@ CREATE OR REPLACE FUNCTION Get_All_PropertyTypes()
 RETURNS TABLE ("id" INT, "Тип собственности" TEXT) AS $$
 BEGIN
     RETURN QUERY
-		SELECT * FROM PropertyTypes;
+		SELECT * FROM PropertyTypes ORDER BY propertyType_id;
 END; $$ LANGUAGE 'plpgsql';

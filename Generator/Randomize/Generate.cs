@@ -45,8 +45,12 @@ namespace Randomize
             public String name;
         }
 
-        public Generate()
+        Generator.SetInfo writeInfo;
+        public Generate(Generator.SetInfo set)
         {
+            writeInfo = set;
+            writeInfo.Invoke(DateTime.Now, "Начало работы");
+            
             DeserialaizeCities();
             DeserializeCounties();
             DeserializePartsOfName();
@@ -60,6 +64,7 @@ namespace Randomize
             DeserializeStreets();
             DeserializeSongName();
             ReadAllImages();
+            writeInfo.Invoke(DateTime.Now, "Все данные для работы загружены");
         }
 
         private void DeserializePartsOfName()
@@ -217,8 +222,7 @@ namespace Randomize
         DataBase db;
         public Generate Generation(int len = 10000)
         {
-            // Идея в том, чтобы сгенерировать n-ю часть запрошенного количества, а потом с k-м% шансом добавлять новые данные
-            // Если сгенерить 100 раз, то получается 10000 вариантов ассортимента, из которых 100 уже есть
+            writeInfo.Invoke(DateTime.Now, "Начало генерации структуры БД");
             db = new DataBase();
 
             int minNew = len / 10;
@@ -575,21 +579,45 @@ namespace Randomize
                     album_id: album_id, receiptDate: gotAlbum, amount: amount));
             }
 
+            writeInfo.Invoke(DateTime.Now, "Конец генерации структуры БД");
             return this;
         }
 
         public void Send(String connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs")
         {
-            NpgsqlConnection conn = new NpgsqlConnection(connectString); ;
+            NpgsqlConnection conn = new NpgsqlConnection(connectString);
             String sql;
             NpgsqlCommand cmd;
-            int broken = 0;
             try
             {
-                conn.Open();
-                String[] commands = db.GenerateComands();
-                List<int> res = new List<int>();
+                writeInfo.Invoke(DateTime.Now, "Установление связи с сервером");
                 
+                conn.Open();
+
+                writeInfo.Invoke(DateTime.Now, "Очистка данных на сервере");
+                //очистка данных на сервере
+                String[] toClear = { "DELETE FROM ProductRanges", "DELETE FROM albums", "DELETE FROM shops",
+                    "DELETE FROM countries", "DELETE FROM cities", "DELETE FROM executors", "DELETE FROM genres",
+                    "DELETE FROM languages", "DELETE FROM recordfirms", "DELETE FROM recordtypes",
+                    "DELETE FROM districts", "DELETE FROM owners", "DELETE FROM propertytypes" };
+
+                for (int i = 0; i < toClear.Length; i++)
+                {
+                    cmd = new NpgsqlCommand(toClear[i], conn);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                
+                writeInfo.Invoke(DateTime.Now, "Генерация команд для записи на сервер");
+                
+                String[] commands = db.GenerateComands();
+
+                writeInfo.Invoke(DateTime.Now, "Выполнение команд на сервере");
 
                 for (int i = 0; i < commands.Length; i++)
                 {
@@ -599,24 +627,23 @@ namespace Randomize
 
                     try
                     {
-                        res.Add(cmd.ExecuteNonQuery());
+                        cmd.ExecuteNonQuery();
                     }
                     catch (Exception)
                     {
-                        broken++;
                     }
                 }
             }
             catch (Exception except)
             {
                 MessageBox.Show(except.Message);
+                writeInfo.Invoke(DateTime.Now, "Ошибка на сервере: " + except.Message);
             }
             finally
             {
-                MessageBox.Show($"Сломалось {broken}");
+                conn.Close();
+                writeInfo.Invoke(DateTime.Now, "Генерация завершена");
             }
-
-            
         }
     }
 }
