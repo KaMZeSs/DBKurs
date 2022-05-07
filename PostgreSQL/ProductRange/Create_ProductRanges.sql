@@ -62,3 +62,38 @@ BEGIN
 
 END; $$ LANGUAGE 'plpgsql';
 
+CREATE OR REPLACE FUNCTION Before_insert_trigger_ProductRanges() RETURNS TRIGGER AS $$
+DECLARE
+	i INT;
+	max INT;
+	curr RECORD;
+BEGIN
+
+	max := 0;
+
+	FOR curr IN
+		SELECT productRange_id FROM ProductRanges
+	LOOP
+		IF max < curr.productRange_id THEN
+			max := curr.productRange_id;
+		END IF;
+
+		IF curr.productRange_id <> i THEN
+			IF NOT EXISTS(SELECT productRange_id FROM ProductRanges WHERE productRange_id = i) THEN
+				NEW.productRange_id = i;
+				RETURN NEW;
+			END IF;
+		ELSE
+			i := i + 1;
+		END IF;
+	END LOOP;
+	NEW.productRange_id = max + 1;
+	RETURN NEW;
+
+END; $$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER ProductRanges
+BEFORE
+INSERT ON ProductRanges
+FOR EACH ROW EXECUTE PROCEDURE Before_insert_trigger_ProductRanges();

@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using DBKurs.Styles;
 using Npgsql;
 
+
 namespace DBKurs.Forms
 {
     delegate void UpdateTable();
@@ -293,7 +294,7 @@ namespace DBKurs.Forms
                     {
                         try
                         {
-                            conn.Open();
+                            conn.OpenAsync();
                             sql = @"select * from Get_All_RecordTypes()";
                             cmd = new NpgsqlCommand(sql, conn);
 
@@ -310,7 +311,7 @@ namespace DBKurs.Forms
                         }
                         finally
                         {
-                            conn.Close();
+                            conn.CloseAsync();
                         }
                     };
                     currentTable = Tables.RecordTypes;
@@ -465,55 +466,115 @@ namespace DBKurs.Forms
 
         private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //DialogResult dialogResult;
+            DialogResult dialogResult;
 
-            //switch (currentTable)
-            //{
-            //    case Tables.ProductRanges:
-            //        dialogResult = new Add.AddProductRange().ShowDialog(this);
-            //        break;
-            //    case Tables.Albums:
-            //        dialogResult = new Add.AddAlbum().ShowDialog(this);
-            //        break;
-            //    case Tables.Shops:
-            //        dialogResult = new Add.AddShop().ShowDialog(this);
-            //        break;
-            //    case Tables.Cities:
-            //        dialogResult = new Add.AddCity().ShowDialog(this);
-            //        break;
-            //    case Tables.Countries:
-            //        dialogResult = new Add.AddCountry().ShowDialog(this);
-            //        break;
-            //    case Tables.Executors:
-            //        dialogResult = new Add.AddExecutor().ShowDialog(this);
-            //        break;
-            //    case Tables.Genres:
-            //        dialogResult = new Add.AddGenre().ShowDialog(this);
-            //        break;
-            //    case Tables.Languages:
-            //        dialogResult = new Add.AddLanguage().ShowDialog(this);
-            //        break;
-            //    case Tables.RecordFirms:
-            //        dialogResult = new Add.AddRecordFirm().ShowDialog(this);
-            //        break;
-            //    case Tables.RecordTypes:
-            //        dialogResult = new Add.AddRecordType().ShowDialog(this);
-            //        break;
-            //    case Tables.Districts:
-            //        dialogResult = new Add.AddDistrict().ShowDialog(this);
-            //        break;
-            //    case Tables.Owners:
-            //        dialogResult = new Add.AddOwner().ShowDialog(this);
-            //        break;
-            //    case Tables.PropertyTypes:
-            //        dialogResult = new Add.AddPropertyType().ShowDialog(this);
-            //        break;
-            //    default:
-            //        return;
-            //}
+            switch (currentTable)
+            {
+                case Tables.ProductRanges:
+                    dialogResult = new Add.AddProductRange(connectString).ShowDialog(this);
+                    break;
+                case Tables.Albums:
+                    dialogResult = new Add.AddAlbum(connectString).ShowDialog(this);
+                    break;
+                case Tables.Shops:
+                    dialogResult = new Add.AddShop(connectString).ShowDialog(this);
+                    break;
+                case Tables.Cities:
+                    dialogResult = new Add.AddCity(connectString).ShowDialog(this);
+                    break;
+                case Tables.Countries:
+                    dialogResult = new Add.AddCountry(connectString).ShowDialog(this);
+                    break;
+                case Tables.Executors:
+                    dialogResult = new Add.AddExecutor(connectString).ShowDialog(this);
+                    break;
+                case Tables.Genres:
+                    dialogResult = new Add.AddGenre(connectString).ShowDialog(this);
+                    break;
+                case Tables.Languages:
+                    dialogResult = new Add.AddLanguage(connectString).ShowDialog(this);
+                    break;
+                case Tables.RecordFirms:
+                    dialogResult = new Add.AddRecordFirm(connectString).ShowDialog(this);
+                    break;
+                case Tables.RecordTypes:
+                    dialogResult = new Add.AddRecordType(connectString).ShowDialog(this);
+                    break;
+                case Tables.Districts:
+                    dialogResult = new Add.AddDistrict(connectString).ShowDialog(this);
+                    break;
+                case Tables.Owners:
+                    dialogResult = new Add.AddOwner(connectString).ShowDialog(this);
+                    break;
+                case Tables.PropertyTypes:
+                    dialogResult = new Add.AddPropertyType(connectString).ShowDialog(this);
+                    break;
+                default:
+                    return;
+            }
 
-            //if (dialogResult == DialogResult.OK)
-            //    updator.Invoke();
+            if (dialogResult == DialogResult.OK)
+                updator.Invoke();
+        }
+
+        private async void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выделите как минимум одну строку для удаления");
+                return;
+            }
+
+            int[] ids = new int[dataGridView1.SelectedRows.Count];
+
+            for (int i = 0; i < ids.Length; i++)
+            {
+                ids[i] = (int)dataGridView1.SelectedRows[i].Cells["id"].Value;
+            }
+
+            try
+            {
+                await conn.OpenAsync();
+            }
+            catch (Exception exc)
+            {
+                switch (currentTable)
+                {
+                    case Tables.ProductRanges:
+                        break;
+                    case Tables.Albums:
+                        break;
+                    case Tables.Shops:
+                        break;
+                    case Tables.Cities:
+                        sql = $"SELECT";
+                        break;
+                    case Tables.Countries:
+                        break;
+                    case Tables.Executors:
+                        break;
+                    case Tables.Genres:
+                        break;
+                    case Tables.Languages:
+                        break;
+                    case Tables.RecordFirms:
+                        break;
+                    case Tables.RecordTypes:
+                        break;
+                    case Tables.Districts:
+                        break;
+                    case Tables.Owners:
+                        break;
+                    case Tables.PropertyTypes:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
         }
 
         #endregion
@@ -583,6 +644,11 @@ namespace DBKurs.Forms
                 dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
                 dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor = Color.White;
             }
+        }
+
+        private void составнаяФормаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CompoundForm(connectString).ShowDialog(this);
         }
 
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)

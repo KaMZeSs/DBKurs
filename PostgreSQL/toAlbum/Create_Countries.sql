@@ -25,7 +25,6 @@ DECLARE
 	curr RECORD;
 BEGIN
 	
-
 	max := 0;
 
 	FOR curr IN
@@ -38,15 +37,12 @@ BEGIN
 		IF curr.country_id <> i THEN
 			IF NOT EXISTS(SELECT country_id FROM Countries WHERE country_id = i) THEN
 				NEW.country_id = i;
-				RAISE NOTICE 'LAST (%)', i;
 				RETURN NEW;
 			END IF;
 		ELSE 
-			RAISE NOTICE 'Curr (%)', i;
 			i := i + 1;
 		END IF;
 	END LOOP;
-	RAISE NOTICE 'LAST (%)', max + 1;
 	NEW.country_id = max + 1;
 	RETURN NEW;
 

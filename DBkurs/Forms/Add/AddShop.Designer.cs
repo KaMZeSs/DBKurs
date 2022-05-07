@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -41,13 +41,14 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.listBox3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -64,7 +65,8 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(10, 26);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(198, 17);
+            this.listBox1.Size = new System.Drawing.Size(198, 21);
+            this.listBox1.Sorted = true;
             this.listBox1.TabIndex = 13;
             // 
             // button1
@@ -73,15 +75,17 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(197, 20);
             this.button1.TabIndex = 15;
-            this.button1.Text = "Добавить новый магазин";
+            this.button1.Text = "Добавить новый район";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(10, 110);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(198, 17);
+            this.listBox2.Size = new System.Drawing.Size(198, 21);
+            this.listBox2.Sorted = true;
             this.listBox2.TabIndex = 13;
             // 
             // label2
@@ -99,8 +103,9 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(197, 20);
             this.button2.TabIndex = 15;
-            this.button2.Text = "Добавить новый альбом";
+            this.button2.Text = "Добавить новый тип собственности";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dateTimePicker1
             // 
@@ -138,10 +143,11 @@
             // 
             this.button3.Location = new System.Drawing.Point(10, 253);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(421, 20);
+            this.button3.Size = new System.Drawing.Size(197, 20);
             this.button3.TabIndex = 20;
-            this.button3.Text = "Добавить новый ассортимент";
+            this.button3.Text = "Добавить новый магазин";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -149,8 +155,9 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(197, 20);
             this.button4.TabIndex = 23;
-            this.button4.Text = "Добавить новый альбом";
+            this.button4.Text = "Добавить нового владельца";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label5
             // 
@@ -166,7 +173,8 @@
             this.listBox3.FormattingEnabled = true;
             this.listBox3.Location = new System.Drawing.Point(10, 194);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(198, 17);
+            this.listBox3.Size = new System.Drawing.Size(198, 21);
+            this.listBox3.Sorted = true;
             this.listBox3.TabIndex = 21;
             // 
             // label6
@@ -217,6 +225,16 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "Введите год открытия";
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(233, 253);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(198, 20);
+            this.button5.TabIndex = 20;
+            this.button5.Text = "Отмена";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // AddShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,6 +249,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.listBox3);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
@@ -243,7 +262,8 @@
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Name = "AddShop";
-            this.Text = "AddProductRange";
+            this.Text = "AddShop";
+            this.Load += new System.EventHandler(this.AddShop_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,9 +272,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ComboBox listBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ComboBox listBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -264,12 +284,13 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.ComboBox listBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button5;
     }
 }

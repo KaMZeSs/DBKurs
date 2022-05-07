@@ -48,3 +48,39 @@ BEGIN
 
 
 END; $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Before_insert_trigger_Shops() RETURNS TRIGGER AS $$
+DECLARE
+	i INT;
+	max INT;
+	curr RECORD;
+BEGIN
+
+	max := 0;
+
+	FOR curr IN
+		SELECT shop_id FROM Shops
+	LOOP
+		IF max < curr.shop_id THEN
+			max := curr.shop_id;
+		END IF;
+
+		IF curr.shop_id <> i THEN
+			IF NOT EXISTS(SELECT shop_id FROM Shops WHERE shop_id = i) THEN
+				NEW.shop_id = i;
+				RETURN NEW;
+			END IF;
+		ELSE
+			i := i + 1;
+		END IF;
+	END LOOP;
+	NEW.shop_id = max + 1;
+	RETURN NEW;
+
+END; $$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER Before_insert_trigger_Shops
+BEFORE
+INSERT ON Shops
+FOR EACH ROW EXECUTE PROCEDURE Before_insert_trigger_Shops();

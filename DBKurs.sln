@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generator", "Generator\Gene
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBKurs", "DBkurs\DBKurs.csproj", "{38CED858-7C3C-410D-9C3F-20B9C2BADAE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST", "TEST\TEST.csproj", "{D9CE8B61-D8D9-49BE-8461-CDADB226F78F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{38CED858-7C3C-410D-9C3F-20B9C2BADAE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38CED858-7C3C-410D-9C3F-20B9C2BADAE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38CED858-7C3C-410D-9C3F-20B9C2BADAE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9CE8B61-D8D9-49BE-8461-CDADB226F78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9CE8B61-D8D9-49BE-8461-CDADB226F78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9CE8B61-D8D9-49BE-8461-CDADB226F78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9CE8B61-D8D9-49BE-8461-CDADB226F78F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

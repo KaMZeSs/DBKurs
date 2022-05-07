@@ -45,13 +45,33 @@ namespace Generator
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length > 0 & textBox1.ForeColor == Color.Black)
+            int count = 10000;
+            int unic = 10;
+            if (textBox1.Text.Length > 0 & textBox1.ForeColor.ToArgb() == Color.Black.ToArgb())
             {
-                this.button1.Enabled = false;
-                DateTime start = DateTime.Now;
-                await Task.Factory.StartNew(() => { new Randomize.Generate(info).Generation(int.Parse(textBox1.Text)).Send(); });
-                richTextBox1.Text += $"Затрачено времени: {(DateTime.Now - start).TotalSeconds} с";
-                this.button1.Enabled = true;
+                count = Int32.Parse(textBox1.Text);
+            }
+            if (textBox2.Text.Length > 0 & textBox2.ForeColor.ToArgb() == Color.Black.ToArgb())
+            {
+                unic = Int32.Parse(textBox2.Text);
+            }
+
+            this.button1.Enabled = false;
+            DateTime start = DateTime.Now;
+            await Task.Factory.StartNew(() => { new Randomize.Generate(info).Generation(len: count, minNew:unic).Send(); });
+            richTextBox1.Text += $"Затрачено времени: {(DateTime.Now - start).TotalSeconds} с";
+            this.button1.Enabled = true;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (!Int32.TryParse(textBox1.Text, out int value))
+            {
+                textBox1.ForeColor = Color.Red;
+            }
+            else
+            {
+                textBox1.ForeColor = Color.Black;
             }
         }
     }

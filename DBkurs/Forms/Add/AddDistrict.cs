@@ -44,7 +44,7 @@ namespace DBKurs.Forms.Add
                 cmd = new NpgsqlCommand($"INSERT INTO Districts (district_name) VALUES ('{textBox1.Text}');", conn);
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Район успешно добавлена");
+                MessageBox.Show("Район успешно добавлен");
                 this.Close();
             }
             catch (Exception exc)

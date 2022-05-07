@@ -176,11 +176,10 @@ namespace Randomize
         }
         private void DeserializeSongName()
         {
-            var arrSerializer = new XmlSerializer(typeof(String[]));
 
-            using (var reader = new StreamReader("Data/SongNames.xml"))
+            using (var reader = new StreamReader("Data/songs.txt"))
             {
-                songNames = (String[])arrSerializer.Deserialize(reader);
+                songNames = reader.ReadToEnd().Trim().Split("\n");
             }
         }
         private void ReadAllImages()
@@ -220,12 +219,10 @@ namespace Randomize
 
         Random rnd = new Random();
         DataBase db;
-        public Generate Generation(int len = 10000)
+        public Generate Generation(int len = 10000, int minNew = 1000)
         {
             writeInfo.Invoke(DateTime.Now, "Начало генерации структуры БД");
             db = new DataBase();
-
-            int minNew = len / 10;
 
             String temp;
             for (int i = 0; i < len; i++)
@@ -372,10 +369,14 @@ namespace Randomize
                     {
                         albumName = songNames[rnd.Next(0, songNames.Length)];
                         counter++;
-                        if (counter > 1000)
+                        if (counter > 100)
+                        {
+                            albumName = executors[rnd.Next(0, executors.Length)];
                             break;
+                        }
+                            
                     } 
-                    while (db.albums.Where(x => x.name == albumName).Count() != 0);
+                    while (db.albums.Where(x => x.name.Equals(albumName)).Count() != 0);
 
                     //AlbumReleaseDate
                     DateTime releaseDate = RandomDay(new DateTime(1950, 1, 1));
@@ -433,7 +434,7 @@ namespace Randomize
                 {
                     int district_id;
                     //District
-                    if (i < minNew | rnd.Next(0, 2) == 0) //Если 0 - использовать новое значение
+                    if (i < minNew | rnd.Next(0, 20) == 0) //Если 0 - использовать новое значение
                     {
                         temp = districts[rnd.Next(0, districts.Length)];
                         if (db.districts.Where(x => x.name == temp).Count() == 0) //Если попался тот, которого еще не было, то используем его
@@ -508,7 +509,7 @@ namespace Randomize
 
                     int yearOpened = rnd.Next(1900, db.albums[album_id].releaseDate.Year - 1);
 
-                    DateTime licenseExpiration = RandomDay(db.albums[album_id].releaseDate, DateTime.Now.AddYears(10));                    
+                    DateTime licenseExpiration = RandomDay(DateTime.Now, DateTime.Now.AddYears(10));                    
 
                     shop_id = db.shops.Count;
                     db.shops.Add(new Shop(
@@ -563,7 +564,10 @@ namespace Randomize
                 DateTime a = db.albums[album_id].releaseDate;
                 DateTime b = new DateTime(db.shops[shop_id].yearOpened, 1, 1);
 
-                DateTime gotAlbum = RandomDay(a > b ? a : b, db.shops[shop_id].licenseExpirationDate);
+                DateTime c = db.shops[shop_id].licenseExpirationDate;
+                DateTime d = DateTime.Now;
+
+                DateTime gotAlbum = RandomDay(a > b ? a : b, c < d ? c : d);
 
                 int albumCount = db.albums[album_id].amount;
                 int albumInShops = 0;
@@ -629,7 +633,7 @@ namespace Randomize
                     {
                         cmd.ExecuteNonQuery();
                     }
-                    catch (Exception)
+                    catch (Exception exc)
                     {
                     }
                 }

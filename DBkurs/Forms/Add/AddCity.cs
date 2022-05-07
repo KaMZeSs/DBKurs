@@ -17,7 +17,7 @@ namespace DBKurs.Forms.Add
         private NpgsqlConnection conn;
         private String sql;
         private NpgsqlCommand cmd;
-        private DataTable;
+        private DataTable dt;
 
         public AddCity(String connString)
         {
@@ -33,11 +33,16 @@ namespace DBKurs.Forms.Add
             {
                 conn.Open();
 
-                cmd = new NpgsqlCommand($"SELECT country_name FROM Countries", conn);
+                cmd = new NpgsqlCommand($"SELECT * FROM Countries", conn);
 
-                DataTable dt = new DataTable();
+                dt = new DataTable();
                 dt.Load(await cmd.ExecuteReaderAsync());
-                listBox1.DataSource = dt;
+
+                listBox1.Items.Clear();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    listBox1.Items.Add(dt.Rows[i][1] + " - " + dt.Rows[i][0]);
+                }
             }
             catch (Exception exc)
             {
@@ -56,7 +61,7 @@ namespace DBKurs.Forms.Add
                 MessageBox.Show("Длина названия города должна быть больше 0");
                 return;
             }
-            if (listBox1.SelectedItems.Count == 0)
+            if (listBox1.SelectedItem == null)
             {
                 MessageBox.Show("Выберите страну, в которой находится данный город\nЕсли данной страны нет - создайте ее, нажав на кнопку\n\"Добавить новую страну\"");
                 return;
@@ -65,10 +70,8 @@ namespace DBKurs.Forms.Add
             try
             {
                 conn.Open();
-
-                cmd = new NpgsqlCommand($"SELECT country_id FROM Countries WHERE Countries.country_name = '{listBox1.Text}'", conn);
-
-                int id = (int) await cmd.ExecuteScalarAsync();
+                String[] temp = listBox1.SelectedItem.ToString().Split('-');
+                int id = Int32.Parse(temp.Last());
 
                 cmd = new NpgsqlCommand($"INSERT INTO Cities (country_id, city_name) VALUES ({id}, '{textBox1.Text}');", conn);
                 await cmd.ExecuteNonQueryAsync();
@@ -99,11 +102,16 @@ namespace DBKurs.Forms.Add
                 {
                     conn.Open();
 
-                    cmd = new NpgsqlCommand($"SELECT country_name FROM Countries", conn);
+                    cmd = new NpgsqlCommand($"SELECT * FROM Countries", conn);
 
-                    DataTable dt = new DataTable();
+                    dt = new DataTable();
                     dt.Load(await cmd.ExecuteReaderAsync());
-                    listBox1.DataSource = dt;
+
+                    listBox1.Items.Clear();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        listBox1.Items.Add(dt.Rows[i][1] + " - " + dt.Rows[i][0]);
+                    }
                 }
                 catch (Exception exc)
                 {

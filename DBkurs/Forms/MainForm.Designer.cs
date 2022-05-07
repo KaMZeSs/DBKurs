@@ -57,6 +57,7 @@
             this.типСобственностиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.районГородаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.составнаяФормаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new DBKurs.Forms.DoubleBufferedDataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -101,20 +102,21 @@
             // добавитьToolStripMenuItem
             // 
             this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
+            this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.добавитьToolStripMenuItem.Text = "Добавить";
             this.добавитьToolStripMenuItem.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.удалитьToolStripMenuItem.Text = "Удалить";
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
             // изменитьToolStripMenuItem
             // 
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.изменитьToolStripMenuItem.Text = "Изменить";
             // 
             // запросыToolStripMenuItem
@@ -128,7 +130,8 @@
             this.таблицыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.основныеToolStripMenuItem,
             this.справочникиToolStripMenuItem,
-            this.обновитьToolStripMenuItem});
+            this.обновитьToolStripMenuItem,
+            this.составнаяФормаToolStripMenuItem});
             this.таблицыToolStripMenuItem.Name = "таблицыToolStripMenuItem";
             this.таблицыToolStripMenuItem.Size = new System.Drawing.Size(76, 40);
             this.таблицыToolStripMenuItem.Text = "Таблицы";
@@ -140,7 +143,7 @@
             this.альбомToolStripMenuItem,
             this.магазинToolStripMenuItem});
             this.основныеToolStripMenuItem.Name = "основныеToolStripMenuItem";
-            this.основныеToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.основныеToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
             this.основныеToolStripMenuItem.Text = "Основные";
             // 
             // ассортиментToolStripMenuItem
@@ -179,7 +182,7 @@
             this.типСобственностиToolStripMenuItem,
             this.районГородаToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
-            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
             this.справочникиToolStripMenuItem.Text = "Справочники";
             // 
             // странаToolStripMenuItem
@@ -260,9 +263,16 @@
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
+            // 
+            // составнаяФормаToolStripMenuItem
+            // 
+            this.составнаяФормаToolStripMenuItem.Name = "составнаяФормаToolStripMenuItem";
+            this.составнаяФормаToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
+            this.составнаяФормаToolStripMenuItem.Text = "Составная форма";
+            this.составнаяФормаToolStripMenuItem.Click += new System.EventHandler(this.составнаяФормаToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -278,7 +288,7 @@
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.NullValue = null;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(24, 6, 5, 6);
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 6, 0, 6);
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -297,7 +307,6 @@
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(0, 40);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -374,5 +383,6 @@
         private DoubleBufferedDataGridView dataGridView1;
         private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem составнаяФормаToolStripMenuItem;
     }
 }
