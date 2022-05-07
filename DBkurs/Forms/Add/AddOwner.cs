@@ -17,16 +17,22 @@ namespace DBKurs.Forms.Add
         private NpgsqlConnection conn;
         private String sql;
         private NpgsqlCommand cmd;
+        private DataGridViewRow row;
 
-        public AddOwner(String connString)
+        public AddOwner(String connString, DataGridViewRow row = null)
         {
             InitializeComponent();
             connectString = connString;
+            this.row = row;
         }
 
         private void AddOwner_Load(object sender, EventArgs e)
         {
             conn = new NpgsqlConnection(connectString);
+            if (row != null)
+            {
+                textBox1.Text = row.Cells["Владелец"].Value.ToString();
+            }
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -47,10 +53,22 @@ namespace DBKurs.Forms.Add
             {
                 conn.Open();
 
-                cmd = new NpgsqlCommand($"INSERT INTO Owners (owner_name) VALUES ('{textBox1.Text}');", conn);
+                if (row == null)
+                {
+                    cmd = new NpgsqlCommand($"INSERT INTO Owners (owner_name) VALUES ('{textBox1.Text}');", conn);
+                }
+                else
+                {
+                    int mId = (int)row.Cells["id"].Value;
+                    cmd = new NpgsqlCommand($"UPDATE Owners SET owner_name = '{textBox1.Text}' WHERE owner_id = {mId}", conn);
+                }
+
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Владелец успешно добавлен");
+                if (row == null)
+                    MessageBox.Show("Владелец успешн добавлен");
+                else
+                    MessageBox.Show("Владелец успешно изменен");
                 this.Close();
             }
             catch (Exception exc)

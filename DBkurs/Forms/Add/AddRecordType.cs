@@ -17,16 +17,22 @@ namespace DBKurs.Forms.Add
         private NpgsqlConnection conn;
         private String sql;
         private NpgsqlCommand cmd;
+        private DataGridViewRow row;
 
-        public AddRecordType(String connString)
+        public AddRecordType(String connString, DataGridViewRow row = null)
         {
             InitializeComponent();
             connectString = connString;
+            this.row = row;
         }
 
         private void AddRecordType_Load(object sender, EventArgs e)
         {
             conn = new NpgsqlConnection(connectString);
+            if (row != null)
+            {
+                textBox1.Text = row.Cells["Тип записи"].Value.ToString();
+            }
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -41,10 +47,23 @@ namespace DBKurs.Forms.Add
             {
                 conn.Open();
 
-                cmd = new NpgsqlCommand($"INSERT INTO RecordTypes (recordType_name) VALUES ('{textBox1.Text}');", conn);
+                if (row == null)
+                {
+                    cmd = new NpgsqlCommand($"INSERT INTO RecordTypes (recordType_name) VALUES ('{textBox1.Text}');", conn);
+                }
+                else
+                {
+                    int mId = (int)row.Cells["id"].Value;
+                    cmd = new NpgsqlCommand($"UPDATE RecordTypes SET recordType_name = '{textBox1.Text}' WHERE recordType_id = {mId}", conn);
+                }
+
+                
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Тип записи успешно добавлен");
+                if (row == null)
+                    MessageBox.Show("Тип записи успешно добавлен");
+                else
+                    MessageBox.Show("Тип записи успешно изменен");
                 this.Close();
             }
             catch (Exception exc)

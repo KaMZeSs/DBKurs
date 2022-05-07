@@ -18,11 +18,13 @@ namespace DBKurs.Forms.Add
         private String sql;
         private NpgsqlCommand cmd;
         private DataTable dt;
+        private DataGridViewRow row;
 
-        public AddRecordFirm(String connString)
+        public AddRecordFirm(String connString, DataGridViewRow row = null)
         {
             InitializeComponent();
             connectString = connString;
+            this.row = row;
         }
 
         private async void AddRecordFirm_Load(object sender, EventArgs e)
@@ -52,6 +54,12 @@ namespace DBKurs.Forms.Add
             {
                 conn.Close();
             }
+
+            if (row != null)
+            {
+                listBox1.SelectedIndex = listBox1.FindString(row.Cells["Город"].Value.ToString() + " - ");
+                textBox1.Text = row.Cells["Фирма звукозаписи"].Value.ToString();
+            }
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -74,10 +82,22 @@ namespace DBKurs.Forms.Add
                 String[] temp = listBox1.SelectedItem.ToString().Split('-');
                 int id = Int32.Parse(temp.Last());
 
-                cmd = new NpgsqlCommand($"INSERT INTO RecordFirms (city_id, recordFirm_name) VALUES ({id}, '{textBox1.Text}');", conn);
+                if (row == null)
+                {
+                    cmd = new NpgsqlCommand($"INSERT INTO RecordFirms (city_id, recordFirm_name) VALUES ({id}, '{textBox1.Text}');", conn);
+                }
+                else
+                {
+                    int mId = (int)row.Cells["id"].Value;
+                    cmd = new NpgsqlCommand($"UPDATE RecordFirms SET city_id = {id}, recordFirm_name = '{textBox1.Text}' WHERE recordFirm_id = {mId}", conn);
+                }
+
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Фирма успешно добавлена");
+                if (row == null)
+                    MessageBox.Show("Фирма звукозаписи успешно добавлена");
+                else
+                    MessageBox.Show("Фирма звукозаписи успешно изменена");
                 this.Close();
             }
             catch (Exception exc)

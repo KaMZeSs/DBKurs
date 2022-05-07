@@ -46,7 +46,6 @@ BEGIN
         JOIN PropertyTypes ON PropertyTypes.propertyType_id = Shops.propertyType_id 
         ORDER BY Shops.shop_id;
 
-
 END; $$ LANGUAGE 'plpgsql';
 
 CREATE OR REPLACE FUNCTION Before_insert_trigger_Shops() RETURNS TRIGGER AS $$
@@ -84,3 +83,25 @@ CREATE TRIGGER Before_insert_trigger_Shops
 BEFORE
 INSERT ON Shops
 FOR EACH ROW EXECUTE PROCEDURE Before_insert_trigger_Shops();
+
+CREATE OR REPLACE FUNCTION Before_update_trigger_Shops() RETURNS TRIGGER AS $$
+DECLARE
+    minDATE DATE;
+BEGIN
+
+    SELECT min(dateOfReceipt) INTO minDATE FROM productranges WHERE productranges.shop_id = NEW.shop_id;
+
+    IF minDATE < to_date(NEW.yearOpened::text, 'YYYY') THEN
+        RAISE EXCEPTION 'Один или несколько альбомов были поставлены в магазин до данного года открытия';
+    END IF;
+
+	RETURN NEW;
+
+END; $$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER Before_update_trigger_Shops
+BEFORE
+UPDATE ON Shops
+FOR EACH ROW EXECUTE PROCEDURE Before_update_trigger_Shops();
+
+SELECT min(dateOfReceipt) FROM productranges WHERE productranges.shop_id = ANY('{1, 2, 3}');

@@ -21,6 +21,7 @@ namespace DBKurs.Forms.Add
         private DataTable dtCountries, dtCities, dtRecordFirms,
             RecordTypes, Executors, Genres, Languages;
         private Image img;
+        private DataGridViewRow row;
 
         private async Task InitializeCountries()
         {
@@ -144,6 +145,40 @@ namespace DBKurs.Forms.Add
             {
                 conn.Close();
             }
+
+            if (row != null)
+            {
+                listBox1.SelectedIndex = listBox1.FindString(row.Cells["Фирма звукозаписи"].Value.ToString() + " - ");
+                listBox2.SelectedIndex = listBox2.FindString(row.Cells["Тип записи"].Value.ToString() + " - ");
+                listBox5.SelectedIndex = listBox5.FindString(row.Cells["Язык исполнения"].Value.ToString() + " - ");
+                listBox4.SelectedIndex = listBox4.FindString(row.Cells["Жанр"].Value.ToString() + " - ");
+                dateTimePicker1.Value = DateTime.Parse(row.Cells["Дата выпуска альбома"].Value.ToString());
+                pictureBox1.Image = (Image)row.Cells["Титул альбома"].Value;
+                textBox1.Text = row.Cells["Название альбома"].Value.ToString();
+                textBox3.Text = row.Cells["Количество песен"].Value.ToString();
+                textBox4.Text = row.Cells["Тираж албома"].Value.ToString();
+                textBox5.Text = row.Cells["Время звучания"].Value.ToString();
+                if ((bool)row.Cells["Альбом сборник"].Value)
+                {
+                    String[] executors = row.Cells["Информация"].Value.ToString().
+                        Substring(12).Split('\n')[0].Trim().
+                        Split(new String[] {", "}, StringSplitOptions.RemoveEmptyEntries);
+
+                    for (int i = 0; i < executors.Length; i++)
+                    {
+                        int id = listBox3.FindString(executors[i] + " - ");
+                        if (id == -1)
+                            continue;
+                        listBox3.SetItemChecked(id, true);
+                        listBox3.SelectedIndex = id;
+                    }
+                }
+                else
+                {
+                    int id = listBox3.FindString(row.Cells["Исполнитель"].Value.ToString() + " - ");
+                    listBox3.SetItemChecked(id, true);
+                }
+            }
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -265,6 +300,7 @@ namespace DBKurs.Forms.Add
                 {
                     img = Image.FromFile(fileDialog.FileName);
                     label16.Visible = true;
+                    pictureBox1.Image = img;
                 }
                 catch (Exception exc)
                 {
@@ -341,17 +377,31 @@ namespace DBKurs.Forms.Add
             }
             if (img == null)
             {
-                if (MessageBox.Show("Вы уверены, что хотите продолжить без изображения?",
+                if (pictureBox1.Image == null)
+                {
+                    if (MessageBox.Show("Вы уверены, что хотите продолжить без изображения?",
                     "Изображение не установлено",
                     MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    img = new Bitmap(1, 1);
-                    img.Save(".temp.jpg");
-                    img = Image.FromFile(".temp.jpg");
-                    File.Delete(".temp.jpg");
+                    {
+                        img = new Bitmap(1, 1);
+                        img.Save($".{DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss")}.jpg");
+                        img = Image.FromFile($".{DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss")}.jpg");
+                        File.Delete($".{DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss")}.jpg");
+                    }
+                    else
+                        return;
                 }
                 else
-                    return;
+                {
+                    img = new Bitmap(pictureBox1.Image);
+                    img.Save($"temp.jpg");
+                    using (var reader = new StreamReader("temp.jpg"))
+                    {
+                        img = Image.FromStream(reader.BaseStream);
+                    }
+                    File.Delete($"temp.jpg");
+                }
+                
             }
 
             String[] temp;
@@ -376,13 +426,13 @@ namespace DBKurs.Forms.Add
             String executors = string.Empty;
             foreach (var el in listBox3.CheckedItems)
             {
-                executors += el.ToString() + ", ";
+                executors += el.ToString().Split('-').First().Trim() + ", ";
             }
-            executors.Remove(executors.Length - 2);
+            executors = executors.Remove(executors.Length - 2);
             if (listBox3.CheckedItems.Count > 1)
             {
                 isCompilation = true;
-                info = $"Исполнители: {executors}\nЖанр: {listBox4.SelectedItem}\nЯзык: {listBox5.SelectedItem}";
+                info = $"Исполнители: {executors}\nЖанр: {listBox4.SelectedItem.ToString().Split('-').First().Trim()}\nЯзык: {listBox5.SelectedItem.ToString().Split('-').First().Trim()}";
             }
 
             String release = dateTimePicker1.Value.ToString("dd-MM-yyyy");
@@ -398,23 +448,50 @@ namespace DBKurs.Forms.Add
 
             String image = Convert.ToBase64String(arr);
 
-            
+
             try
             {
                 conn.Open();
-                if (isCompilation)
+                if (row == null)
                 {
-                    cmd = new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
-                    $"VALUES ({recordFirm_id}, {genre_id}, NULL, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{image}\', {time})", conn);
+                    if (isCompilation)
+                    {
+                        cmd = new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
+                        $"VALUES ({recordFirm_id}, {genre_id}, NULL, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{image}\', {time})", conn);
+                    }
+                    else
+                    {
+                        cmd = new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
+                        $"VALUES ({recordFirm_id}, {genre_id}, {executor_id}, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{image}\', {time})", conn);
+                    }
                 }
                 else
                 {
-                    cmd = new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
-                    $"VALUES ({recordFirm_id}, {genre_id}, {executor_id}, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{image}\', {time})", conn);
+                    int mId = (int)row.Cells["id"].Value;
+                    if (isCompilation)
+                    {
+                        cmd = new NpgsqlCommand($"UPDATE Albums SET recordFirm_id = {recordFirm_id}, genre_id = {genre_id}, executor_id = NULL, language_id = {language_id}, " +
+                            $"recordType_id = {recordType_id}, album_name = \'{name}\', releaseDate = \'{release}\', albumCount = {amount}, songsCount = {songsCount}, " +
+                            $"isCollection = \'{isCol}\', albumInfo = \'{info}\', Photo = \'{image}\', albumTime = {time} WHERE album_id = {mId}", conn);
+                    }
+                    else
+                    {
+                        cmd = new NpgsqlCommand($"UPDATE Albums SET recordFirm_id = {recordFirm_id}, genre_id = {genre_id}, executor_id = {executor_id}, language_id = {language_id}, " +
+                            $"recordType_id = {recordType_id}, album_name = \'{name}\', releaseDate = \'{release}\', albumCount = {amount}, songsCount = {songsCount}, " +
+                            $"isCollection = \'{isCol}\', albumInfo = NULL, Photo = \'{image}\', albumTime = {time} WHERE album_id = {mId}", conn);
+                    }
                 }
+                
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Альбом успешно добавлен");
+                if (row == null)
+                {
+                    MessageBox.Show("Альбом успешно добавлен");
+                }
+                else
+                {
+                    MessageBox.Show("Альбом успешно изменен");
+                }
                 this.Close();
             }
             catch (Exception exc)
@@ -467,10 +544,19 @@ namespace DBKurs.Forms.Add
             }
         }
 
-        public AddAlbum(String conn)
+        public AddAlbum(String conn, DataGridViewRow row = null)
         {
             InitializeComponent();
             connectString = conn;
+            this.row = row;
+            if (row == null)
+            {
+                this.Text = "Добавление альбома";
+            }
+            else
+            {
+                this.Text = "Изменение альбома";
+            }
         }
     }
 }

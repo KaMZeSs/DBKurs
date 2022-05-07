@@ -311,7 +311,7 @@ namespace Randomize
                     //Нужно добавить проверку на сборник (неск исполнителей)
                     int executor_id;
                     //Executor
-                    if (i < minNew | rnd.Next(0, 4) == 0) //Если 0 - новый исполнитель
+                    if (i < minNew | rnd.Next(0, 20) == 0) //Если 0 - новый исполнитель
                     {
                         temp = executors[rnd.Next(executors.Length)];
                         if (db.executors.Where(x => x.name == temp).Count() == 0)
@@ -388,7 +388,9 @@ namespace Randomize
                     int songCount = rnd.Next(1, 100);
 
                     //isCompilation
-                    bool isCompilation = rnd.Next(0, 2) == 0;
+                    bool isCompilation = rnd.Next(0, 4) == 0;
+                    if (db.executors.Count == 1)
+                        isCompilation = false;
 
                     //Если сборник - нужен еще один исполнитель
                     int secondExecutor_id = -1;

@@ -11,7 +11,7 @@ DROP FUNCTION Get_All_Countries;
 CREATE OR REPLACE FUNCTION Get_All_Countries() RETURNS TABLE 
 ( 
 	"id" INT, 
-	"Название" TEXT
+	"Страна" TEXT
 ) AS $$
 BEGIN
     RETURN QUERY 

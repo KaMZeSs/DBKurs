@@ -17,19 +17,47 @@ namespace DBKurs.Forms
 {
     delegate void UpdateTable();
 
-    enum Tables { ProductRanges, Albums, Shops, Cities, Countries, Executors, Genres, Languages, RecordFirms, RecordTypes, Districts, Owners, PropertyTypes }
+    public enum Tables { ProductRanges, Albums, Shops, Cities, Countries, Executors, Genres, Languages, RecordFirms, RecordTypes, Districts, Owners, PropertyTypes }
 
     public partial class MainForm : Form
     {
         UpdateTable updator, updator_continue;
 
-        public readonly static String connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs";
-        public NpgsqlConnection conn;
-        public String sql;
-        public NpgsqlCommand cmd;
-        public DataTable dt;
+        private readonly static String connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs";
+        private NpgsqlConnection conn;
+        private String sql;
+        private NpgsqlCommand cmd;
+        private DataTable dt;
 
         private Tables currentTable;
+
+        #region Properties
+
+        public Tables CurrentTable 
+        {
+            get
+            {
+                return currentTable;
+            }
+        }
+
+        #endregion
+
+        #region Events
+        public class TableEventArgs
+        {
+            public Tables NewTable { get; }
+
+            public TableEventArgs(Tables newTable)
+            {
+                this.NewTable = newTable;
+            }
+        }
+        public delegate void On_Table_Updated(object sender, TableEventArgs e);
+
+        public event On_Table_Updated onTable_Updated;
+
+        #endregion
 
         public MainForm()
         {
@@ -63,6 +91,11 @@ namespace DBKurs.Forms
 
         private async void ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (conn.State == ConnectionState.Open)
+            {
+                MessageBox.Show("Дождитесь завершения операции");
+                return;
+            }
             String name = ((ToolStripMenuItem)sender).Text;
             dataGridView1.RowTemplate.Height = 33;
 
@@ -453,6 +486,14 @@ namespace DBKurs.Forms
                     break;
             }
             updator.Invoke();
+
+#pragma warning disable CS4014 // Так как этот вызов не ожидается, выполнение существующего метода продолжается до тех пор, пока вызов не будет завершен
+            Task.Factory.StartNew(() =>
+            {
+                onTable_Updated?.Invoke(this, new TableEventArgs(currentTable));
+            });
+#pragma warning restore CS4014 // Так как этот вызов не ожидается, выполнение существующего метода продолжается до тех пор, пока вызов не будет завершен
+
         }
 
         private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -532,49 +573,257 @@ namespace DBKurs.Forms
                 ids[i] = (int)dataGridView1.SelectedRows[i].Cells["id"].Value;
             }
 
-            try
+            String selected = "'{" + String.Join(", ", ids) + "}'";
+
+            sql = "SELECT * FROM ";
+
+            switch (currentTable)
             {
-                await conn.OpenAsync();
+                case Tables.ProductRanges:
+                    break;
+                case Tables.Albums:
+                    sql += $"CountCascadeAlbums({selected})";
+                    break;
+                case Tables.Shops:
+                    sql += $"CountCascadeShops({selected})";
+                    break;
+                case Tables.Cities:
+                    sql += $"CountCascadeCities({selected})";
+                    break;
+                case Tables.Countries:
+                    sql += $"CountCascadeCountries({selected})";
+                    break;
+                case Tables.Executors:
+                    sql += $"CountCascadeExecutors({selected})";
+                    break;
+                case Tables.Genres:
+                    sql += $"CountCascadeGenres({selected})";
+                    break;
+                case Tables.Languages:
+                    sql += $"CountCascadeLanguages({selected})";
+                    break;
+                case Tables.RecordFirms:
+                    sql += $"CountCascadeRecordFirms({selected})";
+                    break;
+                case Tables.RecordTypes:
+                    sql += $"CountCascadeRecordTypes({selected})";
+                    break;
+                case Tables.Districts:
+                    sql += $"CountCascadeDistricts({selected})";
+                    break;
+                case Tables.Owners:
+                    sql += $"CountCascadeOwners({selected})";
+                    break;
+                case Tables.PropertyTypes:
+                    sql += $"CountCascadePropertyTypes({selected})";
+                    break;
+                default:
+                    break;
             }
-            catch (Exception exc)
+
+            int[] willBeDeleted;
+
+            if (currentTable == Tables.ProductRanges)
             {
+                willBeDeleted = new int[] { dataGridView1.SelectedRows.Count };
+            }
+            else
+            {
+                dt = new DataTable();
+
+                try
+                {
+                    await conn.OpenAsync();
+                    cmd = new NpgsqlCommand(sql, conn);
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+
+                willBeDeleted = (int[])dt.Rows[0][0];
+            }
+
+            String message = "Вы уверены, что хотите удалить данные строки?\nБудет удалено строк:\n";
+
+            switch (currentTable)
+            {
+                case Tables.ProductRanges:
+                    message += $"\tАссортимент: {willBeDeleted[0]}";
+                    break;
+                case Tables.Albums:
+                    message += $"\tАльбомы: {willBeDeleted[0]}\n\tАссортимент: {willBeDeleted[1]}";
+                    break;
+                case Tables.Shops:
+                    message += $"\tМагазины: {willBeDeleted[0]}\n\tАссортимент: {willBeDeleted[1]}";
+                    break;
+                case Tables.Cities:
+                    message += $"\tГорода: {willBeDeleted[0]}\n\tФирмы звукозаписи: {willBeDeleted[1]}\n\tАльбомы: {willBeDeleted[2]}\n\tАссортимент: {willBeDeleted[3]}";
+                    break;
+                case Tables.Countries:
+                    message += $"\tСтраны: {willBeDeleted[0]}\n\tГорода: {willBeDeleted[1]}\n\tФирмы звукозаписи: {willBeDeleted[2]}\n\tАльбомы: {willBeDeleted[3]}\n\tАссортимент: {willBeDeleted[4]}";
+                    break;
+                case Tables.Executors:
+                    message += $"\tИсполнители: {willBeDeleted[0]}\n\tАльбомы: {willBeDeleted[1]}\n\tАссортимент: {willBeDeleted[2]}";
+                    break;
+                case Tables.Genres:
+                    message += $"\tЖанры: {willBeDeleted[0]}\n\tАльбомы: {willBeDeleted[1]}\n\tАссортимент: {willBeDeleted[2]}";
+                    break;
+                case Tables.Languages:
+                    message += $"\tЯзыки: {willBeDeleted[0]}\n\tАльбомы: {willBeDeleted[1]}\n\tАссортимент: {willBeDeleted[2]}";
+                    break;
+                case Tables.RecordFirms:
+                    message += $"\tФирмы звукозаписи: {willBeDeleted[0]}\n\tАльбомы: {willBeDeleted[1]}\n\tАссортимент: {willBeDeleted[2]}";
+                    break;
+                case Tables.RecordTypes:
+                    message += $"\tТипы записи: {willBeDeleted[0]}\n\tАльбомы: {willBeDeleted[1]}\n\tАссортимент: {willBeDeleted[2]}";
+                    break;
+                case Tables.Districts:
+                    message += $"\tРайоны: {willBeDeleted[0]}\n\tМагазины: {willBeDeleted[1]}\n\tАссортимент: {willBeDeleted[2]}";
+                    break;
+                case Tables.Owners:
+                    message += $"\tВладельцы: {willBeDeleted[0]}\n\tМагазины: {willBeDeleted[1]}\n\tАссортимент: {willBeDeleted[2]}";
+                    break;
+                case Tables.PropertyTypes:
+                    message += $"\tТипы собственности: {willBeDeleted[0]}\n\tМагазины: {willBeDeleted[1]}\n\tАссортимент: {willBeDeleted[2]}";
+                    break;
+            }
+
+            if (MessageBox.Show(message, "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                sql = "DELETE FROM ";
                 switch (currentTable)
                 {
                     case Tables.ProductRanges:
+                        sql += $"ProductRanges WHERE productRange_id = ANY({selected})";
                         break;
                     case Tables.Albums:
+                        sql += $"Albums WHERE album_id = ANY({selected})";
                         break;
                     case Tables.Shops:
+                        sql += $"Shops WHERE shop_id = ANY({selected})";
                         break;
                     case Tables.Cities:
-                        sql = $"SELECT";
+                        sql += $"Cities WHERE city_id = ANY({selected})";
                         break;
                     case Tables.Countries:
+                        sql += $"Countries WHERE country_id = ANY({selected})";
                         break;
                     case Tables.Executors:
+                        sql += $"Executors WHERE executor_id = ANY({selected})";
                         break;
                     case Tables.Genres:
+                        sql += $"Genres WHERE genre_id = ANY({selected})";
                         break;
                     case Tables.Languages:
+                        sql += $"Languages WHERE language_id = ANY({selected})";
                         break;
                     case Tables.RecordFirms:
+                        sql += $"RecordFirms WHERE recordfirm_id = ANY({selected})";
                         break;
                     case Tables.RecordTypes:
+                        sql += $"RecordTypes WHERE recordtype_id = ANY({selected})";
                         break;
                     case Tables.Districts:
+                        sql += $"Districts WHERE district_id = ANY({selected})";
                         break;
                     case Tables.Owners:
+                        sql += $"Owners WHERE owner_id = ANY({selected})";
                         break;
                     case Tables.PropertyTypes:
-                        break;
-                    default:
+                        sql += $"PropertyTypes WHERE propertytype_id = ANY({selected})";
                         break;
                 }
+
+                try
+                {
+                    await conn.OpenAsync();
+                    cmd = new NpgsqlCommand(sql, conn);
+                    await cmd.ExecuteNonQueryAsync();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+                updator.Invoke();
             }
-            finally
+        }
+
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 1)
             {
-                await conn.CloseAsync();
+                MessageBox.Show("Выделите только одну строку");
+                return;
             }
+
+            DialogResult dialogResult;
+
+            switch (currentTable)
+            {
+                case Tables.ProductRanges:
+                    dialogResult = new Add.AddProductRange(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.Albums:
+                    dialogResult = new Add.AddAlbum(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.Shops:
+                    dialogResult = new Add.AddShop(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.Cities:
+                    dialogResult = new Add.AddCity(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.Countries:
+                    dialogResult = new Add.AddCountry(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.Executors:
+                    dialogResult = new Add.AddExecutor(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.Genres:
+                    dialogResult = new Add.AddGenre(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.Languages:
+                    dialogResult = new Add.AddLanguage(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.RecordFirms:
+                    dialogResult = new Add.AddRecordFirm(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.RecordTypes:
+                    dialogResult = new Add.AddRecordType(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.Districts:
+                    dialogResult = new Add.AddDistrict(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.Owners:
+                    dialogResult = new Add.AddOwner(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                case Tables.PropertyTypes:
+                    dialogResult = new Add.AddPropertyType(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
+                    break;
+                default:
+                    return;
+            }
+
+            if (dialogResult == DialogResult.OK)
+                updator.Invoke();
+        }
+
+        #endregion
+
+        #region Find
+
+        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Find().Show(this);
         }
 
         #endregion
@@ -646,11 +895,6 @@ namespace DBKurs.Forms
             }
         }
 
-        private void составнаяФормаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new CompoundForm(connectString).ShowDialog(this);
-        }
-
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
         {
             if (dataGridView1.DataSource is null)
@@ -665,5 +909,10 @@ namespace DBKurs.Forms
         }
 
         #endregion
+
+        private void составнаяФормаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CompoundForm(connectString).ShowDialog(this);
+        }
     }
 }

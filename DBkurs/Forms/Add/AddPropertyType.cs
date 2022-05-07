@@ -17,16 +17,22 @@ namespace DBKurs.Forms.Add
         private NpgsqlConnection conn;
         private String sql;
         private NpgsqlCommand cmd;
+        private DataGridViewRow row;
 
-        public AddPropertyType(String connString)
+        public AddPropertyType(String connString, DataGridViewRow row = null)
         {
             InitializeComponent();
             connectString = connString;
+            this.row = row;
         }
 
         private void AddPropertyType_Load(object sender, EventArgs e)
         {
             conn = new NpgsqlConnection(connectString);
+            if (row != null)
+            {
+                textBox1.Text = row.Cells["Тип собственности"].Value.ToString();
+            }
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -41,10 +47,22 @@ namespace DBKurs.Forms.Add
             {
                 conn.Open();
 
-                cmd = new NpgsqlCommand($"INSERT INTO PropertyTypes (propertyType_name) VALUES ('{textBox1.Text}');", conn);
+                if (row == null)
+                {
+                    cmd = new NpgsqlCommand($"INSERT INTO PropertyTypes (propertyType_name) VALUES ('{textBox1.Text}');", conn);
+                }
+                else
+                {
+                    int mId = (int)row.Cells["id"].Value;
+                    cmd = new NpgsqlCommand($"UPDATE PropertyTypes SET propertyType_name = '{textBox1.Text}' WHERE propertytype_id = {mId}", conn);
+                }
+                if (row == null)
+                    MessageBox.Show("Тип собственности успешно добавлен");
+                else
+                    MessageBox.Show("Тип собственности успешно изменен");
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Тип собственности успешно добавлена");
+
                 this.Close();
             }
             catch (Exception exc)

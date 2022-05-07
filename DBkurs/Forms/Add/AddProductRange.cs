@@ -19,6 +19,7 @@ namespace DBKurs.Forms.Add
         private String sql;
         private NpgsqlCommand cmd;
         private DataTable dtShops, dtAlbums;
+        private DataGridViewRow row;
         private async Task InitializeShops()
         {
             cmd = new NpgsqlCommand($"SELECT shop_id, shop_name FROM Shops", conn);
@@ -63,6 +64,14 @@ namespace DBKurs.Forms.Add
             {
                 conn.Close();
             }
+
+            if (row != null)
+            {
+                listBox1.SelectedIndex = listBox1.FindString(row.Cells["Магазин"].Value.ToString() + " - ");
+                listBox2.SelectedIndex = listBox2.FindString(row.Cells["Альбом"].Value.ToString() + " - ");
+                dateTimePicker1.Value = DateTime.Parse(row.Cells["Дата поступления"].Value.ToString());
+                textBox1.Text = row.Cells["Количество единиц"].Value.ToString();
+            }
         }
 
         private async void button3_Click(object sender, EventArgs e)
@@ -106,11 +115,27 @@ namespace DBKurs.Forms.Add
             try
             {
                 conn.Open();
-                cmd = new NpgsqlCommand("INSERT INTO ProductRanges (shop_id, album_id, dateOfReceipt, amount) " +
+
+                if (row == null)
+                {
+                    cmd = new NpgsqlCommand("INSERT INTO ProductRanges (shop_id, album_id, dateOfReceipt, amount) " +
                     $"VALUES ({shop_id}, {album_id}, \'{time}\', {amount})", conn);
+                }
+                else
+                {
+                    int mId = (int)row.Cells["id"].Value;
+                    cmd = new NpgsqlCommand($"UPDATE ProductRanges SET shop_id = {shop_id}, album_id = {album_id}, dateOfReceipt = '{time}', amount = {amount}  WHERE productrange_id = {mId}", conn);
+                }
+
+                
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Ассортимент успешно добавлен");
+
+                if (row == null)
+                    MessageBox.Show("Ассортимент успешно добавлен");
+                else
+                    MessageBox.Show("Ассортимент успешно изменен");
+
                 this.Close();
             }
             catch(Exception exc)
@@ -163,10 +188,12 @@ namespace DBKurs.Forms.Add
             }
         }
 
-        public AddProductRange(String conn)
+        public AddProductRange(String conn, DataGridViewRow row = null)
         {
             InitializeComponent();
             connectString = conn;
+            this.row = row;
+
         }
     }
 }

@@ -18,11 +18,13 @@ namespace DBKurs.Forms.Add
         private String sql;
         private NpgsqlCommand cmd;
         private DataTable dt;
+        private DataGridViewRow row;
 
-        public AddCity(String connString)
+        public AddCity(String connString, DataGridViewRow row = null)
         {
             InitializeComponent();
             connectString = connString;
+            this.row = row;
         }
 
         private async void AddCity_Load(object sender, EventArgs e)
@@ -52,6 +54,12 @@ namespace DBKurs.Forms.Add
             {
                 conn.Close();
             }
+
+            if (row != null)
+            {
+                listBox1.SelectedIndex = listBox1.FindString(row.Cells["Страна"].Value.ToString() + " - ");
+                textBox1.Text = row.Cells["Город"].Value.ToString();
+            }
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -72,11 +80,22 @@ namespace DBKurs.Forms.Add
                 conn.Open();
                 String[] temp = listBox1.SelectedItem.ToString().Split('-');
                 int id = Int32.Parse(temp.Last());
-
-                cmd = new NpgsqlCommand($"INSERT INTO Cities (country_id, city_name) VALUES ({id}, '{textBox1.Text}');", conn);
+                if (row == null)
+                {
+                    cmd = new NpgsqlCommand($"INSERT INTO Cities (country_id, city_name) VALUES ({id}, '{textBox1.Text}');", conn);
+                }
+                else
+                {
+                    int mId = (int)row.Cells["id"].Value;
+                    cmd = new NpgsqlCommand($"UPDATE Cities SET country_id = {id}, city_name = '{textBox1.Text}' WHERE city_id = {mId}", conn);
+                }
+                    
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Город успешно добавлен");
+                if (row == null)
+                    MessageBox.Show("Город успешно добавлен");
+                else
+                    MessageBox.Show("Город успешно изменен");
                 this.Close();
             }
             catch (Exception exc)

@@ -48,3 +48,6 @@ SELECT shops.addres FROM shops WHERE shops.owner_id = 1;
 SELECT shop_id, shop_name FROM shops;
 
 SELECT album_id, album_name FROM albums;
+DELETE FROM productranges WHERE productRange_id
+
+SELECT count(*) FROM albums;

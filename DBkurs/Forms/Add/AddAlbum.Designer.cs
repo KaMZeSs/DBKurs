@@ -62,6 +62,10 @@
             this.label15 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label8
@@ -98,7 +102,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(470, 129);
+            this.button4.Location = new System.Drawing.Point(468, 152);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(197, 20);
             this.button4.TabIndex = 41;
@@ -118,9 +122,9 @@
             // listBox3
             // 
             this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(470, 30);
+            this.listBox3.Location = new System.Drawing.Point(468, 27);
             this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(197, 94);
+            this.listBox3.Size = new System.Drawing.Size(197, 124);
             this.listBox3.Sorted = true;
             this.listBox3.TabIndex = 39;
             // 
@@ -130,7 +134,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(421, 20);
             this.button3.TabIndex = 38;
-            this.button3.Text = "Добавить новый альбом";
+            this.button3.Text = "Подтвердить";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -281,7 +285,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(685, 110);
+            this.label12.Location = new System.Drawing.Point(684, 85);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(168, 13);
             this.label12.TabIndex = 58;
@@ -289,11 +293,11 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(685, 129);
+            this.button8.Location = new System.Drawing.Point(684, 104);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(197, 20);
             this.button8.TabIndex = 59;
-            this.button8.Text = "Добавить новый альбом";
+            this.button8.Text = "Добавить титул";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
@@ -365,18 +369,37 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(685, 152);
+            this.label16.Location = new System.Drawing.Point(684, 129);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(134, 13);
             this.label16.TabIndex = 62;
             this.label16.Text = "Изображение добавлено";
             this.label16.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Location = new System.Drawing.Point(687, 149);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(72, 47);
+            this.panel1.TabIndex = 63;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(72, 47);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // AddAlbum
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 284);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.textBox5);
@@ -414,6 +437,8 @@
             this.Name = "AddAlbum";
             this.Text = "AddAlbums";
             this.Load += new System.EventHandler(this.AddAlbum_Load);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,5 +480,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

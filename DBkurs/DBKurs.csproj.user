@@ -20,6 +20,9 @@
     <Compile Update="Forms\Add\AddRecordFirm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Find.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

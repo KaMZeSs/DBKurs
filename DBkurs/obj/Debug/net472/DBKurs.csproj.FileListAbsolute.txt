@@ -41,3 +41,4 @@ E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddRecordType.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddAlbum.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddShop.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.CompoundForm.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Find.resources

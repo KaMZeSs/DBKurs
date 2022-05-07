@@ -19,6 +19,7 @@ namespace DBKurs.Forms.Add
         private String sql;
         private NpgsqlCommand cmd;
         private DataTable dtDistricts, dtPropertyTypes, dtOwners;
+        private DataGridViewRow row;
 
         private async void AddShop_Load(object sender, EventArgs e)
         {
@@ -39,12 +40,26 @@ namespace DBKurs.Forms.Add
             {
                 conn.Close();
             }
+
+            if (row != null)
+            {
+                listBox1.SelectedIndex = listBox1.FindString(row.Cells["Район города"].Value.ToString() + " - ");
+                listBox2.SelectedIndex = listBox2.FindString(row.Cells["Тип собственности"].Value.ToString() + " - ");
+                listBox3.SelectedIndex = listBox3.FindString(row.Cells["Владелец"].Value.ToString() + " - ");
+                textBox1.Text = row.Cells["Название магазина"].Value.ToString();
+                textBox2.Text = row.Cells["Адрес"].Value.ToString();
+                textBox3.Text = row.Cells["Лицензия"].Value.ToString();
+                textBox4.Text = row.Cells["Год открытия"].Value.ToString();
+                dateTimePicker1.Value = DateTime.Parse(row.Cells["Дата окончания лицензии"].Value.ToString());
+            }
         }
 
-        public AddShop(String conn)
+        public AddShop(String conn, DataGridViewRow row = null)
         {
             InitializeComponent();
             connectString = conn;
+            this.row = row;
+
         }
         private async Task InitializeDistricts()
         {
@@ -133,11 +148,33 @@ namespace DBKurs.Forms.Add
             try
             {
                 conn.Open();
-                cmd = new NpgsqlCommand("INSERT INTO Shops (district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) " +
-                $"VALUES ({district_id}, {PropertyType_id}, {Owner_id}, \'{textBox1.Text}\', \'{textBox2.Text}\', \'{textBox3.Text}\', \'{dateTimePicker1.Value}\', {yearOpened})", conn);
+
+                if (row == null)
+                {
+                    cmd = new NpgsqlCommand("INSERT INTO Shops (district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) " +
+                    $"VALUES ({district_id}, {PropertyType_id}, {Owner_id}, \'{textBox1.Text}\', \'{textBox2.Text}\', \'{textBox3.Text}\', \'{dateTimePicker1.Value}\', {yearOpened})", conn);
+                }
+                else
+                {
+                    int mId = (int)row.Cells["id"].Value;
+                    cmd = new NpgsqlCommand($"UPDATE Shops SET district_id = {district_id}, propertyType_id = {PropertyType_id}, " +
+                        $"owner_id = {Owner_id}, shop_name = '{textBox1.Text}', addres = '{textBox2.Text}', " +
+                        $"license = '{textBox3.Text}', expiryDate = '{dateTimePicker1.Value}', yearOpened = {yearOpened}" +
+                        $" WHERE shop_id = {mId}", conn);
+                }
+
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Магазин успешно добавлен");
+
+                if (row == null)
+                {
+                    MessageBox.Show("Магазин успешно добавлен");
+                }
+                else
+                {
+                    MessageBox.Show("Магазин успешно изменен");
+                }
+                
                 this.Close();
             }
             catch (Exception exc)

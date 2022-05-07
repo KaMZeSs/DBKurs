@@ -17,16 +17,23 @@ namespace DBKurs.Forms.Add
         private NpgsqlConnection conn;
         private String sql;
         private NpgsqlCommand cmd;
+        private DataGridViewRow row;
 
-        public AddCountry(String connString)
+        public AddCountry(String connString, DataGridViewRow row = null)
         {
             InitializeComponent();
             connectString = connString;
+            this.row = row;
+
         }
 
         private void AddCountry_Load(object sender, EventArgs e)
         {
             conn = new NpgsqlConnection(connectString);
+            if (row != null)
+            {
+                textBox1.Text = row.Cells["Страна"].Value.ToString();
+            }
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -40,11 +47,25 @@ namespace DBKurs.Forms.Add
             try
             {
                 conn.Open();
-
-                cmd = new NpgsqlCommand($"INSERT INTO Countries (country_name) VALUES ('{textBox1.Text}');", conn);
+                if (row == null)
+                {
+                    cmd = new NpgsqlCommand($"INSERT INTO Countries (country_name) VALUES ('{textBox1.Text}');", conn);
+                }
+                else
+                {
+                    int mId = (int)row.Cells["id"].Value;
+                    cmd = new NpgsqlCommand($"UPDATE Countries SET country_name = '{textBox1.Text}' WHERE country_id = {mId}", conn);
+                }
                 await cmd.ExecuteNonQueryAsync();
                 this.DialogResult = DialogResult.OK;
-                MessageBox.Show("Страна успешно добавлена");
+                if (row == null)
+                {
+                    MessageBox.Show("Страна успешно добавлена");
+                }
+                else
+                {
+                    MessageBox.Show("Страна успешно изменена");
+                }
                 this.Close();
             }
             catch (Exception exc)
