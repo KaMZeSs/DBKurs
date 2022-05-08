@@ -33,6 +33,7 @@ BEGIN
 		IF max < curr.country_id THEN 
 			max := curr.country_id;
 		END IF;
+		
 
 		IF curr.country_id <> i THEN
 			IF NOT EXISTS(SELECT country_id FROM Countries WHERE country_id = i) THEN

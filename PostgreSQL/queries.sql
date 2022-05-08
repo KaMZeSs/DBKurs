@@ -51,3 +51,7 @@ SELECT album_id, album_name FROM albums;
 DELETE FROM productranges WHERE productRange_id
 
 SELECT count(*) FROM albums;
+
+SELECT * FROM cities WHERE city_id = '1';
+
+SELECT * FROM get_all_cities() WHERE "Страна" LIKE '%Авс%';

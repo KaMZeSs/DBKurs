@@ -823,7 +823,59 @@ namespace DBKurs.Forms
 
         private void поискToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Find().Show(this);
+            foreach (var form in this.OwnedForms)
+            {
+                if (form.GetType() == typeof(Find))
+                {
+                    form.Close();
+                    return;
+                }
+            }
+            new Find(connectString).Show(this);
+        }
+
+        public void ViewSearchResult(ref DataTable dt)
+        {
+            dataGridView1.DataSource = null; //очистка таблицы
+            dataGridView1.Columns.Clear();
+            if (CurrentTable == Tables.Albums)
+            {
+                DataTable dtCloned = dt.Clone();
+                dtCloned.BeginLoadData();
+                dtCloned.Columns[dtCloned.Columns.Count - 2].DataType = typeof(Image);
+
+                foreach (DataRow dataRow in dt.Rows)
+                {
+                    DataRow row = dtCloned.NewRow();
+                    for (int i = 0; i < row.ItemArray.Length - 2; i++)
+                    {
+                        row[i] = dataRow[i];
+                    }
+
+                    var base64String = Encoding.Default.GetString((byte[])dataRow[12]);
+                    byte[] byteArray = Convert.FromBase64String(base64String);
+
+                    using (var ms = new MemoryStream(byteArray))
+                    {
+                        Image img = Image.FromStream(ms);
+                        row[12] = img;
+                    }
+                    row[row.ItemArray.Length - 1] = dataRow[row.ItemArray.Length - 1];
+
+                    dtCloned.Rows.Add(row);
+                }
+                dataGridView1.RowTemplate.Height = 50;
+
+                dataGridView1.DataSource = null; //очистка таблицы
+                
+                dataGridView1.DataSource = dtCloned;
+                dataGridView1.Columns[11].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            }
+            else
+            {
+                dataGridView1.DataSource = dt;
+            }
+            updator_continue.Invoke();
         }
 
         #endregion
@@ -838,60 +890,82 @@ namespace DBKurs.Forms
 
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            try
             {
-                if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
-                    return;
-                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor = 
-                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = mouseOver;
-            }
-            else
-            {
-                mouseOverCell_index = e.RowIndex;
-                if (dataGridView1.Rows[e.RowIndex].Selected)
+                if (e.RowIndex == -1)
                 {
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
+                        return;
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor =
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = mouseOver;
                 }
                 else
                 {
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = mouseOver;
+                    mouseOverCell_index = e.RowIndex;
+                    if (dataGridView1.Rows[e.RowIndex].Selected)
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = mouseOver;
+                    }
                 }
             }
+            catch (Exception)
+            {
+
+            }
+            
         }
 
         private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            try
             {
-                if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
-                    return;
-                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor =
-                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = Color.White;
-            }
-            else
-            {
-                if (dataGridView1.Rows[e.RowIndex].Selected)
+                if (e.RowIndex == -1)
                 {
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseLeftSelected;
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
+                        return;
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor =
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = Color.White;
                 }
                 else
                 {
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    if (dataGridView1.Rows[e.RowIndex].Selected)
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseLeftSelected;
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    }
                 }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount == 0 | mouseOverCell_index == -2)
-                return;
-            if (dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor == mouseOver)
+            try
             {
-                dataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor =
-                dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
-                dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor = Color.White;
+                if (dataGridView1.RowCount == 0 | mouseOverCell_index == -2)
+                    return;
+                if (dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor == mouseOver)
+                {
+                    dataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor =
+                    dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
+                    dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor = Color.White;
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
