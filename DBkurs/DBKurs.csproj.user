@@ -26,5 +26,11 @@
     <Compile Update="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Requests\Get_district_id.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Requests\Get_time_period.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

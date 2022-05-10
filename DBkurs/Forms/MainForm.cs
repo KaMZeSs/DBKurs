@@ -1,14 +1,17 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using DBKurs.Forms.Add;
 using DBKurs.Styles;
 using Npgsql;
 
@@ -30,6 +33,34 @@ namespace DBKurs.Forms
         private DataTable dt;
 
         private Tables currentTable;
+
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            menuStrip1.Renderer = new ToolStripProfessionalRenderer(new TestColorTable());
+
+
+            conn = new NpgsqlConnection(connectString);
+
+            updator_continue = () =>
+            {
+                int[] widths = new int[dataGridView1.ColumnCount - 1];
+
+                for (int i = 0; i < widths.Length; i++)
+                {
+                    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    widths[i] = dataGridView1.Columns[i].Width;
+                    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dataGridView1.Columns[i].Width = widths[i];
+                }
+            };
+
+            городToolStripMenuItem.PerformClick();
+        }
 
         #region Properties
 
@@ -59,34 +90,6 @@ namespace DBKurs.Forms
 
         #endregion
 
-        public MainForm()
-        {
-            InitializeComponent();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            menuStrip1.Renderer = new ToolStripProfessionalRenderer(new TestColorTable());
-            
-
-            conn = new NpgsqlConnection(connectString);
-
-            updator_continue = () =>
-            {
-                int[] widths = new int[dataGridView1.ColumnCount - 1];
-
-                for (int i = 0; i < widths.Length; i++)
-                {
-                    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    widths[i] = dataGridView1.Columns[i].Width;
-                    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                    dataGridView1.Columns[i].Width = widths[i];
-                }
-            };
-
-            городToolStripMenuItem.PerformClick();
-        }
-
         #region Updaters
 
         private async void ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -100,7 +103,9 @@ namespace DBKurs.Forms
             dataGridView1.RowTemplate.Height = 33;
 
             updator = () => { mouseOverCell_index = -2; dataGridView1.Columns.Clear(); };
-
+            поискToolStripMenuItem.Enabled = true;
+            обновитьToolStripMenuItem.Enabled = true;
+            данныеToolStripMenuItem.Enabled = true;
             switch (name)
             {
                 case "Ассортимент":
@@ -496,10 +501,7 @@ namespace DBKurs.Forms
 
         }
 
-        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
-        { 
-            updator.Invoke();
-        }
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e) => updator.Invoke();
 
         #endregion
 
@@ -980,6 +982,201 @@ namespace DBKurs.Forms
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             column.CellTemplate = new DataGridViewTextBoxCell();
             dataGridView1.Columns.Add(column);
+        }
+
+        #endregion
+
+
+        #region Requests
+
+        public bool AbleToFind
+        {
+            get
+            {
+                return обновитьToolStripMenuItem.Enabled;
+            }
+        }
+
+        private async void суммарныйДоходИсполнителяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_time_period("Введите период");
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                String vs1 = form.timePeriod.Start.ToString("dd-MM-yyyy");
+                String vs2 = form.timePeriod.End.ToString("dd-MM-yyyy");
+
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand("SELECT executors.executor_id AS \"id\", " +
+                        "executors.executor_name AS \"Исполнитель\", " +
+                        "sum(productranges.amount) AS \"Прибыль\", " +
+                        "count(distinct(albums.album_name)) AS \"Количеств альбомов\" FROM executors " +
+                        "JOIN albums ON albums.executor_id = executors.executor_id " +
+                        "OR albums.albumInfo LIKE '%' || executors.executor_name || '%' " +
+                        "JOIN productranges ON productranges.album_id = albums.album_id " +
+                        $"WHERE(productranges.dateofreceipt > '{vs1}' " +
+                        $"AND productranges.dateofreceipt < '{vs2}') " +
+                        "GROUP BY executors.executor_id ORDER BY \"Прибыль\" DESC", conn);
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = dt;
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+
+        private async void вОпределенномРайонеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_district_id(connectString);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+                    cmd = new NpgsqlCommand(
+                        "SELECT genres.genre_name AS \"Жанр\", " +
+                        "count(albums.album_id) AS \"Количество альбомов на район\" " +
+                        "FROM shops " +
+                        "JOIN districts ON shops.district_id = districts.district_id " +
+                        "JOIN productranges ON shops.shop_id = productranges.shop_id " +
+                        "JOIN albums ON albums.album_id = productranges.album_id " +
+                        "JOIN genres ON genres.genre_id = albums.genre_id " +
+                        $"WHERE districts.district_id = {form.District_id} " +
+                        "GROUP BY genres.genre_id " +
+                        "ORDER BY genres.genre_name; ", 
+                        conn);
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+
+        private async void поВсемМагазинамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM count_genres", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
+        private async void поВсемМагазинамToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM Count_Top3_Genres LIMIT 3", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
+        private async void вОпределенномМагазинеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_shop_id(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT genres.genre_name AS \"Жанр\", " +
+                        "sum(ProductRanges.amount) AS \"Количество проданных копий\" " +
+                        "FROM shops " +
+                        "JOIN districts ON shops.district_id = districts.district_id " +
+                        "JOIN productranges ON shops.shop_id = productranges.shop_id " +
+                        "JOIN albums ON albums.album_id = productranges.album_id " +
+                        "JOIN genres ON genres.genre_id = albums.genre_id " +
+                        $"WHERE shops.shop_id = {form.Shop_id} " +
+                        "GROUP BY genres.genre_id " +
+                        "ORDER BY \"Количество проданных копий\" DESC " +
+                        "LIMIT 3; ",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
         }
 
         #endregion

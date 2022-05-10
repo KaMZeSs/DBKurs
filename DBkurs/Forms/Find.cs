@@ -125,17 +125,26 @@ namespace DBKurs.Forms
             if (comboBox1.SelectedItem.ToString().ToLower().Contains("дата"))
             {
                 textBox1.Visible = false;
-                dateTimePicker1.Visible = true;
+                dateTimePicker1.Visible = 
+                dateTimePicker2.Visible = 
+                label2.Visible = 
+                label3.Visible = true;
             }
             else
             {
                 textBox1.Visible = true;
-                dateTimePicker1.Visible = false;
+                dateTimePicker1.Visible =
+                dateTimePicker2.Visible = 
+                label2.Visible = 
+                label3.Visible = false;
             }
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            if (!(this.Owner as MainForm).AbleToFind)
+                return;
+
             if (textBox1.Visible & textBox1.Text.Length == 0)
             {
                 MessageBox.Show("Введите данные, по которым необходимо провести поиск");
@@ -145,12 +154,13 @@ namespace DBKurs.Forms
             {
                 if (textBox1.Visible)
                 {
-                    end_of_comand = $"WHERE \"{comboBox1.SelectedItem}\" LIKE '%{textBox1.Text}%'";
+                    end_of_comand = $"WHERE \"{comboBox1.SelectedItem}\" LIKE '%{textBox1.Text.Replace("'", "''")}%'";
                 }
                 else
                 {
-                    var time = dateTimePicker1.Value.ToString("dd-MM-yyyy");
-                    end_of_comand = $"WHERE \"{comboBox1.SelectedItem}\" = '{time}'";
+                    var timeStart = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                    var timeEnd = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+                    end_of_comand = $"WHERE (\"{comboBox1.SelectedItem}\" >= '{timeStart}' AND \"{comboBox1.SelectedItem}\" <= '{timeEnd}')";
                 }
             }
             else
@@ -167,14 +177,31 @@ namespace DBKurs.Forms
                 {
                     return;
                 }
-                if (textBox1.Visible)
+                if (res == DialogResult.No)
                 {
-                    end_of_comand = $"AND \"{comboBox1.SelectedItem}\" LIKE '%{textBox1.Text}%'";
+                    if (textBox1.Visible)
+                    {
+                        end_of_comand = $"WHERE \"{comboBox1.SelectedItem}\" LIKE '%{textBox1.Text.Replace("'", "''")}%'";
+                    }
+                    else
+                    {
+                        var timeStart = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                        var timeEnd = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+                        end_of_comand = $"WHERE (\"{comboBox1.SelectedItem}\" >= '{timeStart}' AND \"{comboBox1.SelectedItem}\" <= '{timeEnd}')";
+                    }
                 }
                 else
                 {
-                    var time = dateTimePicker1.Value.ToString("dd-MM-yyyy");
-                    end_of_comand = $"AND \"{comboBox1.SelectedItem}\" = '{time}'";
+                    if (textBox1.Visible)
+                    {
+                        end_of_comand = $"AND \"{comboBox1.SelectedItem}\" LIKE '%{textBox1.Text.Replace("'", "''")}%'";
+                    }
+                    else
+                    {
+                        var timeStart = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                        var timeEnd = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+                        end_of_comand = $"AND (\"{comboBox1.SelectedItem}\" >= '{timeStart}' AND \"{comboBox1.SelectedItem}\" <= '{timeEnd}')";
+                    }
                 }
             }
 

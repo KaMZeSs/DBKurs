@@ -69,6 +69,10 @@ DECLARE
 	curr RECORD;
 BEGIN
 
+    IF (EXISTS(SELECT * FROM productranges WHERE album_id = NEW.album_id AND shop_id = NEW.shop_id)) THEN
+        RAISE EXCEPTION 'В данном магазине уже продается данный альбом';
+    END IF;
+
 	max := 0;
 
 	FOR curr IN
@@ -97,3 +101,20 @@ CREATE TRIGGER ProductRanges
 BEFORE
 INSERT ON ProductRanges
 FOR EACH ROW EXECUTE PROCEDURE Before_insert_trigger_ProductRanges();
+
+CREATE OR REPLACE FUNCTION Before_update_trigger_ProductRanges() RETURNS TRIGGER AS $$
+DECLARE
+BEGIN
+
+    IF (EXISTS(SELECT * FROM productranges WHERE album_id = NEW.album_id AND shop_id = NEW.shop_id)) THEN
+        RAISE EXCEPTION 'В данном магазине уже продается данный альбом';
+    END IF;
+    RETURN NEW;
+
+END; $$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER Before_update_ProductRanges
+BEFORE
+INSERT ON ProductRanges
+FOR EACH ROW EXECUTE PROCEDURE Before_update_trigger_ProductRanges();

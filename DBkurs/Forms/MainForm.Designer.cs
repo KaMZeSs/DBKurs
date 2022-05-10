@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.данныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +39,7 @@
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.запросыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.суммарныйДоходИсполнителяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.таблицыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.основныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ассортиментToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,8 +59,14 @@
             this.районГородаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.составнаяФормаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView1 = new DBKurs.Forms.DoubleBufferedDataGridView();
             this.поискToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.количествоАльбомовПоКаждомуЖанруToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.вОпределенномРайонеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.поВсемМагазинамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.топ3ЖанровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.вОпределенномМагазинеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.поВсемМагазинамToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView1 = new DBKurs.Forms.DoubleBufferedDataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -124,9 +131,20 @@
             // 
             // запросыToolStripMenuItem
             // 
+            this.запросыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.суммарныйДоходИсполнителяToolStripMenuItem,
+            this.количествоАльбомовПоКаждомуЖанруToolStripMenuItem,
+            this.топ3ЖанровToolStripMenuItem});
             this.запросыToolStripMenuItem.Name = "запросыToolStripMenuItem";
             this.запросыToolStripMenuItem.Size = new System.Drawing.Size(76, 40);
             this.запросыToolStripMenuItem.Text = "Запросы";
+            // 
+            // суммарныйДоходИсполнителяToolStripMenuItem
+            // 
+            this.суммарныйДоходИсполнителяToolStripMenuItem.Name = "суммарныйДоходИсполнителяToolStripMenuItem";
+            this.суммарныйДоходИсполнителяToolStripMenuItem.Size = new System.Drawing.Size(342, 24);
+            this.суммарныйДоходИсполнителяToolStripMenuItem.Text = "Суммарный доход исполнителя";
+            this.суммарныйДоходИсполнителяToolStripMenuItem.Click += new System.EventHandler(this.суммарныйДоходИсполнителяToolStripMenuItem_Click);
             // 
             // таблицыToolStripMenuItem
             // 
@@ -152,21 +170,21 @@
             // ассортиментToolStripMenuItem
             // 
             this.ассортиментToolStripMenuItem.Name = "ассортиментToolStripMenuItem";
-            this.ассортиментToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.ассортиментToolStripMenuItem.Size = new System.Drawing.Size(160, 24);
             this.ассортиментToolStripMenuItem.Text = "Ассортимент";
             this.ассортиментToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // альбомToolStripMenuItem
             // 
             this.альбомToolStripMenuItem.Name = "альбомToolStripMenuItem";
-            this.альбомToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.альбомToolStripMenuItem.Size = new System.Drawing.Size(160, 24);
             this.альбомToolStripMenuItem.Text = "Альбом";
             this.альбомToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // магазинToolStripMenuItem
             // 
             this.магазинToolStripMenuItem.Name = "магазинToolStripMenuItem";
-            this.магазинToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.магазинToolStripMenuItem.Size = new System.Drawing.Size(160, 24);
             this.магазинToolStripMenuItem.Text = "Магазин";
             this.магазинToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
@@ -277,6 +295,59 @@
             this.составнаяФормаToolStripMenuItem.Text = "Составная форма";
             this.составнаяФормаToolStripMenuItem.Click += new System.EventHandler(this.составнаяФормаToolStripMenuItem_Click);
             // 
+            // поискToolStripMenuItem
+            // 
+            this.поискToolStripMenuItem.Name = "поискToolStripMenuItem";
+            this.поискToolStripMenuItem.Size = new System.Drawing.Size(60, 40);
+            this.поискToolStripMenuItem.Text = "Поиск";
+            this.поискToolStripMenuItem.Click += new System.EventHandler(this.поискToolStripMenuItem_Click);
+            // 
+            // количествоАльбомовПоКаждомуЖанруToolStripMenuItem
+            // 
+            this.количествоАльбомовПоКаждомуЖанруToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.вОпределенномРайонеToolStripMenuItem,
+            this.поВсемМагазинамToolStripMenuItem});
+            this.количествоАльбомовПоКаждомуЖанруToolStripMenuItem.Name = "количествоАльбомовПоКаждомуЖанруToolStripMenuItem";
+            this.количествоАльбомовПоКаждомуЖанруToolStripMenuItem.Size = new System.Drawing.Size(342, 24);
+            this.количествоАльбомовПоКаждомуЖанруToolStripMenuItem.Text = "Количество альбомов по каждому жанру";
+            // 
+            // вОпределенномРайонеToolStripMenuItem
+            // 
+            this.вОпределенномРайонеToolStripMenuItem.Name = "вОпределенномРайонеToolStripMenuItem";
+            this.вОпределенномРайонеToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
+            this.вОпределенномРайонеToolStripMenuItem.Text = "В определенном районе";
+            this.вОпределенномРайонеToolStripMenuItem.Click += new System.EventHandler(this.вОпределенномРайонеToolStripMenuItem_Click);
+            // 
+            // поВсемМагазинамToolStripMenuItem
+            // 
+            this.поВсемМагазинамToolStripMenuItem.Name = "поВсемМагазинамToolStripMenuItem";
+            this.поВсемМагазинамToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
+            this.поВсемМагазинамToolStripMenuItem.Text = "По всем магазинам";
+            this.поВсемМагазинамToolStripMenuItem.Click += new System.EventHandler(this.поВсемМагазинамToolStripMenuItem_Click);
+            // 
+            // топ3ЖанровToolStripMenuItem
+            // 
+            this.топ3ЖанровToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.вОпределенномМагазинеToolStripMenuItem,
+            this.поВсемМагазинамToolStripMenuItem1});
+            this.топ3ЖанровToolStripMenuItem.Name = "топ3ЖанровToolStripMenuItem";
+            this.топ3ЖанровToolStripMenuItem.Size = new System.Drawing.Size(342, 24);
+            this.топ3ЖанровToolStripMenuItem.Text = "Топ 3 жанров";
+            // 
+            // вОпределенномМагазинеToolStripMenuItem
+            // 
+            this.вОпределенномМагазинеToolStripMenuItem.Name = "вОпределенномМагазинеToolStripMenuItem";
+            this.вОпределенномМагазинеToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.вОпределенномМагазинеToolStripMenuItem.Text = "В определенном магазине";
+            this.вОпределенномМагазинеToolStripMenuItem.Click += new System.EventHandler(this.вОпределенномМагазинеToolStripMenuItem_Click);
+            // 
+            // поВсемМагазинамToolStripMenuItem1
+            // 
+            this.поВсемМагазинамToolStripMenuItem1.Name = "поВсемМагазинамToolStripMenuItem1";
+            this.поВсемМагазинамToolStripMenuItem1.Size = new System.Drawing.Size(246, 24);
+            this.поВсемМагазинамToolStripMenuItem1.Text = "По всем магазинам";
+            this.поВсемМагазинамToolStripMenuItem1.Click += new System.EventHandler(this.поВсемМагазинамToolStripMenuItem1_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -286,25 +357,25 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.NullValue = null;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(5, 6, 0, 6);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5, 6, 0, 6);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(181)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(181)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.EnableHeadersVisualStyles = false;
@@ -313,18 +384,18 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(181)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(181)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(181)))), ((int)(((byte)(204)))));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(181)))), ((int)(((byte)(204)))));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 50;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(915, 434);
@@ -333,13 +404,6 @@
             this.dataGridView1.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
             this.dataGridView1.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseLeave);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // поискToolStripMenuItem
-            // 
-            this.поискToolStripMenuItem.Name = "поискToolStripMenuItem";
-            this.поискToolStripMenuItem.Size = new System.Drawing.Size(60, 40);
-            this.поискToolStripMenuItem.Text = "Поиск";
-            this.поискToolStripMenuItem.Click += new System.EventHandler(this.поискToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -394,5 +458,12 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem составнаяФормаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem поискToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem суммарныйДоходИсполнителяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem количествоАльбомовПоКаждомуЖанруToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem вОпределенномРайонеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem поВсемМагазинамToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem топ3ЖанровToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem вОпределенномМагазинеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem поВсемМагазинамToolStripMenuItem1;
     }
 }

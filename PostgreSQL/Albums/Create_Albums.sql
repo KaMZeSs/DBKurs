@@ -94,13 +94,7 @@ RETURNS TABLE (
     "Титул альбома" BYTEA, 
     "Время звучания" INT
 ) AS $$
-DECLARE
-    album_ids INT[];
-
 BEGIN
-    album_ids := ARRAY (
-        SELECT album_id::INT FROM ProductRanges WHERE ProductRanges.shop_id = shop_toFind_id
-    );
     RETURN QUERY
 		SELECT
         Albums.album_id,
@@ -120,14 +114,13 @@ BEGIN
         Albums.Photo,
         Albums.albumTime
         FROM Albums
-        FULL JOIN Executors ON Executors.executor_id = Albums.executor_id
-        FULL JOIN Genres ON Genres.genre_id = Albums.genre_id
-        FULL JOIN Languages ON Languages.language_id = Albums.language_id
+        LEFT JOIN Executors ON Executors.executor_id = Albums.executor_id
+        JOIN Genres ON Genres.genre_id = Albums.genre_id
+        JOIN Languages ON Languages.language_id = Albums.language_id
         JOIN RecordFirms ON RecordFirms.recordFirm_id = Albums.recordFirm_id
         JOIN RecordTypes ON RecordTypes.recordType_id = Albums.recordType_id
         JOIN (SELECT * FROM ProductRanges WHERE ProductRanges.shop_id = shop_toFind_id) 
         AS TempProductRanges ON TempProductRanges.album_id = Albums.album_id
-        WHERE Albums.album_id = ANY(album_ids)
         ORDER BY Albums.album_id;
 END; $$ LANGUAGE 'plpgsql';
 
