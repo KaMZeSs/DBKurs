@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Npgsql;
@@ -16,22 +14,22 @@ namespace Randomize
         City[] cities;
         Country[] countries;
         PartOfName[] firstNames, midNames, lastNames;
-        String[] propertyTypes;
-        String[] districts;
-        String[] genres;
-        String[] languages;
-        String[] recordTypes;
-        String[] executors;
-        String[] companies; // Магазин и фирма звукозаписи
-        String[] streets;
-        String[] songNames;
-        List<Byte[]> images; //Нужны фото
+        string[] propertyTypes;
+        string[] districts;
+        string[] genres;
+        string[] languages;
+        string[] recordTypes;
+        string[] executors;
+        string[] companies; // Магазин и фирма звукозаписи
+        string[] streets;
+        string[] songNames;
+        List<byte[]> images; //Нужны фото
 
         public class City
         {
             public int city_id;
             public int country_id;
-            public String name;
+            public string name;
         }
         public class Country
         {
@@ -42,7 +40,7 @@ namespace Randomize
         {
             public int city_id;
             public int firm_id;
-            public String name;
+            public string name;
         }
 
         Generator.SetInfo writeInfo;
@@ -50,20 +48,20 @@ namespace Randomize
         {
             writeInfo = set;
             writeInfo.Invoke(DateTime.Now, "Начало работы");
-            
-            DeserialaizeCities();
-            DeserializeCounties();
-            DeserializePartsOfName();
-            DeserializeDistricts();
-            DeserializePropertyTypes();
-            DeserializeGenres();
-            DeserializeLanguages();
-            DeserializeRecordTypes();
-            DeserializeExecutors();
-            DeserializeCompanies();
-            DeserializeStreets();
-            DeserializeSongName();
-            ReadAllImages();
+
+            this.DeserialaizeCities();
+            this.DeserializeCounties();
+            this.DeserializePartsOfName();
+            this.DeserializeDistricts();
+            this.DeserializePropertyTypes();
+            this.DeserializeGenres();
+            this.DeserializeLanguages();
+            this.DeserializeRecordTypes();
+            this.DeserializeExecutors();
+            this.DeserializeCompanies();
+            this.DeserializeStreets();
+            this.DeserializeSongName();
+            this.ReadAllImages();
             writeInfo.Invoke(DateTime.Now, "Все данные для работы загружены");
         }
 
@@ -104,74 +102,74 @@ namespace Randomize
         }
         private void DeserializePropertyTypes()
         {
-            var arrSerializer = new XmlSerializer(typeof(String[]));
+            var arrSerializer = new XmlSerializer(typeof(string[]));
 
             using (var reader = new StreamReader("Data/PropertyTypes.xml"))
             {
-                propertyTypes = (String[])arrSerializer.Deserialize(reader);
+                propertyTypes = (string[])arrSerializer.Deserialize(reader);
             }
         }
         private void DeserializeDistricts()
         {
-            var arrSerializer = new XmlSerializer(typeof(String[]));
+            var arrSerializer = new XmlSerializer(typeof(string[]));
 
             using (var reader = new StreamReader("Data/Districts.xml"))
             {
-                districts = (String[])arrSerializer.Deserialize(reader);
+                districts = (string[])arrSerializer.Deserialize(reader);
             }
         }
         private void DeserializeGenres()
         {
-            var arrSerializer = new XmlSerializer(typeof(String[]));
+            var arrSerializer = new XmlSerializer(typeof(string[]));
 
             using (var reader = new StreamReader("Data/Genres.xml"))
             {
-                genres = (String[])arrSerializer.Deserialize(reader);
+                genres = (string[])arrSerializer.Deserialize(reader);
             }
         }
         private void DeserializeLanguages()
         {
-            var arrSerializer = new XmlSerializer(typeof(String[]));
+            var arrSerializer = new XmlSerializer(typeof(string[]));
 
             using (var reader = new StreamReader("Data/Languages.xml"))
             {
-                languages = (String[])arrSerializer.Deserialize(reader);
+                languages = (string[])arrSerializer.Deserialize(reader);
             }
         }
         private void DeserializeRecordTypes()
         {
-            var arrSerializer = new XmlSerializer(typeof(String[]));
+            var arrSerializer = new XmlSerializer(typeof(string[]));
 
             using (var reader = new StreamReader("Data/RecordTypes.xml"))
             {
-                recordTypes = (String[])arrSerializer.Deserialize(reader);
+                recordTypes = (string[])arrSerializer.Deserialize(reader);
             }
         }
         private void DeserializeExecutors()
         {
-            var arrSerializer = new XmlSerializer(typeof(String[]));
+            var arrSerializer = new XmlSerializer(typeof(string[]));
 
             using (var reader = new StreamReader("Data/Executors.xml"))
             {
-                executors = (String[])arrSerializer.Deserialize(reader);
+                executors = (string[])arrSerializer.Deserialize(reader);
             }
         }
         private void DeserializeCompanies()
         {
-            var arrSerializer = new XmlSerializer(typeof(String[]));
+            var arrSerializer = new XmlSerializer(typeof(string[]));
 
             using (var reader = new StreamReader("Data/Companies.xml"))
             {
-                companies = (String[])arrSerializer.Deserialize(reader);
+                companies = (string[])arrSerializer.Deserialize(reader);
             }
         }
         private void DeserializeStreets()
         {
-            var arrSerializer = new XmlSerializer(typeof(String[]));
+            var arrSerializer = new XmlSerializer(typeof(string[]));
 
             using (var reader = new StreamReader("Data/Streets.xml"))
             {
-                streets = (String[])arrSerializer.Deserialize(reader);
+                streets = (string[])arrSerializer.Deserialize(reader);
             }
         }
         private void DeserializeSongName()
@@ -187,13 +185,13 @@ namespace Randomize
             images = new List<byte[]>();
             try
             {
-                String[] files = Directory.GetFiles("Data\\images\\", "*.jpg");
+                string[] files = Directory.GetFiles("Data\\images\\", "*.jpg");
 
                 for (int i = 0; i < files.Length; i++)
                 {
                     using (var ms = new MemoryStream())
                     {
-                        Image img = Image.FromFile(files[i]);
+                        var img = Image.FromFile(files[i]);
                         img.Save(ms, img.RawFormat);
 
                         images.Add(ms.ToArray());
@@ -224,7 +222,7 @@ namespace Randomize
             writeInfo.Invoke(DateTime.Now, "Начало генерации структуры БД");
             db = new DataBase();
 
-            String temp;
+            string temp;
             for (int i = 0; i < len; i++)
             {
                 int album_id;
@@ -241,7 +239,7 @@ namespace Randomize
                             int country_id;
                             if (i < minNew | rnd.Next(0, 2) == 0) //Использовать новую страну
                             {
-                                String country_name = countries[rnd.Next(0, countries.Length)].Name;
+                                string country_name = countries[rnd.Next(0, countries.Length)].Name;
                                 if (db.countries.Where(x => x.name == country_name).Count() == 0) //Если такой страны нет
                                 {
                                     country_id = db.countries.Count;
@@ -267,7 +265,7 @@ namespace Randomize
                                 city_id = db.cities.Count;
                                 db.cities.Add(new Randomize.City(city_id, country_id, cityFromCountry[foundCity].name));
                             }
-                            else 
+                            else
                             {
                                 city_id = db.cities.Where(x => x.country_id == country_id & x.name == cityFromCountry[foundCity].name).ToArray()[0].id;
                             }
@@ -278,7 +276,7 @@ namespace Randomize
                         }
 
                         temp = companies[rnd.Next(0, companies.Length)];
-                        var t = db.recordFirms.Where(x => x.name == temp & x.city_id == city_id);
+                        IEnumerable<Randomize.RecordFirm> t = db.recordFirms.Where(x => x.name == temp & x.city_id == city_id);
                         if (t.Count() == 0)
                         {
                             recordFirm_id = db.recordFirms.Count;
@@ -296,7 +294,7 @@ namespace Randomize
 
                     int genre_id;
                     //Genre
-                    String tempGenre = genres[rnd.Next(0, genres.Length)];
+                    string tempGenre = genres[rnd.Next(0, genres.Length)];
                     if (db.genres.Where(x => x.name == tempGenre).Count() == 0)
                     {
                         genre_id = db.genres.Count;
@@ -363,7 +361,7 @@ namespace Randomize
                     }
 
                     //AlbumName
-                    String albumName;
+                    string albumName;
                     int counter = 0;
                     do
                     {
@@ -374,12 +372,12 @@ namespace Randomize
                             albumName = executors[rnd.Next(0, executors.Length)];
                             break;
                         }
-                            
-                    } 
+
+                    }
                     while (db.albums.Where(x => x.name.Equals(albumName)).Count() != 0);
 
                     //AlbumReleaseDate
-                    DateTime releaseDate = RandomDay(new DateTime(1950, 1, 1));
+                    DateTime releaseDate = this.RandomDay(new DateTime(1950, 1, 1));
 
                     //AlbumAmount
                     int album_amount = rnd.Next(1000, 10000000);
@@ -395,7 +393,7 @@ namespace Randomize
                     //Если сборник - нужен еще один исполнитель
                     int secondExecutor_id = -1;
                     //Информация (если два исполнителя)
-                    String info = string.Empty;
+                    string info = String.Empty;
                     if (isCompilation)
                     {
                         int temp_counter = 0;
@@ -407,7 +405,7 @@ namespace Randomize
                             temp_counter++;
                         } while (secondExecutor_id == executor_id);
 
-                        info = $"Исполнители: {db.executors.Where(x => x.id == executor_id).First().name}, {db.executors.Where(x => x.id == secondExecutor_id).First().name}\n" + 
+                        info = $"Исполнители: {db.executors.Where(x => x.id == executor_id).First().name}, {db.executors.Where(x => x.id == secondExecutor_id).First().name}\n" +
                             $"Жанр: {db.genres.Where(x => x.id == genre_id).First().name}\nЯзык: {db.languages.Where(x => x.id == language_id).First().name}";
                     }
 
@@ -422,7 +420,7 @@ namespace Randomize
                     db.albums.Add(new Album(id: album_id, name: albumName, recordFirm_id: recordFirm_id,
                         releaseDate: releaseDate, amount: album_amount, songsCount: songCount,
                         recordType_id: recordType_id, isCompilation: isCompilation,
-                        executor_id: executor_id, genre_id: genre_id, language_id: language_id, 
+                        executor_id: executor_id, genre_id: genre_id, language_id: language_id,
                         info: info, photo: image, time: albumLength));
                 }
                 else
@@ -490,7 +488,7 @@ namespace Randomize
                     }
 
                     int counter = 0;
-                    String shop_name;
+                    string shop_name;
                     do
                     {
                         shop_name = companies[rnd.Next(0, companies.Length)];
@@ -500,10 +498,10 @@ namespace Randomize
                     }
                     while (db.shops.Where(x => x.name == shop_name).Count() != 0); //Пока в базе есть магазины с данным именем
 
-                    String adress = $"{streets[rnd.Next(0, streets.Length)]}, {rnd.Next(0, 300)}";
+                    string adress = $"{streets[rnd.Next(0, streets.Length)]}, {rnd.Next(0, 300)}";
 
-                    String license = string.Empty;
-                    Char[] licPart_arr = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'A', 'E', 'U', 'Y' };
+                    string license = String.Empty;
+                    char[] licPart_arr = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'A', 'E', 'U', 'Y' };
                     int license_length = rnd.Next(5, 15);
                     while (license.Length <= license_length)
                         license += licPart_arr[rnd.Next(licPart_arr.Length)];
@@ -511,7 +509,7 @@ namespace Randomize
 
                     int yearOpened = rnd.Next(1900, db.albums[album_id].releaseDate.Year - 1);
 
-                    DateTime licenseExpiration = RandomDay(DateTime.Now, DateTime.Now.AddYears(10));                    
+                    DateTime licenseExpiration = this.RandomDay(DateTime.Now, DateTime.Now.AddYears(10));
 
                     shop_id = db.shops.Count;
                     db.shops.Add(new Shop(
@@ -529,7 +527,7 @@ namespace Randomize
                         int district_id = rnd.Next(0, db.districts.Count);
                         int propertyType_id = rnd.Next(0, db.propertyTypes.Count);
                         int owner_id = rnd.Next(0, db.owners.Count);
-                        String shop_name;
+                        string shop_name;
                         int counter = 0;
                         do
                         {
@@ -539,15 +537,15 @@ namespace Randomize
                             counter++;
                         }
                         while (db.shops.Where(x => x.name == shop_name).Count() != 0);
-                        String adress = $"{streets[rnd.Next(0, streets.Length)]}, {rnd.Next(0, 300)}";
-                        String license = string.Empty;
-                        Char[] licPart_arr = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'A', 'E', 'U', 'Y' };
+                        string adress = $"{streets[rnd.Next(0, streets.Length)]}, {rnd.Next(0, 300)}";
+                        string license = String.Empty;
+                        char[] licPart_arr = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'A', 'E', 'U', 'Y' };
                         int license_length = rnd.Next(5, 15);
                         while (license.Length <= license_length)
                             license += licPart_arr[rnd.Next(licPart_arr.Length)];
                         int yearOpened = rnd.Next(1900, db.albums[album_id].releaseDate.Year - 1);
 
-                        DateTime licenseExpiration = RandomDay(db.albums[album_id].releaseDate, DateTime.Now.AddYears(10));
+                        DateTime licenseExpiration = this.RandomDay(db.albums[album_id].releaseDate, DateTime.Now.AddYears(10));
 
                         shop_id = db.shops.Count;
                         db.shops.Add(new Shop(
@@ -564,12 +562,12 @@ namespace Randomize
 
                 //ProductRange
                 DateTime a = db.albums[album_id].releaseDate;
-                DateTime b = new DateTime(db.shops[shop_id].yearOpened, 1, 1);
+                var b = new DateTime(db.shops[shop_id].yearOpened, 1, 1);
 
                 DateTime c = db.shops[shop_id].licenseExpirationDate;
                 DateTime d = DateTime.Now;
 
-                DateTime gotAlbum = RandomDay(a > b ? a : b, c < d ? c : d);
+                DateTime gotAlbum = this.RandomDay(a > b ? a : b, c < d ? c : d);
 
                 int albumCount = db.albums[album_id].amount;
                 int albumInShops = 0;
@@ -589,20 +587,20 @@ namespace Randomize
             return this;
         }
 
-        public void Send(String connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs")
+        public void Send(string connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs")
         {
-            NpgsqlConnection conn = new NpgsqlConnection(connectString);
-            String sql;
+            var conn = new NpgsqlConnection(connectString);
+            string sql;
             NpgsqlCommand cmd;
             try
             {
                 writeInfo.Invoke(DateTime.Now, "Установление связи с сервером");
-                
+
                 conn.Open();
 
                 writeInfo.Invoke(DateTime.Now, "Очистка данных на сервере");
                 //очистка данных на сервере
-                String[] toClear = { "DELETE FROM ProductRanges", "DELETE FROM albums", "DELETE FROM shops",
+                string[] toClear = { "DELETE FROM ProductRanges", "DELETE FROM albums", "DELETE FROM shops",
                     "DELETE FROM countries", "DELETE FROM cities", "DELETE FROM executors", "DELETE FROM genres",
                     "DELETE FROM languages", "DELETE FROM recordfirms", "DELETE FROM recordtypes",
                     "DELETE FROM districts", "DELETE FROM owners", "DELETE FROM propertytypes" };
@@ -618,10 +616,10 @@ namespace Randomize
                     {
                     }
                 }
-                
+
                 writeInfo.Invoke(DateTime.Now, "Генерация команд для записи на сервер");
-                
-                String[] commands = db.GenerateComands();
+
+                string[] commands = db.GenerateComands();
 
                 writeInfo.Invoke(DateTime.Now, "Выполнение команд на сервере");
 
@@ -635,7 +633,7 @@ namespace Randomize
                     {
                         cmd.ExecuteNonQuery();
                     }
-                    catch (Exception exc)
+                    catch (Exception)
                     {
                     }
                 }

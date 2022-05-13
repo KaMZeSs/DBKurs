@@ -42,6 +42,9 @@ E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddAlbum.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Add.AddShop.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.CompoundForm.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Find.resources
-E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Requests.Get_time_period.resources
-E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Requests.Get_district_id.resources
-E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Requests.Get_shop_id.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_district_id.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_shop_id.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_time_period.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_owner_id.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_country_id.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_time.resources

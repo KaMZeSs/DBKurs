@@ -1,36 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 
 namespace DBKurs.Requests
 {
-    public partial class Get_shop_id : Form
+    public partial class Get_owner_id : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
         private DataTable dtShops;
 
-        public int Shop_id
+        public int Owner_id { get; private set; }
+
+        public Get_owner_id(string conn)
         {
-            get
-            {
-                return shop_id;
-            }
-        }
-        int shop_id;
-        public Get_shop_id(String conn)
-        {
-            InitializeComponent();
-            this.connectString = conn;
+            this.InitializeComponent();
+            connectString = conn;
         }
 
         private async void Get_shop_id_Load(object sender, EventArgs e)
@@ -39,7 +28,7 @@ namespace DBKurs.Requests
             try
             {
                 await conn.OpenAsync();
-                await InitializeShops();
+                await this.InitializeOwners();
                 listBox1.SelectedIndex = 0;
             }
             catch (Exception exc)
@@ -52,9 +41,9 @@ namespace DBKurs.Requests
             }
         }
 
-        private async Task InitializeShops()
+        private async Task InitializeOwners()
         {
-            cmd = new NpgsqlCommand($"SELECT shop_id, shop_name FROM Shops", conn);
+            cmd = new NpgsqlCommand($"SELECT owner_id, owner_name FROM Owners", conn);
 
             dtShops = new DataTable();
             dtShops.Load(await cmd.ExecuteReaderAsync());
@@ -68,8 +57,8 @@ namespace DBKurs.Requests
 
         private void button1_Click(object sender, EventArgs e)
         {
-            shop_id = Int32.Parse(listBox1.SelectedItem.ToString().Split('-').Last());
-            this.DialogResult = DialogResult.OK;
+            Owner_id = Int32.Parse(listBox1.SelectedItem.ToString().Split('-').Last());
+            DialogResult = DialogResult.OK;
             this.Close();
         }
     }

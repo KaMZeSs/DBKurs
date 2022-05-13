@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Randomize
 {
@@ -44,7 +41,7 @@ namespace Randomize
             recordTypes = new List<RecordType>();
         }
 
-        public String[] GenerateComands()
+        public string[] GenerateComands()
         {
             var commands = new List<string>();
 
@@ -128,27 +125,27 @@ namespace Randomize
             this.amount = amount;
         }
 
-        override public String ToString()
+        override public string ToString()
         {
-            String receipt = receiptDate.ToString("dd-MM-yyyy");
-            return "INSERT INTO ProductRanges (productRange_id, shop_id, album_id, dateOfReceipt, amount) " + 
+            string receipt = receiptDate.ToString("dd-MM-yyyy");
+            return "INSERT INTO ProductRanges (productRange_id, shop_id, album_id, dateOfReceipt, amount) " +
                 $"VALUES ({id + 1}, {shop_id + 1}, {album_id + 1}, \'{receipt}\', {amount})";
         }
     }
 
     class Shop
     {
-        public int id; 
-        public String name;
+        public int id;
+        public string name;
         public int district_id;
-        public String adress;
+        public string adress;
         public int propertyType_id;
-        public String license;
+        public string license;
         public DateTime licenseExpirationDate;
         public int owner_id;
         public int yearOpened;
 
-        public Shop(int id, String name, int district_id, String adress, int propertyType_id, String license, DateTime licenseExpirationDate, int owner_id, int yearOpened)
+        public Shop(int id, string name, int district_id, string adress, int propertyType_id, string license, DateTime licenseExpirationDate, int owner_id, int yearOpened)
         {
             this.id = id;
             this.name = name.Replace("\'", "\'\'");
@@ -163,15 +160,15 @@ namespace Randomize
 
         public override string ToString()
         {
-            String expiry = licenseExpirationDate.ToString("dd-MM-yyyy");
-            return "INSERT INTO Shops (shop_id, district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) " + 
+            string expiry = licenseExpirationDate.ToString("dd-MM-yyyy");
+            return "INSERT INTO Shops (shop_id, district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) " +
                 $"VALUES ({id + 1}, {district_id + 1}, {propertyType_id + 1}, {owner_id + 1}, \'{name}\', \'{adress}\', \'{license}\', \'{expiry}\', {yearOpened})";
         }
     }
     class District
     {
         public int id;
-        public String name;
+        public string name;
 
         public District(int id, string name)
         {
@@ -187,7 +184,7 @@ namespace Randomize
     class PropertyType
     {
         int id;
-        public String type;
+        public string type;
 
         public PropertyType(int id, string type)
         {
@@ -202,8 +199,8 @@ namespace Randomize
     }
     class Owner
     {
-        public int id;  
-        public String FIO;
+        public int id;
+        public string FIO;
 
         public Owner(int id, string fIO)
         {
@@ -219,8 +216,8 @@ namespace Randomize
 
     class Album
     {
-        public int id; 
-        public String name;
+        public int id;
+        public string name;
         public int recordFirm_id;
         public DateTime releaseDate;
         public int amount;
@@ -230,11 +227,11 @@ namespace Randomize
         public int executor_id;
         public int genre_id;
         public int language_id;
-        public String info;
-        public Byte[] photo;
+        public string info;
+        public byte[] photo;
         public int time;
 
-        public Album(int id, string name, int recordFirm_id, DateTime releaseDate, int amount, int songsCount, int recordType_id, bool isCompilation, int executor_id, int genre_id, int language_id, string info, Byte[] photo, int time)
+        public Album(int id, string name, int recordFirm_id, DateTime releaseDate, int amount, int songsCount, int recordType_id, bool isCompilation, int executor_id, int genre_id, int language_id, string info, byte[] photo, int time)
         {
             this.id = id;
             this.name = name.Replace("\'", "\'\'");
@@ -254,26 +251,21 @@ namespace Randomize
 
         public override string ToString()
         {
-            String release = releaseDate.ToString("dd-MM-yyyy");
-            String isCol = isCompilation ? "true" : "false";
-            String img = Convert.ToBase64String(photo);
+            string release = releaseDate.ToString("dd-MM-yyyy");
+            string isCol = isCompilation ? "true" : "false";
+            string img = Convert.ToBase64String(photo);
 
-            if (isCompilation)
-            {
-                return "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
-                $"VALUES ({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, NULL, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{img}\', {time})";
-            }
-            else
-            {
-                return "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
+            return isCompilation
+                ? "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
+                $"VALUES ({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, NULL, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{img}\', {time})"
+                : "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
                 $"VALUES ({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, {executor_id + 1}, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{img}\', {time})";
-            }
         }
     }
     class Country
     {
         public int id;
-        public String name;
+        public string name;
 
         public Country(int id, string name)
         {
@@ -290,7 +282,7 @@ namespace Randomize
     {
         public int id;
         public int country_id;
-        public String name;
+        public string name;
 
         public City(int id, int country_id, string name)
         {
@@ -308,7 +300,7 @@ namespace Randomize
     {
         public int id;
         public int city_id;
-        public String name;
+        public string name;
 
         public RecordFirm(int id, int city_id, string name)
         {
@@ -325,7 +317,7 @@ namespace Randomize
     class Genre
     {
         public int id;
-        public String name;
+        public string name;
 
         public Genre(int id, string name)
         {
@@ -341,7 +333,7 @@ namespace Randomize
     class Executor
     {
         public int id;
-        public String name;
+        public string name;
 
         public Executor(int id, string name)
         {
@@ -357,7 +349,7 @@ namespace Randomize
     class Language
     {
         public int id;
-        public String name;
+        public string name;
 
         public Language(int id, string name)
         {
@@ -372,8 +364,8 @@ namespace Randomize
     }
     class RecordType
     {
-        public int id; 
-        public String name;
+        public int id;
+        public string name;
 
         public RecordType(int id, string name)
         {

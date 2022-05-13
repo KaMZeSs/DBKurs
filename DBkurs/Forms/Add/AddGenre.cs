@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -13,15 +6,14 @@ namespace DBKurs.Forms.Add
 {
     public partial class AddGenre : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
-        private DataGridViewRow row;
+        private readonly DataGridViewRow row;
 
-        public AddGenre(String connString, DataGridViewRow row = null)
+        public AddGenre(string connString, DataGridViewRow row = null)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             connectString = connString;
             this.row = row;
         }
@@ -58,16 +50,16 @@ namespace DBKurs.Forms.Add
                     cmd = new NpgsqlCommand($"UPDATE Genres SET genre_name = '{textBox1.Text}' WHERE genre_id = {mId}", conn);
                 }
 
-                
+
                 await cmd.ExecuteNonQueryAsync();
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
 
                 if (row == null)
                     MessageBox.Show("Жанр успешн добавлен");
                 else
                     MessageBox.Show("Жанр успешно изменен");
 
-                
+
                 this.Close();
             }
             catch (Exception exc)
@@ -82,7 +74,7 @@ namespace DBKurs.Forms.Add
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DBKurs.Requests
 {
-    partial class Get_shop_id
+    partial class Get_district_id
     {
         /// <summary>
         /// Required designer variable.
@@ -38,16 +38,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.Size = new System.Drawing.Size(128, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "Выберите магазин";
+            this.label1.Text = "Выберите район города";
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 27);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(198, 21);
+            this.listBox1.Size = new System.Drawing.Size(256, 21);
             this.listBox1.Sorted = true;
             this.listBox1.TabIndex = 15;
             // 
@@ -55,24 +55,24 @@
             // 
             this.button1.Location = new System.Drawing.Point(12, 54);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(198, 23);
+            this.button1.Size = new System.Drawing.Size(256, 23);
             this.button1.TabIndex = 17;
             this.button1.Text = "Подтвердить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Get_shop_id
+            // Get_district_id
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(216, 84);
+            this.ClientSize = new System.Drawing.Size(280, 84);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Get_shop_id";
-            this.Text = "Выбрать магазин";
-            this.Load += new System.EventHandler(this.Get_shop_id_Load);
+            this.Name = "Get_district_id";
+            this.Text = "Выбрать район города";
+            this.Load += new System.EventHandler(this.Get_district_id_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

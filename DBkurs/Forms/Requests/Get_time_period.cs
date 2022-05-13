@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DBKurs.Requests
@@ -25,10 +18,10 @@ namespace DBKurs.Requests
 
         public TimePeriod timePeriod { get; set; }
 
-        public Get_time_period(String title)
+        public Get_time_period(string title)
         {
-            InitializeComponent();
-            this.Text = title;
+            this.InitializeComponent();
+            Text = title;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,7 +34,7 @@ namespace DBKurs.Requests
 
             timePeriod = new TimePeriod(dateTimePicker1.Value, dateTimePicker2.Value);
 
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             this.Close();
         }
     }

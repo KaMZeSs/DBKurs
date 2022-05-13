@@ -1,27 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Randomize
 {
     public class PartOfName
     {
-        public String text;
-        public String gender;
+        public string text;
+        public string gender;
 
         override
-        public String ToString()
+        public string ToString()
         {
             return text;
         }
 
-        public static String GenerateFIO(PartOfName[] firstNames, 
+        public static string GenerateFIO(PartOfName[] firstNames,
             PartOfName[] midNames, PartOfName[] lastNames)
         {
             PartOfName firstName, midName, lastName = new PartOfName();
-            
+
             do
             {
                 firstName = firstNames[new Random().Next(0, firstNames.Length - 1)];
@@ -63,8 +59,8 @@ namespace Randomize
                     lastName = lastNames[new Random().Next(0, lastNames.Length - 1)];
                 } while (lastName.gender == null);
             }
-            else if ((firstName.gender == "m" & midName.gender == "u") | 
-                (firstName.gender == "u" & midName.gender == "m") | 
+            else if ((firstName.gender == "m" & midName.gender == "u") |
+                (firstName.gender == "u" & midName.gender == "m") |
                 (firstName.gender == "m" & midName.gender == "m"))
             {
                 PartOfName[] temp = Array.FindAll(lastNames, x => x.gender == "m" | x.gender == "u");

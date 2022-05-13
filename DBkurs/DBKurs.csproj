@@ -45,12 +45,18 @@
     <Compile Update="Forms\Add\AddGenre.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Requests\Get_owner_id.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Requests\Get_time.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Requests\Get_shop_id.cs">
+    <Compile Update="Forms\Requests\Get_shop_id.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
@@ -14,9 +11,8 @@ namespace DBKurs.Forms.Add
 {
     public partial class AddAlbum : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
         private DataTable dtCountries, dtCities, dtRecordFirms,
             RecordTypes, Executors, Genres, Languages;
@@ -54,10 +50,9 @@ namespace DBKurs.Forms.Add
 
         private async Task InitializeRecordFirms(int city_id = -1)
         {
-            if (city_id == -1)
-                cmd = new NpgsqlCommand($"SELECT * FROM RecordFirms", conn);
-            else
-                cmd = new NpgsqlCommand($"SELECT * FROM RecordFirms WHERE city_id = {city_id}", conn);
+            cmd = city_id == -1
+                ? new NpgsqlCommand($"SELECT * FROM RecordFirms", conn)
+                : new NpgsqlCommand($"SELECT * FROM RecordFirms WHERE city_id = {city_id}", conn);
             dtRecordFirms = new DataTable();
             dtRecordFirms.Load(await cmd.ExecuteReaderAsync());
 
@@ -67,7 +62,7 @@ namespace DBKurs.Forms.Add
                 listBox1.Items.Add(dtRecordFirms.Rows[i][2] + " - " + dtRecordFirms.Rows[i][0]);
             }
         }
-        
+
         private async Task InitializeRecordTypes()
         {
             cmd = new NpgsqlCommand($"SELECT * FROM RecordTypes", conn);
@@ -160,9 +155,9 @@ namespace DBKurs.Forms.Add
                 textBox5.Text = row.Cells["Время звучания"].Value.ToString();
                 if ((bool)row.Cells["Альбом сборник"].Value)
                 {
-                    String[] executors = row.Cells["Информация"].Value.ToString().
+                    string[] executors = row.Cells["Информация"].Value.ToString().
                         Substring(12).Split('\n')[0].Trim().
-                        Split(new String[] {", "}, StringSplitOptions.RemoveEmptyEntries);
+                        Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
 
                     for (int i = 0; i < executors.Length; i++)
                     {
@@ -188,7 +183,7 @@ namespace DBKurs.Forms.Add
                 try
                 {
                     conn.Open();
-                    await InitializeRecordFirms();
+                    await this.InitializeRecordFirms();
                 }
                 catch (Exception exc)
                 {
@@ -208,7 +203,7 @@ namespace DBKurs.Forms.Add
                 try
                 {
                     conn.Open();
-                    await InitializeRecordTypes();
+                    await this.InitializeRecordTypes();
                 }
                 catch (Exception exc)
                 {
@@ -228,7 +223,7 @@ namespace DBKurs.Forms.Add
                 try
                 {
                     conn.Open();
-                    await InitializeExecutors();
+                    await this.InitializeExecutors();
                 }
                 catch (Exception exc)
                 {
@@ -248,7 +243,7 @@ namespace DBKurs.Forms.Add
                 try
                 {
                     conn.Open();
-                    await InitializeGenres();
+                    await this.InitializeGenres();
                 }
                 catch (Exception exc)
                 {
@@ -263,7 +258,7 @@ namespace DBKurs.Forms.Add
 
         private void button9_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -274,7 +269,7 @@ namespace DBKurs.Forms.Add
                 try
                 {
                     conn.Open();
-                    await InitializeLanguages();
+                    await this.InitializeLanguages();
                 }
                 catch (Exception exc)
                 {
@@ -290,10 +285,12 @@ namespace DBKurs.Forms.Add
         private void button8_Click(object sender, EventArgs e)
         {
             label16.Visible = false;
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|All files (*.*)|*.*";
-            fileDialog.Multiselect = false;
-            
+            var fileDialog = new OpenFileDialog
+            {
+                Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png|All files (*.*)|*.*",
+                Multiselect = false
+            };
+
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -316,7 +313,7 @@ namespace DBKurs.Forms.Add
                 MessageBox.Show("Название альбома должно быть больше 0");
                 return;
             }
-            String name = textBox1.Text;
+            string name = textBox1.Text;
 
             int songsCount = -1;
             if (!Int32.TryParse(textBox3.Text, out songsCount))
@@ -401,30 +398,30 @@ namespace DBKurs.Forms.Add
                     }
                     File.Delete($"temp.jpg");
                 }
-                
+
             }
 
-            String[] temp;
+            string[] temp;
 
             temp = listBox1.SelectedItem.ToString().Split('-');
-            int recordFirm_id = int.Parse(temp.Last());
+            int recordFirm_id = Int32.Parse(temp.Last());
 
             temp = listBox4.SelectedItem.ToString().Split('-');
-            int genre_id = int.Parse(temp.Last());
+            int genre_id = Int32.Parse(temp.Last());
 
             temp = listBox3.SelectedItem.ToString().Split('-');
-            int executor_id = int.Parse(temp.Last());
+            int executor_id = Int32.Parse(temp.Last());
 
             temp = listBox5.SelectedItem.ToString().Split('-');
-            int language_id = int.Parse(temp.Last());
+            int language_id = Int32.Parse(temp.Last());
 
             temp = listBox2.SelectedItem.ToString().Split('-');
-            int recordType_id = int.Parse(temp.Last());
+            int recordType_id = Int32.Parse(temp.Last());
 
             bool isCompilation = false;
-            String info = string.Empty;
-            String executors = string.Empty;
-            foreach (var el in listBox3.CheckedItems)
+            string info = String.Empty;
+            string executors = String.Empty;
+            foreach (object el in listBox3.CheckedItems)
             {
                 executors += el.ToString().Split('-').First().Trim() + ", ";
             }
@@ -435,8 +432,8 @@ namespace DBKurs.Forms.Add
                 info = $"Исполнители: {executors}\nЖанр: {listBox4.SelectedItem.ToString().Split('-').First().Trim()}\nЯзык: {listBox5.SelectedItem.ToString().Split('-').First().Trim()}";
             }
 
-            String release = dateTimePicker1.Value.ToString("dd-MM-yyyy");
-            String isCol = isCompilation ? "true" : "false";
+            string release = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+            string isCol = isCompilation ? "true" : "false";
 
             byte[] arr;
 
@@ -446,7 +443,7 @@ namespace DBKurs.Forms.Add
                 arr = ms.ToArray();
             }
 
-            String image = Convert.ToBase64String(arr);
+            string image = Convert.ToBase64String(arr);
 
 
             try
@@ -454,36 +451,26 @@ namespace DBKurs.Forms.Add
                 conn.Open();
                 if (row == null)
                 {
-                    if (isCompilation)
-                    {
-                        cmd = new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
-                        $"VALUES ({recordFirm_id}, {genre_id}, NULL, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{image}\', {time})", conn);
-                    }
-                    else
-                    {
-                        cmd = new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
+                    cmd = isCompilation
+                        ? new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
+                        $"VALUES ({recordFirm_id}, {genre_id}, NULL, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{image}\', {time})", conn)
+                        : new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
                         $"VALUES ({recordFirm_id}, {genre_id}, {executor_id}, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{image}\', {time})", conn);
-                    }
                 }
                 else
                 {
                     int mId = (int)row.Cells["id"].Value;
-                    if (isCompilation)
-                    {
-                        cmd = new NpgsqlCommand($"UPDATE Albums SET recordFirm_id = {recordFirm_id}, genre_id = {genre_id}, executor_id = NULL, language_id = {language_id}, " +
+                    cmd = isCompilation
+                        ? new NpgsqlCommand($"UPDATE Albums SET recordFirm_id = {recordFirm_id}, genre_id = {genre_id}, executor_id = NULL, language_id = {language_id}, " +
                             $"recordType_id = {recordType_id}, album_name = \'{name}\', releaseDate = \'{release}\', albumCount = {amount}, songsCount = {songsCount}, " +
-                            $"isCollection = \'{isCol}\', albumInfo = \'{info}\', Photo = \'{image}\', albumTime = {time} WHERE album_id = {mId}", conn);
-                    }
-                    else
-                    {
-                        cmd = new NpgsqlCommand($"UPDATE Albums SET recordFirm_id = {recordFirm_id}, genre_id = {genre_id}, executor_id = {executor_id}, language_id = {language_id}, " +
+                            $"isCollection = \'{isCol}\', albumInfo = \'{info}\', Photo = \'{image}\', albumTime = {time} WHERE album_id = {mId}", conn)
+                        : new NpgsqlCommand($"UPDATE Albums SET recordFirm_id = {recordFirm_id}, genre_id = {genre_id}, executor_id = {executor_id}, language_id = {language_id}, " +
                             $"recordType_id = {recordType_id}, album_name = \'{name}\', releaseDate = \'{release}\', albumCount = {amount}, songsCount = {songsCount}, " +
                             $"isCollection = \'{isCol}\', albumInfo = NULL, Photo = \'{image}\', albumTime = {time} WHERE album_id = {mId}", conn);
-                    }
                 }
-                
+
                 await cmd.ExecuteNonQueryAsync();
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 if (row == null)
                 {
                     MessageBox.Show("Альбом успешно добавлен");
@@ -511,8 +498,8 @@ namespace DBKurs.Forms.Add
             try
             {
                 conn.Open();
-                String[] temp = listBox8.SelectedItem.ToString().Split('-');
-                int id = int.Parse(temp.Last());
+                string[] temp = listBox8.SelectedItem.ToString().Split('-');
+                int id = Int32.Parse(temp.Last());
                 await this.InitializeCities(id);
             }
             catch (Exception exc)
@@ -530,8 +517,8 @@ namespace DBKurs.Forms.Add
             try
             {
                 conn.Open();
-                String[] temp = listBox7.SelectedItem.ToString().Split('-');
-                int id = int.Parse(temp.Last());
+                string[] temp = listBox7.SelectedItem.ToString().Split('-');
+                int id = Int32.Parse(temp.Last());
                 await this.InitializeRecordFirms(id);
             }
             catch (Exception exc)
@@ -544,19 +531,12 @@ namespace DBKurs.Forms.Add
             }
         }
 
-        public AddAlbum(String conn, DataGridViewRow row = null)
+        public AddAlbum(string conn, DataGridViewRow row = null)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             connectString = conn;
             this.row = row;
-            if (row == null)
-            {
-                this.Text = "Добавление альбома";
-            }
-            else
-            {
-                this.Text = "Изменение альбома";
-            }
+            Text = row == null ? "Добавление альбома" : "Изменение альбома";
         }
     }
 }

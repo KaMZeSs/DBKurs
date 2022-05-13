@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
@@ -14,12 +10,11 @@ namespace DBKurs.Forms.Add
     delegate void Shown();
     public partial class AddProductRange : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
         private DataTable dtShops, dtAlbums;
-        private DataGridViewRow row;
+        private readonly DataGridViewRow row;
         private async Task InitializeShops()
         {
             cmd = new NpgsqlCommand($"SELECT shop_id, shop_name FROM Shops", conn);
@@ -46,15 +41,15 @@ namespace DBKurs.Forms.Add
                 listBox2.Items.Add(dtAlbums.Rows[i][1] + " - " + dtAlbums.Rows[i][0]);
             }
         }
-        
+
         private async void AddProductRange_Load(object sender, EventArgs e)
         {
             conn = new NpgsqlConnection(connectString);
             try
             {
                 conn.Open();
-                await InitializeShops();
-                await InitializeAlbums();
+                await this.InitializeShops();
+                await this.InitializeAlbums();
             }
             catch (Exception exc)
             {
@@ -76,7 +71,7 @@ namespace DBKurs.Forms.Add
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            String[] temp;
+            string[] temp;
             if (listBox1.SelectedItem == null)
             {
                 MessageBox.Show("Выберите необходимый магазин\nЕсли вашего магазина нет, его можно добавить, нажав на кнопку\nДобавить новый магазин");
@@ -103,8 +98,7 @@ namespace DBKurs.Forms.Add
                 return;
             }
 
-            int amount = -1;
-            if (!Int32.TryParse(textBox1.Text, out amount))
+            if (!Int32.TryParse(textBox1.Text, out int amount))
             {
                 MessageBox.Show("Невозможно считать количество единиц в магазине");
                 return;
@@ -127,9 +121,9 @@ namespace DBKurs.Forms.Add
                     cmd = new NpgsqlCommand($"UPDATE ProductRanges SET shop_id = {shop_id}, album_id = {album_id}, dateOfReceipt = '{time}', amount = {amount}  WHERE productrange_id = {mId}", conn);
                 }
 
-                
+
                 await cmd.ExecuteNonQueryAsync();
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
 
                 if (row == null)
                     MessageBox.Show("Ассортимент успешно добавлен");
@@ -138,7 +132,7 @@ namespace DBKurs.Forms.Add
 
                 this.Close();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
             }
@@ -155,7 +149,7 @@ namespace DBKurs.Forms.Add
                 try
                 {
                     conn.Open();
-                    await InitializeShops();
+                    await this.InitializeShops();
                 }
                 catch (Exception exc)
                 {
@@ -175,7 +169,7 @@ namespace DBKurs.Forms.Add
                 try
                 {
                     conn.Open();
-                    await InitializeAlbums();
+                    await this.InitializeAlbums();
                 }
                 catch (Exception exc)
                 {
@@ -188,9 +182,9 @@ namespace DBKurs.Forms.Add
             }
         }
 
-        public AddProductRange(String conn, DataGridViewRow row = null)
+        public AddProductRange(string conn, DataGridViewRow row = null)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             connectString = conn;
             this.row = row;
 

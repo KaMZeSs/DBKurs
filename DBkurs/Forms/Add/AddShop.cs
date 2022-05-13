@@ -1,25 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using Npgsql;
 
 namespace DBKurs.Forms.Add
 {
     public partial class AddShop : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
         private DataTable dtDistricts, dtPropertyTypes, dtOwners;
-        private DataGridViewRow row;
+        private readonly DataGridViewRow row;
 
         private async void AddShop_Load(object sender, EventArgs e)
         {
@@ -54,9 +48,9 @@ namespace DBKurs.Forms.Add
             }
         }
 
-        public AddShop(String conn, DataGridViewRow row = null)
+        public AddShop(string conn, DataGridViewRow row = null)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             connectString = conn;
             this.row = row;
 
@@ -77,7 +71,7 @@ namespace DBKurs.Forms.Add
 
         private void button5_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -103,8 +97,7 @@ namespace DBKurs.Forms.Add
                 MessageBox.Show("Длина года открытия фирмы должна быть больше 0");
                 return;
             }
-            int yearOpened = -1;
-            if (!Int32.TryParse(textBox4.Text, out yearOpened))
+            if (!Int32.TryParse(textBox4.Text, out int yearOpened))
             {
                 MessageBox.Show("Невозможно считать год открытия");
                 return;
@@ -137,7 +130,7 @@ namespace DBKurs.Forms.Add
                 MessageBox.Show("Выберите владельца магазина\nЕсли данного владельца нет - добавьте его, нажав на кнопку\n\"Добавить нового владельца\"");
                 return;
             }
-            String[] temp = listBox1.SelectedItem.ToString().Split('-');
+            string[] temp = listBox1.SelectedItem.ToString().Split('-');
             int district_id = Int32.Parse(temp.Last());
             temp = listBox2.SelectedItem.ToString().Split('-');
             int PropertyType_id = Int32.Parse(temp.Last());
@@ -164,7 +157,7 @@ namespace DBKurs.Forms.Add
                 }
 
                 await cmd.ExecuteNonQueryAsync();
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
 
                 if (row == null)
                 {
@@ -174,7 +167,7 @@ namespace DBKurs.Forms.Add
                 {
                     MessageBox.Show("Магазин успешно изменен");
                 }
-                
+
                 this.Close();
             }
             catch (Exception exc)
@@ -196,7 +189,7 @@ namespace DBKurs.Forms.Add
                     conn.Open();
                     await this.InitializeDistricts();
                 }
-                catch(Exception exc)
+                catch (Exception exc)
                 {
                     MessageBox.Show(exc.Message);
                 }

@@ -8,3 +8,4 @@ CREATE OR REPLACE VIEW Count_Genres AS
     ORDER BY "Количество" DESC;
 
 SELECT * FROM count_genres;
+

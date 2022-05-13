@@ -26,10 +26,13 @@
     <Compile Update="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Requests\Get_district_id.cs">
+    <Compile Update="Forms\Requests\Get_country_id.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Requests\Get_time_period.cs">
+    <Compile Update="Forms\Requests\Get_district_id.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Requests\Get_time_period.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

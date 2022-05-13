@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -13,15 +6,14 @@ namespace DBKurs.Forms.Add
 {
     public partial class AddRecordType : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
-        private DataGridViewRow row;
+        private readonly DataGridViewRow row;
 
-        public AddRecordType(String connString, DataGridViewRow row = null)
+        public AddRecordType(string connString, DataGridViewRow row = null)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             connectString = connString;
             this.row = row;
         }
@@ -57,9 +49,9 @@ namespace DBKurs.Forms.Add
                     cmd = new NpgsqlCommand($"UPDATE RecordTypes SET recordType_name = '{textBox1.Text}' WHERE recordType_id = {mId}", conn);
                 }
 
-                
+
                 await cmd.ExecuteNonQueryAsync();
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 if (row == null)
                     MessageBox.Show("Тип записи успешно добавлен");
                 else
@@ -78,7 +70,7 @@ namespace DBKurs.Forms.Add
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
@@ -13,24 +9,17 @@ namespace DBKurs.Requests
 {
     public partial class Get_district_id : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
         private DataTable dtDistricts;
 
-        public int District_id
+        public int District_id { get; private set; }
+
+        public Get_district_id(string conn)
         {
-            get
-            {
-                return district_id;
-            }
-        }
-        int district_id;
-        public Get_district_id(String conn)
-        {
-            InitializeComponent();
-            this.connectString = conn;
+            this.InitializeComponent();
+            connectString = conn;
         }
 
         private async void Get_district_id_Load(object sender, EventArgs e)
@@ -39,7 +28,7 @@ namespace DBKurs.Requests
             try
             {
                 await conn.OpenAsync();
-                await InitializeDistricts();
+                await this.InitializeDistricts();
                 listBox1.SelectedIndex = 0;
             }
             catch (Exception exc)
@@ -68,8 +57,8 @@ namespace DBKurs.Requests
 
         private void button1_Click(object sender, EventArgs e)
         {
-            district_id = Int32.Parse(listBox1.SelectedItem.ToString().Split('-').Last());
-            this.DialogResult = DialogResult.OK;
+            District_id = Int32.Parse(listBox1.SelectedItem.ToString().Split('-').Last());
+            DialogResult = DialogResult.OK;
             this.Close();
         }
     }

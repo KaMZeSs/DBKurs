@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -13,16 +8,15 @@ namespace DBKurs.Forms.Add
 {
     public partial class AddRecordFirm : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
         private DataTable dt;
         private DataGridViewRow row;
 
-        public AddRecordFirm(String connString, DataGridViewRow row = null)
+        public AddRecordFirm(string connString, DataGridViewRow row = null)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             connectString = connString;
             this.row = row;
         }
@@ -79,7 +73,7 @@ namespace DBKurs.Forms.Add
             {
                 conn.Open();
 
-                String[] temp = listBox1.SelectedItem.ToString().Split('-');
+                string[] temp = listBox1.SelectedItem.ToString().Split('-');
                 int id = Int32.Parse(temp.Last());
 
                 if (row == null)
@@ -93,7 +87,7 @@ namespace DBKurs.Forms.Add
                 }
 
                 await cmd.ExecuteNonQueryAsync();
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 if (row == null)
                     MessageBox.Show("Фирма звукозаписи успешно добавлена");
                 else
@@ -112,7 +106,7 @@ namespace DBKurs.Forms.Add
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 

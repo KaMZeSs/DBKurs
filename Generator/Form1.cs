@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Generator
 {
-    public delegate void SetInfo(DateTime time, String info);
+    public delegate void SetInfo(DateTime time, string info);
     public partial class Form1 : Form
     {
         SetInfo info;
         public Form1()
         {
-            InitializeComponent();
-            info = new SetInfo((DateTime time, String str) =>
+            this.InitializeComponent();
+            info = new SetInfo((DateTime time, string str) =>
             {
                 richTextBox1.Invoke(new SetInfo((time, str) =>
                 {
@@ -33,14 +28,7 @@ namespace Generator
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (!Int32.TryParse(textBox1.Text, out int value))
-            {
-                textBox1.ForeColor = Color.Red;
-            }
-            else
-            {
-                textBox1.ForeColor = Color.Black;
-            }
+            textBox1.ForeColor = !Int32.TryParse(textBox1.Text, out int value) ? Color.Red : Color.Black;
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -56,23 +44,16 @@ namespace Generator
                 unic = Int32.Parse(textBox2.Text);
             }
 
-            this.button1.Enabled = false;
+            button1.Enabled = false;
             DateTime start = DateTime.Now;
-            await Task.Factory.StartNew(() => { new Randomize.Generate(info).Generation(len: count, minNew:unic).Send(); });
+            await Task.Factory.StartNew(() => { new Randomize.Generate(info).Generation(len: count, minNew: unic).Send(); });
             richTextBox1.Text += $"Затрачено времени: {(DateTime.Now - start).TotalSeconds} с";
-            this.button1.Enabled = true;
+            button1.Enabled = true;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (!Int32.TryParse(textBox1.Text, out int value))
-            {
-                textBox1.ForeColor = Color.Red;
-            }
-            else
-            {
-                textBox1.ForeColor = Color.Black;
-            }
+            textBox1.ForeColor = !Int32.TryParse(textBox1.Text, out int value) ? Color.Red : Color.Black;
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,16 +11,15 @@ namespace DBKurs.Forms
 {
     public partial class CompoundForm : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
         private DataTable dtShops, dtAlbums;
         private int current;
 
-        public CompoundForm(String connString)
+        public CompoundForm(string connString)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             connectString = connString;
             current = 0;
         }
@@ -31,8 +27,8 @@ namespace DBKurs.Forms
         private async void CompoundForm_Load(object sender, EventArgs e)
         {
             conn = new NpgsqlConnection(connectString);
-            await Load_all_shops();
-            await Load_Next_Shop();
+            await this.Load_all_shops();
+            await this.Load_Next_Shop();
         }
 
         private async Task Load_all_shops()
@@ -60,7 +56,7 @@ namespace DBKurs.Forms
         {
             if (current >= dtShops.Rows.Count | current < 0)
                 return;
-            
+
             //load shop data
             Shop_name.Text = dtShops.Rows[current]["Название магазина"].ToString();
             district.Text = dtShops.Rows[current]["Район города"].ToString();
@@ -94,12 +90,12 @@ namespace DBKurs.Forms
                         row[i] = dataRow[i];
                     }
 
-                    var base64String = Encoding.Default.GetString((byte[])dataRow[14]);
+                    string base64String = Encoding.Default.GetString((byte[])dataRow[14]);
                     byte[] byteArray = Convert.FromBase64String(base64String);
 
                     using (var ms = new MemoryStream(byteArray))
                     {
-                        Image img = Image.FromStream(ms);
+                        var img = Image.FromStream(ms);
                         row[14] = img;
                     }
                     row[row.ItemArray.Length - 1] = dataRow[row.ItemArray.Length - 1];
@@ -121,13 +117,13 @@ namespace DBKurs.Forms
             {
                 conn.Close();
             }
-        } 
+        }
 
         #region Styles
 
-        Color mouseOver = Color.FromArgb(230, 230, 230);
-        Color mouseOverSelected = Color.FromArgb(102, 145, 178);
-        Color mouseLeftSelected = Color.FromArgb(153, 181, 204);
+        readonly Color mouseOver = Color.FromArgb(230, 230, 230);
+        readonly Color mouseOverSelected = Color.FromArgb(102, 145, 178);
+        readonly Color mouseLeftSelected = Color.FromArgb(153, 181, 204);
 
         int mouseOverCell_index = 0;
 
@@ -194,8 +190,10 @@ namespace DBKurs.Forms
         {
             if (dataGridView1.DataSource is null)
                 return;
-            DataGridViewColumn column = new DataGridViewColumn();
-            column.DefaultCellStyle = dataGridView1.DefaultCellStyle;
+            var column = new DataGridViewColumn
+            {
+                DefaultCellStyle = dataGridView1.DefaultCellStyle
+            };
             column.HeaderCell.Style.BackColor = column.HeaderCell.Style.SelectionBackColor = dataGridView1.ColumnHeadersDefaultCellStyle.BackColor;
             column.ReadOnly = true;
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -211,9 +209,9 @@ namespace DBKurs.Forms
                 splitContainer1.SplitterDistance = 167;
         }
 
-        private void direction_button_Click(object sender, EventArgs e)
+        private async void direction_button_Click(object sender, EventArgs e)
         {
-            if (sender as Button == right_button)
+            if ((sender as Button) == right_button)
             {
                 current++;
                 if (current >= dtShops.Rows.Count)
@@ -225,8 +223,8 @@ namespace DBKurs.Forms
                 if (current < 0)
                     current = 0;
             }
-            
-            Load_Next_Shop();
+
+            await this.Load_Next_Shop();
         }
     }
 }

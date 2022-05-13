@@ -1,16 +1,11 @@
 ﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using DBKurs.Forms.Add;
 using DBKurs.Styles;
 using Npgsql;
@@ -26,17 +21,15 @@ namespace DBKurs.Forms
     {
         UpdateTable updator, updator_continue;
 
-        private readonly static String connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs";
+        private readonly static string connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs";
         private NpgsqlConnection conn;
-        private String sql;
+        private string sql;
         private NpgsqlCommand cmd;
         private DataTable dt;
 
-        private Tables currentTable;
-
         public MainForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -64,13 +57,7 @@ namespace DBKurs.Forms
 
         #region Properties
 
-        public Tables CurrentTable 
-        {
-            get
-            {
-                return currentTable;
-            }
-        }
+        public Tables CurrentTable { get; private set; }
 
         #endregion
 
@@ -81,7 +68,7 @@ namespace DBKurs.Forms
 
             public TableEventArgs(Tables newTable)
             {
-                this.NewTable = newTable;
+                NewTable = newTable;
             }
         }
         public delegate void On_Table_Updated(object sender, TableEventArgs e);
@@ -92,14 +79,14 @@ namespace DBKurs.Forms
 
         #region Updaters
 
-        private async void ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (conn.State == ConnectionState.Open)
             {
                 MessageBox.Show("Дождитесь завершения операции");
                 return;
             }
-            String name = ((ToolStripMenuItem)sender).Text;
+            string name = ((ToolStripMenuItem)sender).Text;
             dataGridView1.RowTemplate.Height = 33;
 
             updator = () => { mouseOverCell_index = -2; dataGridView1.Columns.Clear(); };
@@ -133,7 +120,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.ProductRanges;
+                    CurrentTable = Tables.ProductRanges;
                     break;
                 case "Альбом":
                     updator += async () =>
@@ -160,12 +147,12 @@ namespace DBKurs.Forms
                                     row[i] = dataRow[i];
                                 }
 
-                                var base64String = Encoding.Default.GetString((byte[])dataRow[12]);
+                                string base64String = Encoding.Default.GetString((byte[])dataRow[12]);
                                 byte[] byteArray = Convert.FromBase64String(base64String);
 
                                 using (var ms = new MemoryStream(byteArray))
                                 {
-                                    Image img = Image.FromStream(ms);
+                                    var img = Image.FromStream(ms);
                                     row[12] = img;
                                 }
                                 row[row.ItemArray.Length - 1] = dataRow[row.ItemArray.Length - 1];
@@ -178,7 +165,7 @@ namespace DBKurs.Forms
 
                             dataGridView1.DataSource = dtCloned;
                             dataGridView1.Columns[11].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                            
+
                             updator_continue.Invoke();
                         }
                         catch (Exception ex)
@@ -190,7 +177,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.Albums;
+                    CurrentTable = Tables.Albums;
                     break;
                 case "Магазин":
                     updator += async () =>
@@ -217,7 +204,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.Shops;
+                    CurrentTable = Tables.Shops;
                     break;
                 case "Страна":
                     updator += async () =>
@@ -244,7 +231,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.Countries;
+                    CurrentTable = Tables.Countries;
                     break;
                 case "Город":
                     updator += async () =>
@@ -271,7 +258,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.Cities;
+                    CurrentTable = Tables.Cities;
                     break;
                 case "Фирма звукозаписи":
                     updator += async () =>
@@ -298,7 +285,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.RecordFirms;
+                    CurrentTable = Tables.RecordFirms;
                     break;
                 case "Жанр исполнения":
                     updator += async () =>
@@ -325,14 +312,14 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.Genres;
+                    CurrentTable = Tables.Genres;
                     break;
                 case "Тип записи":
                     updator += async () =>
                     {
                         try
                         {
-                            conn.OpenAsync();
+                            conn.Open();
                             sql = @"select * from Get_All_RecordTypes()";
                             cmd = new NpgsqlCommand(sql, conn);
 
@@ -349,10 +336,10 @@ namespace DBKurs.Forms
                         }
                         finally
                         {
-                            conn.CloseAsync();
+                            conn.Close();
                         }
                     };
-                    currentTable = Tables.RecordTypes;
+                    CurrentTable = Tables.RecordTypes;
                     break;
                 case "Язык исполнения":
                     updator += async () =>
@@ -379,7 +366,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.Languages;
+                    CurrentTable = Tables.Languages;
                     break;
                 case "Исполнитель":
                     updator += async () =>
@@ -406,7 +393,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.Executors;
+                    CurrentTable = Tables.Executors;
                     break;
                 case "Владелец":
                     updator += async () =>
@@ -433,7 +420,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.Owners;
+                    CurrentTable = Tables.Owners;
                     break;
                 case "Тип собственности":
                     updator += async () =>
@@ -460,7 +447,7 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.PropertyTypes;
+                    CurrentTable = Tables.PropertyTypes;
                     break;
                 case "Район города":
                     updator += async () =>
@@ -487,18 +474,15 @@ namespace DBKurs.Forms
                             conn.Close();
                         }
                     };
-                    currentTable = Tables.Districts;
+                    CurrentTable = Tables.Districts;
                     break;
             }
             updator.Invoke();
 
-#pragma warning disable CS4014 // Так как этот вызов не ожидается, выполнение существующего метода продолжается до тех пор, пока вызов не будет завершен
             Task.Factory.StartNew(() =>
             {
-                onTable_Updated?.Invoke(this, new TableEventArgs(currentTable));
+                onTable_Updated?.Invoke(this, new TableEventArgs(CurrentTable));
             });
-#pragma warning restore CS4014 // Так как этот вызов не ожидается, выполнение существующего метода продолжается до тех пор, пока вызов не будет завершен
-
         }
 
         private void обновитьToolStripMenuItem_Click(object sender, EventArgs e) => updator.Invoke();
@@ -511,7 +495,7 @@ namespace DBKurs.Forms
         {
             DialogResult dialogResult;
 
-            switch (currentTable)
+            switch (CurrentTable)
             {
                 case Tables.ProductRanges:
                     dialogResult = new Add.AddProductRange(connectString).ShowDialog(this);
@@ -575,11 +559,11 @@ namespace DBKurs.Forms
                 ids[i] = (int)dataGridView1.SelectedRows[i].Cells["id"].Value;
             }
 
-            String selected = "'{" + String.Join(", ", ids) + "}'";
+            string selected = "'{" + String.Join(", ", ids) + "}'";
 
             sql = "SELECT * FROM ";
 
-            switch (currentTable)
+            switch (CurrentTable)
             {
                 case Tables.ProductRanges:
                     break;
@@ -625,7 +609,7 @@ namespace DBKurs.Forms
 
             int[] willBeDeleted;
 
-            if (currentTable == Tables.ProductRanges)
+            if (CurrentTable == Tables.ProductRanges)
             {
                 willBeDeleted = new int[] { dataGridView1.SelectedRows.Count };
             }
@@ -651,9 +635,9 @@ namespace DBKurs.Forms
                 willBeDeleted = (int[])dt.Rows[0][0];
             }
 
-            String message = "Вы уверены, что хотите удалить данные строки?\nБудет удалено строк:\n";
+            string message = "Вы уверены, что хотите удалить данные строки?\nБудет удалено строк:\n";
 
-            switch (currentTable)
+            switch (CurrentTable)
             {
                 case Tables.ProductRanges:
                     message += $"\tАссортимент: {willBeDeleted[0]}";
@@ -699,7 +683,7 @@ namespace DBKurs.Forms
             if (MessageBox.Show(message, "Удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 sql = "DELETE FROM ";
-                switch (currentTable)
+                switch (CurrentTable)
                 {
                     case Tables.ProductRanges:
                         sql += $"ProductRanges WHERE productRange_id = ANY({selected})";
@@ -770,7 +754,7 @@ namespace DBKurs.Forms
 
             DialogResult dialogResult;
 
-            switch (currentTable)
+            switch (CurrentTable)
             {
                 case Tables.ProductRanges:
                     dialogResult = new Add.AddProductRange(connectString, dataGridView1.SelectedRows[0]).ShowDialog(this);
@@ -822,10 +806,16 @@ namespace DBKurs.Forms
         #endregion
 
         #region Find
-
+        public bool AbleToFind
+        {
+            get
+            {
+                return обновитьToolStripMenuItem.Enabled;
+            }
+        }
         private void поискToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (var form in this.OwnedForms)
+            foreach (Form form in OwnedForms)
             {
                 if (form.GetType() == typeof(Find))
                 {
@@ -854,12 +844,12 @@ namespace DBKurs.Forms
                         row[i] = dataRow[i];
                     }
 
-                    var base64String = Encoding.Default.GetString((byte[])dataRow[12]);
+                    string base64String = Encoding.Default.GetString((byte[])dataRow[12]);
                     byte[] byteArray = Convert.FromBase64String(base64String);
 
                     using (var ms = new MemoryStream(byteArray))
                     {
-                        Image img = Image.FromStream(ms);
+                        var img = Image.FromStream(ms);
                         row[12] = img;
                     }
                     row[row.ItemArray.Length - 1] = dataRow[row.ItemArray.Length - 1];
@@ -869,7 +859,7 @@ namespace DBKurs.Forms
                 dataGridView1.RowTemplate.Height = 50;
 
                 dataGridView1.DataSource = null; //очистка таблицы
-                
+
                 dataGridView1.DataSource = dtCloned;
                 dataGridView1.Columns[11].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
@@ -919,7 +909,7 @@ namespace DBKurs.Forms
             {
 
             }
-            
+
         }
 
         private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
@@ -975,8 +965,10 @@ namespace DBKurs.Forms
         {
             if (dataGridView1.DataSource is null)
                 return;
-            DataGridViewColumn column = new DataGridViewColumn();
-            column.DefaultCellStyle = dataGridView1.DefaultCellStyle;
+            var column = new DataGridViewColumn
+            {
+                DefaultCellStyle = dataGridView1.DefaultCellStyle
+            };
             column.HeaderCell.Style.BackColor = column.HeaderCell.Style.SelectionBackColor = dataGridView1.ColumnHeadersDefaultCellStyle.BackColor;
             column.ReadOnly = true;
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -986,16 +978,7 @@ namespace DBKurs.Forms
 
         #endregion
 
-
         #region Requests
-
-        public bool AbleToFind
-        {
-            get
-            {
-                return обновитьToolStripMenuItem.Enabled;
-            }
-        }
 
         private async void суммарныйДоходИсполнителяToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1005,8 +988,8 @@ namespace DBKurs.Forms
                 поискToolStripMenuItem.Enabled = false;
                 обновитьToolStripMenuItem.Enabled = false;
                 данныеToolStripMenuItem.Enabled = false;
-                String vs1 = form.timePeriod.Start.ToString("dd-MM-yyyy");
-                String vs2 = form.timePeriod.End.ToString("dd-MM-yyyy");
+                string vs1 = form.timePeriod.Start.ToString("dd-MM-yyyy");
+                string vs2 = form.timePeriod.End.ToString("dd-MM-yyyy");
 
                 try
                 {
@@ -1028,6 +1011,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
                 }
                 catch (Exception exc)
                 {
@@ -1062,13 +1046,14 @@ namespace DBKurs.Forms
                         "JOIN genres ON genres.genre_id = albums.genre_id " +
                         $"WHERE districts.district_id = {form.District_id} " +
                         "GROUP BY genres.genre_id " +
-                        "ORDER BY genres.genre_name; ", 
+                        "ORDER BY genres.genre_name; ",
                         conn);
                     dt = new DataTable();
                     dt.Load(await cmd.ExecuteReaderAsync());
                     dataGridView1.DataSource = null;
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
                 }
                 catch (Exception exc)
                 {
@@ -1097,6 +1082,7 @@ namespace DBKurs.Forms
                 dataGridView1.DataSource = null;
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
             }
             catch (Exception exc)
             {
@@ -1124,6 +1110,7 @@ namespace DBKurs.Forms
                 dataGridView1.DataSource = null;
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
             }
             catch (Exception exc)
             {
@@ -1167,6 +1154,7 @@ namespace DBKurs.Forms
                     dataGridView1.DataSource = null;
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
                 }
                 catch (Exception exc)
                 {
@@ -1179,11 +1167,313 @@ namespace DBKurs.Forms
             }
         }
 
+        private async void списокАльбомовКоторыеПродаютсяУДанногоВладельцаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_owner_id(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT distinct(albums.album_id) AS \"id\", " +
+                        "albums.album_name AS \"Альбом\" " +
+                        "FROM owners " +
+                        "JOIN shops ON shops.owner_id = owners.owner_id " +
+                        "JOIN productranges ON productranges.shop_id = shops.shop_id " +
+                        "JOIN albums ON albums.album_id = productranges.album_id " +
+                        $"WHERE owners.owner_id = {form.Owner_id}",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+
+        private async void всеАльбомыКоторыеВыпущеныВДаннойСтранеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_country_id(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT albums.album_id AS \"id\", " +
+                        "albums.album_name AS \"Альбом\" " +
+                        "FROM countries " +
+                        "JOIN cities USING(country_id) " +
+                        "JOIN recordfirms USING(city_id) " +
+                        "JOIN albums USING(recordfirm_id) " +
+                        $"WHERE country_id = {form.Country_id}",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+
+        private async void всеАльбомыКоторыеПоставленыВОпределенныйМагазинПослеОпределеннойДатыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_time("Выбрать дату");
+            var shop = new Requests.Get_shop_id(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK && shop.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+                    var vs = form.Time.ToString("dd-MM-yyyy");
+                    cmd = new NpgsqlCommand(
+                        "SELECT album_id AS \"id\", " +
+                        "album_name AS \"Альбом\", " +
+                        "dateOfReceipt AS \"Дата поступления\" " +
+                        "FROM shops " +
+                        "JOIN productranges USING(shop_id) " +
+                        "JOIN albums USING(album_id) " +
+                        $"WHERE shop_id = {shop.Shop_id} " +
+                        $"AND dateOfReceipt > '{vs}'" +
+                        "ORDER BY dateOfReceipt DESC",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+
+        private async void датаПоследнейПоставкиВоВсеМагазиныToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM Last_delivery", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
+        private async void вывестиСписокФирмЗвукозаписиСоСтранамиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM Recordfirm_Country", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
+        private async void вывестиСписокАльбомовСЖанрамиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM Albums_Genres", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
+        private async void вывестиСписокМагазиновСТипамиСобственностиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM Shops_PropertyTypes", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
+        private async void списокСтранБезГородовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM CountriesWithoutCities", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
+        private async void списокАльбомовУКоторыхОдинИсполнительToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM Albums_one_executor", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
         #endregion
 
         private void составнаяФормаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new CompoundForm(connectString).ShowDialog(this);
+            foreach (Form form in OwnedForms)
+            {
+                if (form.GetType() == typeof(CompoundForm))
+                {
+                    form.Close();
+                    return;
+                }
+            }
+            new CompoundForm(connectString).Show(this);
         }
     }
 }

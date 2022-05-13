@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -13,16 +8,15 @@ namespace DBKurs.Forms.Add
 {
     public partial class AddCity : Form
     {
-        private readonly String connectString;
+        private readonly string connectString;
         private NpgsqlConnection conn;
-        private String sql;
         private NpgsqlCommand cmd;
         private DataTable dt;
-        private DataGridViewRow row;
+        private readonly DataGridViewRow row;
 
-        public AddCity(String connString, DataGridViewRow row = null)
+        public AddCity(string connString, DataGridViewRow row = null)
         {
-            InitializeComponent();
+            this.InitializeComponent();
             connectString = connString;
             this.row = row;
         }
@@ -78,7 +72,7 @@ namespace DBKurs.Forms.Add
             try
             {
                 conn.Open();
-                String[] temp = listBox1.SelectedItem.ToString().Split('-');
+                string[] temp = listBox1.SelectedItem.ToString().Split('-');
                 int id = Int32.Parse(temp.Last());
                 if (row == null)
                 {
@@ -89,9 +83,9 @@ namespace DBKurs.Forms.Add
                     int mId = (int)row.Cells["id"].Value;
                     cmd = new NpgsqlCommand($"UPDATE Cities SET country_id = {id}, city_name = '{textBox1.Text}' WHERE city_id = {mId}", conn);
                 }
-                    
+
                 await cmd.ExecuteNonQueryAsync();
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 if (row == null)
                     MessageBox.Show("Город успешно добавлен");
                 else
@@ -110,7 +104,7 @@ namespace DBKurs.Forms.Add
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
         }
 
         private async void button3_Click(object sender, EventArgs e)

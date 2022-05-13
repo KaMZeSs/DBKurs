@@ -24,39 +24,33 @@ DECLARE
 	max INT;
 	curr RECORD;
 BEGIN
-	
 	max := 0;
-
+	i := 1;
 	FOR curr IN
 		SELECT country_id FROM Countries
 	LOOP
 		IF max < curr.country_id THEN 
 			max := curr.country_id;
 		END IF;
-		
-
-		IF curr.country_id <> i THEN
-			IF NOT EXISTS(SELECT country_id FROM Countries WHERE country_id = i) THEN
-				NEW.country_id = i;
-				RETURN NEW;
-			END IF;
+		IF NOT EXISTS(SELECT country_id FROM Countries WHERE country_id = i) THEN
+			NEW.country_id = i;
+			RETURN NEW;
 		ELSE 
 			i := i + 1;
 		END IF;
 	END LOOP;
 	NEW.country_id = max + 1;
 	RETURN NEW;
-
 END; $$ LANGUAGE 'plpgsql';
 
 CREATE TRIGGER Before_insert_trigger_Countries
 BEFORE INSERT ON Countries
 FOR EACH ROW EXECUTE PROCEDURE Before_insert_trigger_Countries();
 
-INSERT INTO countries (country_name) VALUES ('te21321');
+INSERT INTO countries (country_id, country_name) VALUES (124, 'te21321');
 
 SELECT * FROM Countries;
 
-SELECT * FROM cities WHERE cities.country_id = 104;
+SELECT * FROM cities WHERE cities.country_id = 2;
 
-DELETE FROM countries WHERE countries.country_id = 0;
+DELETE FROM countries WHERE country_id = 2;
