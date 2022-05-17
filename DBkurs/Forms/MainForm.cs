@@ -874,9 +874,9 @@ namespace DBKurs.Forms
 
         #region Styles
 
-        Color mouseOver = Color.FromArgb(230, 230, 230);
-        Color mouseOverSelected = Color.FromArgb(102, 145, 178);
-        Color mouseLeftSelected = Color.FromArgb(153, 181, 204);
+        readonly Color mouseOver = Color.FromArgb(230, 230, 230);
+        readonly Color mouseOverSelected = Color.FromArgb(102, 145, 178);
+        readonly Color mouseLeftSelected = Color.FromArgb(153, 181, 204);
 
         int mouseOverCell_index = 0;
 
@@ -1458,6 +1458,177 @@ namespace DBKurs.Forms
             finally
             {
                 await conn.CloseAsync();
+            }
+        }
+
+        private async void количествоАльбомовВКаждомМагазинеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM shop_album_count", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
+        private async void среднееКоличетвоАльбомовНаМагазиныToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM avg_album_count", conn);
+
+                dt = new DataTable();
+                dt.Columns.Add("Среднее количество альбомов");
+                dt.Rows.Add(Decimal.ToDouble((decimal)await cmd.ExecuteScalarAsync()));
+
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+
+        private async void всегоАльбомовВТомЧислеВыпущенныеТиражомБолее10ккToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM albums_count_more_10kk", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }            
+        }
+
+        private async void количествоАльбомовПоГородамВВыбраннойСтранеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_country_id(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT city_name AS \"Город\", " +
+                        "count(albums.*) AS \"Количество\" " +
+                        "FROM countries " +
+                        "JOIN cities USING(country_id) " +
+                        "JOIN recordfirms USING(city_id) " +
+                        "JOIN albums USING(recordfirm_id) " +
+                        $"WHERE country_id = {form.Country_id} " +
+                        "GROUP BY city_id " +
+                        "ORDER BY \"Количество\" DESC",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+
+        private async void количествоФирмЗвукозаписиВГородахКоторыеНачинаютсяНаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_substring_id();
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT city_name AS \"Город\", " +
+                        "count(recordfirms.*) AS \"Количество\" " +
+                        "FROM cities " +
+                        "JOIN recordfirms USING(city_id) " +
+                        $"WHERE lower(city_name) LIKE '{form.Result}%' " +
+                        "GROUP BY city_id " +
+                        "ORDER BY \"Количество\" DESC",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
             }
         }
 

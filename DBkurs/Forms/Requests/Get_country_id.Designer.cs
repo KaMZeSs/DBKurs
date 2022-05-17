@@ -38,9 +38,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 13);
+            this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "Выберите владельца";
+            this.label1.Text = "Выберите страну";
             // 
             // listBox1
             // 
@@ -74,7 +74,8 @@
             this.MinimizeBox = false;
             this.Name = "Get_country_id";
             this.ShowInTaskbar = false;
-            this.Text = "Выбрать владельца";
+            this.Text = "Выбрать страну";
+            this.Load += new System.EventHandler(this.Get_country_id_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

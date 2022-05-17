@@ -22,9 +22,23 @@ namespace DBKurs.Requests
             connectString = conn;
         }
 
-        private async void Get_shop_id_Load(object sender, EventArgs e)
+        private async void Get_country_id_Load(object sender, EventArgs e)
         {
-
+            conn = new NpgsqlConnection(connectString);
+            try
+            {
+                await conn.OpenAsync();
+                await this.InitializeCountries();
+                listBox1.SelectedIndex = 0;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
         }
 
         private async Task InitializeCountries()

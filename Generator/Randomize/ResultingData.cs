@@ -1,7 +1,0 @@
-﻿namespace Randomize
-{
-    class ResultingData
-    {
-
-    }
-}

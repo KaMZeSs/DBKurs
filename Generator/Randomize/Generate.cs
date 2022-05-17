@@ -305,8 +305,6 @@ namespace Randomize
                         genre_id = db.genres.Where(x => x.name == tempGenre).First().id;
                     }
 
-
-                    //Нужно добавить проверку на сборник (неск исполнителей)
                     int executor_id;
                     //Executor
                     if (i < minNew | rnd.Next(0, 20) == 0) //Если 0 - новый исполнитель
@@ -380,7 +378,7 @@ namespace Randomize
                     DateTime releaseDate = this.RandomDay(new DateTime(1950, 1, 1));
 
                     //AlbumAmount
-                    int album_amount = rnd.Next(1000, 10000000);
+                    int album_amount = rnd.Next(1000, 15000000);
 
                     //SongCount
                     int songCount = rnd.Next(1, 100);

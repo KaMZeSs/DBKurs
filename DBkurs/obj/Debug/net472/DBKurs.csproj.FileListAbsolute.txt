@@ -48,3 +48,4 @@ E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_time_period.re
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_owner_id.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_country_id.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_time.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_substring_id.resources

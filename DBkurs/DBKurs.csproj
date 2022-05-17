@@ -45,6 +45,9 @@
     <Compile Update="Forms\Add\AddGenre.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Requests\Get_substring_id.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Requests\Get_owner_id.cs">
       <SubType>Form</SubType>
     </Compile>
