@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьВExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.данныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +64,12 @@
             this.количествоФирмЗвукозаписиВГородахКоторыеНачинаютсяНаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокМагазиновВКоторыхПродаетсяБольшеЧемЖанраToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокЖанровВКоторыхЧислоАльбомовСНазваниемДлиннееБолееToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.осталосьСвободныхАльбомовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.таблицыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.основныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ассортиментToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,12 +90,7 @@
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.составнаяФормаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.поискToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new DBKurs.Forms.DoubleBufferedDataGridView();
-            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -116,9 +118,18 @@
             // 
             // файлToolStripMenuItem
             // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьВExcelToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(53, 40);
             this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // сохранитьВExcelToolStripMenuItem
+            // 
+            this.сохранитьВExcelToolStripMenuItem.Name = "сохранитьВExcelToolStripMenuItem";
+            this.сохранитьВExcelToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.сохранитьВExcelToolStripMenuItem.Text = "Сохранить в excel";
+            this.сохранитьВExcelToolStripMenuItem.Click += new System.EventHandler(this.сохранитьВExcelToolStripMenuItem_Click);
             // 
             // данныеToolStripMenuItem
             // 
@@ -169,7 +180,8 @@
             this.итоговыеЗапросыToolStripMenuItem,
             this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem,
             this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem,
-            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem});
+            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem,
+            this.осталосьСвободныхАльбомовToolStripMenuItem});
             this.запросыToolStripMenuItem.Name = "запросыToolStripMenuItem";
             this.запросыToolStripMenuItem.Size = new System.Drawing.Size(76, 40);
             this.запросыToolStripMenuItem.Text = "Запросы";
@@ -356,6 +368,48 @@
             this.списокЖанровВКоторыхЧислоАльбомовСНазваниемДлиннееБолееToolStripMenuItem.Text = "Список жанров, в которых число альбомов с названием длиннее ... минимум ...";
             this.списокЖанровВКоторыхЧислоАльбомовСНазваниемДлиннееБолееToolStripMenuItem.Click += new System.EventHandler(this.списокЖанровВКоторыхЧислоАльбомовСНазваниемДлиннееБолееToolStripMenuItem_Click);
             // 
+            // количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem
+            // 
+            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem.Name = "количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem";
+            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem.Size = new System.Drawing.Size(584, 24);
+            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem.Text = "Количество альбомов по языкам, написанные в определенной стране";
+            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem.Click += new System.EventHandler(this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem_Click);
+            // 
+            // получитьКоличествоЗаписейВТаблицахToolStripMenuItem
+            // 
+            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem.Name = "получитьКоличествоЗаписейВТаблицахToolStripMenuItem";
+            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem.Size = new System.Drawing.Size(584, 24);
+            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem.Text = "Получить количество записей в таблицах";
+            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem.Click += new System.EventHandler(this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem_Click);
+            // 
+            // всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem
+            // 
+            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem.Name = "всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem";
+            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
+            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem.Text = "Все магазины, которые продают альбомы с этим типом записи";
+            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem.Click += new System.EventHandler(this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem_Click);
+            // 
+            // списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem
+            // 
+            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem.Name = "списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem";
+            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
+            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem.Text = "Список языков, которые не продаются в этом магазине";
+            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem.Click += new System.EventHandler(this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem_Click);
+            // 
+            // магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem
+            // 
+            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem.Name = "магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem";
+            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
+            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem.Text = "Магазины с количеством альбомов, в сравнении с числом";
+            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem.Click += new System.EventHandler(this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem_Click);
+            // 
+            // осталосьСвободныхАльбомовToolStripMenuItem
+            // 
+            this.осталосьСвободныхАльбомовToolStripMenuItem.Name = "осталосьСвободныхАльбомовToolStripMenuItem";
+            this.осталосьСвободныхАльбомовToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
+            this.осталосьСвободныхАльбомовToolStripMenuItem.Text = "Осталось свободных альбомов";
+            this.осталосьСвободныхАльбомовToolStripMenuItem.Click += new System.EventHandler(this.осталосьСвободныхАльбомовToolStripMenuItem_Click);
+            // 
             // таблицыToolStripMenuItem
             // 
             this.таблицыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -512,34 +566,6 @@
             this.поискToolStripMenuItem.Text = "Поиск";
             this.поискToolStripMenuItem.Click += new System.EventHandler(this.поискToolStripMenuItem_Click);
             // 
-            // количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem
-            // 
-            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem.Name = "количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem";
-            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem.Size = new System.Drawing.Size(584, 24);
-            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem.Text = "Количество альбомов по языкам, написанные в определенной стране";
-            this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem.Click += new System.EventHandler(this.количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem_Click);
-            // 
-            // получитьКоличествоЗаписейВТаблицахToolStripMenuItem
-            // 
-            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem.Name = "получитьКоличествоЗаписейВТаблицахToolStripMenuItem";
-            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem.Size = new System.Drawing.Size(584, 24);
-            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem.Text = "Получить количество записей в таблицах";
-            this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem.Click += new System.EventHandler(this.получитьКоличествоЗаписейВТаблицахToolStripMenuItem_Click);
-            // 
-            // всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem
-            // 
-            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem.Name = "всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem";
-            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
-            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem.Text = "Все магазины, которые продают альбомы с этим типом записи";
-            this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem.Click += new System.EventHandler(this.всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem_Click);
-            // 
-            // списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem
-            // 
-            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem.Name = "списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem";
-            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
-            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem.Text = "Список языков, которые не продаются в этом магазине";
-            this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem.Click += new System.EventHandler(this.списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem_Click);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -597,13 +623,6 @@
             this.dataGridView1.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseLeave);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem
-            // 
-            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem.Name = "магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem";
-            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
-            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem.Text = "Магазины с количеством альбомов, в сравнении с числом";
-            this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem.Click += new System.EventHandler(this.магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -618,6 +637,7 @@
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -686,5 +706,7 @@
         private System.Windows.Forms.ToolStripMenuItem всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem осталосьСвободныхАльбомовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьВExcelToolStripMenuItem;
     }
 }

@@ -9,13 +9,28 @@ using System.Windows.Forms;
 using DBKurs.Forms.Add;
 using DBKurs.Styles;
 using Npgsql;
-
+using ClosedXML.Excel;
 
 namespace DBKurs.Forms
 {
     delegate void UpdateTable();
 
-    public enum Tables { ProductRanges, Albums, Shops, Cities, Countries, Executors, Genres, Languages, RecordFirms, RecordTypes, Districts, Owners, PropertyTypes }
+    public enum Tables 
+    { 
+        ProductRanges, 
+        Albums, 
+        Shops, 
+        Cities, 
+        Countries, 
+        Executors, 
+        Genres, 
+        Languages, 
+        RecordFirms, 
+        RecordTypes, 
+        Districts, 
+        Owners, 
+        PropertyTypes 
+    }
 
     public partial class MainForm : Form
     {
@@ -35,7 +50,6 @@ namespace DBKurs.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             menuStrip1.Renderer = new ToolStripProfessionalRenderer(new TestColorTable());
-
 
             conn = new NpgsqlConnection(connectString);
 
@@ -1896,8 +1910,93 @@ namespace DBKurs.Forms
                 }
             }
         }
+        private async void осталосьСвободныхАльбомовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM ostalos_albomov", conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
 
         #endregion
+
+        #region SaveToExcel
+
+        Task savingToExcel_task;
+        private void сохранитьВExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sf = new SaveFileDialog()
+            {
+                Filter = "xslx files (*.xlsx)|*.xlsx",
+                OverwritePrompt = true,
+                RestoreDirectory = true
+            };
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                var data = (dataGridView1.DataSource as DataTable).Copy();
+
+                bool isImage = false;
+
+                for (int i = 0; i < data.Columns.Count; i++)
+                {
+                    if (data.Columns[i].DataType == typeof(Image))
+                    {
+                        data.Columns.RemoveAt(i);
+                        isImage = true;
+                    }
+                }
+
+                if (isImage && 
+                    MessageBox.Show(
+                        "Невозможно сохранить колонку с изображением\n" +
+                        "Продолжить без сохранения столбца с изображением?",
+                        "Содержится изображение",
+                        MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
+
+                savingToExcel_task = Task.Factory.StartNew((ds) =>
+                {
+                    using (var workbook = new XLWorkbook())
+                    {
+                        var vs = workbook.Worksheets.Add(ds as DataTable, "sheet");
+
+                        vs.Columns().AdjustToContents();
+
+
+                        workbook.SaveAs(sf.FileName);
+                    }
+                }, data);
+            }
+        }
+
+        #endregion
+
+        private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (savingToExcel_task != null &&
+                savingToExcel_task.Status == TaskStatus.Running)
+                await savingToExcel_task;
+        }
 
         private void составнаяФормаToolStripMenuItem_Click(object sender, EventArgs e)
         {

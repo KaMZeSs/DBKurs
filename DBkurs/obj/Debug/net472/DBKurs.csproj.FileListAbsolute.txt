@@ -53,3 +53,7 @@ E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_genre_count.re
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_length_count.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_recordtype_id.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_number_to_compare.resources
+E:\Repos\DBKurs\DBkurs\bin\Debug\net472\ClosedXML.dll
+E:\Repos\DBKurs\DBkurs\bin\Debug\net472\DocumentFormat.OpenXml.dll
+E:\Repos\DBKurs\DBkurs\bin\Debug\net472\ExcelNumberFormat.dll
+E:\Repos\DBKurs\DBkurs\bin\Debug\net472\System.IO.Packaging.dll
