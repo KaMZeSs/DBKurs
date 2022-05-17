@@ -49,3 +49,7 @@ E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_owner_id.resou
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_country_id.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_time.resources
 E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_substring_id.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_genre_count.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_length_count.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_recordtype_id.resources
+E:\Repos\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Requests.Get_number_to_compare.resources

@@ -8,3 +8,5 @@ CREATE OR REPLACE VIEW albums_count_more_10kk AS
     CROSS JOIN (
         SELECT count(*) AS "Всего альбомов" FROM albums
     ) t2;
+
+DROP VIEW albums_count_more_10kk

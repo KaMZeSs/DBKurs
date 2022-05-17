@@ -1023,7 +1023,6 @@ namespace DBKurs.Forms
                 }
             }
         }
-
         private async void вОпределенномРайонеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Requests.Get_district_id(connectString);
@@ -1065,7 +1064,6 @@ namespace DBKurs.Forms
                 }
             }
         }
-
         private async void поВсемМагазинамToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1093,7 +1091,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void поВсемМагазинамToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1121,7 +1118,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void вОпределенномМагазинеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Requests.Get_shop_id(connectString);
@@ -1166,7 +1162,6 @@ namespace DBKurs.Forms
                 }
             }
         }
-
         private async void списокАльбомовКоторыеПродаютсяУДанногоВладельцаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Requests.Get_owner_id(connectString);
@@ -1207,7 +1202,6 @@ namespace DBKurs.Forms
                 }
             }
         }
-
         private async void всеАльбомыКоторыеВыпущеныВДаннойСтранеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Requests.Get_country_id(connectString);
@@ -1248,7 +1242,6 @@ namespace DBKurs.Forms
                 }
             }
         }
-
         private async void всеАльбомыКоторыеПоставленыВОпределенныйМагазинПослеОпределеннойДатыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Requests.Get_time("Выбрать дату");
@@ -1292,7 +1285,6 @@ namespace DBKurs.Forms
                 }
             }
         }
-
         private async void датаПоследнейПоставкиВоВсеМагазиныToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1320,7 +1312,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void вывестиСписокФирмЗвукозаписиСоСтранамиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1348,7 +1339,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void вывестиСписокАльбомовСЖанрамиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1376,7 +1366,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void вывестиСписокМагазиновСТипамиСобственностиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1404,7 +1393,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void списокСтранБезГородовToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1432,7 +1420,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void списокАльбомовУКоторыхОдинИсполнительToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1460,7 +1447,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void количествоАльбомовВКаждомМагазинеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1488,7 +1474,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void среднееКоличетвоАльбомовНаМагазиныToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1519,7 +1504,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }
         }
-
         private async void всегоАльбомовВТомЧислеВыпущенныеТиражомБолее10ккToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1547,7 +1531,6 @@ namespace DBKurs.Forms
                 await conn.CloseAsync();
             }            
         }
-
         private async void количествоАльбомовПоГородамВВыбраннойСтранеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Requests.Get_country_id(connectString);
@@ -1590,7 +1573,6 @@ namespace DBKurs.Forms
                 }
             }
         }
-
         private async void количествоФирмЗвукозаписиВГородахКоторыеНачинаютсяНаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Requests.Get_substring_id();
@@ -1612,6 +1594,289 @@ namespace DBKurs.Forms
                         $"WHERE lower(city_name) LIKE '{form.Result}%' " +
                         "GROUP BY city_id " +
                         "ORDER BY \"Количество\" DESC",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+        private async void списокМагазиновВКоторыхПродаетсяБольшеЧемЖанраToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_genre_count(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT shop_name AS \"Магазин\", " +
+                        "count(distinct(album_id)) AS \"Количество альбомов этого жанра\" " +
+                        "FROM shops " +
+                        "JOIN productranges USING(shop_id) " +
+                        "JOIN albums USING(album_id) " +
+                        $"WHERE genre_id = {form.Genre_id} " +
+                        "GROUP BY shop_id " +
+                        $"HAVING count(*) > {form.Count}",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+        private async void списокЖанровВКоторыхЧислоАльбомовСНазваниемДлиннееБолееToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_length_count();
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT genre_name AS \"Жанр\", " +
+                        "count(album_id) AS \"Количество альбомов\" " +
+                        "FROM genres " +
+                        "JOIN albums USING(genre_id) " +
+                        $"WHERE char_length(album_name) >= {form.Length} " +
+                        "GROUP BY genre_name " +
+                        $"HAVING count(*) >= {form.Count}",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+        private async void количествоАльбомовПоЯзыкамНаписанныеВОпределеннойСтранеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_country_id(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT language_name AS \"Язык\", " +
+                        "count(album_id) AS \"Количество альбомов\" " +
+                        "FROM languages " +
+                        "JOIN albums USING(language_id) " +
+                        "WHERE album_id IN( " +
+                        "    SELECT album_id FROM countries " +
+                        "    JOIN cities USING(country_id) " +
+                        "    JOIN recordfirms USING(city_id) " +
+                        "    JOIN albums USING(recordfirm_id) " +
+                        $"    WHERE country_id = {form.Country_id} " +
+                        ") " +
+                        "GROUP BY language_name " +
+                        "ORDER BY \"Количество альбомов\" DESC",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+        private async void получитьКоличествоЗаписейВТаблицахToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поискToolStripMenuItem.Enabled = false;
+            обновитьToolStripMenuItem.Enabled = false;
+            данныеToolStripMenuItem.Enabled = false;
+            try
+            {
+                await conn.OpenAsync();
+
+                cmd = new NpgsqlCommand("SELECT * FROM get_all_count",conn);
+
+                dt = new DataTable();
+                dt.Load(await cmd.ExecuteReaderAsync());
+                dataGridView1.DataSource = null;
+                dataGridView1.Columns.Clear();
+                dataGridView1.DataSource = dt;
+                updator_continue.Invoke();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+        }
+        private async void всеМагазиныКоторыеПродаютАльбомыСЭтимТипомЗаписиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_recordtype_id(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT DISTINCT(shop_id) AS \"id\", " +
+                        "shop_name AS \"Магазин\" " +
+                        "FROM shops " +
+                        "JOIN productranges USING(shop_id) " +
+                        "WHERE album_id IN( " +
+                        "    SELECT album_id FROM albums " +
+                        $"    WHERE recordtype_id = {form.RecordType_id} " +
+                        ") " +
+                        "ORDER BY shop_id",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+        private async void списокЯзыковКоторыеНеПродаютсяВЭтомМагазинеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_shop_id(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT language_id AS \"id\", " +
+                        "language_name AS \"Язык\" " +
+                        "FROM languages " +
+                        "WHERE language_id NOT IN( " +
+                        "    SELECT DISTINCT(language_id) " +
+                        "    FROM productranges " +
+                        "    JOIN albums USING(album_id) " +
+                        $"    WHERE shop_id = {form.Shop_id} " +
+                        ") " +
+                        "ORDER BY language_id",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
+        private async void магазиныСКоличествомАльбомовВСравненииСЧисломToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_number_to_compare();
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT shop_id AS \"id\", " +
+                        "shop_name AS \"Магазин\", " +
+                        "CASE " +
+                        $"    WHEN count(*) > {form.Value} THEN 'больше {form.Value}' " +
+                        $"    WHEN count(*) < {form.Value} THEN 'меньше {form.Value}' " +
+                        $"    ELSE 'равно {form.Value}' " +
+                        "END AS \"Количество альбомов\" " +
+                        "FROM shops " +
+                        "JOIN productranges USING(shop_id) " +
+                        "GROUP BY shop_id " +
+                        "ORDER BY shop_id",
                         conn);
 
                     dt = new DataTable();

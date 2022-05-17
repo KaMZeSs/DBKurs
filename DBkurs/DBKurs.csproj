@@ -45,10 +45,22 @@
     <Compile Update="Forms\Add\AddGenre.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Requests\Get_recordtype_id.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Requests\Get_length_count.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Requests\Get_genre_count.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Requests\Get_substring_id.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Requests\Get_owner_id.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Requests\Get_number_to_compare.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Requests\Get_time.cs">
