@@ -41,8 +41,9 @@ namespace Randomize
             recordTypes = new List<RecordType>();
         }
 
-        public string[] GenerateComands()
+        public List<String[]> GenerateComands()
         {
+            var result = new List<String[]>();
             var commands = new List<string>();
 
             //To albums
@@ -50,61 +51,96 @@ namespace Randomize
             {
                 commands.Add(countries[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
+
             for (int i = 0; i < cities.Count; i++)
             {
                 commands.Add(cities[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
+
             for (int i = 0; i < recordFirms.Count; i++)
             {
                 commands.Add(recordFirms[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
+
             for (int i = 0; i < genres.Count; i++)
             {
                 commands.Add(genres[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
+
             for (int i = 0; i < executors.Count; i++)
             {
                 commands.Add(executors[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
+
             for (int i = 0; i < languages.Count; i++)
             {
                 commands.Add(languages[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
+
             for (int i = 0; i < recordTypes.Count; i++)
             {
                 commands.Add(recordTypes[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
 
             //To shops
             for (int i = 0; i < districts.Count; i++)
             {
                 commands.Add(districts[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
+
             for (int i = 0; i < propertyTypes.Count; i++)
             {
                 commands.Add(propertyTypes[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
+
             for (int i = 0; i < owners.Count; i++)
             {
                 commands.Add(owners[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
 
             //To productRanges
             for (int i = 0; i < shops.Count; i++)
             {
                 commands.Add(shops[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
+
             for (int i = 0; i < albums.Count; i++)
             {
                 commands.Add(albums[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
 
             for (int i = 0; i < productRanges.Count; i++)
             {
                 commands.Add(productRanges[i].ToString());
             }
+            result.Add(commands.ToArray());
+            commands = new List<string>();
 
-            return commands.ToArray();
+            return result;
         }
     }
 
@@ -128,8 +164,7 @@ namespace Randomize
         override public string ToString()
         {
             string receipt = receiptDate.ToString("dd-MM-yyyy");
-            return "INSERT INTO ProductRanges (productRange_id, shop_id, album_id, dateOfReceipt, amount) " +
-                $"VALUES ({id + 1}, {shop_id + 1}, {album_id + 1}, \'{receipt}\', {amount})";
+            return $"({id + 1}, {shop_id + 1}, {album_id + 1}, \'{receipt}\', {amount})";
         }
     }
 
@@ -161,8 +196,7 @@ namespace Randomize
         public override string ToString()
         {
             string expiry = licenseExpirationDate.ToString("dd-MM-yyyy");
-            return "INSERT INTO Shops (shop_id, district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) " +
-                $"VALUES ({id + 1}, {district_id + 1}, {propertyType_id + 1}, {owner_id + 1}, \'{name}\', \'{adress}\', \'{license}\', \'{expiry}\', {yearOpened})";
+            return $"({id + 1}, {district_id + 1}, {propertyType_id + 1}, {owner_id + 1}, \'{name}\', \'{adress}\', \'{license}\', \'{expiry}\', {yearOpened})";
         }
     }
     class District
@@ -178,7 +212,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Districts (district_id, district_name) VALUES ({id + 1}, \'{name}\')";
+            return $"({id + 1}, \'{name}\')";
         }
     }
     class PropertyType
@@ -194,7 +228,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO PropertyTypes (propertyType_id, propertyType_name) VALUES ({id + 1}, \'{type}\')";
+            return $"({id + 1}, \'{type}\')";
         }
     }
     class Owner
@@ -210,7 +244,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Owners (owner_id, owner_name) VALUES ({id + 1}, \'{FIO}\')";
+            return $"({id + 1}, \'{FIO}\')";
         }
     }
 
@@ -256,10 +290,8 @@ namespace Randomize
             string img = Convert.ToBase64String(photo);
 
             return isCompilation
-                ? "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
-                $"VALUES ({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, NULL, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{img}\', {time})"
-                : "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
-                $"VALUES ({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, {executor_id + 1}, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{img}\', {time})";
+                ? $"({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, NULL, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{img}\', {time})"
+                : $"({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, {executor_id + 1}, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{img}\', {time})";
         }
     }
     class Country
@@ -275,7 +307,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Countries (country_id, country_name) VALUES ({id + 1}, \'{name}\')";
+            return $"({id + 1}, \'{name}\')";
         }
     }
     class City
@@ -293,7 +325,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Cities (city_id, country_id, city_name) VALUES ({id + 1}, {country_id + 1}, \'{name}\')";
+            return $"({id + 1}, {country_id + 1}, \'{name}\')";
         }
     }
     class RecordFirm
@@ -311,7 +343,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO RecordFirms (recordFirm_id, city_id, recordFirm_name) VALUES ({id + 1}, {city_id + 1}, \'{name}\')";
+            return $"({id + 1}, {city_id + 1}, \'{name}\')";
         }
     }
     class Genre
@@ -327,7 +359,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Genres (genre_id, genre_name) VALUES ({id + 1}, \'{name}\')";
+            return $"({id + 1}, \'{name}\')";
         }
     }
     class Executor
@@ -343,7 +375,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Executors (executor_id, executor_name) VALUES ({id + 1}, \'{name}\')";
+            return $"({id + 1}, \'{name}\')";
         }
     }
     class Language
@@ -359,7 +391,7 @@ namespace Randomize
 
         public override string ToString()
         {
-            return $"INSERT INTO Languages (language_id, language_name) VALUES ({id + 1}, \'{name}\')";
+            return $"({id + 1}, \'{name}\')";
         }
     }
     class RecordType
@@ -374,7 +406,7 @@ namespace Randomize
         }
         public override string ToString()
         {
-            return $"INSERT INTO RecordTypes (recordType_id, recordType_name) VALUES ({id + 1}, \'{name}\')";
+            return $"({id + 1}, \'{name}\')";
         }
     }
 }

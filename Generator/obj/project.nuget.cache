@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vdgVf3jae+G1BUKNTMs9c1NTpV8fp6M/V86djm4jrnp0/tlwVTCd+pxe1bglqNhDWUAUDOGcr9ybMDOSCvLIQg==",
+  "dgSpecHash": "Gml8sbuvE8txuW4JJS2wDAXPLSFDl/b0pSgYhuRHMV6eUa4VI8u2XD47mPXS/5EWW8YgA3RNSa4PXJufsPlEJg==",
   "success": true,
-  "projectFilePath": "E:\\Repos\\DBKurs\\Generator\\Generator.csproj",
+  "projectFilePath": "E:\\DBKurs\\Generator\\Generator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vladd\\.nuget\\packages\\npgsql\\6.0.4\\npgsql.6.0.4.nupkg.sha512",
     "C:\\Users\\vladd\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"

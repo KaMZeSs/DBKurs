@@ -6,30 +6,32 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 using DBKurs.Forms.Add;
 using DBKurs.Styles;
 using Npgsql;
 using ClosedXML.Excel;
+using System.Collections.Generic;
 
 namespace DBKurs.Forms
 {
     delegate void UpdateTable();
 
-    public enum Tables 
-    { 
-        ProductRanges, 
-        Albums, 
-        Shops, 
-        Cities, 
-        Countries, 
-        Executors, 
-        Genres, 
-        Languages, 
-        RecordFirms, 
-        RecordTypes, 
-        Districts, 
-        Owners, 
-        PropertyTypes 
+    public enum Tables
+    {
+        ProductRanges,
+        Albums,
+        Shops,
+        Cities,
+        Countries,
+        Executors,
+        Genres,
+        Languages,
+        RecordFirms,
+        RecordTypes,
+        Districts,
+        Owners,
+        PropertyTypes
     }
 
     public partial class MainForm : Form
@@ -55,15 +57,25 @@ namespace DBKurs.Forms
 
             updator_continue = () =>
             {
-                int[] widths = new int[dataGridView1.ColumnCount - 1];
-
-                for (int i = 0; i < widths.Length; i++)
+                var task = Task.Factory.StartNew((x) =>
                 {
-                    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    widths[i] = dataGridView1.Columns[i].Width;
-                    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                    dataGridView1.Columns[i].Width = widths[i];
-                }
+                    return GetWidths(x as DataTable, dataGridView1.DefaultCellStyle.Font);
+                }, (dataGridView1.DataSource as DataTable).Copy());
+
+                task.ContinueWith(this.SetColumnWidths);
+
+                //task.ContinueWith();
+
+
+                //int[] widths = new int[dataGridView1.ColumnCount - 1];
+
+                //for (int i = 0; i < widths.Length; i++)
+                //{
+                //    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                //    widths[i] = dataGridView1.Columns[i].Width;
+                //    dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                //    dataGridView1.Columns[i].Width = widths[i];
+                //}
             };
 
             городToolStripMenuItem.PerformClick();
@@ -115,7 +127,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_ProductRanges()";
+                            sql = @"select * from Show_productranges";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -142,7 +154,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_Albums()";
+                            sql = @"select * from Show_albums";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -199,7 +211,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_Shops()";
+                            sql = @"select * from Show_shops";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -226,7 +238,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = "select * from Get_All_Countries()";
+                            sql = "select * from Show_countries";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -253,7 +265,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = "SELECT * FROM Get_All_Cities()";
+                            sql = "SELECT * FROM Show_cities";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -280,7 +292,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_RecordFirms()";
+                            sql = @"select * from Show_recordFirms";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -307,7 +319,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_Genres()";
+                            sql = @"select * from Show_genres";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -334,7 +346,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_RecordTypes()";
+                            sql = @"select * from Show_recordTypes";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -361,7 +373,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_Languages()";
+                            sql = @"select * from Show_languages";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -388,7 +400,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_Executors()";
+                            sql = @"select * from Show_executors";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -415,7 +427,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_Owners()";
+                            sql = @"select * from Show_owners";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -442,7 +454,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_PropertyTypes()";
+                            sql = @"select * from Show_propertyTypes";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -469,7 +481,7 @@ namespace DBKurs.Forms
                         try
                         {
                             conn.Open();
-                            sql = @"select * from Get_All_Districts()";
+                            sql = @"select * from Show_districts";
                             cmd = new NpgsqlCommand(sql, conn);
 
                             dt = new DataTable();
@@ -988,6 +1000,36 @@ namespace DBKurs.Forms
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             column.CellTemplate = new DataGridViewTextBoxCell();
             dataGridView1.Columns.Add(column);
+        }
+
+        private int[] GetWidths(DataTable dt, Font font)
+        {
+            int[] widths = new int[dt.Columns.Count];
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                widths[i] = (from DataRow row in dt.AsEnumerable().AsParallel()
+                             select TextRenderer.MeasureText(row[i].ToString(), font).Width
+                             ).Max();
+                var header = TextRenderer.MeasureText(dt.Columns[i].ColumnName, font).Width;
+                widths[i] = widths[i] > header ? widths[i] : header;
+                widths[i] = dt.Columns[i].ColumnName == "id" ? widths[i] + 1 : widths[i];
+
+                //widths[i] = (from DataRow row in dt.AsEnumerable().AsParallel()
+                //             select row[i].ToString().Length).Max();
+            }
+            return widths;
+        }
+
+        private delegate void toSetWidths_delegate(int[] a);
+        private void SetColumnWidths(Task<int[]> x)
+        {
+            dataGridView1.Invoke(new toSetWidths_delegate((array) =>
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    dataGridView1.Columns[i].Width = array[i];
+                }
+            }), x.Result);
         }
 
         #endregion
@@ -1543,7 +1585,7 @@ namespace DBKurs.Forms
             finally
             {
                 await conn.CloseAsync();
-            }            
+            }
         }
         private async void количествоАльбомовПоГородамВВыбраннойСтранеToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1763,7 +1805,7 @@ namespace DBKurs.Forms
             {
                 await conn.OpenAsync();
 
-                cmd = new NpgsqlCommand("SELECT * FROM get_all_count",conn);
+                cmd = new NpgsqlCommand("SELECT * FROM get_all_count", conn);
 
                 dt = new DataTable();
                 dt.Load(await cmd.ExecuteReaderAsync());
@@ -1966,7 +2008,7 @@ namespace DBKurs.Forms
                     }
                 }
 
-                if (isImage && 
+                if (isImage &&
                     MessageBox.Show(
                         "Невозможно сохранить колонку с изображением\n" +
                         "Продолжить без сохранения столбца с изображением?",

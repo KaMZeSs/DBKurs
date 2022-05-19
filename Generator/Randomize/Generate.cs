@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Npgsql;
@@ -240,7 +241,7 @@ namespace Randomize
                             if (i < minNew | rnd.Next(0, 2) == 0) //Использовать новую страну
                             {
                                 string country_name = countries[rnd.Next(0, countries.Length)].Name;
-                                if (db.countries.Where(x => x.name == country_name).Count() == 0) //Если такой страны нет
+                                if (db.countries.AsParallel().Where(x => x.name == country_name).Count() == 0) //Если такой страны нет
                                 {
                                     country_id = db.countries.Count;
                                     db.countries.Add(new Randomize.Country(country_id, country_name));
@@ -258,16 +259,16 @@ namespace Randomize
                             //Берем случайный город в этой стране
                             int toFindCity = Array.Find(countries, (Generate.Country x) => x.Name == db.countries[country_id].name).id;
 
-                            Generate.City[] cityFromCountry = cities.Where(x => x.country_id == toFindCity).ToArray();
+                            Generate.City[] cityFromCountry = cities.AsParallel().Where(x => x.country_id == toFindCity).ToArray();
                             int foundCity = rnd.Next(0, cityFromCountry.Length);
-                            if (db.cities.Where(x => x.name == cityFromCountry[foundCity].name & x.country_id == country_id).Count() == 0) //Если такого города нет
+                            if (db.cities.AsParallel().Where(x => x.name == cityFromCountry[foundCity].name & x.country_id == country_id).Count() == 0) //Если такого города нет
                             {
                                 city_id = db.cities.Count;
                                 db.cities.Add(new Randomize.City(city_id, country_id, cityFromCountry[foundCity].name));
                             }
                             else
                             {
-                                city_id = db.cities.Where(x => x.country_id == country_id & x.name == cityFromCountry[foundCity].name).ToArray()[0].id;
+                                city_id = db.cities.AsParallel().Where(x => x.country_id == country_id & x.name == cityFromCountry[foundCity].name).ToArray()[0].id;
                             }
                         }
                         else
@@ -276,7 +277,7 @@ namespace Randomize
                         }
 
                         temp = companies[rnd.Next(0, companies.Length)];
-                        IEnumerable<Randomize.RecordFirm> t = db.recordFirms.Where(x => x.name == temp & x.city_id == city_id);
+                        IEnumerable<Randomize.RecordFirm> t = db.recordFirms.AsParallel().Where(x => x.name == temp & x.city_id == city_id);
                         if (t.Count() == 0)
                         {
                             recordFirm_id = db.recordFirms.Count;
@@ -295,14 +296,14 @@ namespace Randomize
                     int genre_id;
                     //Genre
                     string tempGenre = genres[rnd.Next(0, genres.Length)];
-                    if (db.genres.Where(x => x.name == tempGenre).Count() == 0)
+                    if (db.genres.AsParallel().Where(x => x.name == tempGenre).Count() == 0)
                     {
                         genre_id = db.genres.Count;
                         db.genres.Add(new Genre(genre_id, tempGenre));
                     }
                     else
                     {
-                        genre_id = db.genres.Where(x => x.name == tempGenre).First().id;
+                        genre_id = db.genres.AsParallel().Where(x => x.name == tempGenre).First().id;
                     }
 
                     int executor_id;
@@ -310,7 +311,7 @@ namespace Randomize
                     if (i < minNew | rnd.Next(0, 20) == 0) //Если 0 - новый исполнитель
                     {
                         temp = executors[rnd.Next(executors.Length)];
-                        if (db.executors.Where(x => x.name == temp).Count() == 0)
+                        if (db.executors.AsParallel().Where(x => x.name == temp).Count() == 0)
                         {
                             executor_id = db.executors.Count;
                             db.executors.Add(new Executor(executor_id, temp));
@@ -330,7 +331,7 @@ namespace Randomize
                     if (i < minNew | rnd.Next(0, 4) == 0) //Если 0 - новый язык
                     {
                         temp = languages[rnd.Next(languages.Length)];
-                        if (db.languages.Where(x => x.name == temp).Count() == 0)
+                        if (db.languages.AsParallel().Where(x => x.name == temp).Count() == 0)
                         {
                             language_id = db.languages.Count;
                             db.languages.Add(new Language(language_id, temp));
@@ -348,7 +349,7 @@ namespace Randomize
                     int recordType_id;
                     //RecordType
                     temp = recordTypes[rnd.Next(0, recordTypes.Length)];
-                    if (db.recordTypes.Where(x => x.name == temp).Count() == 0)
+                    if (db.recordTypes.AsParallel().Where(x => x.name == temp).Count() == 0)
                     {
                         recordType_id = db.recordTypes.Count;
                         db.recordTypes.Add(new RecordType(recordType_id, temp));
@@ -372,7 +373,7 @@ namespace Randomize
                         }
 
                     }
-                    while (db.albums.Where(x => x.name.Equals(albumName)).Count() != 0);
+                    while (db.albums.AsParallel().Where(x => x.name.Equals(albumName)).Count() != 0);
 
                     //AlbumReleaseDate
                     DateTime releaseDate = this.RandomDay(new DateTime(1950, 1, 1));
@@ -403,8 +404,8 @@ namespace Randomize
                             temp_counter++;
                         } while (secondExecutor_id == executor_id);
 
-                        info = $"Исполнители: {db.executors.Where(x => x.id == executor_id).First().name}, {db.executors.Where(x => x.id == secondExecutor_id).First().name}\n" +
-                            $"Жанр: {db.genres.Where(x => x.id == genre_id).First().name}\nЯзык: {db.languages.Where(x => x.id == language_id).First().name}";
+                        info = $"Исполнители: {db.executors.AsParallel().Where(x => x.id == executor_id).First().name}, {db.executors.AsParallel().Where(x => x.id == secondExecutor_id).First().name}\n" +
+                            $"Жанр: {db.genres.AsParallel().Where(x => x.id == genre_id).First().name}\nЯзык: {db.languages.AsParallel().Where(x => x.id == language_id).First().name}";
                     }
 
                     //Изображение
@@ -435,7 +436,7 @@ namespace Randomize
                     if (i < minNew | rnd.Next(0, 20) == 0) //Если 0 - использовать новое значение
                     {
                         temp = districts[rnd.Next(0, districts.Length)];
-                        if (db.districts.Where(x => x.name == temp).Count() == 0) //Если попался тот, которого еще не было, то используем его
+                        if (db.districts.AsParallel().Where(x => x.name == temp).Count() == 0) //Если попался тот, которого еще не было, то используем его
                         {
                             district_id = db.districts.Count;
                             db.districts.Add(new District(db.districts.Count, temp));
@@ -455,7 +456,7 @@ namespace Randomize
                     if (i < minNew | rnd.Next(0, 2) == 0) //Если 0 - использовать новое значение
                     {
                         temp = propertyTypes[rnd.Next(0, propertyTypes.Length)];
-                        if (db.propertyTypes.Where(x => x.type == temp).Count() == 0)
+                        if (db.propertyTypes.AsParallel().Where(x => x.type == temp).Count() == 0)
                         {
                             propertyType_id = db.propertyTypes.Count;
                             db.propertyTypes.Add(new PropertyType(db.propertyTypes.Count, temp));
@@ -494,7 +495,7 @@ namespace Randomize
                             break;
                         counter++;
                     }
-                    while (db.shops.Where(x => x.name == shop_name).Count() != 0); //Пока в базе есть магазины с данным именем
+                    while (db.shops.AsParallel().Where(x => x.name == shop_name).Count() != 0); //Пока в базе есть магазины с данным именем
 
                     string adress = $"{streets[rnd.Next(0, streets.Length)]}, {rnd.Next(0, 300)}";
 
@@ -519,7 +520,7 @@ namespace Randomize
                 else //Использовать существующий магазин
                 {
                     DateTime album_release = db.albums[album_id].releaseDate;
-                    Shop[] shops = db.shops.Where(x => x.yearOpened < album_release.Year & x.licenseExpirationDate > album_release).ToArray();
+                    Shop[] shops = db.shops.AsParallel().Where(x => x.yearOpened < album_release.Year & x.licenseExpirationDate > album_release).ToArray();
                     if (shops.Length == 0)
                     {
                         int district_id = rnd.Next(0, db.districts.Count);
@@ -534,7 +535,7 @@ namespace Randomize
                                 break;
                             counter++;
                         }
-                        while (db.shops.Where(x => x.name == shop_name).Count() != 0);
+                        while (db.shops.AsParallel().Where(x => x.name == shop_name).Count() != 0);
                         string adress = $"{streets[rnd.Next(0, streets.Length)]}, {rnd.Next(0, 300)}";
                         string license = String.Empty;
                         char[] licPart_arr = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Z', 'A', 'E', 'U', 'Y' };
@@ -558,6 +559,9 @@ namespace Randomize
                     }
                 }
 
+                while (db.productRanges.AsParallel().Where(x => x.shop_id == shop_id & x.album_id == album_id).Count() > 0)
+                    album_id = db.albums[rnd.Next(0, db.albums.Count)].id;
+
                 //ProductRange
                 DateTime a = db.albums[album_id].releaseDate;
                 var b = new DateTime(db.shops[shop_id].yearOpened, 1, 1);
@@ -570,12 +574,21 @@ namespace Randomize
                 int albumCount = db.albums[album_id].amount;
                 int albumInShops = 0;
 
-                ProductRange[] rangesWithThatAlbum = db.productRanges.Where(x => x.album_id == album_id).ToArray();
+                ProductRange[] rangesWithThatAlbum = db.productRanges.AsParallel().Where(x => x.album_id == album_id).ToArray();
 
                 for (int j = 0; j < rangesWithThatAlbum.Length; j++)
                     albumInShops += rangesWithThatAlbum[j].amount;
 
-                int amount = rnd.Next(0, albumCount - albumInShops);
+                int amount;
+                if (albumCount - albumInShops != 0)
+                {
+                    amount = rnd.Next(1, albumCount - albumInShops);
+                }
+                else
+                {
+                    i--;
+                    continue;
+                }
 
                 db.productRanges.Add(new ProductRange(id: db.productRanges.Count, shop_id: shop_id,
                     album_id: album_id, receiptDate: gotAlbum, amount: amount));
@@ -585,7 +598,7 @@ namespace Randomize
             return this;
         }
 
-        public void Send(string connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs")
+        public void Send(string connectString = "Host=localhost;Port=5432;User Id=postgres;Password=1310;Database=Kurs;Timeout=300;CommandTimeout=300;")
         {
             var conn = new NpgsqlConnection(connectString);
             string sql;
@@ -614,27 +627,6 @@ namespace Randomize
                     {
                     }
                 }
-
-                writeInfo.Invoke(DateTime.Now, "Генерация команд для записи на сервер");
-
-                string[] commands = db.GenerateComands();
-
-                writeInfo.Invoke(DateTime.Now, "Выполнение команд на сервере");
-
-                for (int i = 0; i < commands.Length; i++)
-                {
-                    sql = commands[i];
-
-                    cmd = new NpgsqlCommand(sql, conn);
-
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                    catch (Exception)
-                    {
-                    }
-                }
             }
             catch (Exception except)
             {
@@ -644,8 +636,167 @@ namespace Randomize
             finally
             {
                 conn.Close();
-                writeInfo.Invoke(DateTime.Now, "Генерация завершена");
             }
+
+            writeInfo.Invoke(DateTime.Now, "Генерация команд для записи на сервер");
+
+            List<String[]> commands = db.GenerateComands();
+            Task[] tasks = new Task[commands.Count];
+
+            String[] firstParts = new String[]
+            {
+                "INSERT INTO Countries (country_id, country_name) VALUES ",
+                "INSERT INTO Cities (city_id, country_id, city_name) VALUES ",
+                "INSERT INTO RecordFirms (recordFirm_id, city_id, recordFirm_name) VALUES ",
+                "INSERT INTO Genres (genre_id, genre_name) VALUES ",
+                "INSERT INTO Executors (executor_id, executor_name) VALUES ",
+                "INSERT INTO Languages (language_id, language_name) VALUES ",
+                "INSERT INTO RecordTypes (recordType_id, recordType_name) VALUES ",
+                "INSERT INTO Districts (district_id, district_name) VALUES ",
+                "INSERT INTO PropertyTypes (propertyType_id, propertyType_name) VALUES ",
+                "INSERT INTO Owners (owner_id, owner_name) VALUES ",
+                "INSERT INTO Shops (shop_id, district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) VALUES ",
+                "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) VALUES ",
+                "INSERT INTO ProductRanges (productRange_id, shop_id, album_id, dateOfReceipt, amount) VALUES"
+            };
+
+            writeInfo.Invoke(DateTime.Now, "Выполнение команд на сервере");
+
+            tasks[0] = Task.Factory.StartNew((vs) =>
+            {
+                try
+                {
+                    String cmds = vs as String;
+                    NpgsqlConnection conn_task = new NpgsqlConnection(connectString);
+                    conn_task.Open();
+                    NpgsqlCommand cmd_task;
+                    cmd_task = new NpgsqlCommand(cmds, conn_task);
+                    cmd_task.ExecuteNonQuery();
+                }
+                catch (Exception except)
+                {
+                    MessageBox.Show(except.Message);
+                    writeInfo.Invoke(DateTime.Now, "Ошибка на сервере: " + except.Message);
+                }
+                finally
+                {
+                    conn.Close();
+
+                }
+            }, firstParts[0] + String.Join(",\n", commands[0]));
+
+            tasks[0].Wait();
+
+            tasks[1] = Task.Factory.StartNew((vs) =>
+            {
+                try
+                {
+                    String cmds = vs as String;
+                    NpgsqlConnection conn_task = new NpgsqlConnection(connectString);
+                    conn_task.Open();
+                    NpgsqlCommand cmd_task;
+                    cmd_task = new NpgsqlCommand(cmds, conn_task);
+                    cmd_task.ExecuteNonQuery();
+                }
+                catch (Exception except)
+                {
+                    MessageBox.Show(except.Message);
+                    writeInfo.Invoke(DateTime.Now, "Ошибка на сервере: " + except.Message);
+                }
+                finally
+                {
+                    conn.Close();
+
+                }
+            }, firstParts[1] + String.Join(",\n", commands[1]));
+
+            tasks[1].Wait();
+
+            for (int i = 2; i < tasks.Length - 3; i++)
+            {
+                tasks[i] = Task.Factory.StartNew((vs) =>
+                {
+                    try
+                    {
+                        String cmds = vs as String;
+                        NpgsqlConnection conn_task = new NpgsqlConnection(connectString);
+                        conn_task.Open();
+                        NpgsqlCommand cmd_task;
+                        cmd_task = new NpgsqlCommand(cmds, conn_task);
+                        cmd_task.ExecuteNonQuery();
+                    }
+                    catch (Exception except)
+                    {
+                        MessageBox.Show(except.Message);
+                        writeInfo.Invoke(DateTime.Now, "Ошибка на сервере: " + except.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+
+                    }
+                }, firstParts[i] + String.Join(",\n", commands[i]));
+            }
+            for (int i = 0; i < tasks.Length - 3; i++)
+                tasks[i].Wait();
+
+            for (int i = tasks.Length - 3; i < tasks.Length - 1; i++)
+            {
+                tasks[i] = Task.Factory.StartNew((vs) =>
+                {
+                    try
+                    {
+                        String cmds = vs as String;
+                        NpgsqlConnection conn_task = new NpgsqlConnection(connectString);
+                        conn_task.Open();
+                        NpgsqlCommand cmd_task;
+                        cmd_task = new NpgsqlCommand(cmds, conn_task);
+                        cmd_task.ExecuteNonQuery();
+                    }
+                    catch (Exception except)
+                    {
+                        MessageBox.Show(except.Message);
+                        writeInfo.Invoke(DateTime.Now, "Ошибка на сервере: " + except.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+
+                    }
+                }, firstParts[i] + String.Join(",\n", commands[i]));
+            }
+            for (int i = tasks.Length - 3; i < tasks.Length - 1; i++)
+                tasks[i].Wait();
+
+            for (int i = tasks.Length - 1; i < tasks.Length; i++)
+            {
+                tasks[i] = Task.Factory.StartNew((vs) =>
+                {
+                    try
+                    {
+                        String cmds = vs as String;
+                        NpgsqlConnection conn_task = new NpgsqlConnection(connectString);
+                        conn_task.Open();
+                        NpgsqlCommand cmd_task;
+                        cmd_task = new NpgsqlCommand(cmds, conn_task);
+                        cmd_task.ExecuteNonQuery();
+                    }
+                    catch (Exception except)
+                    {
+                        MessageBox.Show(except.Message);
+                        writeInfo.Invoke(DateTime.Now, "Ошибка на сервере: " + except.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+
+                    }
+                }, firstParts[i] + String.Join(",\n", commands[i]));
+            }
+            for (int i = tasks.Length - 1; i < tasks.Length; i++)
+                tasks[i].Wait();
+
+            writeInfo.Invoke(DateTime.Now, "Генерация завершена");
         }
     }
 }

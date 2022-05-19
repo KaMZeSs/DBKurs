@@ -90,11 +90,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Repos\\DBKurs\\Generator\\Generator.csproj",
+      "projectUniqueName": "E:\\DBKurs\\Generator\\Generator.csproj",
       "projectName": "Generator",
-      "projectPath": "E:\\Repos\\DBKurs\\Generator\\Generator.csproj",
+      "projectPath": "E:\\DBKurs\\Generator\\Generator.csproj",
       "packagesPath": "C:\\Users\\vladd\\.nuget\\packages\\",
-      "outputPath": "E:\\Repos\\DBKurs\\Generator\\obj\\",
+      "outputPath": "E:\\DBKurs\\Generator\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -150,7 +150,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22204.3\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

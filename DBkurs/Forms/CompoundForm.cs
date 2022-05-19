@@ -37,7 +37,7 @@ namespace DBKurs.Forms
             {
                 conn.Open();
 
-                cmd = new NpgsqlCommand($"SELECT * FROM Get_All_Shops()", conn);
+                cmd = new NpgsqlCommand($"SELECT * FROM Show_shops", conn);
 
                 dtShops = new DataTable();
                 dtShops.Load(await cmd.ExecuteReaderAsync());

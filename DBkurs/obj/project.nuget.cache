@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "brK7BjppIUeOYHbXf2CYSwajlmTZwTUGeGyKwP9NWtDhzeyX0J6AAqlujSyejeGNfc04WknTBn9XygHpist/QQ==",
+  "dgSpecHash": "pRBn1ZzuDGHffB+NjHHqvMIMyln6O3ZkIXMQhhduMvKXSpVgTYGDhd95+zX9rbeSC1yGNv0qcSm/QlUQvzvSyQ==",
   "success": true,
-  "projectFilePath": "E:\\Repos\\DBKurs\\DBkurs\\DBKurs.csproj",
+  "projectFilePath": "E:\\DBKurs\\DBkurs\\DBKurs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vladd\\.nuget\\packages\\closedxml\\0.95.4\\closedxml.0.95.4.nupkg.sha512",
     "C:\\Users\\vladd\\.nuget\\packages\\documentformat.openxml\\2.7.2\\documentformat.openxml.2.7.2.nupkg.sha512",

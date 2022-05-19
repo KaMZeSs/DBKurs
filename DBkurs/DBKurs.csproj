@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Forms\Add\AddShop.cs">
       <SubType>Form</SubType>
     </Compile>
