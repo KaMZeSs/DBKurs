@@ -1,3 +1,3 @@
-CREATE INDEX city_name_lower ON Cities (lower(city_name))
+CREATE INDEX city_name_lower ON Cities (lower(city_name));
 
-SELECT * FROM city_name_lower
+DROP INDEX city_name_lower

@@ -1,0 +1,13 @@
+DROP VIEW Count_Top3_Genres;
+DROP VIEW Shops_PropertyTypes;
+DROP VIEW Recordfirm_Country;
+DROP VIEW ostalos_albomov;
+DROP VIEW Last_delivery;
+DROP VIEW CountriesWithoutCities;
+DROP VIEW Count_Genres;
+DROP VIEW Albums_Genres;
+DROP VIEW Albums_one_executor;
+DROP VIEW albums_count_more_10kk;
+DROP VIEW avg_album_count;
+DROP VIEW get_all_count;
+DROP VIEW shop_album_count;

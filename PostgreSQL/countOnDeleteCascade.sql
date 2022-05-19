@@ -121,16 +121,23 @@ CREATE OR REPLACE FUNCTION CountCascadeExecutors(ids INT[]) RETURNS INT[] AS $$
 DECLARE
     result INT[3];
     temp INT;
+    executor_names TEXT[] := ARRAY(
+        SELECT '%' || executor_name || '%'
+        FROM executors
+        Where executor_id = ANY(ids::INT [])
+    );
 BEGIN
     result[0] := array_length(ids, 1);
 
     SELECT count(*) INTO temp FROM albums
-    WHERE executor_id = ANY(ids::INT[]);
+    WHERE executor_id = ANY(ids::INT[]) 
+    OR albumInfo LIKE ANY(executor_names::TEXT[]);
     result[1] := temp;
 
     SELECT count(*) INTO temp FROM productranges 
     WHERE album_id = ANY(SELECT album_id FROM albums 
-    WHERE executor_id = ANY(ids::INT[]));
+    WHERE executor_id = ANY(ids::INT[]) 
+    OR albumInfo LIKE ANY(executor_names::TEXT[]));
     result[2] := temp;
 
     RETURN result;

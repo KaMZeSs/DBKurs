@@ -59,7 +59,6 @@ BEGIN
         JOIN Albums ON ProductRanges.album_id = Albums.album_id
         ORDER BY ProductRanges.productRange_id;
 
-
 END; $$ LANGUAGE 'plpgsql';
 
 CREATE OR REPLACE FUNCTION Before_insert_trigger_ProductRanges() RETURNS TRIGGER AS $$

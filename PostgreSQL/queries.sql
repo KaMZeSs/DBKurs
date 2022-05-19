@@ -160,3 +160,17 @@ WHERE album_id = ANY (
     FROM productranges WHERE shop_id = '1'
 )
 ORDER BY genre_id;
+
+--Топ 3 жанра по магазину
+SELECT genres.genre_name AS "Жанр",
+sum(ProductRanges.amount) AS "Количество проданных копий"
+FROM shops
+JOIN districts ON shops.district_id = districts.district_id
+JOIN productranges ON shops.shop_id = productranges.shop_id
+JOIN albums ON albums.album_id = productranges.album_id
+JOIN genres ON genres.genre_id = albums.genre_id
+WHERE shops.shop_id = 1
+GROUP BY genres.genre_id
+ORDER BY "Количество проданных копий" DESC
+LIMIT 3;
+

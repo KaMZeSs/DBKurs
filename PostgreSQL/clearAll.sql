@@ -1,16 +1,16 @@
-DELETE FROM ProductRanges;
+DROP TABLE ProductRanges;
 
-DELETE FROM albums;
-DELETE FROM shops;
+DROP TABLE albums;
+DROP TABLE shops;
 
-DELETE FROM countries;
-DELETE FROM cities;
-DELETE FROM executors;
-DELETE FROM genres;
-DELETE FROM languages;
-DELETE FROM recordfirms;
-DELETE FROM recordtypes;
+DROP TABLE recordfirms;
+DROP TABLE cities;
+DROP TABLE countries;
+DROP TABLE executors;
+DROP TABLE genres;
+DROP TABLE languages;
+DROP TABLE recordtypes;
 
-DELETE FROM districts;
-DELETE FROM owners;
-DELETE FROM propertytypes;
+DROP TABLE districts;
+DROP TABLE owners;
+DROP TABLE propertytypes;
