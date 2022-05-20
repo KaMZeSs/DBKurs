@@ -1002,6 +1002,7 @@ namespace DBKurs.Forms
 
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
         {
+            CanBeCharted = false;
             if (dataGridView1.DataSource is null)
                 return;
             var column = new DataGridViewColumn
@@ -1080,6 +1081,7 @@ namespace DBKurs.Forms
                     dataGridView1.DataSource = dt;
 
                     updator_continue.Invoke();
+                    CanBeCharted = false;
                 }
                 catch (Exception exc)
                 {
@@ -1121,6 +1123,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    CanBeCharted = false;
                 }
                 catch (Exception exc)
                 {
@@ -1149,6 +1152,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1176,6 +1180,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1219,6 +1224,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    CanBeCharted = false;
                 }
                 catch (Exception exc)
                 {
@@ -1259,6 +1265,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    CanBeCharted = false;
                 }
                 catch (Exception exc)
                 {
@@ -1299,6 +1306,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    CanBeCharted = false;
                 }
                 catch (Exception exc)
                 {
@@ -1342,6 +1350,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    CanBeCharted = false;
                 }
                 catch (Exception exc)
                 {
@@ -1370,6 +1379,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1397,6 +1407,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1424,6 +1435,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1451,6 +1463,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1478,6 +1491,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1505,6 +1519,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1529,16 +1544,12 @@ namespace DBKurs.Forms
                 dt = new DataTable();
                 dt.Load(await cmd.ExecuteReaderAsync());
 
-                //_ = Task.Factory.StartNew(() =>
-                //{
-                //    onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dt));
-                //});
-
                 dataGridView1.DataSource = null;
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
 
+                CanBeCharted = true;
                 onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
             }
             catch (Exception exc)
@@ -1570,6 +1581,8 @@ namespace DBKurs.Forms
 
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1597,6 +1610,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = false;
             }
             catch (Exception exc)
             {
@@ -1639,6 +1653,7 @@ namespace DBKurs.Forms
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
 
+                    CanBeCharted = true;
                     onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
@@ -1680,6 +1695,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    CanBeCharted = false;
                     onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
@@ -1722,6 +1738,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    CanBeCharted = true;
                     onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
@@ -1763,6 +1780,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    CanBeCharted = true;
                     onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
@@ -1810,6 +1828,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    CanBeCharted = true;
                     onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
@@ -1839,6 +1858,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                CanBeCharted = true;
                 onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
             }
             catch (Exception exc)
@@ -2062,6 +2082,7 @@ namespace DBKurs.Forms
 
         #region Chart
 
+        public bool CanBeCharted { get; private set; }
         private void отобразитьГрафикToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form form in OwnedForms)
@@ -2073,6 +2094,8 @@ namespace DBKurs.Forms
                 }
             }
             new ChartForm().Show(this);
+            if (CanBeCharted)
+                onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
         }
 
         #endregion

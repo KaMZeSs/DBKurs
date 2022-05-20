@@ -59,10 +59,12 @@ namespace DBKurs.Forms
             int xAxis_index = data.Columns.Contains("id") ? 1 : 0;
             int yAxis_index = xAxis_index + 1;
 
-            var values = (from DataRow row in data.AsEnumerable().AsParallel() select
-                            new Data(Int32.Parse(row[yAxis_index].ToString()), row[xAxis_index].ToString()))
-                            .AsParallel()
-                            .AsOrdered<Data>().ToArray<Data>();
+            var values = (from DataRow row in data.AsEnumerable().AsParallel() 
+                          select new Data(Int32.Parse(row[yAxis_index].ToString()), 
+                          row[xAxis_index].ToString()))
+                          .AsParallel()
+                          .AsOrdered<Data>()
+                          .ToArray<Data>();
 
             for (int i = 0; i < values.Length; i++)
             {
@@ -106,6 +108,11 @@ namespace DBKurs.Forms
                     }
                     break;
             }
+        }
+
+        private void ChartForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            (this.Owner as MainForm).onRequest_Asked_To_Show -= onAsked_To_Update;
         }
     }
 }
