@@ -27,6 +27,7 @@ namespace DBKurs.Forms
         {
             InitializeComponent();
             chart1.Series[0]["PieLabelStyle"] = "Disabled";
+            chart1.ChartAreas[0].AxisX.Interval = 1;
         }
 
         private void ChartForm_Load(object sender, EventArgs e)
@@ -59,12 +60,12 @@ namespace DBKurs.Forms
             int xAxis_index = data.Columns.Contains("id") ? 1 : 0;
             int yAxis_index = xAxis_index + 1;
 
-            var values = (from DataRow row in data.AsEnumerable().AsParallel() 
-                          select new Data(Int32.Parse(row[yAxis_index].ToString()), 
+            var values = (from DataRow row in data.AsEnumerable().AsParallel()
+                          select new Data(Int32.Parse(row[yAxis_index].ToString()),
                           row[xAxis_index].ToString()))
                           .AsParallel()
-                          .AsOrdered<Data>()
-                          .ToArray<Data>();
+                          .OrderByDescending(x => x.Value)
+                          .ToArray();
 
             for (int i = 0; i < values.Length; i++)
             {

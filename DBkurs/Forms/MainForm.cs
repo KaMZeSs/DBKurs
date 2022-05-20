@@ -1695,7 +1695,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
-                    CanBeCharted = false;
+                    CanBeCharted = true;
                     onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)

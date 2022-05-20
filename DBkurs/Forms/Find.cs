@@ -28,58 +28,58 @@ namespace DBKurs.Forms
                 {
                     case Tables.ProductRanges:
                         items = new string[] { "Альбом", "Магазин", "Дата поступления", "Количество единиц" };
-                        start_of_comand = "SELECT * FROM get_all_productranges()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_productranges()";
                         break;
                     case Tables.Albums:
                         items = new string[] { "Название альбома", "Фирма звукозаписи", "Дата выпуска альбома",
                             "Тираж альбома", "Количество песен", "Тип записи", "Исполнитель", "Жанр",
                             "Язык исполнения", "Время звучания" };
-                        start_of_comand = "SELECT * FROM get_all_albums()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_albums()";
                         break;
                     case Tables.Shops:
                         items = new string[] { "Название магазина", "Район города", "Адрес", "Тип собственности",
                             "Лицензия", "Дата окончания лицензии", "Владелец", "Год открытия" };
-                        start_of_comand = "SELECT * FROM get_all_shops()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_shops()";
                         break;
                     case Tables.Cities:
                         items = new string[] { "Страна", "Город" };
-                        start_of_comand = "SELECT * FROM get_all_cities()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_cities()";
                         break;
                     case Tables.Countries:
                         items = new string[] { "Страна" };
-                        start_of_comand = "SELECT * FROM get_all_countries()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_countries()";
                         break;
                     case Tables.Executors:
                         items = new string[] { "Исполнитель" };
-                        start_of_comand = "SELECT * FROM get_all_executors()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_executors()";
                         break;
                     case Tables.Genres:
                         items = new string[] { "Жанр" };
-                        start_of_comand = "SELECT * FROM get_all_genres()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_genres()";
                         break;
                     case Tables.Languages:
                         items = new string[] { "Язык" };
-                        start_of_comand = "SELECT * FROM get_all_languages()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_languages()";
                         break;
                     case Tables.RecordFirms:
                         items = new string[] { "Город", "Фирма звукозаписи" };
-                        start_of_comand = "SELECT * FROM get_all_recordfirms()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_recordfirms()";
                         break;
                     case Tables.RecordTypes:
                         items = new string[] { "Тип записи" };
-                        start_of_comand = "SELECT * FROM get_all_recordtypes()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_recordtypes()";
                         break;
                     case Tables.Districts:
                         items = new string[] { "Район" };
-                        start_of_comand = "SELECT * FROM get_all_districts()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_districts()";
                         break;
                     case Tables.Owners:
                         items = new string[] { "Владелец" };
-                        start_of_comand = "SELECT * FROM get_all_owners()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_owners()";
                         break;
                     case Tables.PropertyTypes:
                         items = new string[] { "Тип собственности" };
-                        start_of_comand = "SELECT * FROM get_all_propertytypes()";
+                        main_start = start_of_comand = "SELECT * FROM get_all_propertytypes()";
                         break;
                     default:
                         items = null;
@@ -92,6 +92,7 @@ namespace DBKurs.Forms
 
         string start_of_comand;
         string end_of_comand;
+        string main_start;
 
         public Find(string connectString)
         {
@@ -178,6 +179,7 @@ namespace DBKurs.Forms
                 }
                 if (res == DialogResult.No)
                 {
+                    start_of_comand = main_start;
                     if (textBox1.Visible)
                     {
                         if (comboBox1.SelectedItem.ToString() == "Исполнитель")

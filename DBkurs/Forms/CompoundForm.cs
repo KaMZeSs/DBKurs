@@ -22,6 +22,7 @@ namespace DBKurs.Forms
             this.InitializeComponent();
             connectString = connString;
             current = 0;
+            command_start = "SELECT * FROM Show_shops ";
         }
 
         private async void CompoundForm_Load(object sender, EventArgs e)
@@ -104,6 +105,7 @@ namespace DBKurs.Forms
                 }
                 dataGridView1.RowTemplate.Height = 50;
 
+                dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = null; //очистка таблицы
 
                 dataGridView1.DataSource = dtCloned;
@@ -129,61 +131,73 @@ namespace DBKurs.Forms
 
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            try
             {
-                if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
-                    return;
-                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor =
-                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = mouseOver;
-            }
-            else
-            {
-                mouseOverCell_index = e.RowIndex;
-                if (dataGridView1.Rows[e.RowIndex].Selected)
+                if (e.RowIndex == -1)
                 {
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
+                        return;
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor =
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = mouseOver;
                 }
                 else
                 {
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = mouseOver;
+                    mouseOverCell_index = e.RowIndex;
+                    if (dataGridView1.Rows[e.RowIndex].Selected)
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = mouseOver;
+                    }
                 }
             }
+            catch (Exception) { }
         }
 
         private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
+            try
             {
-                if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
-                    return;
-                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor =
-                dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = Color.White;
-            }
-            else
-            {
-                if (dataGridView1.Rows[e.RowIndex].Selected)
+                if (e.RowIndex == -1)
                 {
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseLeftSelected;
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    if (e.ColumnIndex == dataGridView1.ColumnCount - 1)
+                        return;
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.SelectionBackColor =
+                    dataGridView1.Columns[e.ColumnIndex].HeaderCell.Style.BackColor = Color.White;
                 }
                 else
                 {
-                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    if (dataGridView1.Rows[e.RowIndex].Selected)
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = mouseLeftSelected;
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    }
                 }
             }
+            catch (Exception) { }
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount == 0 | mouseOverCell_index == -2)
-                return;
-            if (dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor == mouseOver)
+            try
             {
-                dataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor =
-                dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
-                dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor = Color.White;
+                if (dataGridView1.RowCount == 0 | mouseOverCell_index == -2)
+                    return;
+                if (dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor == mouseOver)
+                {
+                    dataGridView1.RowHeadersDefaultCellStyle.SelectionBackColor =
+                    dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.SelectionBackColor = mouseOverSelected;
+                    dataGridView1.Rows[mouseOverCell_index].DefaultCellStyle.BackColor = Color.White;
+                }
             }
+            catch(Exception) {}
         }
 
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
@@ -199,6 +213,9 @@ namespace DBKurs.Forms
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             column.CellTemplate = new DataGridViewTextBoxCell();
             dataGridView1.Columns.Add(column);
+
+            toolStripStatusLabel2.Text = dtShops.Rows.Count.ToString();
+            toolStripStatusLabel4.Text = (current + 1).ToString();
         }
 
         #endregion
@@ -209,19 +226,117 @@ namespace DBKurs.Forms
                 splitContainer1.SplitterDistance = 167;
         }
 
+        private String command_start;
+        private String command_end;
+
+        private async void find_button_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Visible && textBox1.Text.Length == 0)
+            {
+                return;
+            }
+            if (command_end == null)
+            {
+                if (textBox1.Visible)
+                {
+                    command_end = $"WHERE lower(\"{comboBox1.SelectedItem}\") LIKE '%{textBox1.Text.Replace("'", "''").ToLower()}%'";
+                }
+                else
+                {
+                    string timeStart = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                    command_end = $"WHERE (\"{comboBox1.SelectedItem}\" = '{timeStart}'";
+                }
+            }
+            else
+            {
+                DialogResult res = MessageBox.Show("Продолжить работу с предыдущим результатом?", "Сохранить результат?", MessageBoxButtons.YesNoCancel);
+                if (res == DialogResult.Yes)
+                {
+                    if (command_start.Contains("WHERE"))
+                        command_end = command_end.Replace("WHERE", "AND");
+
+                    command_start = $"{command_start} {command_end}";
+                }
+                else if (res == DialogResult.Cancel)
+                {
+                    return;
+                }
+                
+                if (res == DialogResult.No)
+                {
+                    command_start = "SELECT * FROM Show_shops ";
+                    if (textBox1.Visible)
+                    {
+                        command_end = $"WHERE lower(\"{comboBox1.SelectedItem}\") LIKE '%{textBox1.Text.Replace("'", "''").ToLower()}%'";
+                    }
+                    else
+                    {
+                        string timeStart = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                        command_end = $"WHERE (\"{comboBox1.SelectedItem}\" = '{timeStart}'";
+                    }
+                }
+                else
+                {
+                    if (textBox1.Visible)
+                    {
+                        command_end = $"AND lower(\"{comboBox1.SelectedItem}\") LIKE '%{textBox1.Text.Replace("'", "''").ToLower()}%'";
+                    }
+                    else
+                    {
+                        string timeStart = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                        command_end = $"AND (\"{comboBox1.SelectedItem}\" = '{timeStart}'";
+                    }
+                }
+            }
+
+            dtShops = new DataTable();
+
+            try
+            {
+                await conn.OpenAsync();
+                cmd = new NpgsqlCommand($"{command_start} {command_end}", conn);
+                dtShops.Load(await cmd.ExecuteReaderAsync());
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+
+            current = 0;
+            await Load_Next_Shop();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem.ToString() == "Дата окончания лицензии")
+            {
+                dateTimePicker1.Visible = true;
+                textBox1.Visible = false;
+            }
+            else
+            {
+                dateTimePicker1.Visible = false;
+                textBox1.Visible = true;
+            }
+        }
+
         private async void direction_button_Click(object sender, EventArgs e)
         {
             if ((sender as Button) == right_button)
             {
                 current++;
                 if (current >= dtShops.Rows.Count)
-                    current = dtShops.Rows.Count - 1;
+                    current = 0;
             }
             else
             {
                 current--;
                 if (current < 0)
-                    current = 0;
+                    current = dtShops.Rows.Count - 1;
             }
 
             await this.Load_Next_Shop();

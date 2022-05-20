@@ -36,9 +36,6 @@ namespace DBKurs.Forms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.right_button = new System.Windows.Forms.Button();
-            this.left_button = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.district = new System.Windows.Forms.TextBox();
             this.adres = new System.Windows.Forms.TextBox();
@@ -56,13 +53,27 @@ namespace DBKurs.Forms
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.find_button = new System.Windows.Forms.Button();
+            this.right_button = new System.Windows.Forms.Button();
+            this.left_button = new System.Windows.Forms.Button();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView1 = new DBKurs.Forms.DoubleBufferedDataGridView();
             this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,36 +95,6 @@ namespace DBKurs.Forms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(800, 28);
             this.panel3.TabIndex = 3;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.right_button);
-            this.panel1.Controls.Add(this.left_button);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 417);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 33);
-            this.panel1.TabIndex = 4;
-            // 
-            // right_button
-            // 
-            this.right_button.Location = new System.Drawing.Point(722, 7);
-            this.right_button.Name = "right_button";
-            this.right_button.Size = new System.Drawing.Size(75, 23);
-            this.right_button.TabIndex = 0;
-            this.right_button.Text = "Right";
-            this.right_button.UseVisualStyleBackColor = true;
-            this.right_button.Click += new System.EventHandler(this.direction_button_Click);
-            // 
-            // left_button
-            // 
-            this.left_button.Location = new System.Drawing.Point(3, 7);
-            this.left_button.Name = "left_button";
-            this.left_button.Size = new System.Drawing.Size(75, 23);
-            this.left_button.TabIndex = 0;
-            this.left_button.Text = "Left";
-            this.left_button.UseVisualStyleBackColor = true;
-            this.left_button.Click += new System.EventHandler(this.direction_button_Click);
             // 
             // splitContainer1
             // 
@@ -145,7 +126,9 @@ namespace DBKurs.Forms
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 389);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Panel2.Controls.Add(this.statusStrip1);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 422);
             this.splitContainer1.SplitterDistance = 167;
             this.splitContainer1.TabIndex = 5;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -154,6 +137,7 @@ namespace DBKurs.Forms
             // 
             this.district.Location = new System.Drawing.Point(140, 135);
             this.district.Name = "district";
+            this.district.ReadOnly = true;
             this.district.Size = new System.Drawing.Size(160, 20);
             this.district.TabIndex = 9;
             // 
@@ -161,6 +145,7 @@ namespace DBKurs.Forms
             // 
             this.adres.Location = new System.Drawing.Point(140, 95);
             this.adres.Name = "adres";
+            this.adres.ReadOnly = true;
             this.adres.Size = new System.Drawing.Size(160, 20);
             this.adres.TabIndex = 9;
             // 
@@ -168,6 +153,7 @@ namespace DBKurs.Forms
             // 
             this.owner_name.Location = new System.Drawing.Point(140, 55);
             this.owner_name.Name = "owner_name";
+            this.owner_name.ReadOnly = true;
             this.owner_name.Size = new System.Drawing.Size(160, 20);
             this.owner_name.TabIndex = 9;
             // 
@@ -175,6 +161,7 @@ namespace DBKurs.Forms
             // 
             this.license.Location = new System.Drawing.Point(628, 17);
             this.license.Name = "license";
+            this.license.ReadOnly = true;
             this.license.Size = new System.Drawing.Size(160, 20);
             this.license.TabIndex = 9;
             // 
@@ -182,6 +169,7 @@ namespace DBKurs.Forms
             // 
             this.property_type.Location = new System.Drawing.Point(628, 93);
             this.property_type.Name = "property_type";
+            this.property_type.ReadOnly = true;
             this.property_type.Size = new System.Drawing.Size(160, 20);
             this.property_type.TabIndex = 9;
             // 
@@ -189,6 +177,7 @@ namespace DBKurs.Forms
             // 
             this.year_opened.Location = new System.Drawing.Point(628, 133);
             this.year_opened.Name = "year_opened";
+            this.year_opened.ReadOnly = true;
             this.year_opened.Size = new System.Drawing.Size(160, 20);
             this.year_opened.TabIndex = 9;
             // 
@@ -196,6 +185,7 @@ namespace DBKurs.Forms
             // 
             this.license_expiration.Location = new System.Drawing.Point(628, 53);
             this.license_expiration.Name = "license_expiration";
+            this.license_expiration.ReadOnly = true;
             this.license_expiration.Size = new System.Drawing.Size(160, 20);
             this.license_expiration.TabIndex = 9;
             // 
@@ -203,6 +193,7 @@ namespace DBKurs.Forms
             // 
             this.Shop_name.Location = new System.Drawing.Point(140, 15);
             this.Shop_name.Name = "Shop_name";
+            this.Shop_name.ReadOnly = true;
             this.Shop_name.Size = new System.Drawing.Size(160, 20);
             this.Shop_name.TabIndex = 9;
             // 
@@ -286,6 +277,127 @@ namespace DBKurs.Forms
             this.label2.TabIndex = 8;
             this.label2.Text = "Название магазина";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel4});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 229);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.find_button);
+            this.panel1.Controls.Add(this.right_button);
+            this.panel1.Controls.Add(this.left_button);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 196);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 33);
+            this.panel1.TabIndex = 6;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(349, 8);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(183, 20);
+            this.dateTimePicker1.TabIndex = 5;
+            this.dateTimePicker1.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(132, 8);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 13);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Поиск по";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(348, 8);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(184, 20);
+            this.textBox1.TabIndex = 3;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Название магазина",
+            "Район города",
+            "Адрес",
+            "Тип собственности",
+            "Лицензия",
+            "Дата окончания лицензии",
+            "Владелец",
+            "Год открытия"});
+            this.comboBox1.Location = new System.Drawing.Point(192, 6);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(150, 21);
+            this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // find_button
+            // 
+            this.find_button.Location = new System.Drawing.Point(539, 6);
+            this.find_button.Name = "find_button";
+            this.find_button.Size = new System.Drawing.Size(75, 23);
+            this.find_button.TabIndex = 1;
+            this.find_button.Text = "Поиск";
+            this.find_button.UseVisualStyleBackColor = true;
+            // 
+            // right_button
+            // 
+            this.right_button.Location = new System.Drawing.Point(722, 7);
+            this.right_button.Name = "right_button";
+            this.right_button.Size = new System.Drawing.Size(75, 23);
+            this.right_button.TabIndex = 0;
+            this.right_button.Text = "►";
+            this.right_button.UseVisualStyleBackColor = true;
+            this.right_button.Click += new System.EventHandler(this.direction_button_Click);
+            // 
+            // left_button
+            // 
+            this.left_button.Location = new System.Drawing.Point(3, 7);
+            this.left_button.Name = "left_button";
+            this.left_button.Size = new System.Drawing.Size(75, 23);
+            this.left_button.TabIndex = 0;
+            this.left_button.Text = "◄";
+            this.left_button.UseVisualStyleBackColor = true;
+            this.left_button.Click += new System.EventHandler(this.direction_button_Click);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(85, 17);
+            this.toolStripStatusLabel1.Text = "Всего записей";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(94, 17);
+            this.toolStripStatusLabel3.Text = "Текущая запись";
+            // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(0, 17);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -337,8 +449,12 @@ namespace DBKurs.Forms
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 50;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 218);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.Size = new System.Drawing.Size(800, 196);
+            this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
+            this.dataGridView1.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
+            this.dataGridView1.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseLeave);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // CompoundForm
             // 
@@ -346,19 +462,22 @@ namespace DBKurs.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Name = "CompoundForm";
             this.Text = "CompoundForm";
             this.Load += new System.EventHandler(this.CompoundForm_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -368,7 +487,6 @@ namespace DBKurs.Forms
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
-        private Panel panel1;
         private SplitContainer splitContainer1;
         private Label label9;
         private Label label7;
@@ -378,9 +496,6 @@ namespace DBKurs.Forms
         private Label label3;
         private Label label6;
         private Label label2;
-        private DoubleBufferedDataGridView dataGridView1;
-        private Button right_button;
-        private Button left_button;
         private TextBox Shop_name;
         private TextBox district;
         private TextBox adres;
@@ -389,5 +504,19 @@ namespace DBKurs.Forms
         private TextBox year_opened;
         private TextBox license_expiration;
         private TextBox property_type;
+        private Panel panel1;
+        private DateTimePicker dateTimePicker1;
+        private Label label10;
+        private TextBox textBox1;
+        private ComboBox comboBox1;
+        private Button find_button;
+        private Button right_button;
+        private Button left_button;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
+        private ToolStripStatusLabel toolStripStatusLabel3;
+        private ToolStripStatusLabel toolStripStatusLabel4;
+        private DoubleBufferedDataGridView dataGridView1;
     }
 }
