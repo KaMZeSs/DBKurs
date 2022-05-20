@@ -970,6 +970,9 @@ namespace DBKurs.Forms
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows != null & dataGridView1.SelectedRows.Count > 0)
+                toolStripStatusLabel4.Text = (dataGridView1.SelectedRows[0].Index + 1).ToString();
+            toolStripStatusLabel6.Text = dataGridView1.SelectedRows.Count.ToString();
             try
             {
                 if (dataGridView1.RowCount == 0 | mouseOverCell_index == -2)
@@ -1000,6 +1003,7 @@ namespace DBKurs.Forms
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             column.CellTemplate = new DataGridViewTextBoxCell();
             dataGridView1.Columns.Add(column);
+            toolStripStatusLabel2.Text = dataGridView1.RowCount.ToString();
         }
 
         private int[] GetWidths(DataTable dt, Font font)

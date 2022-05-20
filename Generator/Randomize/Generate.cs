@@ -178,7 +178,7 @@ namespace Randomize
 
             using (var reader = new StreamReader("Data/songs.txt"))
             {
-                songNames = reader.ReadToEnd().Trim().Split("\n");
+                songNames = reader.ReadToEnd().Trim().Split('\n');
             }
         }
         private void ReadAllImages()
@@ -398,15 +398,19 @@ namespace Randomize
                         int temp_counter = 0;
                         do
                         {
-                            if (temp_counter > 1000)
+                            if (temp_counter > 100)
                                 break;
                             secondExecutor_id = rnd.Next(0, db.executors.Count);
                             temp_counter++;
                         } while (secondExecutor_id == executor_id);
 
+
                         info = $"Исполнители: {db.executors.AsParallel().Where(x => x.id == executor_id).First().name}, {db.executors.AsParallel().Where(x => x.id == secondExecutor_id).First().name}\n" +
                             $"Жанр: {db.genres.AsParallel().Where(x => x.id == genre_id).First().name}\nЯзык: {db.languages.AsParallel().Where(x => x.id == language_id).First().name}";
                     }
+
+                    if (secondExecutor_id == executor_id)
+                        isCompilation = false;
 
                     //Изображение
                     byte[] image = images[rnd.Next(0, images.Count)];
@@ -416,11 +420,21 @@ namespace Randomize
 
                     album_id = db.albums.Count;
 
+                    int[] arr;
+                    if (secondExecutor_id == -1)
+                    {
+                        arr = new int[1];
+                    }
+                    else
+                    {
+                        arr = new int[] { secondExecutor_id };
+                    }
+
                     db.albums.Add(new Album(id: album_id, name: albumName, recordFirm_id: recordFirm_id,
                         releaseDate: releaseDate, amount: album_amount, songsCount: songCount,
                         recordType_id: recordType_id, isCompilation: isCompilation,
                         executor_id: executor_id, genre_id: genre_id, language_id: language_id,
-                        info: info, photo: image, time: albumLength));
+                        info: info, photo: image, time: albumLength, executors: arr));
                 }
                 else
                 {
@@ -656,7 +670,7 @@ namespace Randomize
                 "INSERT INTO PropertyTypes (propertyType_id, propertyType_name) VALUES ",
                 "INSERT INTO Owners (owner_id, owner_name) VALUES ",
                 "INSERT INTO Shops (shop_id, district_id, propertyType_id, owner_id, shop_name, addres, license, expiryDate, yearOpened) VALUES ",
-                "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) VALUES ",
+                "INSERT INTO Albums (album_id, recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime, all_executors) VALUES ",
                 "INSERT INTO ProductRanges (productRange_id, shop_id, album_id, dateOfReceipt, amount) VALUES"
             };
 

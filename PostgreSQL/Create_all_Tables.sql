@@ -93,6 +93,7 @@ CREATE TABLE Albums(
     albumInfo TEXT,
     Photo BYTEA,
     albumTime INT NOT NULL,
+	all_executors INT[],
     FOREIGN KEY (recordFirm_id) REFERENCES RecordFirms(recordFirm_id) ON DELETE CASCADE,
     FOREIGN KEY (genre_id) REFERENCES Genres(genre_id) ON DELETE CASCADE,
     FOREIGN KEY (executor_id) REFERENCES Executors(executor_id) ON DELETE CASCADE,
@@ -669,3 +670,52 @@ $$ LANGUAGE 'plpgsql';
 CREATE TRIGGER After_delete_trigger_Executors 
 AFTER DELETE ON executors 
 FOR EACH ROW EXECUTE PROCEDURE After_delete_trigger_Executors();
+
+CREATE OR REPLACE FUNCTION After_delete_executors() RETURNS TRIGGER AS $$
+DECLARE    
+    alb_inf TEXT;
+    temp_str TEXT;
+    curr RECORD;
+    arr INT[];
+BEGIN
+    FOR curr IN (
+        SELECT album_id FROM albums 
+        WHERE iscollection = TRUE
+        AND OLD.executor_id = ANY(all_executors::INT[])
+    ) LOOP
+        SELECT all_executors INTO arr FROM albums WHERE album_id = curr.album_id;
+        SELECT albuminfo INTO alb_inf FROM albums WHERE album_id = curr.album_id;
+        alb_inf = replace(alb_inf, OLD.executor_name || ', ', '');
+        alb_inf = replace(alb_inf, ', ' || OLD.executor_name, '');
+        arr = array_remove(arr, OLD.executor_id);
+        UPDATE albums SET all_executors = arr, albumInfo = alb_inf WHERE album_id = curr.album_id;
+    END LOOP;
+
+    RETURN OLD;
+END; $$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER After_delete_executors
+AFTER DELETE ON Executors
+FOR EACH ROW EXECUTE PROCEDURE After_delete_executors();
+
+CREATE OR REPLACE FUNCTION Before_update_albums() RETURNS TRIGGER AS $$
+DECLARE    
+    alb_inf TEXT;
+    temp_str TEXT;
+    curr RECORD;
+    arr INT[];
+BEGIN
+
+    IF array_length(NEW.all_executors, 1) = 1 THEN
+        NEW.executor_id = NEW.all_executors[1];
+        NEW.all_executors = NULL;
+        NEW.albumInfo = NULL;
+    ELSE
+        RETURN NEW;
+    END IF;
+
+    RETURN NEW;
+END; $$ LANGUAGE 'plpgsql';
+CREATE TRIGGER Before_update_albums
+BEFORE UPDATE ON Albums
+FOR EACH ROW EXECUTE PROCEDURE Before_update_albums();

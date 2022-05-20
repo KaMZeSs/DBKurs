@@ -174,3 +174,7 @@ GROUP BY genres.genre_id
 ORDER BY "Количество проданных копий" DESC
 LIMIT 3;
 
+SELECT album_id, albumInfo FROM albums WHERE isCollection = true ORDER BY album_id LIMIT 100;
+
+SELECT executor_id FROM executors WHERE executor_name = 'JollyPrince' -- 3
+

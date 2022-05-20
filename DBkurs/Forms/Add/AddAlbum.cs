@@ -421,9 +421,13 @@ namespace DBKurs.Forms.Add
             bool isCompilation = false;
             string info = String.Empty;
             string executors = String.Empty;
+            int[] all_executors = new int[listBox3.CheckedItems.Count];
+            int i = 0;
             foreach (object el in listBox3.CheckedItems)
             {
                 executors += el.ToString().Split('-').First().Trim() + ", ";
+                all_executors[i] = Int32.Parse(el.ToString().Split('-').Last().Trim());
+                i++;
             }
             executors = executors.Remove(executors.Length - 2);
             if (listBox3.CheckedItems.Count > 1)
@@ -445,6 +449,7 @@ namespace DBKurs.Forms.Add
 
             string image = Convert.ToBase64String(arr);
 
+            String toWriteArr = "'{" + String.Join(", ", all_executors) + "}'";
 
             try
             {
@@ -452,10 +457,10 @@ namespace DBKurs.Forms.Add
                 if (row == null)
                 {
                     cmd = isCompilation
-                        ? new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
-                        $"VALUES ({recordFirm_id}, {genre_id}, NULL, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{image}\', {time})", conn)
-                        : new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime) " +
-                        $"VALUES ({recordFirm_id}, {genre_id}, {executor_id}, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{image}\', {time})", conn);
+                        ? new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime, all_executors) " +
+                        $"VALUES ({recordFirm_id}, {genre_id}, NULL, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{image}\', {time}, {toWriteArr})", conn)
+                        : new NpgsqlCommand("INSERT INTO Albums (recordFirm_id, genre_id, executor_id, language_id, recordType_id, album_name, releaseDate, albumCount, songsCount, isCollection, albumInfo, Photo, albumTime, all_executors) " +
+                        $"VALUES ({recordFirm_id}, {genre_id}, {executor_id}, {language_id}, {recordType_id}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{image}\', {time}, NULL)", conn);
                 }
                 else
                 {
@@ -463,10 +468,10 @@ namespace DBKurs.Forms.Add
                     cmd = isCompilation
                         ? new NpgsqlCommand($"UPDATE Albums SET recordFirm_id = {recordFirm_id}, genre_id = {genre_id}, executor_id = NULL, language_id = {language_id}, " +
                             $"recordType_id = {recordType_id}, album_name = \'{name}\', releaseDate = \'{release}\', albumCount = {amount}, songsCount = {songsCount}, " +
-                            $"isCollection = \'{isCol}\', albumInfo = \'{info}\', Photo = \'{image}\', albumTime = {time} WHERE album_id = {mId}", conn)
+                            $"isCollection = \'{isCol}\', albumInfo = \'{info}\', Photo = \'{image}\', albumTime = {time}, all_executors = {toWriteArr} WHERE album_id = {mId}", conn)
                         : new NpgsqlCommand($"UPDATE Albums SET recordFirm_id = {recordFirm_id}, genre_id = {genre_id}, executor_id = {executor_id}, language_id = {language_id}, " +
                             $"recordType_id = {recordType_id}, album_name = \'{name}\', releaseDate = \'{release}\', albumCount = {amount}, songsCount = {songsCount}, " +
-                            $"isCollection = \'{isCol}\', albumInfo = NULL, Photo = \'{image}\', albumTime = {time} WHERE album_id = {mId}", conn);
+                            $"isCollection = \'{isCol}\', albumInfo = NULL, Photo = \'{image}\', albumTime = {time}, all_executors = NULL WHERE album_id = {mId}", conn);
                 }
 
                 await cmd.ExecuteNonQueryAsync();

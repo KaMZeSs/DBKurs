@@ -1,0 +1,2674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string>Абаканская улица</string>
+  <string>Абрикосовая улица</string>
+  <string>Абхазская улица</string>
+  <string>Авангардный переулок</string>
+  <string>Авиамоторный переулок</string>
+  <string>Авиапромовская улица</string>
+  <string>Авиационная улица</string>
+  <string>Переулок Авральский Тупик</string>
+  <string>Переулок Авроры</string>
+  <string>Автобусный переулок</string>
+  <string>Автодорная улица</string>
+  <string>Автомобильный переулок</string>
+  <string>Авторская улица</string>
+  <string>Агатовая улица</string>
+  <string>Агрегатная улица</string>
+  <string>Агрономический переулок</string>
+  <string>Аджарский переулок</string>
+  <string>Адлерский переулок</string>
+  <string>Адыгейская улица</string>
+  <string>Ажурная улица</string>
+  <string>Азовская улица</string>
+  <string>Переулок Айвазовского</string>
+  <string>Айвовая улица</string>
+  <string>Аккуратная улица</string>
+  <string>Акмолинская улица</string>
+  <string>Аксайская улица</string>
+  <string>Аксаковская улица</string>
+  <string>Активная улица</string>
+  <string>Актюбинский переулок</string>
+  <string>Алагирская улица</string>
+  <string>Алая улица</string>
+  <string>Алданская улица</string>
+  <string>Улица Алейникова</string>
+  <string>Улица Александра Блока</string>
+  <string>Улица Александра Печерского</string>
+  <string>Переулок Александровский Спуск</string>
+  <string>Улица Алексея Береста</string>
+  <string>Улица Алексея Русова</string>
+  <string>Алеутская улица</string>
+  <string>Алма-Атинская улица</string>
+  <string>Алмазная улица</string>
+  <string>Алтайская улица</string>
+  <string>Алфавитный переулок</string>
+  <string>Переулок Алябьева</string>
+  <string>Амбарная улица</string>
+  <string>Амбулаторная улица</string>
+  <string>Переулок Амет-Хана Султана</string>
+  <string>Аметистовый переулок</string>
+  <string>Улица Амиряна</string>
+  <string>Амурская улица</string>
+  <string>Анапский переулок</string>
+  <string>Ангарский переулок</string>
+  <string>Андижанский переулок</string>
+  <string>Переулок Андреева</string>
+  <string>Улица Андрея Сладкова</string>
+  <string>Анисовый переулок</string>
+  <string>Переулок Анри Барбюса</string>
+  <string>Антенная улица</string>
+  <string>Апельсиновая улица</string>
+  <string>Апрельский переулок</string>
+  <string>Аральский переулок</string>
+  <string>Араратский переулок</string>
+  <string>Арбузный переулок</string>
+  <string>Улица Арефьева</string>
+  <string>Арзамасская улица</string>
+  <string>Армавирский переулок</string>
+  <string>Армейская улица</string>
+  <string>Армянская улица</string>
+  <string>Ароматный переулок</string>
+  <string>Арсенальная улица</string>
+  <string>Артековский переулок</string>
+  <string>Артельный переулок</string>
+  <string>Артемовская улица</string>
+  <string>Артиллерийская улица</string>
+  <string>Архангельская улица</string>
+  <string>Археологический переулок</string>
+  <string>Архитектурная улица</string>
+  <string>Астраханский переулок</string>
+  <string>Астрономическая улица</string>
+  <string>Улица Атарбекова</string>
+  <string>Атласная улица</string>
+  <string>Атлетический переулок</string>
+  <string>Ахтарский переулок</string>
+  <string>Ашхабадский переулок</string>
+  <string>Аэроклубовский переулок</string>
+  <string>Аэрофлотский переулок</string>
+  <string>Аютинская улица</string>
+  <string>Улица Бабаева</string>
+  <string>Переулок Бабушкина</string>
+  <string>Багаевский переулок</string>
+  <string>Улица Баграмяна</string>
+  <string>Багряный переулок</string>
+  <string>Базарная площадь</string>
+  <string>Байкальская улица</string>
+  <string>Бакинский переулок</string>
+  <string>Улица Бакланова</string>
+  <string>Переулок Балаева</string>
+  <string>Улица Балакирева</string>
+  <string>Балаклавский переулок</string>
+  <string>Балашовская улица</string>
+  <string>Улица Балка</string>
+  <string>Улица Балка Рябинина</string>
+  <string>Балканский переулок</string>
+  <string>Балочная улица</string>
+  <string>Балтийский переулок</string>
+  <string>Барнаульский переулок</string>
+  <string>Бархатный переулок</string>
+  <string>Бастионный переулок</string>
+  <string>Батайский переулок</string>
+  <string>Батумский переулок</string>
+  <string>Батуринская улица</string>
+  <string>Улица Баумана</string>
+  <string>Бахчевой переулок</string>
+  <string>Башкирская улица</string>
+  <string>Улица Бебеля</string>
+  <string>Улица Безымянная Балка</string>
+  <string>Безымянный переулок</string>
+  <string>Белая улица</string>
+  <string>Белгородская улица</string>
+  <string>Улица Белинского</string>
+  <string>Беличья улица</string>
+  <string>Белозерский переулок</string>
+  <string>Белокалитвинская улица</string>
+  <string>Беломорский переулок</string>
+  <string>Белореченская улица</string>
+  <string>Белорусская улица</string>
+  <string>Белоснежный переулок</string>
+  <string>Белостокская улица</string>
+  <string>Переулок Белоусова</string>
+  <string>Улица Беляева</string>
+  <string>Берберовская улица</string>
+  <string>Береговая улица</string>
+  <string>Березовская улица</string>
+  <string>Березовый переулок</string>
+  <string>Бесланский переулок</string>
+  <string>Переулок Беспалого</string>
+  <string>Бессарабская улица</string>
+  <string>Бетонный переулок</string>
+  <string>Улица Бетховена</string>
+  <string>Переулок Бианки</string>
+  <string>Биологическая улица</string>
+  <string>Биржевой переулок</string>
+  <string>Бирюзовый переулок</string>
+  <string>Благая улица</string>
+  <string>Благодатная улица</string>
+  <string>Благополучная улица</string>
+  <string>Благородная улица</string>
+  <string>Блестящая улица</string>
+  <string>Переулок Ближний Тупик</string>
+  <string>Блочный переулок</string>
+  <string>Бобруйский переулок</string>
+  <string>Богатый переулок</string>
+  <string>Богатырский переулок</string>
+  <string>Проспект Богатяновский Спуск</string>
+  <string>Переулок Богачева</string>
+  <string>Улица Богданова</string>
+  <string>Переулок Богураева</string>
+  <string>Богучарский переулок</string>
+  <string>Бодрая улица</string>
+  <string>Боевой переулок</string>
+  <string>Бойцовский переулок</string>
+  <string>Боковский переулок</string>
+  <string>Переулок Болельщиков</string>
+  <string>Больничный переулок</string>
+  <string>Большая Садовая улица</string>
+  <string>Большевистская улица</string>
+  <string>Улица Бондаренко</string>
+  <string>Бордовый переулок</string>
+  <string>Боржомский переулок</string>
+  <string>Бориславский переулок</string>
+  <string>Борисоглебская улица</string>
+  <string>Площадь Борко</string>
+  <string>Улица Борко</string>
+  <string>Переулок Борковского</string>
+  <string>Улица Бородина</string>
+  <string>Бортовая улица</string>
+  <string>Улица Боряна</string>
+  <string>Переулок Ботанический Спуск</string>
+  <string>Бравый переулок</string>
+  <string>Братский переулок</string>
+  <string>Брестская улица</string>
+  <string>Бригадный переулок</string>
+  <string>Улица Брикеля</string>
+  <string>Бронзовый переулок</string>
+  <string>Брусничная улица</string>
+  <string>Брянская улица</string>
+  <string>Бугский переулок</string>
+  <string>Буденновский проспект</string>
+  <string>Буйнакская улица</string>
+  <string>Буквенная улица</string>
+  <string>Букетная улица</string>
+  <string>Переулок Булавина</string>
+  <string>Булановский переулок</string>
+  <string>Булатная улица</string>
+  <string>Бумажный переулок</string>
+  <string>Переулок Буревестник</string>
+  <string>Бурный переулок</string>
+  <string>Буровая улица</string>
+  <string>Бурятский переулок</string>
+  <string>Улица Бусыгина</string>
+  <string>Улица Бушнова</string>
+  <string>Переулок Быкадорова</string>
+  <string>Улица Быковского</string>
+  <string>Былинная улица</string>
+  <string>Быстрый переулок</string>
+  <string>Бытовой переулок</string>
+  <string>Улица Вавилова</string>
+  <string>Вагайский переулок</string>
+  <string>Вагонный переулок</string>
+  <string>Улица Вагулевского</string>
+  <string>Валдайский переулок</string>
+  <string>Валуйский переулок</string>
+  <string>Улица Ванина</string>
+  <string>Улица Варфоломеева</string>
+  <string>Улица Васильева</string>
+  <string>Васильковая улица</string>
+  <string>Улица Васильченко</string>
+  <string>Переулок Васнецова</string>
+  <string>Улица Ватутина</string>
+  <string>Вековой переулок</string>
+  <string>Векторный переулок</string>
+  <string>Великолукская улица</string>
+  <string>Вербная улица</string>
+  <string>Улица Вересаева</string>
+  <string>Вересковая улица</string>
+  <string>Улица Верещагина</string>
+  <string>Верная улица</string>
+  <string>Вертикальная улица</string>
+  <string>Вертолётный переулок</string>
+  <string>Верхнедонской переулок</string>
+  <string>Верхненольная улица</string>
+  <string>Верхняя улица</string>
+  <string>Верхоянский переулок</string>
+  <string>Веселый переулок</string>
+  <string>Весенний переулок</string>
+  <string>Ветвистая улица</string>
+  <string>Ветеранская улица</string>
+  <string>Ветреный переулок</string>
+  <string>Вечерняя улица</string>
+  <string>Вешенский переулок</string>
+  <string>Вешний переулок</string>
+  <string>Взаимная улица</string>
+  <string>Взлетная улица</string>
+  <string>Видный переулок</string>
+  <string>Вильнюсская улица</string>
+  <string>Переулок Винникова</string>
+  <string>Винницкий переулок</string>
+  <string>Виноградный переулок</string>
+  <string>Виражный переулок</string>
+  <string>Улица Висаитова</string>
+  <string>Улица Виталия Ходоша</string>
+  <string>Витаминная улица</string>
+  <string>Витебская улица</string>
+  <string>Вишневый переулок</string>
+  <string>Владивостокский переулок</string>
+  <string>Владикавказская улица</string>
+  <string>Владиленская улица</string>
+  <string>Владимирская улица</string>
+  <string>Внешняя улица</string>
+  <string>Переулок Внутренний Проезд</string>
+  <string>Улица Водников</string>
+  <string>Водоотводный переулок</string>
+  <string>Водопроводный переулок</string>
+  <string>Улица Водопьянова</string>
+  <string>Воздушная улица</string>
+  <string>Улица Возрождения</string>
+  <string>Площадь Воинской Славы</string>
+  <string>Улица Войкова</string>
+  <string>Волгоградская улица</string>
+  <string>Волгодонская улица</string>
+  <string>Волгостроевская улица</string>
+  <string>Волжская улица</string>
+  <string>Улица Волкова</string>
+  <string>Волнистая улица</string>
+  <string>Вологодская улица</string>
+  <string>Волоколамская улица</string>
+  <string>Волочаевский переулок</string>
+  <string>Вольный переулок</string>
+  <string>Вольская улица</string>
+  <string>Воробьиная улица</string>
+  <string>Улица Воровского</string>
+  <string>Воронежская улица</string>
+  <string>Ворошиловский проспект</string>
+  <string>Площадь Восстания</string>
+  <string>Восточная улица</string>
+  <string>Временной переулок</string>
+  <string>Переулок Врубеля</string>
+  <string>Врубовая улица</string>
+  <string>Улица Вселенной</string>
+  <string>Всесоюзная улица</string>
+  <string>Встречная улица</string>
+  <string>Выборгская улица</string>
+  <string>Выгодский переулок</string>
+  <string>Выездная улица</string>
+  <string>Высокая улица</string>
+  <string>Вьюжная улица</string>
+  <string>Улица Вяземцева</string>
+  <string>Вязовский переулок</string>
+  <string>Вятская улица</string>
+  <string>Площадь Гагарина</string>
+  <string>Гагринская улица</string>
+  <string>Гаевский переулок</string>
+  <string>Газетный переулок</string>
+  <string>Улица Гайдара</string>
+  <string>Улица Гаккеля</string>
+  <string>Галактическая улица</string>
+  <string>Гаражный переулок</string>
+  <string>Переулок Гарибальди</string>
+  <string>Гармоничная улица</string>
+  <string>Гарнизонный переулок</string>
+  <string>Улица Гастелло</string>
+  <string>Гатчинская улица</string>
+  <string>Гвардейская площадь</string>
+  <string>Гвардейский переулок</string>
+  <string>Гвоздичная улица</string>
+  <string>Площадь Геворка Вартаняна</string>
+  <string>Геленджикский переулок</string>
+  <string>Переулок Гельца</string>
+  <string>Геодезическая улица</string>
+  <string>Геологическая улица</string>
+  <string>Георгиевская улица</string>
+  <string>Гераневая улица</string>
+  <string>Улица Герасименко</string>
+  <string>Улица Герцена</string>
+  <string>Гжельский переулок</string>
+  <string>Гибкая улица</string>
+  <string>Улица Гикало</string>
+  <string>Гипсовая улица</string>
+  <string>Главная улица</string>
+  <string>Гладкая улица</string>
+  <string>Переулок Глазунова</string>
+  <string>Глинистый переулок</string>
+  <string>Улица Глинки</string>
+  <string>Глиссерный переулок</string>
+  <string>Глубокий переулок</string>
+  <string>Переулок Гнесина</string>
+  <string>Улица Говорова</string>
+  <string>Гоголевская улица</string>
+  <string>Голубиный переулок</string>
+  <string>Гомельская улица</string>
+  <string>Улица Гончарова</string>
+  <string>Улица Горбачева</string>
+  <string>Горизонтальная улица</string>
+  <string>Горийский переулок</string>
+  <string>Горловская улица</string>
+  <string>Горный переулок</string>
+  <string>Улица Города Волос</string>
+  <string>Улица Города Ле-Ман</string>
+  <string>Улица Городовикова</string>
+  <string>Городская улица</string>
+  <string>Гороховый переулок</string>
+  <string>Горская улица</string>
+  <string>Горсоветская улица</string>
+  <string>Проспект Горшкова</string>
+  <string>Госпитальный переулок</string>
+  <string>Гостеприимная улица</string>
+  <string>Переулок Готвальда</string>
+  <string>Переулок Грабаря</string>
+  <string>Гравитационная улица</string>
+  <string>Гражданская улица</string>
+  <string>Гранатовая улица</string>
+  <string>Граненная улица</string>
+  <string>Гранитная улица</string>
+  <string>Грациозная улица</string>
+  <string>Улица Грекова</string>
+  <string>Греческий переулок</string>
+  <string>Улица Гриба</string>
+  <string>Грибной переулок</string>
+  <string>Грибоедовский переулок</string>
+  <string>Улица Гризодубовой</string>
+  <string>Улица Грисенко</string>
+  <string>Гродненский переулок</string>
+  <string>Грозненский переулок</string>
+  <string>Громкий переулок</string>
+  <string>Громовая улица</string>
+  <string>Грузинский переулок</string>
+  <string>Грунтовая улица</string>
+  <string>Грушевский переулок</string>
+  <string>Улица Губаревича</string>
+  <string>Гудермесский переулок</string>
+  <string>Гуковский переулок</string>
+  <string>Гулкий переулок</string>
+  <string>Гурьевская улица</string>
+  <string>Гусарская улица</string>
+  <string>Улица Гусева</string>
+  <string>Дагестанский переулок</string>
+  <string>Дальневосточная улица</string>
+  <string>Дальний переулок</string>
+  <string>Улица Дарвина</string>
+  <string>Дачная улица</string>
+  <string>Двинская улица</string>
+  <string>Дебальцевская улица</string>
+  <string>Девичий переулок</string>
+  <string>Переулок Дежнева</string>
+  <string>Переулок Декабристов</string>
+  <string>Декоративный переулок</string>
+  <string>Делегатская улица</string>
+  <string>Деловая улица</string>
+  <string>Демократическая улица</string>
+  <string>Улица Демьяна Бедного</string>
+  <string>Переулок Денисова</string>
+  <string>Депутатская улица</string>
+  <string>Дербентский переулок</string>
+  <string>Деревенская улица</string>
+  <string>Деревообделочный переулок</string>
+  <string>Переулок Деревянко</string>
+  <string>Державинский переулок</string>
+  <string>Десантный переулок</string>
+  <string>Детальный переулок</string>
+  <string>Детская улица</string>
+  <string>Джамбульский переулок</string>
+  <string>Улица Джапаридзе</string>
+  <string>Переулок Дзержинского</string>
+  <string>Дивный переулок</string>
+  <string>Дизельная улица</string>
+  <string>Улица Димитрова</string>
+  <string>Динамичная улица</string>
+  <string>Длинная улица</string>
+  <string>Улица Дмитрия Петрова</string>
+  <string>Дневная улица</string>
+  <string>Днепровский переулок</string>
+  <string>Днепроградская улица</string>
+  <string>Днепродзержинский переулок</string>
+  <string>Днепропетровская улица</string>
+  <string>Днепростроевская улица</string>
+  <string>Днестровская улица</string>
+  <string>Доблестный переулок</string>
+  <string>Добрая улица</string>
+  <string>Площадь Добровольского</string>
+  <string>Улица Добровольского</string>
+  <string>Улица Добролюбова</string>
+  <string>Добрососедская улица</string>
+  <string>Доброхимовская улица</string>
+  <string>Улица Доватора</string>
+  <string>Дозорный переулок</string>
+  <string>Докторский переулок</string>
+  <string>Долгая улица</string>
+  <string>Долгожданная улица</string>
+  <string>Долевой переулок</string>
+  <string>Долинская улица</string>
+  <string>Доломановский переулок</string>
+  <string>Домашняя улица</string>
+  <string>Домовитая улица</string>
+  <string>Донбассовский переулок</string>
+  <string>Донецкий переулок</string>
+  <string>Улица Донподход</string>
+  <string>Донская улица</string>
+  <string>Дополнительная улица</string>
+  <string>Дорожная улица</string>
+  <string>Площадь Дорожных Строителей</string>
+  <string>Улица Достоевского</string>
+  <string>Достойный переулок</string>
+  <string>Доступный переулок</string>
+  <string>Доходная улица</string>
+  <string>Драгоценная улица</string>
+  <string>Драгунская улица</string>
+  <string>Улица Дранко</string>
+  <string>Древесный переулок</string>
+  <string>Бульвар Дружбы</string>
+  <string>Площадь Дружинников</string>
+  <string>Улица Дрыгина</string>
+  <string>Дубовский переулок</string>
+  <string>Улица Дубовского</string>
+  <string>Дубравный переулок</string>
+  <string>Улица Думенко</string>
+  <string>Переулок Думский Проезд</string>
+  <string>Переулок Думчева</string>
+  <string>Переулок Дунаевского</string>
+  <string>Дунайский переулок</string>
+  <string>Улица Дундича</string>
+  <string>Душевный переулок</string>
+  <string>Душистый переулок</string>
+  <string>Дымчатая улица</string>
+  <string>Переулок Евгения Байды</string>
+  <string>Улица Евдокимова</string>
+  <string>Егорлыкский переулок</string>
+  <string>Ежевичная улица</string>
+  <string>Ейская улица</string>
+  <string>Еланский переулок</string>
+  <string>Елецкий переулок</string>
+  <string>Еловая улица</string>
+  <string>Улица Еляна</string>
+  <string>Енисейская улица</string>
+  <string>Ереванская улица</string>
+  <string>Улица Еременко</string>
+  <string>Переулок Ермака</string>
+  <string>Улица Ефремова</string>
+  <string>Жаркий переулок</string>
+  <string>Жасминовая улица</string>
+  <string>Жатвенный переулок</string>
+  <string>Улица Жданова</string>
+  <string>Железноводский переулок</string>
+  <string>Железногорский переулок</string>
+  <string>Улица Железнодорожный Верхний Проезд</string>
+  <string>Улица Железнодорожный Нижний Проезд</string>
+  <string>Улица Железнякова</string>
+  <string>Переулок Желябова</string>
+  <string>Жемчужный переулок</string>
+  <string>Женьшеневая улица</string>
+  <string>Живописная улица</string>
+  <string>Жигулевский переулок</string>
+  <string>Жизненный переулок</string>
+  <string>Жилой переулок</string>
+  <string>Житная улица</string>
+  <string>Житомирский переулок</string>
+  <string>Жлобинский переулок</string>
+  <string>Улица Жмайлова</string>
+  <string>Улица Жуковского</string>
+  <string>Переулок Журавлева</string>
+  <string>Журнальная улица</string>
+  <string>Забавная улица</string>
+  <string>Забайкальский переулок</string>
+  <string>Заветинская улица</string>
+  <string>Завкомовская улица</string>
+  <string>Заводская улица</string>
+  <string>Загадочный переулок</string>
+  <string>Загородная улица</string>
+  <string>Загорская улица</string>
+  <string>Улица Загребаева</string>
+  <string>Задонская улица</string>
+  <string>Задорная улица</string>
+  <string>Закарпатский переулок</string>
+  <string>Закатная улица</string>
+  <string>Улица Закруткина</string>
+  <string>Заметная улица</string>
+  <string>Замкнутый переулок</string>
+  <string>Западная улица</string>
+  <string>Переулок Западный Карьер</string>
+  <string>Заповедная улица</string>
+  <string>Запорожская улица</string>
+  <string>Запрудный переулок</string>
+  <string>Заречная улица</string>
+  <string>Зарядный переулок</string>
+  <string>Заслуженная улица</string>
+  <string>Площадь Защитников Отечества</string>
+  <string>Защитный переулок</string>
+  <string>Звездная улица</string>
+  <string>Звонкая улица</string>
+  <string>Звучная улица</string>
+  <string>Здоровья площадь</string>
+  <string>Зеленая улица</string>
+  <string>Зеленодольская улица</string>
+  <string>Земельная улица</string>
+  <string>Земляничная улица</string>
+  <string>Улица Зенитчиков</string>
+  <string>Зеркальный переулок</string>
+  <string>Зернистый переулок</string>
+  <string>Зерноградская улица</string>
+  <string>Зимний переулок</string>
+  <string>Зимовниковский переулок</string>
+  <string>Златоустовская улица</string>
+  <string>Улица Змиевский Проезд</string>
+  <string>Знакомая улица</string>
+  <string>Знаменский переулок</string>
+  <string>Знатный переулок</string>
+  <string>Знойный переулок</string>
+  <string>Улица Зои Космодемьянской</string>
+  <string>Золотистая улица</string>
+  <string>Зональный переулок</string>
+  <string>Зоологическая улица</string>
+  <string>Улица Зорге</string>
+  <string>Зоркий переулок</string>
+  <string>Зрелищная улица</string>
+  <string>Зрелый переулок</string>
+  <string>Зырянская улица</string>
+  <string>Улица Зявкина</string>
+  <string>Улица Ивана Франко</string>
+  <string>Улица Ивановского</string>
+  <string>Улица Ивахненко</string>
+  <string>Ивовая улица</string>
+  <string>Игарский переулок</string>
+  <string>Игровая улица</string>
+  <string>Ижевская улица</string>
+  <string>Изведанный переулок</string>
+  <string>Известный переулок</string>
+  <string>Извилистая улица</string>
+  <string>Издательская улица</string>
+  <string>Измаильский переулок</string>
+  <string>Измайловский бульвар</string>
+  <string>Изобильная улица</string>
+  <string>Изразцовая улица</string>
+  <string>Изумрудная улица</string>
+  <string>Изыскательский переулок</string>
+  <string>Иловайская улица</string>
+  <string>Переулок Ильина</string>
+  <string>Улица Ильича</string>
+  <string>Ильменский переулок</string>
+  <string>Имбирная улица</string>
+  <string>Импульсная улица</string>
+  <string>Инженерная улица</string>
+  <string>Инжирный переулок</string>
+  <string>Инициативная улица</string>
+  <string>Переулок Иноземцева</string>
+  <string>Инструментальная улица</string>
+  <string>Интенсивная улица</string>
+  <string>Интересный переулок</string>
+  <string>Интернациональная улица</string>
+  <string>Иркутский переулок</string>
+  <string>Иртышский переулок</string>
+  <string>Улица Искателей</string>
+  <string>Искристая улица</string>
+  <string>Искрянский переулок</string>
+  <string>Искусственная улица</string>
+  <string>Испытательная улица</string>
+  <string>Улица Ищенко</string>
+  <string>Улица Кабалевского</string>
+  <string>Кабардинская улица</string>
+  <string>Кавалерийский переулок</string>
+  <string>Кавказский переулок</string>
+  <string>Кагальницкая улица</string>
+  <string>Кадровая улица</string>
+  <string>Казанская улица</string>
+  <string>Казахская улица</string>
+  <string>Казахстанский переулок</string>
+  <string>Казачий переулок</string>
+  <string>Казбекский переулок</string>
+  <string>Календарная улица</string>
+  <string>Улица Калинина</string>
+  <string>Калининградская улица</string>
+  <string>Калиновая улица</string>
+  <string>Калиновская улица</string>
+  <string>Калитвинская улица</string>
+  <string>Калужская улица</string>
+  <string>Каляевский переулок</string>
+  <string>Каменобродская улица</string>
+  <string>Каменогорская улица</string>
+  <string>Каменский переулок</string>
+  <string>Улица Камо</string>
+  <string>Камская улица</string>
+  <string>Камчатский переулок</string>
+  <string>Камышинская улица</string>
+  <string>Камышовый переулок</string>
+  <string>Канатная улица</string>
+  <string>Канонерский переулок</string>
+  <string>Кантемировская улица</string>
+  <string>Капитальная улица</string>
+  <string>Капитанская улица</string>
+  <string>Улица Капустина</string>
+  <string>Караванная улица</string>
+  <string>Каракумская улица</string>
+  <string>Улица Каратаева</string>
+  <string>Улица Карбышева</string>
+  <string>Карельский переулок</string>
+  <string>Площадь Карла Маркса</string>
+  <string>Карпатская улица</string>
+  <string>Картинная улица</string>
+  <string>Карьерный переулок</string>
+  <string>Касательный переулок</string>
+  <string>Каскадная улица</string>
+  <string>Каслинская улица</string>
+  <string>Каспийская улица</string>
+  <string>Касторная улица</string>
+  <string>Улица Катаева</string>
+  <string>Кафельный переулок</string>
+  <string>Каховская улица</string>
+  <string>Каширская улица</string>
+  <string>Каштановая улица</string>
+  <string>Каяльская улица</string>
+  <string>Улица Каяни</string>
+  <string>Квартальный переулок</string>
+  <string>Кварцевый переулок</string>
+  <string>Кедровая улица</string>
+  <string>Кемеровская улица</string>
+  <string>Керамическая улица</string>
+  <string>Керченский переулок</string>
+  <string>Переулок Кецховели</string>
+  <string>Киевский переулок</string>
+  <string>Кизиловый переулок</string>
+  <string>Улица Кизитериновская Балка</string>
+  <string>Кизлярская улица</string>
+  <string>Улица КИМа</string>
+  <string>Кипарисовый переулок</string>
+  <string>Кипучий переулок</string>
+  <string>Киргизская улица</string>
+  <string>Кирилловский переулок</string>
+  <string>Кировоградская улица</string>
+  <string>Кировский проспект</string>
+  <string>Кирпичный переулок</string>
+  <string>Кисловодский переулок</string>
+  <string>Кислородный переулок</string>
+  <string>Кишиневская улица</string>
+  <string>Клавишный переулок</string>
+  <string>Улица Клары Цеткин</string>
+  <string>Клеверная улица</string>
+  <string>Кленовый переулок</string>
+  <string>Клинский переулок</string>
+  <string>Клубная улица</string>
+  <string>Клубничная улица</string>
+  <string>Клюквенный переулок</string>
+  <string>Ключевая улица</string>
+  <string>Клязьминский переулок</string>
+  <string>Книжная улица</string>
+  <string>Переулок Коблова</string>
+  <string>Улица Кобяковка</string>
+  <string>Переулок Ковалева</string>
+  <string>Улица Ковалевской</string>
+  <string>Ковельский переулок</string>
+  <string>Ковыльный переулок</string>
+  <string>Улица Козлова</string>
+  <string>Улица Коккинаки</string>
+  <string>Коллективная улица</string>
+  <string>Колодезная улица</string>
+  <string>Колокольчиковый переулок</string>
+  <string>Коломенский переулок</string>
+  <string>Колосистая улица</string>
+  <string>Кольцовский переулок</string>
+  <string>Бульвар Комарова</string>
+  <string>Площадь Комбайностроителей</string>
+  <string>Улица Комбайностроителей</string>
+  <string>Улица Коминтерна</string>
+  <string>Комиссаровский переулок</string>
+  <string>Комитетский переулок</string>
+  <string>Коммунальная улица</string>
+  <string>Улица Коммунаров</string>
+  <string>Коммунистический проспект</string>
+  <string>Компактный переулок</string>
+  <string>Комсомольская площадь</string>
+  <string>Комсомольская улица</string>
+  <string>Комфортный переулок</string>
+  <string>Конечная улица</string>
+  <string>Конный переулок</string>
+  <string>Переулок Коновалова</string>
+  <string>Конотопский переулок</string>
+  <string>Константиновская улица</string>
+  <string>Конституционная улица</string>
+  <string>Конструкторский переулок</string>
+  <string>Контактный переулок</string>
+  <string>Кооперативная улица</string>
+  <string>Корабельный переулок</string>
+  <string>Коралловая улица</string>
+  <string>Переулок Коржушко</string>
+  <string>Корневой переулок</string>
+  <string>Улица Коровкина</string>
+  <string>Площадь Королева</string>
+  <string>Проспект Королева</string>
+  <string>Переулок Короленко</string>
+  <string>Короткий переулок</string>
+  <string>Переулок Косачева</string>
+  <string>Космическая улица</string>
+  <string>Площадь Космонавтов</string>
+  <string>Проспект Космонавтов</string>
+  <string>Улица Костенко</string>
+  <string>Костровой переулок</string>
+  <string>Костромская улица</string>
+  <string>Котельный переулок</string>
+  <string>Улица Котовского</string>
+  <string>Кофейный переулок</string>
+  <string>Кочевая улица</string>
+  <string>Улица Кочубея</string>
+  <string>Переулок Кошевого</string>
+  <string>Краеведческая улица</string>
+  <string>Краевой переулок</string>
+  <string>Крайняя улица</string>
+  <string>Крайсовпрофовская улица</string>
+  <string>Краматорская улица</string>
+  <string>Переулок Крамского</string>
+  <string>Крапивный переулок</string>
+  <string>Красивая улица</string>
+  <string>Улица Красина</string>
+  <string>Красная улица</string>
+  <string>Красноаксайская улица</string>
+  <string>Красноармейская улица</string>
+  <string>Красноводская улица</string>
+  <string>Красногвардейская улица</string>
+  <string>Красногорский переулок</string>
+  <string>Краснознаменный переулок</string>
+  <string>Переулок Красной Звезды</string>
+  <string>Краснокамский переулок</string>
+  <string>Краснокурсантская улица</string>
+  <string>Краснополянская улица</string>
+  <string>Краснопресненская улица</string>
+  <string>Красносельская улица</string>
+  <string>Красносулинский переулок</string>
+  <string>Краснофлотский переулок</string>
+  <string>Переулок Краснощекова</string>
+  <string>Красноярский переулок</string>
+  <string>Улица Красных Зорь</string>
+  <string>Переулок Красных Партизан</string>
+  <string>Переулок Краснянского</string>
+  <string>Красочная улица</string>
+  <string>Краткая улица</string>
+  <string>Кременчугская улица</string>
+  <string>Кремовый переулок</string>
+  <string>Крепкая улица</string>
+  <string>Крепостной переулок</string>
+  <string>Крестьянский переулок</string>
+  <string>Крещенская улица</string>
+  <string>Улица Кржижановского</string>
+  <string>Улица Кривоноса</string>
+  <string>Криворожская улица</string>
+  <string>Кривошлыковский переулок</string>
+  <string>Кривянский переулок</string>
+  <string>Криничная улица</string>
+  <string>Кристальный переулок</string>
+  <string>Кронштадтская улица</string>
+  <string>Улица Кропоткина</string>
+  <string>Круглая площадь</string>
+  <string>Улица Крупской</string>
+  <string>Улица Кручинина</string>
+  <string>Крылатый переулок</string>
+  <string>Крыловской переулок</string>
+  <string>Крымский переулок</string>
+  <string>Переулок Крючкова</string>
+  <string>Кубанский переулок</string>
+  <string>Кудрявая улица</string>
+  <string>Кузбасский переулок</string>
+  <string>Кузнецкий переулок</string>
+  <string>Кузнецкстроевский переулок</string>
+  <string>Кузнечная улица</string>
+  <string>Улица Куйбышева</string>
+  <string>Кукурузный переулок</string>
+  <string>Улица Кулагина</string>
+  <string>Куликовская улица</string>
+  <string>Культурная улица</string>
+  <string>Кумженская улица</string>
+  <string>Кумский переулок</string>
+  <string>Купеческая улица</string>
+  <string>Улица Куприна</string>
+  <string>Курганная улица</string>
+  <string>Куренной переулок</string>
+  <string>Курильский переулок</string>
+  <string>Курортная улица</string>
+  <string>Улица Курсантов</string>
+  <string>Курская улица</string>
+  <string>Улица Курчатова</string>
+  <string>Кустанайская улица</string>
+  <string>Кутаисский переулок</string>
+  <string>Улица Кутузова</string>
+  <string>Кущевский переулок</string>
+  <string>Лавандовая улица</string>
+  <string>Лавровая улица</string>
+  <string>Лагерная улица</string>
+  <string>Ладная улица</string>
+  <string>Ладожский переулок</string>
+  <string>Лазаревская улица</string>
+  <string>Улица Лазо</string>
+  <string>Лазурная улица</string>
+  <string>Лакомая улица</string>
+  <string>Ландшафтная улица</string>
+  <string>Ландышевая улица</string>
+  <string>Улица Ларина</string>
+  <string>Ласковый переулок</string>
+  <string>Латвийская улица</string>
+  <string>Лебединская улица</string>
+  <string>Лебяжий переулок</string>
+  <string>Улица Леваневского</string>
+  <string>Переулок Левитана</string>
+  <string>Левобережная улица</string>
+  <string>Переулок Легкий Проезд</string>
+  <string>Ледниковая улица</string>
+  <string>Ледяная улица</string>
+  <string>Лекальная улица</string>
+  <string>Улица Лелюшенко</string>
+  <string>Лензаводская улица</string>
+  <string>Площадь Ленина</string>
+  <string>Проспект Ленина</string>
+  <string>Ленинаканская улица</string>
+  <string>Ленинградская улица</string>
+  <string>Лениногорская улица</string>
+  <string>Ленкоранский переулок</string>
+  <string>Ленточная улица</string>
+  <string>Переулок Леонтьева</string>
+  <string>Лепестковая улица</string>
+  <string>Лермонтовская улица</string>
+  <string>Улица Лескова</string>
+  <string>Лесная улица</string>
+  <string>Лесозащитная улица</string>
+  <string>Лесопарковая улица</string>
+  <string>Летный переулок</string>
+  <string>Летописная улица</string>
+  <string>Переулок Летчиков</string>
+  <string>Лечебный переулок</string>
+  <string>Улица Либкнехта</string>
+  <string>Ликбезовский переулок</string>
+  <string>Лиловая улица</string>
+  <string>Лимоновый переулок</string>
+  <string>Линейная улица</string>
+  <string>Липецкая улица</string>
+  <string>Липовая улица</string>
+  <string>Лирический переулок</string>
+  <string>Лисичанская улица</string>
+  <string>Лиственная улица</string>
+  <string>Улица Листопадова</string>
+  <string>Улица Литвинова</string>
+  <string>Литейный переулок</string>
+  <string>Литературная улица</string>
+  <string>Литовская улица</string>
+  <string>Улица Лихачева</string>
+  <string>Лихой переулок</string>
+  <string>Улица Лобачевского</string>
+  <string>Ловкий переулок</string>
+  <string>Локомотивная улица</string>
+  <string>Ломоносовская улица</string>
+  <string>Переулок Лосева</string>
+  <string>Лосиный переулок</string>
+  <string>Лубяная улица</string>
+  <string>Луганский переулок</string>
+  <string>Переулок Луначарского</string>
+  <string>Переулок Лунина</string>
+  <string>Лунный переулок</string>
+  <string>Лучевая улица</string>
+  <string>Лучистая улица</string>
+  <string>Лыжная улица</string>
+  <string>Львовская улица</string>
+  <string>Льняной переулок</string>
+  <string>Любимая улица</string>
+  <string>Любительская улица</string>
+  <string>Улица Лянде</string>
+  <string>Улица Ляпидевского</string>
+  <string>Магаданский переулок</string>
+  <string>Магистральная улица</string>
+  <string>Магнитный переулок</string>
+  <string>Магнитогорская улица</string>
+  <string>Улица Мадояна</string>
+  <string>Мажорный переулок</string>
+  <string>Улица Мазурова</string>
+  <string>Майкопский переулок</string>
+  <string>Улица Макарова</string>
+  <string>Макеевский переулок</string>
+  <string>Маковая улица</string>
+  <string>Улица Максима Горького</string>
+  <string>Малахитовая улица</string>
+  <string>Малаховская улица</string>
+  <string>Малиновая улица</string>
+  <string>Улица Малиновского</string>
+  <string>Малый переулок</string>
+  <string>Улица Малюгиной</string>
+  <string>Манежная улица</string>
+  <string>Манычский переулок</string>
+  <string>Маратовский переулок</string>
+  <string>Марийский переулок</string>
+  <string>Мариупольский переулок</string>
+  <string>Улица Маркова</string>
+  <string>Марксистский переулок</string>
+  <string>Марсовый переулок</string>
+  <string>Переулок Марти</string>
+  <string>Улица Мартовицкого</string>
+  <string>Мартыновский переулок</string>
+  <string>Переулок Маршака</string>
+  <string>Проспект Маршала Жукова</string>
+  <string>Маршальская улица</string>
+  <string>Переулок Маскаева</string>
+  <string>Мастеровой переулок</string>
+  <string>Масштабная улица</string>
+  <string>Материнская улица</string>
+  <string>Улица Матросова</string>
+  <string>Мачтовая улица</string>
+  <string>Переулок Машанина</string>
+  <string>Машинный переулок</string>
+  <string>Машиностроительный переулок</string>
+  <string>Переулок Маяковского</string>
+  <string>Мебельный переулок</string>
+  <string>Медальный переулок</string>
+  <string>Медведицкий переулок</string>
+  <string>Медицинская улица</string>
+  <string>Медногорская улица</string>
+  <string>Медный переулок</string>
+  <string>Медовая улица</string>
+  <string>Международная улица</string>
+  <string>Межевая улица</string>
+  <string>Мезенский переулок</string>
+  <string>Мелитопольская улица</string>
+  <string>Мелодичная улица</string>
+  <string>Мельничная улица</string>
+  <string>Площадь Менделеева</string>
+  <string>Улица Менделеева</string>
+  <string>Улица Менжинского</string>
+  <string>Меотская улица</string>
+  <string>Местный переулок</string>
+  <string>Металлургическая улица</string>
+  <string>Метровая улица</string>
+  <string>Улица Механизаторов</string>
+  <string>Мечетинская улица</string>
+  <string>Улица Мечникова</string>
+  <string>Мигулинский переулок</string>
+  <string>Милая улица</string>
+  <string>Миллеровская улица</string>
+  <string>Улица Мильчакова</string>
+  <string>Милютинский переулок</string>
+  <string>Улица Минаева</string>
+  <string>Миндалевый переулок</string>
+  <string>Минераловодская улица</string>
+  <string>Минеральная улица</string>
+  <string>Улица Минина</string>
+  <string>Минский переулок</string>
+  <string>Площадь Мира</string>
+  <string>Проспект Мира</string>
+  <string>Улица Миронова</string>
+  <string>Миусский переулок</string>
+  <string>Мифический переулок</string>
+  <string>Проспект Михаила Нагибина</string>
+  <string>Улица Михаила Пуговкина</string>
+  <string>Площадь Мичурина</string>
+  <string>Мичуринская улица</string>
+  <string>Могилевский переулок</string>
+  <string>Можайская улица</string>
+  <string>Мозаичная улица</string>
+  <string>Моздокский переулок</string>
+  <string>Улица Моисеенко</string>
+  <string>Молдавский переулок</string>
+  <string>Молодежная улица</string>
+  <string>Молодогвардейский переулок</string>
+  <string>Улица Молокова</string>
+  <string>Молочный переулок</string>
+  <string>Монгольская улица</string>
+  <string>Монетный переулок</string>
+  <string>Монолитный переулок</string>
+  <string>Монтажная улица</string>
+  <string>Улица Мопра</string>
+  <string>Морозный переулок</string>
+  <string>Морозовская улица</string>
+  <string>Московская улица</string>
+  <string>Моторный переулок</string>
+  <string>Мраморная улица</string>
+  <string>Мужественный переулок</string>
+  <string>Музыкальный переулок</string>
+  <string>Улица Муравьева</string>
+  <string>Улица Мурлычева</string>
+  <string>Мурманская улица</string>
+  <string>Муромская улица</string>
+  <string>Мускатная улица</string>
+  <string>Улица Мусоргского</string>
+  <string>Улица Мушкетова</string>
+  <string>Улица Мыльникова</string>
+  <string>Мягкий переулок</string>
+  <string>Улица Мясникова</string>
+  <string>Мятная улица</string>
+  <string>Набережная улица</string>
+  <string>Нагорная улица</string>
+  <string>Надежная улица</string>
+  <string>Улица Назарько</string>
+  <string>Наземная улица</string>
+  <string>Наклонный переулок</string>
+  <string>Улица Налбандяна</string>
+  <string>Нальчикский переулок</string>
+  <string>Улица Нансена</string>
+  <string>Напорная улица</string>
+  <string>Нарвская улица</string>
+  <string>Улица Нариманова</string>
+  <string>Улица Народного Ополчения</string>
+  <string>Народный переулок</string>
+  <string>Нарядный переулок</string>
+  <string>Научная улица</string>
+  <string>Улица Нахимова</string>
+  <string>Нахичеванский переулок</string>
+  <string>Небесный переулок</string>
+  <string>Невельская улица</string>
+  <string>Неверовский переулок</string>
+  <string>Невская улица</string>
+  <string>Переулок Невысокий Спуск</string>
+  <string>Нежинская улица</string>
+  <string>Нежный переулок</string>
+  <string>Незабудковый переулок</string>
+  <string>Неклиновская улица</string>
+  <string>Неклиновский переулок</string>
+  <string>Некрасовская улица</string>
+  <string>Нектарная улица</string>
+  <string>Улица Немировича-Данченко</string>
+  <string>Необычная улица</string>
+  <string>Нерестовый переулок</string>
+  <string>Неровный переулок</string>
+  <string>Несветайский переулок</string>
+  <string>Переулок Нестерова</string>
+  <string>Улица Нефедова</string>
+  <string>Нефритовая улица</string>
+  <string>Нефтегорская улица</string>
+  <string>Переулок Нефтекачка</string>
+  <string>Нефтяной переулок</string>
+  <string>Нижегородская улица</string>
+  <string>Нижнебульварная улица</string>
+  <string>Нижнедонская улица</string>
+  <string>Нижненольная улица</string>
+  <string>Нижняя улица</string>
+  <string>Улица Нижняя Балка</string>
+  <string>Улица Никитина</string>
+  <string>Улица Никулиной</string>
+  <string>Улица Новаторов</string>
+  <string>Новая улица</string>
+  <string>Новгородская улица</string>
+  <string>Новоегорлыкская улица</string>
+  <string>Новозыбковский переулок</string>
+  <string>Новокубанский переулок</string>
+  <string>Новолесная улица</string>
+  <string>Новомосковская улица</string>
+  <string>Новополоцкая улица</string>
+  <string>Новороссийский переулок</string>
+  <string>Новоселовская улица</string>
+  <string>Новосибирский переулок</string>
+  <string>Новостроевская улица</string>
+  <string>Ногинская улица</string>
+  <string>Улица Нозадзе</string>
+  <string>Норильский переулок</string>
+  <string>Улица Носова</string>
+  <string>Ноябрьская улица</string>
+  <string>Обаятельная улица</string>
+  <string>Обзорная улица</string>
+  <string>Обильная улица</string>
+  <string>Облачная улица</string>
+  <string>Облепиховый переулок</string>
+  <string>Обливская улица</string>
+  <string>Улица Обороны</string>
+  <string>Образцовая улица</string>
+  <string>Обский переулок</string>
+  <string>Обуховский переулок</string>
+  <string>Общественный переулок</string>
+  <string>Улица Объединения</string>
+  <string>Объездная улица</string>
+  <string>Овощной переулок</string>
+  <string>Овражный переулок</string>
+  <string>Улица Оганова</string>
+  <string>Улица Огарева</string>
+  <string>Огневая улица</string>
+  <string>Огородная улица</string>
+  <string>Переулок ОГПУ</string>
+  <string>Одесская улица</string>
+  <string>Переулок Одесский Проезд</string>
+  <string>Одиночная улица</string>
+  <string>Односторонняя улица</string>
+  <string>Одоевский переулок</string>
+  <string>Одуванчиковый переулок</string>
+  <string>Озаренная улица</string>
+  <string>Озерная улица</string>
+  <string>Озимый переулок</string>
+  <string>Околичная улица</string>
+  <string>Окраинная улица</string>
+  <string>Окружная улица</string>
+  <string>Октябрьская площадь</string>
+  <string>Парк Октябрьской Революции</string>
+  <string>Оливковая улица</string>
+  <string>Олимпийский переулок</string>
+  <string>Ольгинская улица</string>
+  <string>Ольховский переулок</string>
+  <string>Омская улица</string>
+  <string>Онежская улица</string>
+  <string>Оптический переулок</string>
+  <string>Оранжевый переулок</string>
+  <string>Орбитальная улица</string>
+  <string>Переулок Орджоникидзе</string>
+  <string>Оренбургский переулок</string>
+  <string>Орехово-Зуевский переулок</string>
+  <string>Ореховый переулок</string>
+  <string>Орловская улица</string>
+  <string>Орская улица</string>
+  <string>Оружейный переулок</string>
+  <string>Оршанский переулок</string>
+  <string>Улица Освобождения</string>
+  <string>Осевая улица</string>
+  <string>Осенняя улица</string>
+  <string>Осетинский переулок</string>
+  <string>Осиновый переулок</string>
+  <string>Улица Осипенко</string>
+  <string>Основная улица</string>
+  <string>Особенная улица</string>
+  <string>Осовиахимовский переулок</string>
+  <string>Островная улица</string>
+  <string>Парк Островского</string>
+  <string>Переулок Островского</string>
+  <string>Отважный переулок</string>
+  <string>Отдельный переулок</string>
+  <string>Улица Отдыха</string>
+  <string>Отечественный переулок</string>
+  <string>Открытая улица</string>
+  <string>Отрадный переулок</string>
+  <string>Офицерская улица</string>
+  <string>Охотский переулок</string>
+  <string>Очаковская улица</string>
+  <string>Улица Павленко</string>
+  <string>Улица Павлова</string>
+  <string>Павлодарская улица</string>
+  <string>Памирский переулок</string>
+  <string>Памятная улица</string>
+  <string>Улица Пановой</string>
+  <string>Панорамная улица</string>
+  <string>Улица Панфиловцев</string>
+  <string>Парадная улица</string>
+  <string>Парашютная улица</string>
+  <string>Улица Парижской Коммуны</string>
+  <string>Парковый переулок</string>
+  <string>Парниковый переулок</string>
+  <string>Паровозный переулок</string>
+  <string>Партизанский переулок</string>
+  <string>Парусный переулок</string>
+  <string>Улица Пархоменко</string>
+  <string>Пасечный переулок</string>
+  <string>Улица Патканяна</string>
+  <string>Патриотическая улица</string>
+  <string>Улица Паустовского</string>
+  <string>Пахотная улица</string>
+  <string>Улица Пацаева</string>
+  <string>Певчий переулок</string>
+  <string>Педагогический переулок</string>
+  <string>Пейзажная улица</string>
+  <string>Пекарный переулок</string>
+  <string>Пензенский переулок</string>
+  <string>Улица Первеевой</string>
+  <string>Первомайская площадь</string>
+  <string>Первоцветная улица</string>
+  <string>Передовая улица</string>
+  <string>Перекопская улица</string>
+  <string>Пермская улица</string>
+  <string>Перовский переулок</string>
+  <string>Персиановский переулок</string>
+  <string>Персиковая улица</string>
+  <string>Песенная улица</string>
+  <string>Улица Пескова</string>
+  <string>Песочный переулок</string>
+  <string>Улица Пестеля</string>
+  <string>Пестрая улица</string>
+  <string>Песчаная улица</string>
+  <string>Песчанокопская улица</string>
+  <string>Улица Петрашевского</string>
+  <string>Улица Петренко</string>
+  <string>Петровская улица</string>
+  <string>Улица Петрожицкого</string>
+  <string>Петрозаводская улица</string>
+  <string>Петропавловский переулок</string>
+  <string>Печатная улица</string>
+  <string>Печенежская улица</string>
+  <string>Печорская улица</string>
+  <string>Пешеходный переулок</string>
+  <string>Улица Пешкова</string>
+  <string>Пикетная улица</string>
+  <string>Улица Пилотов</string>
+  <string>Пинский переулок</string>
+  <string>Пирамидная улица</string>
+  <string>Улица Пирогова</string>
+  <string>Улица Писарева</string>
+  <string>Писательская улица</string>
+  <string>Улица Писемского</string>
+  <string>Пихтовый переулок</string>
+  <string>Плавный переулок</string>
+  <string>Планерная улица</string>
+  <string>Планетная улица</string>
+  <string>Бульвар Платова</string>
+  <string>Улица Платона Кляты</string>
+  <string>Площадь Плевена</string>
+  <string>Улица Плеханова</string>
+  <string>Улица Плиева</string>
+  <string>Плодовая улица</string>
+  <string>Плодородный переулок</string>
+  <string>Плужная улица</string>
+  <string>Плющевая улица</string>
+  <string>Улица Победы</string>
+  <string>Поворотный переулок</string>
+  <string>Улица Погодина</string>
+  <string>Пограничный переулок</string>
+  <string>Улица Подвойского</string>
+  <string>Подгорная улица</string>
+  <string>Переулок Поддубного</string>
+  <string>Подольская улица</string>
+  <string>Подпольный переулок</string>
+  <string>Подсолнечный переулок</string>
+  <string>Улица Подтелкова</string>
+  <string>Подъездная улица</string>
+  <string>Пожарный переулок</string>
+  <string>Пойменная улица</string>
+  <string>Покровский переулок</string>
+  <string>Улица Покрышкина</string>
+  <string>Полевая улица</string>
+  <string>Переулок Поленова</string>
+  <string>Полесский переулок</string>
+  <string>Поливная улица</string>
+  <string>Полигонная улица</string>
+  <string>Половецкая улица</string>
+  <string>Улица Половинко</string>
+  <string>Пологая улица</string>
+  <string>Полоцкая улица</string>
+  <string>Полтавская улица</string>
+  <string>Улица Полторацкого</string>
+  <string>Полуденная улица</string>
+  <string>Полынная улица</string>
+  <string>Полюсный переулок</string>
+  <string>Улица Поляничко</string>
+  <string>Полярная улица</string>
+  <string>Поморский переулок</string>
+  <string>Поперечный переулок</string>
+  <string>Улица Попова</string>
+  <string>Переулок Поповского</string>
+  <string>Попутная улица</string>
+  <string>Портовая улица</string>
+  <string>Порядковый переулок</string>
+  <string>Посадочная улица</string>
+  <string>Посевная улица</string>
+  <string>Постоянный переулок</string>
+  <string>Потапинский переулок</string>
+  <string>Походный переулок</string>
+  <string>Почетная улица</string>
+  <string>Почтовый переулок</string>
+  <string>Поэтичная улица</string>
+  <string>Улица Правды</string>
+  <string>Правовая улица</string>
+  <string>Праздничная улица</string>
+  <string>Предботаническая улица</string>
+  <string>Прелестная улица</string>
+  <string>Переулок Пржевальского</string>
+  <string>Приамурская улица</string>
+  <string>Прибалтийская улица</string>
+  <string>Прибрежный переулок</string>
+  <string>Приветливая улица</string>
+  <string>Привокзальная площадь</string>
+  <string>Привокзальная улица</string>
+  <string>Приволжский переулок</string>
+  <string>Привольный переулок</string>
+  <string>Пригожая улица</string>
+  <string>Улица Пригородного Лесничества</string>
+  <string>Пригородный переулок</string>
+  <string>Приметная улица</string>
+  <string>Приозерный переулок</string>
+  <string>Природная улица</string>
+  <string>Улица Пришвина</string>
+  <string>Пришкольная улица</string>
+  <string>Приютный переулок</string>
+  <string>Приятный переулок</string>
+  <string>Провинциальная улица</string>
+  <string>Прогрессивная улица</string>
+  <string>Прогулочная улица</string>
+  <string>Продольный переулок</string>
+  <string>Проезжая улица</string>
+  <string>Проектируемый переулок</string>
+  <string>Прозрачный переулок</string>
+  <string>Улица Прокофьева</string>
+  <string>Промежуточная улица</string>
+  <string>Промысловый переулок</string>
+  <string>Промышленная улица</string>
+  <string>Пронский переулок</string>
+  <string>Улица Просвещения</string>
+  <string>Проселочная улица</string>
+  <string>Простой переулок</string>
+  <string>Просторная улица</string>
+  <string>Проточный переулок</string>
+  <string>Профильный переулок</string>
+  <string>Улица Профинтерна</string>
+  <string>Профсоюзная улица</string>
+  <string>Прохладный переулок</string>
+  <string>Прочный переулок</string>
+  <string>Прудовая улица</string>
+  <string>Пряничная улица</string>
+  <string>Псковский переулок</string>
+  <string>Улица Пугачева</string>
+  <string>Пулеметная улица</string>
+  <string>Пулковская улица</string>
+  <string>Путевая улица</string>
+  <string>Пухляковская улица</string>
+  <string>Пушкинская улица</string>
+  <string>Пчелиный переулок</string>
+  <string>Пшеничная улица</string>
+  <string>Пятигорский переулок</string>
+  <string>Рабочая площадь</string>
+  <string>Рабочий переулок</string>
+  <string>Рабфаковский переулок</string>
+  <string>Переулок Равенства</string>
+  <string>Равнинная улица</string>
+  <string>Радиальный переулок</string>
+  <string>Радиаторный переулок</string>
+  <string>Улица Радищева</string>
+  <string>Радостный переулок</string>
+  <string>Радужный переулок</string>
+  <string>Улица Раевского</string>
+  <string>Развиленская улица</string>
+  <string>Раздельная улица</string>
+  <string>Раздольный переулок</string>
+  <string>Раздорская улица</string>
+  <string>Улица Разина</string>
+  <string>Размеренный переулок</string>
+  <string>Разнотравная улица</string>
+  <string>Улица Разъезд Западный</string>
+  <string>Улица Разъезд Темерник</string>
+  <string>Разъездная улица</string>
+  <string>Ракетный переулок</string>
+  <string>Ракитная улица</string>
+  <string>Расковой переулок</string>
+  <string>Рассветная улица</string>
+  <string>Растущая улица</string>
+  <string>Ратный переулок</string>
+  <string>Улица Рахманинова</string>
+  <string>Рационализаторский переулок</string>
+  <string>Реактивная улица</string>
+  <string>Переулок Ревенко</string>
+  <string>Ревкомовская улица</string>
+  <string>Революционная улица</string>
+  <string>Резервный переулок</string>
+  <string>Рейсовая улица</string>
+  <string>Рекордный переулок</string>
+  <string>Ректорская улица</string>
+  <string>Рельефная улица</string>
+  <string>Рельсовая улица</string>
+  <string>Ремесленный переулок</string>
+  <string>Улица Ремизова</string>
+  <string>Ремонтненский переулок</string>
+  <string>Репейная улица</string>
+  <string>Улица Репина</string>
+  <string>Республиканская улица</string>
+  <string>Речная улица</string>
+  <string>Решительная улица</string>
+  <string>Ржевская улица</string>
+  <string>Улица Ривкина</string>
+  <string>Переулок Ригельный Тупик</string>
+  <string>Рижская улица</string>
+  <string>Ровенская улица</string>
+  <string>Ровный переулок</string>
+  <string>Роговский переулок</string>
+  <string>Родная улица</string>
+  <string>Родниковая улица</string>
+  <string>Рождественская улица</string>
+  <string>Розовая улица</string>
+  <string>Улица Розы Люксембург</string>
+  <string>Романтичная улица</string>
+  <string>Ромашковый переулок</string>
+  <string>Российская улица</string>
+  <string>Ростов-Товарная станция</string>
+  <string>Ростовский переулок</string>
+  <string>Площадь Ростовского Стрелкового Полка Народного Ополчения</string>
+  <string>Рощинский переулок</string>
+  <string>Рубиновый переулок</string>
+  <string>Переулок Руднева</string>
+  <string>Русская улица</string>
+  <string>Улица Руставели</string>
+  <string>Ручейная улица</string>
+  <string>Площадь Рыбака</string>
+  <string>Рыбный переулок</string>
+  <string>Рыболовецкий переулок</string>
+  <string>Улица Рылеева</string>
+  <string>Улица Рыльского</string>
+  <string>Рыночный переулок</string>
+  <string>Рыцарская улица</string>
+  <string>Рябиновый переулок</string>
+  <string>Улица Рябышева</string>
+  <string>Рязанский переулок</string>
+  <string>Переулок Саврасова</string>
+  <string>Садоводческая улица</string>
+  <string>Улица Сакко и Ванцетти</string>
+  <string>Салатный переулок</string>
+  <string>Сальский переулок</string>
+  <string>Переулок Салютина</string>
+  <string>Самаркандская улица</string>
+  <string>Самарский переулок</string>
+  <string>Самбекский переулок</string>
+  <string>Самойловская улица</string>
+  <string>Самоходный переулок</string>
+  <string>Самоцветный переулок</string>
+  <string>Переулок Самошкина</string>
+  <string>Самшитовая улица</string>
+  <string>Санаторный переулок</string>
+  <string>Переулок Саперный Спуск</string>
+  <string>Сапфирная улица</string>
+  <string>Саранская улица</string>
+  <string>Саратовская улица</string>
+  <string>Сарматская улица</string>
+  <string>Улица Сарьяна</string>
+  <string>Сахалинский переулок</string>
+  <string>Сахарная улица</string>
+  <string>Сборный переулок</string>
+  <string>Свежий переулок</string>
+  <string>Свекольный переулок</string>
+  <string>Свердловская улица</string>
+  <string>Светлая улица</string>
+  <string>Улица Свиридова</string>
+  <string>Свирский переулок</string>
+  <string>Площадь Свободы</string>
+  <string>Севанская улица</string>
+  <string>Севастопольская улица</string>
+  <string>Северная улица</string>
+  <string>Северо-Кавказская улица</string>
+  <string>Улица Седова</string>
+  <string>Сезонная улица</string>
+  <string>Сейнерная улица</string>
+  <string>Улица Селиванова</string>
+  <string>Улица Селиверстова</string>
+  <string>Проспект Сельмаш</string>
+  <string>Сельская улица</string>
+  <string>Сельскохозяйственный переулок</string>
+  <string>Семафорный переулок</string>
+  <string>Переулок Семашко</string>
+  <string>Семейная улица</string>
+  <string>Семипалатинская улица</string>
+  <string>Сенокосная улица</string>
+  <string>Сентябрьская улица</string>
+  <string>Улица Серафимовича</string>
+  <string>Улица Сергеева</string>
+  <string>Площадь Сергия Радонежского</string>
+  <string>Сердечная улица</string>
+  <string>Серебряный переулок</string>
+  <string>Улица Сержантова</string>
+  <string>Переулок Серова</string>
+  <string>Сестрорецкая улица</string>
+  <string>Сетевая улица</string>
+  <string>Улица Сеченова</string>
+  <string>Сибирский переулок</string>
+  <string>Проспект Сиверса</string>
+  <string>Сигнальный переулок</string>
+  <string>Переулок Сидорука</string>
+  <string>Силикатный переулок</string>
+  <string>Симферопольская улица</string>
+  <string>Синегорский переулок</string>
+  <string>Синявский переулок</string>
+  <string>Сиреневая улица</string>
+  <string>Сказочная улица</string>
+  <string>Улица Скачкова</string>
+  <string>Сквозная улица</string>
+  <string>Скифская улица</string>
+  <string>Скромный переулок</string>
+  <string>Переулок Скрыпника</string>
+  <string>Улица Скрябина</string>
+  <string>Славинская улица</string>
+  <string>Славная улица</string>
+  <string>Сладкий переулок</string>
+  <string>Улица Слепнева</string>
+  <string>Сливовая улица</string>
+  <string>Словесный переулок</string>
+  <string>Смежная улица</string>
+  <string>Смелая улица</string>
+  <string>Улица Смены</string>
+  <string>Смоленская улица</string>
+  <string>Смородиновая улица</string>
+  <string>Смотровая улица</string>
+  <string>Улица Смычки</string>
+  <string>Снеговой переулок</string>
+  <string>Снежный переулок</string>
+  <string>Улица Собино</string>
+  <string>Соборная площадь</string>
+  <string>Соборный переулок</string>
+  <string>Площадь Советов</string>
+  <string>Советская улица</string>
+  <string>Площадь Советской Конституции</string>
+  <string>Современный переулок</string>
+  <string>Совхозная улица</string>
+  <string>Улица Согласия</string>
+  <string>Улица Содружества</string>
+  <string>Соевый переулок</string>
+  <string>Соединяющая улица</string>
+  <string>Улица Созидания</string>
+  <string>Проспект Соколова</string>
+  <string>Солдатский переулок</string>
+  <string>Проспект Солженицына</string>
+  <string>Улица Солидарности</string>
+  <string>Соликамский переулок</string>
+  <string>Солнечный переулок</string>
+  <string>Соловьиная улица</string>
+  <string>Соломенный переулок</string>
+  <string>Сольный переулок</string>
+  <string>Улица Соляника</string>
+  <string>Переулок Соляной Спуск</string>
+  <string>Улица Соревнования</string>
+  <string>Сормовская улица</string>
+  <string>Переулок Сорокина</string>
+  <string>Сортовой переулок</string>
+  <string>Соседний переулок</string>
+  <string>Сосновая улица</string>
+  <string>Сотовая улица</string>
+  <string>Социалистическая улица</string>
+  <string>Сочинский переулок</string>
+  <string>Сочный переулок</string>
+  <string>Спартаковская улица</string>
+  <string>Спелая улица</string>
+  <string>Спокойная улица</string>
+  <string>Спортивный переулок</string>
+  <string>Средняя улица</string>
+  <string>Стабильная улица</string>
+  <string>Ставропольский переулок</string>
+  <string>Проспект Ставского</string>
+  <string>Стадионная улица</string>
+  <string>Сталинградская улица</string>
+  <string>Стальная улица</string>
+  <string>Улица Стальского</string>
+  <string>Стандартный переулок</string>
+  <string>Улица Станиславского</string>
+  <string>Станичный переулок</string>
+  <string>Станционный переулок</string>
+  <string>Старательный переулок</string>
+  <string>Старобельский переулок</string>
+  <string>Старочеркасский переулок</string>
+  <string>Стартовая улица</string>
+  <string>Улица Стасова</string>
+  <string>Статный переулок</string>
+  <string>Проспект Стачки</string>
+  <string>Площадь Стачки 1902 года</string>
+  <string>Стекольный переулок</string>
+  <string>Столичная улица</string>
+  <string>Столярный переулок</string>
+  <string>Сторожевая улица</string>
+  <string>Площадь Страны Советов</string>
+  <string>Улица Страны Советов</string>
+  <string>Стрелковая улица</string>
+  <string>Стременной переулок</string>
+  <string>Строевой переулок</string>
+  <string>Строительный переулок</string>
+  <string>Студеная улица</string>
+  <string>Студенческая улица</string>
+  <string>Субботняя улица</string>
+  <string>Улица Суворова</string>
+  <string>Судостроительная улица</string>
+  <string>Суздальский переулок</string>
+  <string>Сулинский переулок</string>
+  <string>Сумский переулок</string>
+  <string>Сурженская улица</string>
+  <string>Суржский переулок</string>
+  <string>Улица Сурикова</string>
+  <string>Улица Сурмача</string>
+  <string>Улица Сухорукова</string>
+  <string>Сухумский переулок</string>
+  <string>Счастливая улица</string>
+  <string>Сызранская улица</string>
+  <string>Сыпучий переулок</string>
+  <string>Таврическая улица</string>
+  <string>Таганрогская улица</string>
+  <string>Тагильский переулок</string>
+  <string>Таджикский переулок</string>
+  <string>Таймырский переулок</string>
+  <string>Таллинский переулок</string>
+  <string>Талый переулок</string>
+  <string>Таманский переулок</string>
+  <string>Тамбовская улица</string>
+  <string>Таможенная улица</string>
+  <string>Танаисский переулок</string>
+  <string>Танковый переулок</string>
+  <string>Тарасовская улица</string>
+  <string>Улица Тарновского-Терлецкого</string>
+  <string>Татарская улица</string>
+  <string>Территория Татарское кл-ще</string>
+  <string>Тацинская улица</string>
+  <string>Ташкентская улица</string>
+  <string>Тбилисский переулок</string>
+  <string>Тверской переулок</string>
+  <string>Творческая улица</string>
+  <string>Театральная площадь</string>
+  <string>Театральный проспект</string>
+  <string>Тебердинский переулок</string>
+  <string>Текстильная улица</string>
+  <string>Улица Текучева</string>
+  <string>Улица Тельмана</string>
+  <string>Темерницкая улица</string>
+  <string>Тенистый переулок</string>
+  <string>Теннисная улица</string>
+  <string>Тепличный переулок</string>
+  <string>Теплый переулок</string>
+  <string>Тернистая улица</string>
+  <string>Переулок Терновый Тупик</string>
+  <string>Терская улица</string>
+  <string>Улица Теряева</string>
+  <string>Технический переулок</string>
+  <string>Технологический переулок</string>
+  <string>Тибетская улица</string>
+  <string>Переулок Тимирязева</string>
+  <string>Улица Тимофеева</string>
+  <string>Улица Тимошенко</string>
+  <string>Типографская улица</string>
+  <string>Тираспольская улица</string>
+  <string>Переулок Титова</string>
+  <string>Тихвинский переулок</string>
+  <string>Тихий переулок</string>
+  <string>Улица Тихого Дона</string>
+  <string>Тихорецкий переулок</string>
+  <string>Ткацкий переулок</string>
+  <string>Улица Ткачева</string>
+  <string>Тобольский переулок</string>
+  <string>Товарищеская улица</string>
+  <string>Токарная улица</string>
+  <string>Улица Толбухина</string>
+  <string>Улица Толмачева</string>
+  <string>Переулок Толмачева Тупик</string>
+  <string>Площадь Толстого</string>
+  <string>Томская улица</string>
+  <string>Тоннельная улица</string>
+  <string>Тополиный переулок</string>
+  <string>Травяная улица</string>
+  <string>Переулок Траилина</string>
+  <string>Тракторная улица</string>
+  <string>Переулок Трамвайщиков</string>
+  <string>Улица Тренева</string>
+  <string>Переулок Третьякова</string>
+  <string>Троллейбусная улица</string>
+  <string>Тростниковый переулок</string>
+  <string>Улица Труда</string>
+  <string>Трудовой переулок</string>
+  <string>Улица Трудящихся</string>
+  <string>Площадь Тружеников</string>
+  <string>Улица Тружеников</string>
+  <string>Туапсинский переулок</string>
+  <string>Тувинский переулок</string>
+  <string>Переулок Тузлов</string>
+  <string>Тульская улица</string>
+  <string>Туманная улица</string>
+  <string>Улица Туполева</string>
+  <string>Турбинный переулок</string>
+  <string>Тургеневская улица</string>
+  <string>Туристский переулок</string>
+  <string>Туркестанская улица</string>
+  <string>Туркменский переулок</string>
+  <string>Турксибская улица</string>
+  <string>Турмалиновская улица</string>
+  <string>Переулок Туроверова</string>
+  <string>Тутовая улица</string>
+  <string>Улица Тюленина</string>
+  <string>Тюльпанная улица</string>
+  <string>Тюменская улица</string>
+  <string>Улица Тюхряева</string>
+  <string>Угловой переулок</string>
+  <string>Переулок Ударников</string>
+  <string>Удачная улица</string>
+  <string>Удобный переулок</string>
+  <string>Ужгородский переулок</string>
+  <string>Узбекский переулок</string>
+  <string>Узкий переулок</string>
+  <string>Узловая улица</string>
+  <string>Узорная улица</string>
+  <string>Украинская улица</string>
+  <string>Укропный переулок</string>
+  <string>Уланская улица</string>
+  <string>Ульяновская улица</string>
+  <string>Уманский переулок</string>
+  <string>Умелый переулок</string>
+  <string>Университетский переулок</string>
+  <string>Упорный переулок</string>
+  <string>Уральский переулок</string>
+  <string>Переулок Урицкого</string>
+  <string>Урожайная улица</string>
+  <string>Урупский переулок</string>
+  <string>Урюпинский переулок</string>
+  <string>Усадебная улица</string>
+  <string>Успешный переулок</string>
+  <string>Устойчивый переулок</string>
+  <string>Утренняя улица</string>
+  <string>Уфимский переулок</string>
+  <string>Ухоженная улица</string>
+  <string>Ухтомский переулок</string>
+  <string>Учебная улица</string>
+  <string>Ученический переулок</string>
+  <string>Учительский переулок</string>
+  <string>Переулок Ушакова</string>
+  <string>Уютная улица</string>
+  <string>Фабричная улица</string>
+  <string>Улица Фадеева</string>
+  <string>Фазаний переулок</string>
+  <string>Факельная улица</string>
+  <string>Переулок Фанатов</string>
+  <string>Фасадная улица</string>
+  <string>Улица Федорова</string>
+  <string>Ферганский переулок</string>
+  <string>Фермерский переулок</string>
+  <string>Фестивальная улица</string>
+  <string>Фиалковая улица</string>
+  <string>Фигурная улица</string>
+  <string>Физическая улица</string>
+  <string>Физкультурная улица</string>
+  <string>Филимоновская улица</string>
+  <string>Философский переулок</string>
+  <string>Финишная улица</string>
+  <string>Переулок Фиолетова</string>
+  <string>Флотский переулок</string>
+  <string>Улица Фоменко</string>
+  <string>Фонарный переулок</string>
+  <string>Форелевый переулок</string>
+  <string>Фронтовая улица</string>
+  <string>Фруктовый переулок</string>
+  <string>Улица Фрунзе</string>
+  <string>Фурмановская улица</string>
+  <string>Футбольная улица</string>
+  <string>Улица Фучика</string>
+  <string>Хабаровский переулок</string>
+  <string>Халтуринский переулок</string>
+  <string>Харьковская улица</string>
+  <string>Хасанская улица</string>
+  <string>Переулок Хачатуряна</string>
+  <string>Хвойная улица</string>
+  <string>Хибинский переулок</string>
+  <string>Площадь Химиков</string>
+  <string>Хлебная улица</string>
+  <string>Улица Хмельницкого</string>
+  <string>Холмистый переулок</string>
+  <string>Холмогорский переулок</string>
+  <string>Холодная улица</string>
+  <string>Хоперский переулок</string>
+  <string>Хоровой переулок</string>
+  <string>Хорошая улица</string>
+  <string>Хрустальный переулок</string>
+  <string>Художественная улица</string>
+  <string>Хуторской переулок</string>
+  <string>Цветная улица</string>
+  <string>Цветочная улица</string>
+  <string>Улица Цезаря Куникова</string>
+  <string>Целинная улица</string>
+  <string>Целиноградская улица</string>
+  <string>Центральная улица</string>
+  <string>Цеховая улица</string>
+  <string>Цимлянская улица</string>
+  <string>Улица Циолковского</string>
+  <string>Цитрусовая улица</string>
+  <string>Цифровой переулок</string>
+  <string>Цокольный переулок</string>
+  <string>Улица Цурюпы</string>
+  <string>Цусимский переулок</string>
+  <string>Чайкиной переулок</string>
+  <string>Улица Чайковского</string>
+  <string>Чайная улица</string>
+  <string>Переулок Чаленко</string>
+  <string>Чалтырский переулок</string>
+  <string>Чапаевская улица</string>
+  <string>Переулок Чарушина</string>
+  <string>Часовая улица</string>
+  <string>Частный переулок</string>
+  <string>Улица Чебанова</string>
+  <string>Чеканный переулок</string>
+  <string>Улица Челюскина</string>
+  <string>Челябинская улица</string>
+  <string>Улица Чемордачка</string>
+  <string>Улица Ченцова</string>
+  <string>Червонная улица</string>
+  <string>Червоноармейская улица</string>
+  <string>Улица Черевичкина</string>
+  <string>Черемуховая улица</string>
+  <string>Улица Черепахина</string>
+  <string>Черепичный переулок</string>
+  <string>Череповецкая улица</string>
+  <string>Черешневая улица</string>
+  <string>Черкесская улица</string>
+  <string>Черниговская улица</string>
+  <string>Черноморский переулок</string>
+  <string>Переулок Чернышевского</string>
+  <string>Улица Черняховского</string>
+  <string>Чертежный переулок</string>
+  <string>Чертковский переулок</string>
+  <string>Проспект Чехова</string>
+  <string>Чингарский переулок</string>
+  <string>Чистопольская улица</string>
+  <string>Чистый переулок</string>
+  <string>Читательская улица</string>
+  <string>Читинский переулок</string>
+  <string>Чичеринский переулок</string>
+  <string>Улица Чкалова</string>
+  <string>Чувашский переулок</string>
+  <string>Чугуевская улица</string>
+  <string>Чудная улица</string>
+  <string>Чукотская улица</string>
+  <string>Переулок Чумаченко</string>
+  <string>Чухновский переулок</string>
+  <string>Улица Шапкина</string>
+  <string>Улица Шаповалова</string>
+  <string>Шарнирный переулок</string>
+  <string>Шатоевская улица</string>
+  <string>Шатурская улица</string>
+  <string>Улица Шаумяна</string>
+  <string>Шахматный переулок</string>
+  <string>Шахтинский переулок</string>
+  <string>Улица Шеболдаева</string>
+  <string>Улица Шевцовой</string>
+  <string>Улица Шевченко</string>
+  <string>Улица Шекспира</string>
+  <string>Шелковая улица</string>
+  <string>Переулок Шефский Спуск</string>
+  <string>Переулок Шилова</string>
+  <string>Широкий переулок</string>
+  <string>Улица Шишкина</string>
+  <string>Школьная улица</string>
+  <string>Улица Шмидта</string>
+  <string>Парк Шолохова</string>
+  <string>Проспект Шолохова</string>
+  <string>Улица Шолохова-Синявского</string>
+  <string>Шоссейная улица</string>
+  <string>Улица Шостаковича</string>
+  <string>Штатный переулок</string>
+  <string>Улица Штахановского</string>
+  <string>Штурвальный переулок</string>
+  <string>Штурманский переулок</string>
+  <string>Улица Щаденко</string>
+  <string>Щедрая улица</string>
+  <string>Улица Щедрина</string>
+  <string>Улица Щербакова</string>
+  <string>Улица Щорса</string>
+  <string>Экипажный переулок</string>
+  <string>Экономическая улица</string>
+  <string>Экскаваторный переулок</string>
+  <string>Элеваторный переулок</string>
+  <string>Электрическая улица</string>
+  <string>Элитная улица</string>
+  <string>Переулок Энергетиков</string>
+  <string>Площадь Энергетиков</string>
+  <string>Энергичная улица</string>
+  <string>Переулок Энтузиастов</string>
+  <string>Эстафетная улица</string>
+  <string>Эстонская улица</string>
+  <string>Юбилейная улица</string>
+  <string>Ювелирная улица</string>
+  <string>Переулок Югова</string>
+  <string>Южная улица</string>
+  <string>Юношеский переулок</string>
+  <string>Переулок Юных Коммунаров</string>
+  <string>Улица Юрия Дубинина</string>
+  <string>Улица Юфимцева</string>
+  <string>Яблоневый переулок</string>
+  <string>Ягодный переулок</string>
+  <string>Улица Яковлева</string>
+  <string>Улица Якуба Коласа</string>
+  <string>Якутский переулок</string>
+  <string>Ялтинский переулок</string>
+  <string>Ямской переулок</string>
+  <string>Январская улица</string>
+  <string>Янтарная улица</string>
+  <string>Яркий переулок</string>
+  <string>Яровой переулок</string>
+  <string>Улица Ярослава Галана</string>
+  <string>Ярославский переулок</string>
+  <string>Переулок Ярошенко</string>
+  <string>Ясеневая улица</string>
+  <string>Ясная улица</string>
+  <string>Площадь 1-го Гвардейского авиаполка</string>
+  <string>1-й Автосборочный переулок</string>
+  <string>1-й Аграрный переулок</string>
+  <string>1-й Атаманский переулок</string>
+  <string>1-й Атмосферный переулок</string>
+  <string>1-й Барьерный переулок</string>
+  <string>1-й Беговой переулок</string>
+  <string>1-й Берестяной переулок</string>
+  <string>1-й Буковый переулок</string>
+  <string>1-й Газонный переулок</string>
+  <string>1-й Глазурный переулок</string>
+  <string>1-й Гончарный переулок</string>
+  <string>1-й Графический переулок</string>
+  <string>1-й Дамасский переулок</string>
+  <string>1-й Донстроевский переулок</string>
+  <string>1-й Дроздовый переулок</string>
+  <string>1-й Есаульский переулок</string>
+  <string>1-й Желанный переулок</string>
+  <string>1-й Индивидуальный переулок</string>
+  <string>1-й Июльский переулок</string>
+  <string>1-й Календарный переулок</string>
+  <string>1-й Каретный переулок</string>
+  <string>1-й Колхозный переулок</string>
+  <string>1-й Кольский переулок</string>
+  <string>Улица 1-й Конной Армии</string>
+  <string>1-й Кулинарный переулок</string>
+  <string>1-й Кустарный переулок</string>
+  <string>1-й Лазоревый переулок</string>
+  <string>1-й Лодочный переулок</string>
+  <string>1-й Марочный переулок</string>
+  <string>1-й Машиностроительный переулок</string>
+  <string>1-й Образный переулок</string>
+  <string>1-й переулок</string>
+  <string>1-й Пехотный переулок</string>
+  <string>1-й Пламенный переулок</string>
+  <string>1-й Поклонный переулок</string>
+  <string>1-й Поселковый переулок</string>
+  <string>1-й Придонский переулок</string>
+  <string>Переулок 1-й Проезд</string>
+  <string>1-й Профессиональный переулок</string>
+  <string>1-й Путеводный переулок</string>
+  <string>1-й Раскатный переулок</string>
+  <string>1-й Резной переулок</string>
+  <string>1-й Рядовой переулок</string>
+  <string>1-й Самобытный переулок</string>
+  <string>1-й Санинструкторский переулок</string>
+  <string>1-й Связной переулок</string>
+  <string>1-й Спутниковый переулок</string>
+  <string>1-й Стимульный переулок</string>
+  <string>1-й Стремительный переулок</string>
+  <string>1-й Флаговый переулок</string>
+  <string>1-й Хлопковый переулок</string>
+  <string>1-й Целебный переулок</string>
+  <string>1-й Черкасский переулок</string>
+  <string>1-я Акварельная улица</string>
+  <string>1-я Барбарисовая улица</string>
+  <string>1-я Баррикадная улица</string>
+  <string>1-я Благотворная улица</string>
+  <string>1-я Веерная улица</string>
+  <string>1-я Вознесенская улица</string>
+  <string>Улица 1-я Володарского</string>
+  <string>1-я Воскресная улица</string>
+  <string>1-я Героическая улица</string>
+  <string>1-я Городецкая улица</string>
+  <string>Улица 1-я Грамши</string>
+  <string>1-я Журавлиная улица</string>
+  <string>1-я Залповая улица</string>
+  <string>1-я Кадетская улица</string>
+  <string>1-я Каменная улица</string>
+  <string>1-я Каравайная улица</string>
+  <string>1-я Кизитериновская улица</string>
+  <string>1-я Киргизская улица</string>
+  <string>1-я Ковровая улица</string>
+  <string>1-я Кольцевая улица</string>
+  <string>1-я Комбайновская улица</string>
+  <string>1-я Кондитерская улица</string>
+  <string>1-я Конструктивная улица</string>
+  <string>1-я Краснодарская улица</string>
+  <string>1-я Краснодонская улица</string>
+  <string>1-я Круговая улица</string>
+  <string>1-я Лазерная улица</string>
+  <string>1-я Левая улица</string>
+  <string>Улица 1-я линия</string>
+  <string>1-я Луговая улица</string>
+  <string>1-я Лучезарная улица</string>
+  <string>1-я Майская улица</string>
+  <string>1-я Меткая улица</string>
+  <string>1-я Огуречная улица</string>
+  <string>1-я Опрятная улица</string>
+  <string>1-я Оранжерейная улица</string>
+  <string>1-я Пионерская улица</string>
+  <string>1-я Плановая улица</string>
+  <string>1-я Пляжная улица</string>
+  <string>1-я Престижная улица</string>
+  <string>1-я Причальная улица</string>
+  <string>1-я Производственная улица</string>
+  <string>1-я Пролетарская улица</string>
+  <string>1-я Ритмичная улица</string>
+  <string>1-я Самолетная улица</string>
+  <string>1-я Союзная улица</string>
+  <string>1-я Спасская улица</string>
+  <string>1-я Турнирная улица</string>
+  <string>1-я улица</string>
+  <string>1-я Форматная улица</string>
+  <string>1-я Яхонтовая улица</string>
+  <string>2-й Авангардный переулок</string>
+  <string>2-й Автосборочный переулок</string>
+  <string>2-й Аграрный переулок</string>
+  <string>2-й Аметистовый переулок</string>
+  <string>2-й Анисовый переулок</string>
+  <string>2-й Апрельский переулок</string>
+  <string>2-й Ароматный переулок</string>
+  <string>2-й Атаманский переулок</string>
+  <string>2-й Атмосферный переулок</string>
+  <string>2-й Барьерный переулок</string>
+  <string>2-й Беговой переулок</string>
+  <string>2-й Белоснежный переулок</string>
+  <string>2-й Берестяной переулок</string>
+  <string>2-й Бирюзовый переулок</string>
+  <string>2-й Богатый переулок</string>
+  <string>2-й Бронзовый переулок</string>
+  <string>2-й Буковый переулок</string>
+  <string>2-й Газонный переулок</string>
+  <string>2-й Глазурный переулок</string>
+  <string>2-й Гончарный переулок</string>
+  <string>2-й Графический переулок</string>
+  <string>2-й Гулкий переулок</string>
+  <string>2-й Дамасский переулок</string>
+  <string>2-й Донстроевский переулок</string>
+  <string>2-й Доступный переулок</string>
+  <string>2-й Дружный переулок</string>
+  <string>2-й Дубравный переулок</string>
+  <string>2-й Есаульский переулок</string>
+  <string>2-й Жаркий переулок</string>
+  <string>2-й Желанный переулок</string>
+  <string>2-й Зарядный переулок</string>
+  <string>2-й Зрелый переулок</string>
+  <string>2-й Индивидуальный переулок</string>
+  <string>2-й Июльский переулок</string>
+  <string>2-й Календарный переулок</string>
+  <string>2-й Каретный переулок</string>
+  <string>2-й Касательный переулок</string>
+  <string>2-й Кирпичный переулок</string>
+  <string>2-й Колхозный переулок</string>
+  <string>2-й Кольский переулок</string>
+  <string>2-й Кристальный переулок</string>
+  <string>2-й Крылатый переулок</string>
+  <string>2-й Кулинарный переулок</string>
+  <string>2-й Кустарный переулок</string>
+  <string>2-й Лазоревый переулок</string>
+  <string>2-й Ловкий переулок</string>
+  <string>2-й Лодочный переулок</string>
+  <string>2-й Мажорный переулок</string>
+  <string>2-й Марочный переулок</string>
+  <string>2-й Мастеровой переулок</string>
+  <string>2-й Монетный переулок</string>
+  <string>2-й Морозный переулок</string>
+  <string>2-й Мужественный переулок</string>
+  <string>2-й Нефтяной переулок</string>
+  <string>2-й Образный переулок</string>
+  <string>2-й переулок</string>
+  <string>2-й Пехотный переулок</string>
+  <string>2-й Плавный переулок</string>
+  <string>2-й Пламенный переулок</string>
+  <string>2-й Плодородный переулок</string>
+  <string>2-й Поклонный переулок</string>
+  <string>2-й Поперечный переулок</string>
+  <string>2-й Поселковый переулок</string>
+  <string>2-й Прибрежный переулок</string>
+  <string>2-й Придонский переулок</string>
+  <string>2-й Приютный переулок</string>
+  <string>2-й Приятный переулок</string>
+  <string>2-й Профессиональный переулок</string>
+  <string>2-й Путеводный переулок</string>
+  <string>2-й Пчелиный переулок</string>
+  <string>Площадь 2-й Пятилетки</string>
+  <string>Улица 2-й Пятилетки</string>
+  <string>2-й Радостный переулок</string>
+  <string>2-й Раскатный переулок</string>
+  <string>2-й Резной переулок</string>
+  <string>2-й Рекордный переулок</string>
+  <string>2-й Рощинский переулок</string>
+  <string>2-й Рядовой переулок</string>
+  <string>2-й Самобытный переулок</string>
+  <string>2-й Санинструкторский переулок</string>
+  <string>2-й Сахалинский переулок</string>
+  <string>2-й Связной переулок</string>
+  <string>2-й Сигнальный переулок</string>
+  <string>2-й Снежный переулок</string>
+  <string>2-й Современный переулок</string>
+  <string>2-й Соседний переулок</string>
+  <string>2-й Спутниковый переулок</string>
+  <string>2-й Старательный переулок</string>
+  <string>2-й Стимульный переулок</string>
+  <string>2-й Стремительный переулок</string>
+  <string>2-й Строевой переулок</string>
+  <string>2-й Талый переулок</string>
+  <string>2-й Умелый переулок</string>
+  <string>2-й Фермерский переулок</string>
+  <string>2-й Флаговый переулок</string>
+  <string>2-й Хлопковый переулок</string>
+  <string>2-й Холмистый переулок</string>
+  <string>2-й Хоровой переулок</string>
+  <string>2-й Целебный переулок</string>
+  <string>2-й Черепичный переулок</string>
+  <string>2-й Черкасский переулок</string>
+  <string>2-й Штурвальный переулок</string>
+  <string>2-й Экипажный переулок</string>
+  <string>2-й Яркий переулок</string>
+  <string>2-я Авиапромовская улица</string>
+  <string>2-я Акварельная улица</string>
+  <string>2-я Алая улица</string>
+  <string>2-я Арсенальная улица</string>
+  <string>2-я Астрономическая улица</string>
+  <string>2-я Барбарисовая улица</string>
+  <string>2-я Баррикадная улица</string>
+  <string>2-я Бежевая улица</string>
+  <string>2-я Благотворная улица</string>
+  <string>2-я Букетная улица</string>
+  <string>2-я Буровая улица</string>
+  <string>2-я Былинная улица</string>
+  <string>2-я Веерная улица</string>
+  <string>2-я Вознесенская улица</string>
+  <string>2-я Волнистая улица</string>
+  <string>Улица 2-я Володарского</string>
+  <string>2-я Воробьиная улица</string>
+  <string>2-я Воскресная улица</string>
+  <string>2-я Вьюжная улица</string>
+  <string>2-я Героическая улица</string>
+  <string>2-я Гладкая улица</string>
+  <string>2-я Гравитационная улица</string>
+  <string>Улица 2-я Грамши</string>
+  <string>2-я Деловая улица</string>
+  <string>2-я Дополнительная улица</string>
+  <string>2-я Жостовская улица</string>
+  <string>2-я Журавлиная улица</string>
+  <string>2-я Заводская улица</string>
+  <string>2-я Закатная улица</string>
+  <string>2-я Залповая улица</string>
+  <string>2-я Заречная улица</string>
+  <string>2-я Золотистая улица</string>
+  <string>2-я Кадетская улица</string>
+  <string>2-я Каменная улица</string>
+  <string>2-я Канатная улица</string>
+  <string>2-я Каравайная улица</string>
+  <string>2-я Каскадная улица</string>
+  <string>2-я Каштановая улица</string>
+  <string>2-я Кизитериновская улица</string>
+  <string>2-я Киргизская улица</string>
+  <string>2-я Ковровая улица</string>
+  <string>2-я Колодезная улица</string>
+  <string>2-я Кольцевая улица</string>
+  <string>2-я Комбайновская улица</string>
+  <string>2-я Кондитерская улица</string>
+  <string>2-я Конструктивная улица</string>
+  <string>2-я Коралловая улица</string>
+  <string>2-я Краснодарская улица</string>
+  <string>2-я Краснодонская улица</string>
+  <string>2-я Крепкая улица</string>
+  <string>2-я Круговая улица</string>
+  <string>2-я Ладная улица</string>
+  <string>2-я Лазерная улица</string>
+  <string>2-я Лакомая улица</string>
+  <string>2-я Левая улица</string>
+  <string>2-я Ледниковая улица</string>
+  <string>Улица 2-я линия</string>
+  <string>2-я Литературная улица</string>
+  <string>2-я Луговая улица</string>
+  <string>2-я Лучезарная улица</string>
+  <string>2-я Любительская улица</string>
+  <string>2-я Магистральная улица</string>
+  <string>2-я Масштабная улица</string>
+  <string>2-я Меткая улица</string>
+  <string>2-я Минеральная улица</string>
+  <string>2-я Мозаичная улица</string>
+  <string>2-я Наземная улица</string>
+  <string>2-я Ненаглядная улица</string>
+  <string>2-я Новоселовская улица</string>
+  <string>2-я Ноябрьская улица</string>
+  <string>2-я Обзорная улица</string>
+  <string>2-я Обильная улица</string>
+  <string>2-я Объездная улица</string>
+  <string>2-я Огневая улица</string>
+  <string>2-я Огуречная улица</string>
+  <string>2-я Опрятная улица</string>
+  <string>2-я Оранжерейная улица</string>
+  <string>2-я Осевая улица</string>
+  <string>2-я Патриотическая улица</string>
+  <string>2-я Песенная улица</string>
+  <string>2-я Пионерская улица</string>
+  <string>2-я Планерная улица</string>
+  <string>2-я Плановая улица</string>
+  <string>2-я Пляжная улица</string>
+  <string>2-я Пологая улица</string>
+  <string>2-я Праздничная улица</string>
+  <string>2-я Престижная улица</string>
+  <string>2-я Причальная улица</string>
+  <string>2-я Производственная улица</string>
+  <string>2-я Пролетарская улица</string>
+  <string>Улица 2-я Процветания</string>
+  <string>2-я Разъездная улица</string>
+  <string>2-я Реактивная улица</string>
+  <string>2-я Революционная улица</string>
+  <string>2-я Ритмичная улица</string>
+  <string>2-я Романтичная улица</string>
+  <string>2-я Самолетная улица</string>
+  <string>2-я Сахарная улица</string>
+  <string>2-я Семейная улица</string>
+  <string>2-я Союзная улица</string>
+  <string>2-я Спасская улица</string>
+  <string>2-я Спелая улица</string>
+  <string>2-я Степная улица</string>
+  <string>2-я Сувенирная улица</string>
+  <string>2-я Таможенная улица</string>
+  <string>2-я Теннисная улица</string>
+  <string>2-я Тернистая улица</string>
+  <string>2-я Турнирная улица</string>
+  <string>2-я улица</string>
+  <string>2-я Усадебная улица</string>
+  <string>2-я Фигурная улица</string>
+  <string>2-я Финишная улица</string>
+  <string>2-я Форматная улица</string>
+  <string>2-я Холодная улица</string>
+  <string>2-я Часовая улица</string>
+  <string>2-я Эстафетная улица</string>
+  <string>2-я Юбилейная улица</string>
+  <string>2-я Ювелирная улица</string>
+  <string>2-я Яхонтовая улица</string>
+  <string>3-й Авангардный переулок</string>
+  <string>3-й Автосборочный переулок</string>
+  <string>3-й Аграрный переулок</string>
+  <string>3-й Атаманский переулок</string>
+  <string>3-й Барьерный переулок</string>
+  <string>3-й Белоснежный переулок</string>
+  <string>3-й Берестяной переулок</string>
+  <string>3-й Бирюзовый переулок</string>
+  <string>3-й Богатый переулок</string>
+  <string>3-й Бронзовый переулок</string>
+  <string>3-й Газонный переулок</string>
+  <string>3-й Глазурный переулок</string>
+  <string>3-й Гончарный переулок</string>
+  <string>3-й Дамасский переулок</string>
+  <string>3-й Доступный переулок</string>
+  <string>3-й Дружный переулок</string>
+  <string>3-й Дубравный переулок</string>
+  <string>3-й Есаульский переулок</string>
+  <string>3-й Жаркий переулок</string>
+  <string>3-й Желанный переулок</string>
+  <string>3-й Июльский переулок</string>
+  <string>3-й Каретный переулок</string>
+  <string>3-й Касательный переулок</string>
+  <string>3-й Кирпичный переулок</string>
+  <string>3-й Колхозный переулок</string>
+  <string>3-й Кристальный переулок</string>
+  <string>3-й Крылатый переулок</string>
+  <string>3-й Кулинарный переулок</string>
+  <string>3-й Кустарный переулок</string>
+  <string>3-й Лазоревый переулок</string>
+  <string>3-й Ловкий переулок</string>
+  <string>3-й Лодочный переулок</string>
+  <string>3-й Мажорный переулок</string>
+  <string>3-й Марочный переулок</string>
+  <string>3-й Мастеровой переулок</string>
+  <string>3-й Монетный переулок</string>
+  <string>3-й Морозный переулок</string>
+  <string>3-й Мужественный переулок</string>
+  <string>3-й Нефтяной переулок</string>
+  <string>3-й Образный переулок</string>
+  <string>3-й Пехотный переулок</string>
+  <string>3-й Плавный переулок</string>
+  <string>3-й Пламенный переулок</string>
+  <string>3-й Плодородный переулок</string>
+  <string>3-й Позитивный переулок</string>
+  <string>3-й Поклонный переулок</string>
+  <string>3-й Поселковый переулок</string>
+  <string>3-й Прибрежный переулок</string>
+  <string>3-й Профессиональный переулок</string>
+  <string>3-й Путеводный переулок</string>
+  <string>3-й Раскатный переулок</string>
+  <string>3-й Резной переулок</string>
+  <string>3-й Рощинский переулок</string>
+  <string>3-й Рядовой переулок</string>
+  <string>3-й Самобытный переулок</string>
+  <string>3-й Санинструкторский переулок</string>
+  <string>3-й Сахалинский переулок</string>
+  <string>3-й Связной переулок</string>
+  <string>3-й Стимульный переулок</string>
+  <string>3-й Стремительный переулок</string>
+  <string>3-й Строевой переулок</string>
+  <string>3-й Талый переулок</string>
+  <string>3-й Умелый переулок</string>
+  <string>3-й Фермерский переулок</string>
+  <string>3-й Флаговый переулок</string>
+  <string>3-й Хлопковый переулок</string>
+  <string>3-й Холмистый переулок</string>
+  <string>3-й Хоровой переулок</string>
+  <string>3-й Черкасский переулок</string>
+  <string>3-й Штурвальный переулок</string>
+  <string>3-й Экипажный переулок</string>
+  <string>3-я Авиапромовская улица</string>
+  <string>3-я Акварельная улица</string>
+  <string>3-я Алая улица</string>
+  <string>3-я Астрономическая улица</string>
+  <string>3-я Барбарисовая улица</string>
+  <string>3-я Баррикадная улица</string>
+  <string>3-я Бежевая улица</string>
+  <string>3-я Букетная улица</string>
+  <string>3-я Буровая улица</string>
+  <string>3-я Воскресная улица</string>
+  <string>3-я Героическая улица</string>
+  <string>3-я Городецкая улица</string>
+  <string>3-я Деловая улица</string>
+  <string>3-я Журавлиная улица</string>
+  <string>3-я Залповая улица</string>
+  <string>3-я Заречная улица</string>
+  <string>3-я Канатная улица</string>
+  <string>3-я Кизитериновская улица</string>
+  <string>3-я Ковровая улица</string>
+  <string>3-я Кольцевая улица</string>
+  <string>3-я Кондитерская улица</string>
+  <string>3-я Конструктивная улица</string>
+  <string>3-я Крепкая улица</string>
+  <string>3-я Круговая улица</string>
+  <string>3-я Ладная улица</string>
+  <string>3-я Лазерная улица</string>
+  <string>3-я Левая улица</string>
+  <string>Улица 3-я линия</string>
+  <string>3-я Литературная улица</string>
+  <string>3-я Лучезарная улица</string>
+  <string>3-я Мозаичная улица</string>
+  <string>3-я Ненаглядная улица</string>
+  <string>3-я Ноябрьская улица</string>
+  <string>3-я Обильная улица</string>
+  <string>3-я Огневая улица</string>
+  <string>3-я Огуречная улица</string>
+  <string>3-я Опрятная улица</string>
+  <string>3-я Оранжерейная улица</string>
+  <string>3-я Пионерская улица</string>
+  <string>3-я Праздничная улица</string>
+  <string>3-я Престижная улица</string>
+  <string>3-я Причальная улица</string>
+  <string>3-я Производственная улица</string>
+  <string>Улица 3-я Процветания</string>
+  <string>3-я Разъездная улица</string>
+  <string>3-я Самолетная улица</string>
+  <string>3-я Семейная улица</string>
+  <string>3-я Союзная улица</string>
+  <string>3-я Спасская улица</string>
+  <string>3-я Степная улица</string>
+  <string>3-я Таможенная улица</string>
+  <string>3-я Тернистая улица</string>
+  <string>3-я Турнирная улица</string>
+  <string>3-я улица</string>
+  <string>3-я Усадебная улица</string>
+  <string>3-я Фигурная улица</string>
+  <string>3-я Форматная улица</string>
+  <string>3-я Часовая улица</string>
+  <string>3-я Эстафетная улица</string>
+  <string>3-я Ювелирная улица</string>
+  <string>3-я Яхонтовая улица</string>
+  <string>4-й Автосборочный переулок</string>
+  <string>4-й Аграрный переулок</string>
+  <string>4-й Атаманский переулок</string>
+  <string>4-й Барьерный переулок</string>
+  <string>4-й Берестяной переулок</string>
+  <string>4-й Газонный переулок</string>
+  <string>4-й Глазурный переулок</string>
+  <string>4-й Дружный переулок</string>
+  <string>4-й Дубравный переулок</string>
+  <string>4-й Есаульский переулок</string>
+  <string>4-й Желанный переулок</string>
+  <string>4-й Июльский переулок</string>
+  <string>4-й Каретный переулок</string>
+  <string>4-й Касательный переулок</string>
+  <string>4-й Колхозный переулок</string>
+  <string>4-й Кулинарный переулок</string>
+  <string>4-й Кустарный переулок</string>
+  <string>4-й Лазоревый переулок</string>
+  <string>4-й Лодочный переулок</string>
+  <string>4-й Мажорный переулок</string>
+  <string>4-й Марочный переулок</string>
+  <string>4-й Мастеровой переулок</string>
+  <string>4-й Нефтяной переулок</string>
+  <string>4-й Образный переулок</string>
+  <string>4-й Поселковый переулок</string>
+  <string>4-й Путеводный переулок</string>
+  <string>4-й Раскатный переулок</string>
+  <string>4-й Резной переулок</string>
+  <string>4-й Рощинский переулок</string>
+  <string>4-й Рядовой переулок</string>
+  <string>4-й Самобытный переулок</string>
+  <string>4-й Санинструкторский переулок</string>
+  <string>4-й Сахалинский переулок</string>
+  <string>4-й Стимульный переулок</string>
+  <string>4-й Стремительный переулок</string>
+  <string>4-й Строевой переулок</string>
+  <string>4-й Талый переулок</string>
+  <string>4-й Умелый переулок</string>
+  <string>4-й Фермерский переулок</string>
+  <string>4-й Флаговый переулок</string>
+  <string>4-й Хлопковый переулок</string>
+  <string>4-й Холмистый переулок</string>
+  <string>4-й Хоровой переулок</string>
+  <string>4-й Штурвальный переулок</string>
+  <string>4-й Экипажный переулок</string>
+  <string>4-я Авиапромовская улица</string>
+  <string>4-я Барбарисовая улица</string>
+  <string>4-я Бежевая улица</string>
+  <string>4-я Героическая улица</string>
+  <string>4-я Городецкая улица</string>
+  <string>4-я Деловая улица</string>
+  <string>4-я Журавлиная улица</string>
+  <string>4-я Залповая улица</string>
+  <string>4-я Канатная улица</string>
+  <string>4-я Ковровая улица</string>
+  <string>4-я Кольцевая улица</string>
+  <string>4-я Кондитерская улица</string>
+  <string>4-я Конструктивная улица</string>
+  <string>4-я Крепкая улица</string>
+  <string>4-я Ладная улица</string>
+  <string>Улица 4-я линия</string>
+  <string>4-я Лучезарная улица</string>
+  <string>4-я Мозаичная улица</string>
+  <string>4-я Ненаглядная улица</string>
+  <string>4-я Ноябрьская улица</string>
+  <string>4-я Обильная улица</string>
+  <string>4-я Огуречная улица</string>
+  <string>4-я Опрятная улица</string>
+  <string>4-я Престижная улица</string>
+  <string>4-я Причальная улица</string>
+  <string>Улица 4-я Процветания</string>
+  <string>4-я Семейная улица</string>
+  <string>4-я Союзная улица</string>
+  <string>4-я Степная улица</string>
+  <string>4-я Турнирная улица</string>
+  <string>4-я улица</string>
+  <string>4-я Фигурная улица</string>
+  <string>4-я Форматная улица</string>
+  <string>4-я Ювелирная улица</string>
+  <string>4-я Яхонтовая улица</string>
+  <string>Площадь 5 Донского Корпуса</string>
+  <string>5-й Автосборочный переулок</string>
+  <string>5-й Атаманский переулок</string>
+  <string>5-й Барьерный переулок</string>
+  <string>5-й Берестяной переулок</string>
+  <string>5-й Дружный переулок</string>
+  <string>5-й Дубравный переулок</string>
+  <string>5-й Есаульский переулок</string>
+  <string>5-й Желанный переулок</string>
+  <string>5-й Июльский переулок</string>
+  <string>5-й Каретный переулок</string>
+  <string>5-й Касательный переулок</string>
+  <string>5-й Кустарный переулок</string>
+  <string>5-й Лазоревый переулок</string>
+  <string>5-й Лодочный переулок</string>
+  <string>5-й Марочный переулок</string>
+  <string>5-й Поселковый переулок</string>
+  <string>5-й Путеводный переулок</string>
+  <string>5-й Раскатный переулок</string>
+  <string>5-й Рощинский переулок</string>
+  <string>5-й Рядовой переулок</string>
+  <string>5-й Самобытный переулок</string>
+  <string>5-й Санинструкторский переулок</string>
+  <string>5-й Сахалинский переулок</string>
+  <string>5-й Стимульный переулок</string>
+  <string>5-й Стремительный переулок</string>
+  <string>5-й Строевой переулок</string>
+  <string>5-й Умелый переулок</string>
+  <string>5-й Хлопковый переулок</string>
+  <string>5-я Авиапромовская улица</string>
+  <string>5-я Городецкая улица</string>
+  <string>5-я Журавлиная улица</string>
+  <string>5-я Залповая улица</string>
+  <string>5-я Канатная улица</string>
+  <string>5-я Ковровая улица</string>
+  <string>5-я Кольцевая улица</string>
+  <string>5-я Конструктивная улица</string>
+  <string>Улица 5-я линия</string>
+  <string>5-я Мозаичная улица</string>
+  <string>5-я Ненаглядная улица</string>
+  <string>5-я Опрятная улица</string>
+  <string>5-я Престижная улица</string>
+  <string>5-я Причальная улица</string>
+  <string>Улица 5-я Процветания</string>
+  <string>5-я Турнирная улица</string>
+  <string>5-я улица</string>
+  <string>5-я Форматная улица</string>
+  <string>5-я Ювелирная улица</string>
+  <string>5-я Яхонтовая улица</string>
+  <string>6-й Автосборочный переулок</string>
+  <string>6-й Атаманский переулок</string>
+  <string>6-й Барьерный переулок</string>
+  <string>6-й Берестяной переулок</string>
+  <string>6-й Есаульский переулок</string>
+  <string>6-й Желанный переулок</string>
+  <string>6-й Каретный переулок</string>
+  <string>6-й Касательный переулок</string>
+  <string>6-й Лазоревый переулок</string>
+  <string>6-й Лодочный переулок</string>
+  <string>6-й Марочный переулок</string>
+  <string>6-й Путеводный переулок</string>
+  <string>6-й Раскатный переулок</string>
+  <string>6-й Рощинский переулок</string>
+  <string>6-й Рядовой переулок</string>
+  <string>6-й Самобытный переулок</string>
+  <string>6-й Санинструкторский переулок</string>
+  <string>6-й Сахалинский переулок</string>
+  <string>6-й Хлопковый переулок</string>
+  <string>6-я Авиапромовская улица</string>
+  <string>6-я Городецкая улица</string>
+  <string>6-я Залповая улица</string>
+  <string>6-я Канатная улица</string>
+  <string>6-я Ковровая улица</string>
+  <string>6-я Кольцевая улица</string>
+  <string>6-я Конструктивная улица</string>
+  <string>Улица 6-я линия</string>
+  <string>6-я Мозаичная улица</string>
+  <string>6-я Ненаглядная улица</string>
+  <string>6-я Престижная улица</string>
+  <string>6-я Причальная улица</string>
+  <string>Улица 6-я Процветания</string>
+  <string>6-я Сувенирная улица</string>
+  <string>6-я Турнирная улица</string>
+  <string>6-я Форматная улица</string>
+  <string>Улица 7-го Февраля</string>
+  <string>7-й Атаманский переулок</string>
+  <string>7-й Барьерный переулок</string>
+  <string>7-й Берестяной переулок</string>
+  <string>7-й Дружный переулок</string>
+  <string>7-й Есаульский переулок</string>
+  <string>7-й Желанный переулок</string>
+  <string>7-й Каретный переулок</string>
+  <string>7-й Лазоревый переулок</string>
+  <string>7-й Лодочный переулок</string>
+  <string>7-й Марочный переулок</string>
+  <string>7-й Путеводный переулок</string>
+  <string>7-й Раскатный переулок</string>
+  <string>7-й Рощинский переулок</string>
+  <string>7-й Самобытный переулок</string>
+  <string>7-я Авиапромовская улица</string>
+  <string>7-я Городецкая улица</string>
+  <string>7-я Журавлиная улица</string>
+  <string>7-я Залповая улица</string>
+  <string>7-я Канатная улица</string>
+  <string>7-я Ковровая улица</string>
+  <string>7-я Конструктивная улица</string>
+  <string>Улица 7-я линия</string>
+  <string>7-я Ненаглядная улица</string>
+  <string>7-я Престижная улица</string>
+  <string>Улица 7-я Процветания</string>
+  <string>7-я Турнирная улица</string>
+  <string>7-я Форматная улица</string>
+  <string>Улица 8-го Марта</string>
+  <string>8-й Атаманский переулок</string>
+  <string>8-й Дружный переулок</string>
+  <string>8-й Есаульский переулок</string>
+  <string>8-й Лазоревый переулок</string>
+  <string>8-й Лодочный переулок</string>
+  <string>8-й Путеводный переулок</string>
+  <string>8-й Раскатный переулок</string>
+  <string>8-й Рощинский переулок</string>
+  <string>8-я Авиапромовская улица</string>
+  <string>8-я Городецкая улица</string>
+  <string>8-я Залповая улица</string>
+  <string>8-я Канатная улица</string>
+  <string>Улица 8-я линия</string>
+  <string>8-я Ненаглядная улица</string>
+  <string>8-я Престижная улица</string>
+  <string>Улица 8-я Процветания</string>
+  <string>8-я Сувенирная улица</string>
+  <string>8-я Турнирная улица</string>
+  <string>Проспект 9-го Мая</string>
+  <string>9-й Атаманский переулок</string>
+  <string>9-й Берестяной переулок</string>
+  <string>9-й Дружный переулок</string>
+  <string>9-й Есаульский переулок</string>
+  <string>9-й Лазоревый переулок</string>
+  <string>9-й Лодочный переулок</string>
+  <string>9-й Путеводный переулок</string>
+  <string>9-й Раскатный переулок</string>
+  <string>9-я Авиапромовская улица</string>
+  <string>9-я Городецкая улица</string>
+  <string>9-я Залповая улица</string>
+  <string>9-я Канатная улица</string>
+  <string>Улица 9-я линия</string>
+  <string>9-я Ненаглядная улица</string>
+  <string>9-я Престижная улица</string>
+  <string>9-я улица</string>
+  <string>10-й Атаманский переулок</string>
+  <string>10-й Берестяной переулок</string>
+  <string>10-й Дружный переулок</string>
+  <string>10-й Есаульский переулок</string>
+  <string>10-й Лазоревый переулок</string>
+  <string>10-й Лодочный переулок</string>
+  <string>10-й Путеводный переулок</string>
+  <string>10-й Раскатный переулок</string>
+  <string>10-я Залповая улица</string>
+  <string>Улица 10-я линия</string>
+  <string>10-я Престижная улица</string>
+  <string>11-й Атаманский переулок</string>
+  <string>11-й Есаульский переулок</string>
+  <string>11-й Путеводный переулок</string>
+  <string>11-й Раскатный переулок</string>
+  <string>11-я Залповая улица</string>
+  <string>Улица 11-я линия</string>
+  <string>11-я Престижная улица</string>
+  <string>11-я улица</string>
+  <string>Улица 12-го Декабря</string>
+  <string>Улица 12-го Февраля</string>
+  <string>12-й Путеводный переулок</string>
+  <string>12-я Залповая улица</string>
+  <string>Улица 12-я линия</string>
+  <string>12-я Престижная улица</string>
+  <string>13-й Путеводный переулок</string>
+  <string>13-я Залповая улица</string>
+  <string>Улица 13-я линия</string>
+  <string>14-й Путеводный переулок</string>
+  <string>14-я Залповая улица</string>
+  <string>Улица 14-я линия</string>
+  <string>15-я Залповая улица</string>
+  <string>Улица 15-я линия</string>
+  <string>Улица 16-я линия</string>
+  <string>Улица 17-я линия</string>
+  <string>17-я улица</string>
+  <string>Улица 18-я линия</string>
+  <string>18-я улица</string>
+  <string>Улица 19-я линия</string>
+  <string>19-я улица</string>
+  <string>Проспект 20-летия Октября</string>
+  <string>Улица 20-я линия</string>
+  <string>20-я улица</string>
+  <string>Улица 21-я линия</string>
+  <string>21-я улица</string>
+  <string>Улица 22-я линия</string>
+  <string>Улица 23-я линия</string>
+  <string>Улица 24-я линия</string>
+  <string>Улица 25-я линия</string>
+  <string>Улица 26-го Июня</string>
+  <string>Улица 26-я линия</string>
+  <string>Улица 27-я линия</string>
+  <string>Улица 28-я линия</string>
+  <string>Улица 29-я линия</string>
+  <string>Улица 30-летия Октября</string>
+  <string>Улица 30-я линия</string>
+  <string>Улица 31-я линия</string>
+  <string>Улица 32-я линия</string>
+  <string>Улица 33-я линия</string>
+  <string>Улица 34-я линия</string>
+  <string>Улица 35-я линия</string>
+  <string>Улица 36-я линия</string>
+  <string>Улица 37-я линия</string>
+  <string>Площадь 38-й Донской Стрелковой Дивизии</string>
+  <string>Улица 38-я линия</string>
+  <string>Улица 39-я линия</string>
+  <string>Проспект 40-летия Победы</string>
+  <string>Улица 40-я линия</string>
+  <string>Улица 41-я линия</string>
+  <string>Улица 43-я линия</string>
+  <string>Улица 45-я линия</string>
+  <string>Улица 47-я линия</string>
+  <string>Улица 49-я линия</string>
+  <string>Улица 50-летия Октября</string>
+  <string>Улица 50-летия Ростсельмаша</string>
+  <string>Улица 56 Армии</string>
+  <string>Площадь 248 Одесской Краснознаменной Стрелковой Дивизии</string>
+  <string>Улица 339-й Стрелковой Дивизии</string>
+  <string>Улица 1905 года</string>
+</ArrayOfString>

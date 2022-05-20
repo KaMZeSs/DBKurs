@@ -264,8 +264,9 @@ namespace Randomize
         public string info;
         public byte[] photo;
         public int time;
+        public int[] executors;
 
-        public Album(int id, string name, int recordFirm_id, DateTime releaseDate, int amount, int songsCount, int recordType_id, bool isCompilation, int executor_id, int genre_id, int language_id, string info, byte[] photo, int time)
+        public Album(int id, string name, int recordFirm_id, DateTime releaseDate, int amount, int songsCount, int recordType_id, bool isCompilation, int executor_id, int genre_id, int language_id, string info, byte[] photo, int time, int[] executors)
         {
             this.id = id;
             this.name = name.Replace("\'", "\'\'");
@@ -281,6 +282,7 @@ namespace Randomize
             this.info = info;
             this.photo = photo;
             this.time = time;
+            this.executors = executors;
         }
 
         public override string ToString()
@@ -290,8 +292,8 @@ namespace Randomize
             string img = Convert.ToBase64String(photo);
 
             return isCompilation
-                ? $"({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, NULL, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{img}\', {time})"
-                : $"({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, {executor_id + 1}, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{img}\', {time})";
+                ? $"({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, NULL, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', \'{info}\', \'{img}\', {time}, '{{{executor_id + 1}, {executors[0] + 1}}}')"
+                : $"({id + 1}, {recordFirm_id + 1}, {genre_id + 1}, {executor_id + 1}, {language_id + 1}, {recordType_id + 1}, \'{name}\', \'{release}\', {amount}, {songsCount}, \'{isCol}\', NULL, \'{img}\', {time}, NULL)";
         }
     }
     class Country

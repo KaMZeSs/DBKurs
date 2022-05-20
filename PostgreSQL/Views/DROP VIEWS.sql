@@ -11,3 +11,17 @@ DROP VIEW albums_count_more_10kk;
 DROP VIEW avg_album_count;
 DROP VIEW get_all_count;
 DROP VIEW shop_album_count;
+
+DROP VIEW Show_shops;
+DROP VIEW Show_productranges;
+DROP VIEW Show_albums;
+DROP VIEW Show_cities;
+DROP VIEW Show_executors;
+DROP VIEW Show_countries;
+DROP VIEW Show_genres;
+DROP VIEW Show_languages;
+DROP VIEW Show_recordFirms;
+DROP VIEW Show_recordTypes;
+DROP VIEW Show_districts;
+DROP VIEW Show_owners;
+DROP VIEW Show_propertyTypes;

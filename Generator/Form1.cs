@@ -14,14 +14,14 @@ namespace Generator
             this.InitializeComponent();
             info = new SetInfo((DateTime time, string str) =>
             {
-                richTextBox1.Invoke(new SetInfo((time, str) =>
+                richTextBox1.Invoke(new SetInfo((tim, s) =>
                 {
                     int temp = richTextBox1.Text.Length;
-                    richTextBox1.Text += $"[{time.ToString("H:mm:ss:fffffff")}]";
+                    richTextBox1.Text += $"[{tim.ToString("H:mm:ss:fffffff")}]";
                     richTextBox1.SelectionStart = temp;
                     richTextBox1.SelectionLength = richTextBox1.Text.Length;
                     richTextBox1.SelectionColor = Color.Red;
-                    richTextBox1.Text += $" {str} {Environment.NewLine}";
+                    richTextBox1.Text += $" {s} {Environment.NewLine}";
                 }), time, str);
             });
         }
