@@ -236,7 +236,6 @@ namespace DBKurs.Forms
             }
 
             (Owner as MainForm).ViewSearchResult(ref dt);
-
         }
     }
 }

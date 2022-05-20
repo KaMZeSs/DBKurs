@@ -95,9 +95,10 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dataGridView1 = new DBKurs.Forms.DoubleBufferedDataGridView();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dataGridView1 = new DBKurs.Forms.DoubleBufferedDataGridView();
+            this.отобразитьГрафикToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -127,7 +128,8 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сохранитьВExcelToolStripMenuItem});
+            this.сохранитьВExcelToolStripMenuItem,
+            this.отобразитьГрафикToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(53, 40);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -135,7 +137,7 @@
             // сохранитьВExcelToolStripMenuItem
             // 
             this.сохранитьВExcelToolStripMenuItem.Name = "сохранитьВExcelToolStripMenuItem";
-            this.сохранитьВExcelToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.сохранитьВExcelToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
             this.сохранитьВExcelToolStripMenuItem.Text = "Сохранить в excel";
             this.сохранитьВExcelToolStripMenuItem.Click += new System.EventHandler(this.сохранитьВExcelToolStripMenuItem_Click);
             // 
@@ -613,6 +615,17 @@
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
             this.toolStripStatusLabel4.Size = new System.Drawing.Size(0, 17);
             // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(102, 17);
+            this.toolStripStatusLabel5.Text = "Выделено строк: ";
+            // 
+            // toolStripStatusLabel6
+            // 
+            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(0, 17);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -670,16 +683,12 @@
             this.dataGridView1.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseLeave);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // toolStripStatusLabel5
+            // отобразитьГрафикToolStripMenuItem
             // 
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(102, 17);
-            this.toolStripStatusLabel5.Text = "Выделено строк: ";
-            // 
-            // toolStripStatusLabel6
-            // 
-            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(0, 17);
+            this.отобразитьГрафикToolStripMenuItem.Name = "отобразитьГрафикToolStripMenuItem";
+            this.отобразитьГрафикToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
+            this.отобразитьГрафикToolStripMenuItem.Text = "Отобразить график";
+            this.отобразитьГрафикToolStripMenuItem.Click += new System.EventHandler(this.отобразитьГрафикToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -776,5 +785,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
+        private System.Windows.Forms.ToolStripMenuItem отобразитьГрафикToolStripMenuItem;
     }
 }

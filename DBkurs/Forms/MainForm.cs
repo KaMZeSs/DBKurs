@@ -98,8 +98,19 @@ namespace DBKurs.Forms
             }
         }
         public delegate void On_Table_Updated(object sender, TableEventArgs e);
-
         public event On_Table_Updated onTable_Updated;
+
+        public class DataTableEventArgs
+        {
+            public DataTable data { get; }
+
+            public DataTableEventArgs(DataTable data)
+            {
+                this.data = data;
+            }
+        }
+        public delegate void On_Request_Asked_To_Show(object sender, DataTableEventArgs e);
+        public event On_Request_Asked_To_Show onRequest_Asked_To_Show;
 
         #endregion
 
@@ -851,7 +862,6 @@ namespace DBKurs.Forms
             }
             new Find(connectString).Show(this);
         }
-
         public void ViewSearchResult(ref DataTable dt)
         {
             dataGridView1.DataSource = null; //очистка таблицы
@@ -1017,9 +1027,6 @@ namespace DBKurs.Forms
                 var header = TextRenderer.MeasureText(dt.Columns[i].ColumnName, font).Width;
                 widths[i] = widths[i] > header ? widths[i] : header;
                 widths[i] = dt.Columns[i].ColumnName == "id" ? widths[i] + 1 : widths[i];
-
-                //widths[i] = (from DataRow row in dt.AsEnumerable().AsParallel()
-                //             select row[i].ToString().Length).Max();
             }
             return widths;
         }
@@ -1071,6 +1078,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = dt;
+
                     updator_continue.Invoke();
                 }
                 catch (Exception exc)
@@ -1520,10 +1528,18 @@ namespace DBKurs.Forms
 
                 dt = new DataTable();
                 dt.Load(await cmd.ExecuteReaderAsync());
+
+                //_ = Task.Factory.StartNew(() =>
+                //{
+                //    onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dt));
+                //});
+
                 dataGridView1.DataSource = null;
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+
+                onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
             }
             catch (Exception exc)
             {
@@ -1547,7 +1563,7 @@ namespace DBKurs.Forms
 
                 dt = new DataTable();
                 dt.Columns.Add("Среднее количество альбомов");
-                dt.Rows.Add(Decimal.ToDouble((decimal)await cmd.ExecuteScalarAsync()));
+                dt.Rows.Add(await cmd.ExecuteScalarAsync());
 
                 dataGridView1.DataSource = null;
                 dataGridView1.Columns.Clear();
@@ -1622,6 +1638,8 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+
+                    onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
                 {
@@ -1662,6 +1680,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
                 {
@@ -1703,6 +1722,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
                 {
@@ -1743,6 +1763,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
                 {
@@ -1789,6 +1810,7 @@ namespace DBKurs.Forms
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = dt;
                     updator_continue.Invoke();
+                    onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
                 }
                 catch (Exception exc)
                 {
@@ -1817,6 +1839,7 @@ namespace DBKurs.Forms
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = dt;
                 updator_continue.Invoke();
+                onRequest_Asked_To_Show?.Invoke(this, new DataTableEventArgs(dataGridView1.DataSource as DataTable));
             }
             catch (Exception exc)
             {
@@ -2033,6 +2056,23 @@ namespace DBKurs.Forms
                     }
                 }, data);
             }
+        }
+
+        #endregion
+
+        #region Chart
+
+        private void отобразитьГрафикToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in OwnedForms)
+            {
+                if (form.GetType() == typeof(ChartForm))
+                {
+                    form.Close();
+                    return;
+                }
+            }
+            new ChartForm().Show(this);
         }
 
         #endregion
