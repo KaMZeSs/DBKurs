@@ -117,3 +117,4 @@ E:\DBKurs\DBkurs\obj\Debug\net472\DBKurs.csproj.CopyComplete
 E:\DBKurs\DBkurs\obj\Debug\net472\DBKurs.exe
 E:\DBKurs\DBkurs\obj\Debug\net472\DBKurs.pdb
 E:\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.ChartForm.resources
+E:\DBKurs\DBkurs\obj\Debug\net472\DBKurs.Forms.Autorization.resources

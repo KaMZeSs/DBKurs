@@ -2107,6 +2107,11 @@ namespace DBKurs.Forms
                 await savingToExcel_task;
         }
 
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void составнаяФормаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form form in OwnedForms)
