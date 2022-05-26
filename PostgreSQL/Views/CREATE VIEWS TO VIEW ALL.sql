@@ -65,6 +65,8 @@ CREATE OR REPLACE VIEW Show_countries AS
     FROM COUNTRIES
     ORDER BY country_id;
 
+SELECT * FROM Show_countries WHERE "id" = 1
+
 CREATE OR REPLACE VIEW Show_executors AS
     SELECT 
         executor_id AS "id",
@@ -121,4 +123,11 @@ CREATE OR REPLACE VIEW Show_propertyTypes AS
         propertyType_name AS "Тип собственности"
     FROM PropertyTypes
     ORDER BY propertyType_id;
+
+CREATE OR REPLACE VIEW Show_archieve_genres AS
+    SELECT 
+        genre_archieve_id AS "id",
+        genre_archieve_name AS "Жанр"
+    FROM genres_archieve
+    ORDER BY genre_archieve_id;
 

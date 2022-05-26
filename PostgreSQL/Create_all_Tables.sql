@@ -119,6 +119,67 @@ CREATE TABLE ProductRanges(
     FOREIGN KEY (album_id) REFERENCES Albums(album_id) ON DELETE CASCADE
 );
 
+--Архив жанров-------------------------------------------------------------------------------------------
+CREATE TABLE genres_archieve (
+	genre_archieve_id SERIAL PRIMARY KEY,
+	genre_archieve_name TEXT
+);
+
+select * from Show_archieve_genres
+
+CREATE OR REPLACE FUNCTION Before_Delete_Genres () RETURNS TRIGGER AS $$
+BEGIN
+
+	INSERT INTO genres_archieve(genre_archieve_name)
+	VALUES(OLD.genre_name);
+	RETURN OLD;
+
+END; $$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER Before_Delete_Genres
+BEFORE DELETE ON genres
+FOR EACH ROW EXECUTE PROCEDURE Before_Delete_Genres();
+
+CREATE OR REPLACE FUNCTION Before_insert_trigger_genres_archieve() RETURNS TRIGGER AS $$
+DECLARE
+	i INT;
+	max INT;
+	curr RECORD;
+BEGIN
+
+	IF NOT EXISTS(SELECT genre_archieve_id FROM genres_archieve WHERE genre_archieve_id = 1) THEN
+		NEW.genre_archieve_id = 1;
+		RETURN NEW;
+	END IF;
+
+	max := 0;
+
+	FOR curr IN
+		SELECT genre_archieve_id FROM genres_archieve
+	LOOP
+		IF max < curr.genre_archieve_id THEN
+			max := curr.genre_archieve_id;
+		END IF;
+
+		IF curr.genre_archieve_id <> i THEN
+			IF NOT EXISTS(SELECT genre_archieve_id FROM genres_archieve WHERE genre_archieve_id = i) THEN
+				NEW.genre_archieve_id = i;
+				RETURN NEW;
+			END IF;
+		ELSE
+			i := i + 1;
+		END IF;
+	END LOOP;
+	NEW.genre_archieve_id = max + 1;
+	RETURN NEW;
+
+END; $$ LANGUAGE 'plpgsql';
+
+
+CREATE TRIGGER Before_insert_trigger_genres_archieve
+BEFORE INSERT ON genres_archieve
+FOR EACH ROW EXECUTE PROCEDURE Before_insert_trigger_genres_archieve();
+
 --Триггеры---------------------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION Before_insert_trigger_Cities() RETURNS TRIGGER AS $$
 DECLARE
@@ -170,7 +231,6 @@ BEGIN
     IF (NEW.country_id != 1) THEN
         RETURN NEW;
     END IF;
-
 	max := 0;
 	i := 1;
 	FOR curr IN
@@ -698,7 +758,32 @@ CREATE TRIGGER After_delete_executors
 AFTER DELETE ON Executors
 FOR EACH ROW EXECUTE PROCEDURE After_delete_executors();
 
-CREATE OR REPLACE FUNCTION Before_update_albums() RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION After_update_executors() RETURNS TRIGGER AS $$
+DECLARE    
+    alb_inf TEXT;
+    temp_str TEXT;
+    curr RECORD;
+    arr INT[];
+BEGIN
+    FOR curr IN (
+        SELECT album_id FROM albums 
+        WHERE iscollection = TRUE
+        AND OLD.executor_id = ANY(all_executors::INT[])
+    ) LOOP
+        SELECT all_executors INTO arr FROM albums WHERE album_id = curr.album_id;
+        SELECT albuminfo INTO alb_inf FROM albums WHERE album_id = curr.album_id;
+        alb_inf = replace(alb_inf, OLD.executor_name, NEW.executor_name);
+        UPDATE albums SET albumInfo = alb_inf WHERE album_id = curr.album_id;
+    END LOOP;
+
+    RETURN OLD;
+END; $$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER After_update_executors
+AFTER UPDATE ON Executors
+FOR EACH ROW EXECUTE PROCEDURE After_update_executors();
+
+CREATE OR REPLACE FUNCTION After_update_albums() RETURNS TRIGGER AS $$
 DECLARE    
     alb_inf TEXT;
     temp_str TEXT;
@@ -710,12 +795,32 @@ BEGIN
         NEW.executor_id = NEW.all_executors[1];
         NEW.all_executors = NULL;
         NEW.albumInfo = NULL;
+		NEW.isCollection = FALSE;
     ELSE
+		NEW.isCollection = TRUE;
         RETURN NEW;
     END IF;
 
     RETURN NEW;
 END; $$ LANGUAGE 'plpgsql';
-CREATE TRIGGER Before_update_albums
-BEFORE UPDATE ON Albums
-FOR EACH ROW EXECUTE PROCEDURE Before_update_albums();
+
+
+CREATE TRIGGER After_update_albums
+AFTER UPDATE ON Albums
+FOR EACH ROW EXECUTE PROCEDURE After_update_albums();
+
+CREATE OR REPLACE FUNCTION After_insert_albums() RETURNS TRIGGER AS $$
+DECLARE
+BEGIN
+	IF NEW.albumInfo = NULL THEN
+		NEW.isCollection = FALSE;
+	ELSE
+		NEW.isCollection = TRUE;
+	END IF;
+	RETURN NEW;
+
+END; $$ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER After_insert_albums
+AFTER INSERT ON Albums
+FOR EACH ROW EXECUTE PROCEDURE After_insert_albums();

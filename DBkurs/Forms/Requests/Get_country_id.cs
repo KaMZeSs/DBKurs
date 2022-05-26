@@ -15,6 +15,7 @@ namespace DBKurs.Requests
         private DataTable dtCountries;
 
         public int Country_id { get; private set; }
+        public String County_name { get; private set; }
 
         public Get_country_id(string conn)
         {
@@ -58,6 +59,7 @@ namespace DBKurs.Requests
         private void button1_Click(object sender, EventArgs e)
         {
             Country_id = Int32.Parse(listBox1.SelectedItem.ToString().Split('-').Last());
+            County_name = listBox1.SelectedItem.ToString().Split('-').First().Trim();
             DialogResult = DialogResult.OK;
             this.Close();
         }

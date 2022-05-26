@@ -176,5 +176,8 @@ LIMIT 3;
 
 SELECT album_id, albumInfo FROM albums WHERE isCollection = true ORDER BY album_id LIMIT 100;
 
-SELECT executor_id FROM executors WHERE executor_name = 'JollyPrince' -- 3
-
+SELECT albums.album_id AS "id", 
+albums.album_name AS "Название",
+albums.releasedate AS "Дата выпуска"
+FROM albums
+WHERE releasedate < NOW();

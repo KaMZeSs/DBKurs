@@ -73,7 +73,8 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(256, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
+            this.button1.Text = "Подтвердить";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -89,7 +90,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Get_time_period";
-            this.Text = "Get_time_period";
+            this.Text = "Выбрать период времени";
             this.ResumeLayout(false);
             this.PerformLayout();
 

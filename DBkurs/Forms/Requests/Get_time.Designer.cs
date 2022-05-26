@@ -45,9 +45,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 13);
+            this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "По данный момент";
+            this.label1.Text = "Выберите дату";
             // 
             // button1
             // 
@@ -69,7 +69,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Get_time";
-            this.Text = "Get_time_period";
+            this.Text = "Выберите период времени";
             this.ResumeLayout(false);
             this.PerformLayout();
 

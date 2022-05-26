@@ -9,7 +9,8 @@ CREATE OR REPLACE VIEW Count_Top3_Genres AS
     ORDER BY "Количество проданных копий" DESC;
 
 CREATE OR REPLACE VIEW Shops_PropertyTypes AS
-    SELECT shop_name, propertytype_name
+    SELECT shop_name AS "Магазин", 
+    propertytype_name AS "Тип собственности"
     FROM propertytypes
     JOIN shops USING (propertytype_id)
     ORDER BY propertytype_name;
@@ -59,7 +60,8 @@ CREATE OR REPLACE VIEW Count_Genres AS
     ORDER BY "Количество" DESC;
 
 CREATE OR REPLACE VIEW Albums_Genres AS
-    SELECT album_name, genre_name
+    SELECT album_name AS "Альбом", 
+    genre_name AS "Жанр"
     FROM genres
     JOIN albums USING (genre_id)
     ORDER BY genre_name;

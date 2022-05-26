@@ -12,6 +12,8 @@ using DBKurs.Styles;
 using Npgsql;
 using ClosedXML.Excel;
 using System.Collections.Generic;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using DataTable = System.Data.DataTable;
 
 namespace DBKurs.Forms
 {
@@ -42,7 +44,7 @@ namespace DBKurs.Forms
         private NpgsqlConnection conn;
         private string sql;
         private NpgsqlCommand cmd;
-        private DataTable dt;
+        private System.Data.DataTable dt;
 
         public MainForm()
         {
@@ -512,6 +514,33 @@ namespace DBKurs.Forms
                         }
                     };
                     CurrentTable = Tables.Districts;
+                    break;
+                case "Архив удаленных жанров":
+                    updator += async () =>
+                    {
+                        try
+                        {
+                            conn.Open();
+                            sql = @"select * from Show_archieve_genres";
+                            cmd = new NpgsqlCommand(sql, conn);
+
+                            dt = new DataTable();
+
+                            dt.Load(await cmd.ExecuteReaderAsync());
+                            dataGridView1.DataSource = null; //очистка таблицы
+                            dataGridView1.DataSource = dt;
+                            updator_continue.Invoke();
+                            данныеToolStripMenuItem.Enabled = false;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error" + ex.Message);
+                        }
+                        finally
+                        {
+                            conn.Close();
+                        }
+                    };
                     break;
             }
             updator.Invoke();
@@ -1362,6 +1391,45 @@ namespace DBKurs.Forms
                 }
             }
         }
+        private async void списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_time("Выбрать дату");
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+                    var vs = form.Time.ToString("dd-MM-yyyy");
+                    cmd = new NpgsqlCommand(
+                        "SELECT albums.album_id AS \"id\", " +
+                        "albums.album_name AS \"Название\", " +
+                        "albums.releasedate AS \"Дата выпуска\" " +
+                        "FROM albums " +
+                        $"WHERE releasedate < '{vs}'",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                    CanBeCharted = false;
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
+            }
+        }
         private async void датаПоследнейПоставкиВоВсеМагазиныToolStripMenuItem_Click(object sender, EventArgs e)
         {
             поискToolStripMenuItem.Enabled = false;
@@ -1641,7 +1709,7 @@ namespace DBKurs.Forms
                         "JOIN cities USING(country_id) " +
                         "JOIN recordfirms USING(city_id) " +
                         "JOIN albums USING(recordfirm_id) " +
-                        $"WHERE country_id = {form.Country_id} " +
+                        $"WHERE country_name = '{form.County_name}' " +
                         "GROUP BY city_id " +
                         "ORDER BY \"Количество\" DESC",
                         conn);
@@ -2010,7 +2078,7 @@ namespace DBKurs.Forms
 
                 cmd = new NpgsqlCommand("SELECT * FROM ostalos_albomov", conn);
 
-                dt = new DataTable();
+                dt = new System.Data.DataTable();
                 dt.Load(await cmd.ExecuteReaderAsync());
                 dataGridView1.DataSource = null;
                 dataGridView1.Columns.Clear();
@@ -2024,6 +2092,49 @@ namespace DBKurs.Forms
             finally
             {
                 await conn.CloseAsync();
+            }
+        }
+        private async void списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Requests.Get_shop_id(connectString);
+
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                поискToolStripMenuItem.Enabled = false;
+                обновитьToolStripMenuItem.Enabled = false;
+                данныеToolStripMenuItem.Enabled = false;
+                try
+                {
+                    await conn.OpenAsync();
+
+                    cmd = new NpgsqlCommand(
+                        "SELECT DISTINCT(genre_id) AS \"id\", " +
+                        "genre_name AS \"Жанр\" " +
+                        "FROM albums " +
+                        "LEFT JOIN genres USING(genre_id) " +
+                        "WHERE album_id = ANY( " +
+                        "    SELECT DISTINCT(album_id) " +
+                        $"    FROM productranges WHERE shop_id = '{form.Shop_id}' " +
+                        ") " +
+                        "ORDER BY genre_id",
+                        conn);
+
+                    dt = new DataTable();
+                    dt.Load(await cmd.ExecuteReaderAsync());
+                    dataGridView1.DataSource = null;
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.DataSource = dt;
+                    updator_continue.Invoke();
+                    CanBeCharted = false;
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+                finally
+                {
+                    await conn.CloseAsync();
+                }
             }
         }
 

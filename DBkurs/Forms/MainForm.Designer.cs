@@ -50,11 +50,13 @@
             this.поВсемМагазинамToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.списокАльбомовКоторыеПродаютсяУДанногоВладельцаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.всеАльбомыКоторыеПродаютсяВДаннойСтранеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.всеАльбомыКоторыеПоставленыВОпределенныйМагазинПослеОпределеннойДатыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.датаПоследнейПоставкиВоВсеМагазиныToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вывестиСписокФирмЗвукозаписиСоСтранамиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вывестиСписокАльбомовСЖанрамиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вывестиСписокМагазиновСТипамиСобственностиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокСтранБезГородовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокАльбомовУКоторыхОдинИсполнительToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.итоговыеЗапросыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,6 +92,7 @@
             this.районГородаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.составнаяФормаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.архивУдаленныхЖанровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.поискToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -187,11 +190,13 @@
             this.топ3ЖанровToolStripMenuItem,
             this.списокАльбомовКоторыеПродаютсяУДанногоВладельцаToolStripMenuItem,
             this.всеАльбомыКоторыеПродаютсяВДаннойСтранеToolStripMenuItem,
+            this.списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem,
             this.всеАльбомыКоторыеПоставленыВОпределенныйМагазинПослеОпределеннойДатыToolStripMenuItem,
             this.датаПоследнейПоставкиВоВсеМагазиныToolStripMenuItem,
             this.вывестиСписокФирмЗвукозаписиСоСтранамиToolStripMenuItem,
             this.вывестиСписокАльбомовСЖанрамиToolStripMenuItem,
             this.вывестиСписокМагазиновСТипамиСобственностиToolStripMenuItem,
+            this.списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem,
             this.списокСтранБезГородовToolStripMenuItem,
             this.списокАльбомовУКоторыхОдинИсполнительToolStripMenuItem,
             this.итоговыеЗапросыToolStripMenuItem,
@@ -230,7 +235,7 @@
             // 
             this.поВсемМагазинамToolStripMenuItem.Name = "поВсемМагазинамToolStripMenuItem";
             this.поВсемМагазинамToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
-            this.поВсемМагазинамToolStripMenuItem.Text = "По всем магазинам";
+            this.поВсемМагазинамToolStripMenuItem.Text = "Во всех районах";
             this.поВсемМагазинамToolStripMenuItem.Click += new System.EventHandler(this.поВсемМагазинамToolStripMenuItem_Click);
             // 
             // топ3ЖанровToolStripMenuItem
@@ -270,6 +275,13 @@
             this.всеАльбомыКоторыеПродаютсяВДаннойСтранеToolStripMenuItem.Text = "Все альбомы, которые выпущены в данной стране";
             this.всеАльбомыКоторыеПродаютсяВДаннойСтранеToolStripMenuItem.Click += new System.EventHandler(this.всеАльбомыКоторыеВыпущеныВДаннойСтранеToolStripMenuItem_Click);
             // 
+            // списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem
+            // 
+            this.списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem.Name = "списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem";
+            this.списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
+            this.списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem.Text = "Список альбомов, выпущенных до этого момента";
+            this.списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem.Click += new System.EventHandler(this.списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem_Click);
+            // 
             // всеАльбомыКоторыеПоставленыВОпределенныйМагазинПослеОпределеннойДатыToolStripMenuItem
             // 
             this.всеАльбомыКоторыеПоставленыВОпределенныйМагазинПослеОпределеннойДатыToolStripMenuItem.Name = "всеАльбомыКоторыеПоставленыВОпределенныйМагазинПослеОпределеннойДатыToolStripMenu" +
@@ -305,6 +317,13 @@
             this.вывестиСписокМагазиновСТипамиСобственностиToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
             this.вывестиСписокМагазиновСТипамиСобственностиToolStripMenuItem.Text = "Вывести список магазинов с типами собственности";
             this.вывестиСписокМагазиновСТипамиСобственностиToolStripMenuItem.Click += new System.EventHandler(this.вывестиСписокМагазиновСТипамиСобственностиToolStripMenuItem_Click);
+            // 
+            // списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem
+            // 
+            this.списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem.Name = "списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem";
+            this.списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem.Size = new System.Drawing.Size(536, 24);
+            this.списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem.Text = "Список жанров, которые продаются в данном магазине";
+            this.списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem.Click += new System.EventHandler(this.списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem_Click);
             // 
             // списокСтранБезГородовToolStripMenuItem
             // 
@@ -433,7 +452,8 @@
             this.основныеToolStripMenuItem,
             this.справочникиToolStripMenuItem,
             this.обновитьToolStripMenuItem,
-            this.составнаяФормаToolStripMenuItem});
+            this.составнаяФормаToolStripMenuItem,
+            this.архивУдаленныхЖанровToolStripMenuItem});
             this.таблицыToolStripMenuItem.Name = "таблицыToolStripMenuItem";
             this.таблицыToolStripMenuItem.Size = new System.Drawing.Size(76, 40);
             this.таблицыToolStripMenuItem.Text = "Таблицы";
@@ -445,7 +465,7 @@
             this.альбомToolStripMenuItem,
             this.магазинToolStripMenuItem});
             this.основныеToolStripMenuItem.Name = "основныеToolStripMenuItem";
-            this.основныеToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
+            this.основныеToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.основныеToolStripMenuItem.Text = "Основные";
             // 
             // ассортиментToolStripMenuItem
@@ -484,7 +504,7 @@
             this.типСобственностиToolStripMenuItem,
             this.районГородаToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
-            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
+            this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.справочникиToolStripMenuItem.Text = "Справочники";
             // 
             // странаToolStripMenuItem
@@ -565,16 +585,23 @@
             // обновитьToolStripMenuItem
             // 
             this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.обновитьToolStripMenuItem.Text = "Обновить";
             this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
             // 
             // составнаяФормаToolStripMenuItem
             // 
             this.составнаяФормаToolStripMenuItem.Name = "составнаяФормаToolStripMenuItem";
-            this.составнаяФормаToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
+            this.составнаяФормаToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
             this.составнаяФормаToolStripMenuItem.Text = "Составная форма";
             this.составнаяФормаToolStripMenuItem.Click += new System.EventHandler(this.составнаяФормаToolStripMenuItem_Click);
+            // 
+            // архивУдаленныхЖанровToolStripMenuItem
+            // 
+            this.архивУдаленныхЖанровToolStripMenuItem.Name = "архивУдаленныхЖанровToolStripMenuItem";
+            this.архивУдаленныхЖанровToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
+            this.архивУдаленныхЖанровToolStripMenuItem.Text = "Архив удаленных жанров";
+            this.архивУдаленныхЖанровToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // поискToolStripMenuItem
             // 
@@ -787,5 +814,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
         private System.Windows.Forms.ToolStripMenuItem отобразитьГрафикToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem архивУдаленныхЖанровToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem списокАльбомовВыпущенныхДоЭтогоМоментаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem списокЖанровКоторыеПродаютсяВДанномМагазинеToolStripMenuItem;
     }
 }
